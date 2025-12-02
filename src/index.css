@@ -23,6 +23,8 @@
     overflow-y: auto;
     scrollbar-width: none; /* Firefox - hide vertical scrollbar */
     -ms-overflow-style: none; /* IE and Edge - hide vertical scrollbar */
+    background-color: #FFFFFF !important;
+    background: #FFFFFF !important;
   }
 
   html::-webkit-scrollbar {
@@ -32,7 +34,8 @@
   body {
     margin: 0;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background-color: #FFFFFF;
+    background-color: #FFFFFF !important;
+    background: #FFFFFF !important;
     color: var(--dark);
     overflow-x: hidden;
     overflow-y: auto;
@@ -40,6 +43,24 @@
     -ms-overflow-style: none; /* IE and Edge - hide vertical scrollbar */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  #root {
+    background-color: #FFFFFF !important;
+    background: #FFFFFF !important;
+    min-height: 100vh;
+  }
+
+  /* Ensure all page containers have white background */
+  body > #root > div {
+    background-color: #FFFFFF !important;
+    background: #FFFFFF !important;
+  }
+
+  /* Ensure all main page sections default to white */
+  main, section[class*="min-h-screen"], div[class*="min-h-screen"] {
+    background-color: #FFFFFF !important;
+    background: #FFFFFF !important;
   }
 
   body::-webkit-scrollbar {

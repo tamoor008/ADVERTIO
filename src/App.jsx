@@ -4,6 +4,7 @@ import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import PageTransition from './components/layout/PageTransition';
+import WhatsAppButton from './components/ui/WhatsAppButton';
 import './App.css';
 import './styles/tokens.css';
 
@@ -39,18 +40,21 @@ function AppRoutes() {
 function App() {
   return (
     <Router>
-      <Navbar />
-      <Suspense fallback={
-        <div className="min-h-screen flex items-center justify-center bg-[#0F172A]">
-          <div className="flex flex-col items-center gap-4">
-            <div className="w-12 h-12 border-4 border-primary/30 border-t-primary rounded-full animate-spin"></div>
-            <p className="text-white/60 text-sm">Loading...</p>
+      <div className="min-h-screen bg-white" style={{ backgroundColor: '#FFFFFF', background: '#FFFFFF' }}>
+        <Navbar />
+        <Suspense fallback={
+          <div className="min-h-screen flex items-center justify-center bg-white" style={{ backgroundColor: '#FFFFFF', background: '#FFFFFF' }}>
+            <div className="flex flex-col items-center gap-4">
+              <div className="w-12 h-12 border-4 border-primary/30 border-t-primary rounded-full animate-spin"></div>
+              <p className="text-[#253E5C]/60 text-sm">Loading...</p>
+            </div>
           </div>
-        </div>
-      }>
-        <AppRoutes />
-      </Suspense>
-      <Footer />
+        }>
+          <AppRoutes />
+        </Suspense>
+        <Footer />
+        <WhatsAppButton />
+      </div>
     </Router>
   );
 }

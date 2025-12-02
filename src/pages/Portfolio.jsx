@@ -657,7 +657,7 @@ const Portfolio = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen overflow-visible">
+    <div className="relative min-h-screen overflow-visible bg-white" style={{ backgroundColor: '#FFFFFF', background: '#FFFFFF' }}>
       
       {/* Hero Section */}
       <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-visible pt-24 pb-20 z-10">

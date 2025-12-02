@@ -131,7 +131,8 @@ const FreeAudit = () => {
   return (
     <motion.div
       ref={sectionRef}
-      className="relative min-h-screen pt-24 pb-20 overflow-visible"
+      className="relative min-h-screen pt-24 pb-20 overflow-visible bg-white"
+      style={{ backgroundColor: '#FFFFFF', background: '#FFFFFF' }}
       initial={{ opacity: 0 }}
       animate={isInView ? { opacity: 1 } : { opacity: 0 }}
       transition={{ duration: 0.6 }}
@@ -508,6 +509,7 @@ const FreeAudit = () => {
                 </div>
               </motion.div>
             )}
+            
           </div>
         </motion.form>
         </motion.div>

@@ -25,7 +25,7 @@ function Floating404() {
 
 const NotFound = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center relative">
+    <div className="min-h-screen flex items-center justify-center relative bg-white" style={{ backgroundColor: '#FFFFFF', background: '#FFFFFF' }}>
       <div className="absolute inset-0 z-0">
         <Canvas camera={{ position: [0, 0, 5] }}>
           <Suspense fallback={null}>
@@ -40,11 +40,11 @@ const NotFound = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-9xl font-black mb-6 bg-gradient-to-r from-primary to-white bg-clip-text text-transparent">
+          <h1 className="text-9xl font-black mb-6 bg-gradient-to-r from-primary to-[#253E5C] bg-clip-text text-transparent">
             404
           </h1>
-          <h2 className="text-4xl font-bold text-white mb-6">Page Not Found</h2>
-          <p className="text-white/80 mb-8 max-w-md mx-auto">
+          <h2 className="text-4xl font-bold text-[#253E5C] mb-6">Page Not Found</h2>
+          <p className="text-[#253E5C]/80 mb-8 max-w-md mx-auto">
             The page you're looking for seems to have drifted into the void.
           </p>
           <Link

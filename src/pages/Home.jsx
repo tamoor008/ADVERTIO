@@ -42,6 +42,15 @@ import talhaImage from '../assets/talha.jpg';
 import tabishImage from '../assets/tabish.jpg';
 import seoImage from '../assets/SEO.jpg';
 
+// Process icons imports
+import storeAnalysisIcon from '../assets/Store-analysis.png';
+import growthStrategyIcon from '../assets/Growht-Strategy.png';
+import multiChannelIcon from '../assets/multi-channel.png';
+import contentCreatorIcon from '../assets/content-creator.png';
+import campaignLaunchIcon from '../assets/compaign-launch.png';
+import performanceIcon from '../assets/performance.png';
+import analyticsIcon from '../assets/analytics.png';
+
 gsap.registerPlugin(ScrollTrigger);
 
 const servicesList = [
@@ -66,13 +75,23 @@ const processSteps = [
 ];
 
 const processLabels = [
-  '🎯 Store Analysis',
-  '📊 Growth Strategy',
-  '📱 Multi-Channel Ads',
-  '✨ Content Creation',
-  '🚀 Campaign Launch',
-  '📈 Performance Tracking',
-  '💰 ROI Reports',
+  'Store Analysis',
+  'Growth Strategy',
+  'Multi-Channel Ads',
+  'Content Creation',
+  'Campaign Launch',
+  'Performance Tracking',
+  'ROI Reports',
+];
+
+const processIcons = [
+  storeAnalysisIcon,
+  growthStrategyIcon,
+  multiChannelIcon,
+  contentCreatorIcon,
+  campaignLaunchIcon,
+  performanceIcon,
+  analyticsIcon,
 ];
 
 const processLabelsSplit = [
@@ -156,6 +175,8 @@ const heroModes = [
 const rotatingWords = heroModes.map((mode) => mode.word);
 
 const ProcessBackdrop = () => {
+  const [expandedCardIndex, setExpandedCardIndex] = useState(null);
+
   // Solid colors for each card based on brand color scheme
   // Store Analysis (index 0) should be #253E5C
   // Growth Strategy (index 1) should be #16A34A
@@ -252,13 +273,11 @@ const ProcessBackdrop = () => {
           </div>
         </div>
 
-        {/* Mobile: Simple card grid */}
+        {/* Mobile: Simple card grid with accordion */}
         <div className="md:hidden w-full">
           <div className="grid grid-cols-1 gap-4">
             {processLabels.map((label, index) => {
-              const emojiMatch = label.match(/^(\p{Emoji}+)\s*(.+)$/u);
-              const emoji = emojiMatch ? emojiMatch[1] : '';
-              const text = emojiMatch ? emojiMatch[2] : label;
+              const isExpanded = expandedCardIndex === index;
               
               return (
                 <motion.div
@@ -267,30 +286,72 @@ const ProcessBackdrop = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.4, delay: index * 0.05 }}
-                  className="bg-white rounded-2xl border border-[#253E5C]/10 shadow-md p-5 flex items-center gap-4"
+                  className="bg-white rounded-2xl border border-[#253E5C]/10 shadow-md overflow-hidden"
                   style={{
                     borderLeft: `4px solid ${cardColors[index].bg}`,
                   }}
                 >
-                  <div 
-                    className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl flex-shrink-0 shadow-sm"
-                    style={{
-                      background: `${cardColors[index].bg}15`,
-                    }}
-                  >
-                    {emoji}
-                  </div>
-                  <div className="flex-1">
-                    <h4 
-                      className="font-bold text-base mb-1"
-                      style={{ color: cardColors[index].bg }}
+                  <div className="p-5 flex items-center gap-4">
+                    <div 
+                      className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm overflow-hidden"
+                      style={{
+                        background: `${cardColors[index].bg}15`,
+                      }}
                     >
-                      {text}
-                    </h4>
-                    <p className="text-sm text-slate-600 leading-relaxed">
-                      {processSteps[index]}
-                    </p>
+                      <img 
+                        src={processIcons[index]} 
+                        alt={label}
+                        className="w-8 h-8 object-contain"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <h4 
+                        className="font-bold text-base"
+                        style={{ color: cardColors[index].bg }}
+                      >
+                        {label}
+                      </h4>
+                    </div>
+                    <button
+                      onClick={() => {
+                        setExpandedCardIndex(isExpanded ? null : index);
+                      }}
+                      className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+                      style={{
+                        background: isExpanded ? cardColors[index].bg : `${cardColors[index].bg}15`,
+                        color: isExpanded ? cardColors[index].text : cardColors[index].bg,
+                      }}
+                      aria-label={isExpanded ? 'Collapse' : 'Expand'}
+                    >
+                      <motion.svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        animate={{ rotate: isExpanded ? 45 : 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
+                      </motion.svg>
+                    </button>
                   </div>
+                  <AnimatePresence>
+                    {isExpanded && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: 'easeInOut' }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-5 pb-5 pt-0">
+                          <p className="text-sm text-slate-600 leading-relaxed">
+                            {processSteps[index]}
+                          </p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </motion.div>
               );
             })}
@@ -370,18 +431,19 @@ const ProcessBackdrop = () => {
                     }}
                   >
                     {(() => {
-                      const label = processLabels[index];
-                      const emojiMatch = label.match(/^(\p{Emoji}+)\s*(.+)$/u);
-                      const emoji = emojiMatch ? emojiMatch[1] : '';
                       const [line1, line2] = processLabelsSplit[index];
                       
                       return (
                         <>
                           <div 
-                            className="text-lg mb-3"
+                            className="mb-2 flex items-center justify-center"
                             style={{ lineHeight: '1' }}
                           >
-                            {emoji}
+                            <img 
+                              src={processIcons[index]} 
+                              alt={processLabels[index]}
+                              className="w-8 h-8 object-contain"
+                            />
                           </div>
                           <div className="flex flex-col items-center">
                             <span 
@@ -513,9 +575,9 @@ const AnimatedStat = ({ stat, isInView }) => {
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{ duration: 0.6 }}
     >
-      <div className="flex flex-col items-center text-center px-4 py-6 rounded-[26px] bg-transparent">
+      <div className="flex flex-col items-center text-center px-3 py-4 md:px-4 md:py-6 rounded-[26px] bg-transparent">
         <span
-          className="text-4xl md:text-5xl font-black tracking-tight text-white"
+          className="text-3xl md:text-5xl font-black tracking-tight text-white"
           style={{
             color: '#FFFFFF',
           }}
@@ -523,7 +585,7 @@ const AnimatedStat = ({ stat, isInView }) => {
           {displayValue}
           {stat.suffix}
         </span>
-        <p className="mt-3 text-sm md:text-base font-semibold text-white/80 uppercase tracking-[0.3em] whitespace-nowrap">
+        <p className="mt-2 md:mt-3 text-xs md:text-base font-semibold text-white/80 uppercase tracking-[0.3em] whitespace-nowrap">
           {stat.label}
         </p>
       </div>
@@ -559,7 +621,7 @@ const MetricsBar = () => {
                 A glimpse at the momentum we have built with our partners across immersive campaigns.
               </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
               {statsData.map((stat) => (
                 <AnimatedStat key={stat.label} stat={stat} isInView={isInView} />
               ))}
@@ -718,11 +780,12 @@ const TeamSection = () => {
     <motion.section
       ref={sectionRef}
       className="relative z-10 py-24 overflow-hidden bg-gradient-to-b from-white/30 via-white/50 to-white/80 w-full"
-      initial={{ opacity: 0 }}
-      animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+      initial={{ opacity: 0, scale: 1 }}
+      animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 1 }}
+      style={{ scale: 1 }}
       transition={{ duration: 1 }}
     >
-      <div className="relative w-full px-4 md:px-8 lg:px-12">
+      <div className="relative w-full px-2 md:px-4 lg:px-6">
         {/* Section Header */}
         <motion.div
           className="text-center mb-16 max-w-4xl mx-auto"
@@ -740,14 +803,14 @@ const TeamSection = () => {
         </motion.div>
 
         {/* Team Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 lg:gap-6 w-full">
           {teamMembers.map((member, index) => {
             // Different heights for each card
             const cardHeights = [
-              'h-[480px] md:h-[580px] lg:h-[620px]',  // Card 1 - shortest
-              'h-[530px] md:h-[680px] lg:h-[720px]',  // Card 2 - medium-tall
-              'h-[510px] md:h-[610px] lg:h-[640px]',  // Card 3 - medium
-              'h-[550px] md:h-[650px] lg:h-[700px]',  // Card 4 - tall
+              'h-[440px] md:h-[540px] lg:h-[580px]',  // Card 1 - shortest
+              'h-[490px] md:h-[640px] lg:h-[680px]',  // Card 2 - medium-tall
+              'h-[470px] md:h-[570px] lg:h-[600px]',  // Card 3 - medium
+              'h-[510px] md:h-[610px] lg:h-[660px]',  // Card 4 - tall
             ];
             
             return (
@@ -757,16 +820,16 @@ const TeamSection = () => {
                 index === 0 ? 'mt-8 md:mt-12 lg:mt-16' : 
                 index === 2 ? 'mt-4 md:mt-6 lg:mt-8' : ''
               }`}
-              initial={{ opacity: 0, y: 60, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 1 }}
               animate={
                 isInView
-                  ? { opacity: 1, y: 0, scale: 1 }
-                  : { opacity: 0, y: 60, scale: 0.9 }
+                  ? { opacity: 1, scale: 1 }
+                  : { opacity: 0, scale: 1 }
               }
+              style={{ scale: 1 }}
               transition={{
-                duration: 0.8,
-                delay: 0.3 + index * 0.15,
-                ease: [0.22, 1, 0.36, 1],
+                duration: 0.5,
+                delay: index * 0.1,
               }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
@@ -812,13 +875,13 @@ const TeamSection = () => {
                 >
                   <motion.h4
                     className="text-3xl md:text-4xl font-black text-white"
-                    initial={{ opacity: 0, y: 10 }}
+                    initial={{ opacity: 0 }}
                     animate={
                       isInView
-                        ? { opacity: 1, y: 0 }
-                        : { opacity: 0, y: 10 }
+                        ? { opacity: 1 }
+                        : { opacity: 0 }
                     }
-                    transition={{ delay: 0.5 + index * 0.15, duration: 0.6 }}
+                    transition={{ delay: index * 0.1, duration: 0.5 }}
                   >
                     {member.name}
                   </motion.h4>
@@ -915,29 +978,29 @@ const ServicesSection = ({ expanded, setExpanded }) => {
   return (
     <motion.section
       ref={sectionRef}
-      className="relative z-10 px-6 py-24 overflow-visible"
+      className="relative z-10 px-3 sm:px-4 md:px-6 py-12 sm:py-16 md:py-24 overflow-hidden w-full"
       initial={{ opacity: 0 }}
       animate={isInView ? { opacity: 1 } : { opacity: 0 }}
       transition={{ duration: 0.8 }}
     >
-      <div className="relative max-w-[1500px] mx-auto">
+      <div className="relative max-w-[1500px] mx-auto w-full">
         <motion.div
-          className="relative rounded-[32px] p-[2px] bg-gradient-to-r from-[#253E5C] via-primary to-[#ff7b5f] shadow-2xl"
+          className="relative rounded-[20px] sm:rounded-[24px] md:rounded-[32px] p-[2px] bg-gradient-to-r from-[#253E5C] via-primary to-[#ff7b5f] shadow-lg sm:shadow-xl md:shadow-2xl w-full"
           initial={{ opacity: 0, scale: 0.95, y: 40 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="rounded-[30px] bg-white/70 backdrop-blur-2xl border border-white/40 p-10">
+          <div className="rounded-[18px] sm:rounded-[22px] md:rounded-[30px] bg-white/70 backdrop-blur-2xl border border-white/40 p-4 sm:p-6 md:p-8 lg:p-10 w-full">
             <motion.div
-              className="text-center mb-12"
+              className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <motion.p
-                className="text-sm uppercase tracking-[0.4em] text-[#253E5C]/70 mb-4"
+                className="text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.3em] md:tracking-[0.4em] text-[#253E5C]/70 mb-2 sm:mb-3 md:mb-4"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
@@ -946,7 +1009,7 @@ const ServicesSection = ({ expanded, setExpanded }) => {
                 Signature Services
               </motion.p>
               <motion.h3
-                className="text-4xl md:text-5xl font-extrabold text-[#253E5C]"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#253E5C] px-1"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
@@ -956,11 +1019,11 @@ const ServicesSection = ({ expanded, setExpanded }) => {
               </motion.h3>
             </motion.div>
 
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-3 sm:gap-4 md:gap-5 lg:gap-6 md:grid-cols-2 lg:grid-cols-3 w-full">
               {servicesList.slice(0, 6).map((service, index) => (
                 <motion.div
                   key={service.title}
-                  className="service-card group rounded-3xl border border-[#253E5C]/10 bg-white/90 p-6 shadow-lg transition-all duration-400 hover:-translate-y-2 hover:border-primary/30 cursor-pointer"
+                  className="service-card group rounded-xl sm:rounded-2xl md:rounded-3xl border border-[#253E5C]/10 bg-white/90 p-3 sm:p-4 md:p-5 lg:p-6 shadow-md sm:shadow-lg transition-all duration-400 hover:-translate-y-2 hover:border-primary/30 cursor-pointer w-full"
                   initial={{ opacity: 0, y: 60, scale: 0.9 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true, amount: 0.2 }}
@@ -982,10 +1045,10 @@ const ServicesSection = ({ expanded, setExpanded }) => {
                   }}
                 >
                   <div className="service-card-content">
-                    <h4 className="text-xl font-semibold text-[#253E5C] mb-3 transition-all duration-400 group-hover:text-white group-hover:translate-x-1">
+                    <h4 className="text-base sm:text-lg md:text-xl font-semibold text-[#253E5C] mb-2 sm:mb-2.5 md:mb-3 transition-all duration-400 group-hover:text-white group-hover:translate-x-1">
                       {service.title}
                     </h4>
-                    <p className="text-[#253E5C]/70 leading-relaxed font-medium transition-colors duration-400 group-hover:text-white/90">{service.desc}</p>
+                    <p className="text-xs sm:text-sm md:text-base text-[#253E5C]/70 leading-relaxed font-medium transition-colors duration-400 group-hover:text-white/90">{service.desc}</p>
                   </div>
                 </motion.div>
               ))}
@@ -994,7 +1057,7 @@ const ServicesSection = ({ expanded, setExpanded }) => {
                 {expanded && servicesList.slice(6).map((service, index) => (
                   <motion.div
                     key={service.title}
-                    className="service-card group rounded-3xl border border-[#253E5C]/10 bg-white/90 p-6 shadow-lg transition-all duration-400 hover:-translate-y-2 hover:border-primary/30 cursor-pointer"
+                    className="service-card group rounded-xl sm:rounded-2xl md:rounded-3xl border border-[#253E5C]/10 bg-white/90 p-3 sm:p-4 md:p-5 lg:p-6 shadow-md sm:shadow-lg transition-all duration-400 hover:-translate-y-2 hover:border-primary/30 cursor-pointer w-full"
                     initial={{ opacity: 0, y: 40, scale: 0.9 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -20, scale: 0.9 }}
@@ -1015,10 +1078,10 @@ const ServicesSection = ({ expanded, setExpanded }) => {
                     }}
                   >
                     <div className="service-card-content">
-                      <h4 className="text-xl font-semibold text-[#253E5C] mb-3 transition-all duration-400 group-hover:text-white group-hover:translate-x-1">
+                      <h4 className="text-base sm:text-lg md:text-xl font-semibold text-[#253E5C] mb-2 sm:mb-2.5 md:mb-3 transition-all duration-400 group-hover:text-white group-hover:translate-x-1">
                         {service.title}
                       </h4>
-                      <p className="text-[#253E5C]/70 leading-relaxed font-medium transition-colors duration-400 group-hover:text-white/90">{service.desc}</p>
+                      <p className="text-xs sm:text-sm md:text-base text-[#253E5C]/70 leading-relaxed font-medium transition-colors duration-400 group-hover:text-white/90">{service.desc}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -1026,7 +1089,7 @@ const ServicesSection = ({ expanded, setExpanded }) => {
             </div>
 
             <motion.div
-              className="text-center mt-10"
+              className="text-center mt-6 sm:mt-8 md:mt-10"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
@@ -1034,7 +1097,7 @@ const ServicesSection = ({ expanded, setExpanded }) => {
             >
               <motion.button
                 onClick={() => setExpanded((prev) => !prev)}
-                className="px-10 py-4 rounded-full border-2 border-primary text-primary font-semibold hover:bg-primary/10 transition-colors flex items-center gap-2 mx-auto"
+                className="px-6 sm:px-8 md:px-10 py-2.5 sm:py-3 md:py-4 rounded-full border-2 border-primary text-primary text-sm sm:text-base font-semibold hover:bg-primary/10 transition-colors flex items-center gap-2 mx-auto"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -1114,6 +1177,8 @@ const Home = () => {
           position: relative;
           overflow: hidden;
           isolation: isolate;
+          max-width: 100%;
+          box-sizing: border-box;
         }
         
         /* Animated gradient background on hover */
@@ -1172,14 +1237,61 @@ const Home = () => {
             0 0 30px rgba(233, 79, 55, 0.15);
         }
         
-        /* Hide horizontal scrollbar for Reviews Section */
+        /* Show horizontal scrollbar on mobile, hide on desktop/laptop */
         .reviews-scroll-container {
-          scrollbar-width: none; /* Firefox */
-          -ms-overflow-style: none; /* IE and Edge */
+          /* Mobile: show scrollbar */
+          scrollbar-width: thin; /* Firefox - thin scrollbar on mobile */
+          scrollbar-color: #253E5C rgba(37, 62, 92, 0.1); /* Dark blue thumb, light track */
+          -ms-overflow-style: auto; /* IE and Edge - show scrollbar on mobile */
         }
         
-        .reviews-scroll-container::-webkit-scrollbar {
-          display: none; /* WebKit - hide horizontal scrollbar */
+        /* Desktop/Laptop: hide scrollbar */
+        @media (min-width: 768px) {
+          .reviews-scroll-container {
+            scrollbar-width: none; /* Firefox - hide on desktop */
+            -ms-overflow-style: none; /* IE and Edge - hide on desktop */
+          }
+          
+          .reviews-scroll-container::-webkit-scrollbar {
+            display: none; /* WebKit - hide horizontal scrollbar on desktop */
+          }
+        }
+        
+        /* Mobile: style the scrollbar with dark blue */
+        @media (max-width: 767px) {
+          .reviews-scroll-container::-webkit-scrollbar {
+            display: block; /* Show scrollbar on mobile */
+            height: 8px;
+          }
+          
+          .reviews-scroll-container::-webkit-scrollbar-track {
+            background: rgba(37, 62, 92, 0.1);
+            border-radius: 10px;
+          }
+          
+          .reviews-scroll-container::-webkit-scrollbar-thumb {
+            background: #253E5C; /* Dark blue color */
+            border-radius: 10px;
+          }
+          
+          .reviews-scroll-container::-webkit-scrollbar-thumb:hover {
+            background: #1a2d42; /* Darker blue on hover */
+          }
+          
+          /* Reduce review card size on mobile */
+          .reviews-scroll-container .group {
+            width: 300px !important;
+            min-width: 300px !important;
+          }
+          
+          .reviews-scroll-container .group > div {
+            min-height: 450px !important;
+          }
+          
+          .reviews-scroll-container .review-card-content {
+            min-height: 450px !important;
+            padding: 1.5rem !important;
+          }
         }
         
         /* Ensure review cards stay crisp on hover */
@@ -1202,7 +1314,7 @@ const Home = () => {
           will-change: transform;
         }
       `}</style>
-      <div className="relative min-h-screen overflow-visible">
+      <div className="relative min-h-screen overflow-visible bg-white" style={{ backgroundColor: '#FFFFFF', background: '#FFFFFF' }}>
         <div
           ref={heroRef}
           className="relative min-h-screen flex items-center px-6 py-16 overflow-visible"
@@ -1419,6 +1531,7 @@ const WhyChooseAdvertio = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [expandedCardIndex, setExpandedCardIndex] = useState(null);
 
   const features = [
     {
@@ -1526,15 +1639,17 @@ const WhyChooseAdvertio = () => {
               style={{ transformStyle: 'preserve-3d' }}
             >
               <motion.div
-                className="relative bg-white rounded-[28px] border-2 border-primary/40 p-6 md:p-8 overflow-hidden cursor-pointer"
+                className="relative rounded-[28px] border-2 border-primary/40 p-6 md:p-8 overflow-hidden cursor-pointer"
                 style={{
                   transformStyle: 'preserve-3d',
+                  backgroundColor: '#FFFFFF',
                 }}
                 animate={{
                   rotateY: hoveredIndex === index ? 5 : 0,
                   rotateX: hoveredIndex === index ? -3 : 0,
                   scale: hoveredIndex === index ? 1.05 : 1,
                   z: hoveredIndex === index ? 50 : 0,
+                  backgroundColor: '#FFFFFF',
                 }}
                 transition={{
                   duration: 0.5,
@@ -1554,12 +1669,24 @@ const WhyChooseAdvertio = () => {
                   }}
                 />
 
-                {/* Animated Gradient Overlay */}
+                {/* Desktop: Animated Gradient Overlay on hover */}
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-[#253E5C]/5 rounded-[28px] z-[1]"
+                  className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-[#253E5C]/5 rounded-[28px] z-[1] hidden md:block"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: hoveredIndex === index ? 1 : 0 }}
                   transition={{ duration: 0.4 }}
+                />
+
+                {/* Mobile: Background gradient overlay when expanded (matches desktop hover) */}
+                <motion.div
+                  className="absolute inset-0 rounded-[28px] pointer-events-none md:hidden z-[1]"
+                  style={{
+                    background: 'linear-gradient(135deg, rgba(233, 79, 55, 0.95) 0%, rgba(37, 62, 92, 0.95) 100%)',
+                  }}
+                  animate={{ 
+                    opacity: expandedCardIndex === index ? 1 : 0,
+                  }}
+                  transition={{ duration: 0.3, ease: 'easeInOut' }}
                 />
 
                 {/* Glow Effect */}
@@ -1575,18 +1702,44 @@ const WhyChooseAdvertio = () => {
 
                 {/* Content */}
                 <div className="relative z-10">
-                  <motion.h4
-                    className="text-lg md:text-xl font-black text-[#253E5C] mb-4 leading-tight"
-                    animate={{
-                      color: hoveredIndex === index ? '#FFFFFF' : '#253E5C',
-                      scale: hoveredIndex === index ? 1.02 : 1,
-                    }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {feature.title}
-                  </motion.h4>
+                  <div className="flex items-start justify-between gap-4 mb-4">
+                    <motion.h4
+                      className="text-lg md:text-xl font-black leading-tight flex-1"
+                      animate={{
+                        color: hoveredIndex === index || (expandedCardIndex === index) ? '#FFFFFF' : '#253E5C',
+                        scale: hoveredIndex === index ? 1.02 : 1,
+                      }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {feature.title}
+                    </motion.h4>
+                    {/* Mobile Accordion Button */}
+                    <button
+                      onClick={() => {
+                        setExpandedCardIndex(expandedCardIndex === index ? null : index);
+                      }}
+                      className="md:hidden flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+                      style={{
+                        background: expandedCardIndex === index ? '#E94F37' : 'rgba(233, 79, 55, 0.15)',
+                        color: expandedCardIndex === index ? '#FFFFFF' : '#E94F37',
+                      }}
+                      aria-label={expandedCardIndex === index ? 'Collapse' : 'Expand'}
+                    >
+                      <motion.svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        animate={{ rotate: expandedCardIndex === index ? 45 : 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
+                      </motion.svg>
+                    </button>
+                  </div>
+                  {/* Desktop: Always visible */}
                   <motion.p
-                    className="text-[#253E5C]/70 text-sm md:text-base leading-relaxed font-bold"
+                    className="hidden md:block text-[#253E5C]/70 text-sm md:text-base leading-relaxed font-bold"
                     animate={{
                       color: hoveredIndex === index ? '#FFFFFF' : 'rgb(3, 24, 49)',
                       opacity: hoveredIndex === index ? 1 : 0.7,
@@ -1595,6 +1748,22 @@ const WhyChooseAdvertio = () => {
                   >
                     {feature.description}
                   </motion.p>
+                  {/* Mobile: Accordion content */}
+                  <AnimatePresence>
+                    {expandedCardIndex === index && (
+                      <motion.div
+                        className="md:hidden"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: 'easeInOut' }}
+                      >
+                        <p className="text-white text-sm leading-relaxed font-bold pt-2">
+                          {feature.description}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
 
                 {/* Animated Border Glow */}
@@ -2312,7 +2481,6 @@ const ReviewsSection3D = () => {
             ref={scrollContainerRef}
             className="reviews-scroll-container overflow-x-auto overflow-y-visible pb-12 pt-8"
             style={{
-              scrollbarWidth: 'none',
               WebkitOverflowScrolling: 'touch',
               minHeight: '700px',
               paddingLeft: '1rem',
@@ -3255,7 +3423,7 @@ const MockupSection = () => {
         </motion.div>
 
         {/* Mockup Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 lg:gap-8">
           {mockups.map((mockup, index) => (
             <motion.div
               key={mockup.id}
@@ -3421,7 +3589,6 @@ const ContactSection3D = () => {
           initial={{ opacity: 0, y: 50, rotateY: -15 }}
           animate={isInView ? { opacity: 1, y: 0, rotateY: 0 } : { opacity: 0, y: 50, rotateY: -15 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          whileHover={{ scale: 1.02, translateZ: 20 }}
         >
           <motion.p
             className="text-xs uppercase tracking-[0.6em] text-white/60 mb-4"
@@ -3458,7 +3625,6 @@ const ContactSection3D = () => {
                 initial={{ opacity: 0, y: 20, x: -20 }}
                 animate={isInView ? { opacity: 1, y: 0, x: 0 } : { opacity: 0, y: 20, x: -20 }}
                 transition={{ duration: 0.6, delay: 0.4 + idx * 0.1 }}
-                whileHover={{ scale: 1.03, borderColor: 'rgba(233, 79, 55, 0.3)', translateX: 5 }}
               >
                 <span className="text-xs tracking-[0.35em] uppercase text-white/90 font-semibold">{item.label}</span>
                 <span className="text-base font-semibold text-white">{item.value}</span>
@@ -3469,8 +3635,7 @@ const ContactSection3D = () => {
           <div className="mt-10 space-y-3">
             <motion.a
               href="mailto:hello@advertio.com"
-              className="block text-lg font-semibold text-white hover:text-primary transition-colors"
-              whileHover={{ x: 5, scale: 1.05 }}
+              className="block text-lg font-semibold text-white transition-colors"
             >
               hello@advertio.com
             </motion.a>
@@ -3478,8 +3643,7 @@ const ContactSection3D = () => {
               href="https://wa.me/1234567890"
               target="_blank"
               rel="noopener noreferrer"
-              className="block text-lg text-white/70 hover:text-primary transition-colors"
-              whileHover={{ x: 5, scale: 1.05 }}
+              className="block text-lg text-white/70 transition-colors"
             >
               WhatsApp · +1 (234) 567-890
             </motion.a>
@@ -3506,7 +3670,6 @@ const ContactSection3D = () => {
             scale: isInView ? 1 : 0.95,
           }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          whileHover={{ scale: 1.01 }}
         >
           <div className="relative space-y-6">
             {[
@@ -3524,7 +3687,6 @@ const ContactSection3D = () => {
                   delay: 0.25 + index * 0.12,
                   ease: [0.22, 1, 0.36, 1]
                 }}
-                whileHover={{ scale: 1.02, translateZ: 10 }}
                 style={{ transformStyle: 'preserve-3d' }}
               >
                 <motion.label 
@@ -3539,13 +3701,9 @@ const ContactSection3D = () => {
                   value={formData[field.name]}
                   onChange={handleChange}
                   required
-                  className="w-full px-5 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 focus:bg-white/15 transition-all"
-                  whileFocus={{ 
-                    scale: 1.02, 
-                    borderColor: 'rgba(233, 79, 55, 0.6)',
-                    boxShadow: '0 0 20px rgba(233, 79, 55, 0.3)',
-                    translateZ: 15
-                  }}
+                  className={`w-full px-5 py-4 rounded-2xl border border-white/20 placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 transition-all ${
+                    formData[field.name] ? 'bg-white text-[#253E5C]' : 'bg-white/10 text-white'
+                  }`}
                   style={{ transformStyle: 'preserve-3d' }}
                 />
               </motion.div>
@@ -3560,7 +3718,6 @@ const ContactSection3D = () => {
                 delay: 0.65,
                 ease: [0.22, 1, 0.36, 1]
               }}
-              whileHover={{ scale: 1.01, translateZ: 10 }}
               style={{ transformStyle: 'preserve-3d' }}
             >
               <motion.label 
@@ -3575,13 +3732,9 @@ const ContactSection3D = () => {
                 value={formData.message}
                 onChange={handleChange}
                 required
-                className="w-full px-5 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 focus:bg-white/15 transition-all resize-none"
-                whileFocus={{ 
-                  scale: 1.01, 
-                  borderColor: 'rgba(233, 79, 55, 0.6)',
-                  boxShadow: '0 0 20px rgba(233, 79, 55, 0.3)',
-                  translateZ: 15
-                }}
+                className={`w-full px-5 py-4 rounded-2xl border border-white/20 placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 transition-all resize-none ${
+                  formData.message ? 'bg-white text-[#253E5C]' : 'bg-white/10 text-white'
+                }`}
                 style={{ transformStyle: 'preserve-3d' }}
               />
             </motion.div>
@@ -3590,7 +3743,6 @@ const ContactSection3D = () => {
               type="submit"
               disabled={status === 'sending'}
               className="relative w-full flex items-center justify-center gap-3 px-6 py-4 rounded-2xl text-white font-semibold text-lg bg-gradient-to-r from-[#253E5C] via-primary to-[#FF6B4A] shadow-lg shadow-primary/40 transition-all disabled:opacity-60 overflow-hidden"
-              whileHover={{ scale: 1.03, translateZ: 20, boxShadow: '0 10px 40px rgba(233, 79, 55, 0.5)' }}
               whileTap={{ scale: 0.98 }}
               style={{ transformStyle: 'preserve-3d' }}
             >
@@ -3612,7 +3764,7 @@ const ContactSection3D = () => {
 
             {status === 'sent' && (
               <motion.p
-                className="text-center text-sm font-semibold text-primary"
+                className="text-center text-sm font-semibold text-white"
                 initial={{ opacity: 0, y: -6, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
@@ -3632,12 +3784,28 @@ const BlogsSection3D = () => {
   const scrollContainerRef = useRef(null);
   const isInView = useInView(sectionRef, { once: false, amount: 0.1, margin: '-100px' });
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [expandedBlogId, setExpandedBlogId] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const toggleBlog = (blogId) => {
+    setExpandedBlogId(prev => prev === blogId ? null : blogId);
+  };
 
   const blogs = [
     {
       id: 1,
-      title: 'The Future of E-commerce: 3D Product Experiences',
-      excerpt: 'Discover how immersive 3D product visualization is revolutionizing online shopping and driving conversion rates through interactive experiences.',
+      title: 'The Future of E-commerce and 3D Product Experiences',
+      excerpt: 'Discover immersive 3D visualization is revolutionizing online shopping and driving conversion rates through experiences.',
       category: 'E-commerce',
       author: 'Sarah Chen',
       date: 'March 15, 2024',
@@ -3661,7 +3829,7 @@ const BlogsSection3D = () => {
     {
       id: 3,
       title: 'AR and Mixed Reality: The Next Frontier in Brand Engagement',
-      excerpt: 'Explore how augmented reality filters and experiential AR kits are creating new dimensions for customer interaction and brand storytelling.',
+      excerpt: 'Explore how reality filters and experiential AR kits are creating new dimensions customer interaction and brand storytelling.',
       category: 'Technology',
       author: 'Emma Thompson',
       date: 'March 10, 2024',
@@ -3688,7 +3856,7 @@ const BlogsSection3D = () => {
   return (
     <motion.section
       ref={sectionRef}
-      className="relative z-10 pt-8 pb-32 overflow-visible bg-gradient-to-b from-white/50 via-white/70 to-white/90 w-full"
+      className="relative z-10 pt-8 pb-0 md:pb-32 overflow-visible bg-gradient-to-b from-white/50 via-white/70 to-white/90 w-full"
       initial={{ opacity: 1 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
@@ -3699,7 +3867,7 @@ const BlogsSection3D = () => {
         {[...Array(6)].map((_, i) => (
           <div
             key={i}
-            className="absolute rounded-full opacity-20"
+            className="absolute rounded-full opacity-20 hidden md:block"
             style={{
               width: `${120 + i * 40}px`,
               height: `${120 + i * 40}px`,
@@ -3731,9 +3899,8 @@ const BlogsSection3D = () => {
         <div className="relative min-h-[800px] py-8">
           <div
             ref={scrollContainerRef}
-            className="overflow-x-auto overflow-y-visible pb-12 pt-8"
+            className="overflow-x-auto overflow-y-visible pb-4 md:pb-0 pt-0"
             style={{
-              scrollbarWidth: 'thin',
               scrollbarColor: '#E94F37 transparent',
               WebkitOverflowScrolling: 'touch',
               minHeight: '800px',
@@ -3741,12 +3908,12 @@ const BlogsSection3D = () => {
               paddingRight: '1rem',
             }}
           >
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-5 lg:gap-7" style={{ minHeight: '640px' }}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-5 lg:gap-7 items-start" style={{ minHeight: '800px' }}>
               {blogs.map((blog, index) => {
                 return (
                   <motion.article
                     key={blog.id}
-                    className="relative group flex-shrink-0 w-full mx-auto"
+                    className="relative group flex-shrink-0 w-full mx-auto h-auto"
                     initial={{ 
                       opacity: 0, 
                       y: 50,
@@ -3764,11 +3931,13 @@ const BlogsSection3D = () => {
                       ease: [0.22, 1, 0.36, 1],
                     }}
                   >
-                    <div
-                      className="relative h-full rounded-[32px] overflow-hidden cursor-pointer transition-transform duration-300 group-hover:-translate-y-2"
+                    <motion.div
+                      className="relative rounded-[32px] transition-transform duration-300 group-hover:-translate-y-2"
                       style={{
-                        minHeight: '480px',
                         position: 'relative',
+                        minHeight: '600px',
+                        height: 'auto',
+                        overflow: 'visible',
                       }}
                     >
                       {/* Gradient Border Wrapper */}
@@ -3778,14 +3947,15 @@ const BlogsSection3D = () => {
                           background: `linear-gradient(135deg, ${blog.color}, ${blog.color}80, #253E5C60, ${blog.color})`,
                         }}
                       >
-                        <div
-                          className="w-full h-full rounded-[30px] relative overflow-hidden transition-all duration-300"
+                        <motion.div
+                          className="w-full h-full rounded-[30px] relative flex flex-col"
                           style={{
                             background: `linear-gradient(135deg, ${blog.color}15 0%, ${blog.color}08 50%, transparent 100%)`,
+                            minHeight: '100%',
                           }}
                         >
                           {/* Blog Image */}
-                          <div className="relative w-full h-44 overflow-hidden">
+                          <div className="relative w-full h-56 overflow-hidden rounded-t-[30px]">
                             <img
                               src={blog.image}
                               alt={blog.title}
@@ -3812,11 +3982,16 @@ const BlogsSection3D = () => {
                                 {blog.category}
                               </span>
                             </div>
+
                           </div>
 
-                          {/* Content Container */}
-                          <div className="relative z-10 p-6 md:p-8 bg-white/95 min-h-[400px] flex flex-col">
-                            {/* Tags */}
+                          {/* Tags - Always visible */}
+                          <div 
+                            className="relative z-10 p-6 md:p-8 flex flex-col bg-white/95 rounded-b-[30px]"
+                            style={{
+                              minHeight: 'fit-content',
+                            }}
+                          >
                             <div className="flex flex-wrap gap-2 mb-4">
                               {blog.tags.map((tag, tagIndex) => (
                                 <span
@@ -3833,61 +4008,64 @@ const BlogsSection3D = () => {
                               ))}
                             </div>
 
-                            {/* Title */}
-                            <h3
-                              className="text-xl md:text-2xl font-black mb-3 leading-tight transition-colors duration-300 group-hover:text-[#253E5C]"
-                              style={{
-                                color: blog.color,
-                              }}
-                            >
-                              {blog.title}
-                            </h3>
+                            {/* Content - Always visible on all devices */}
+                            <div className="flex flex-col flex-grow min-h-0">
+                              {/* Title */}
+                              <h3
+                                className="text-xl md:text-2xl font-black mb-3 leading-tight transition-colors duration-300 group-hover:text-[#253E5C]"
+                                style={{
+                                  color: blog.color,
+                                }}
+                              >
+                                {blog.title}
+                              </h3>
 
-                            {/* Excerpt */}
-                            <p className="text-sm md:text-base leading-relaxed mb-6 flex-grow text-[#253E5C]/70 transition-colors duration-300 group-hover:text-[#253E5C]">
-                              {blog.excerpt}
-                            </p>
+                              {/* Excerpt */}
+                              <p className="text-sm md:text-base leading-relaxed mb-6 text-[#253E5C]/70 transition-colors duration-300 group-hover:text-[#253E5C]">
+                                {blog.excerpt}
+                              </p>
 
-                            {/* Meta Information */}
-                            <div className="flex items-center justify-between pt-4 border-t border-[#253E5C]/10">
-                              <div className="flex items-center gap-3">
+                              {/* Meta Information */}
+                              <div className="flex items-center justify-between pt-4 border-t border-[#253E5C]/10">
+                                <div className="flex items-center gap-3">
+                                  <div
+                                    className="w-10 h-10 rounded-full overflow-hidden border-2 transition-all duration-300 group-hover:scale-105 group-hover:border-[3px]"
+                                    style={{ 
+                                      borderColor: blog.color,
+                                    }}
+                                  >
+                                    <div
+                                      className="w-full h-full"
+                                      style={{
+                                        background: `linear-gradient(135deg, ${blog.color}, ${blog.color}80)`,
+                                      }}
+                                    />
+                                  </div>
+                                  <div>
+                                    <p className="text-sm font-semibold text-[#253E5C]">{blog.author}</p>
+                                    <p className="text-xs text-[#253E5C]/50">{blog.date}</p>
+                                  </div>
+                                </div>
                                 <div
-                                  className="w-10 h-10 rounded-full overflow-hidden border-2 transition-all duration-300 group-hover:scale-105 group-hover:border-[3px]"
+                                  className="flex items-center gap-2 text-xs font-semibold transition-transform duration-300 group-hover:translate-x-1"
                                   style={{ 
-                                    borderColor: blog.color,
+                                    color: blog.color,
                                   }}
                                 >
-                                  <div
-                                    className="w-full h-full"
-                                    style={{
-                                      background: `linear-gradient(135deg, ${blog.color}, ${blog.color}80)`,
-                                    }}
-                                  />
+                                  <span>{blog.readTime}</span>
+                                  <svg
+                                    className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                  </svg>
                                 </div>
-                                <div>
-                                  <p className="text-sm font-semibold text-[#253E5C]">{blog.author}</p>
-                                  <p className="text-xs text-[#253E5C]/50">{blog.date}</p>
-                              </div>
-                              </div>
-                              <div
-                                className="flex items-center gap-2 text-xs font-semibold transition-transform duration-300 group-hover:translate-x-1"
-                                style={{ 
-                                  color: blog.color,
-                              }}
-                              >
-                                <span>{blog.readTime}</span>
-                                <svg
-                                  className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  viewBox="0 0 24 24"
-                                >
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                </svg>
                               </div>
                             </div>
 
-                            {/* Subtle Glow Effect */}
+                            {/* Subtle Glow Effect - Always visible */}
                             <div
                               className="absolute inset-0 rounded-[30px] pointer-events-none transition-opacity duration-300 group-hover:opacity-40"
                               style={{
@@ -3896,7 +4074,7 @@ const BlogsSection3D = () => {
                               }}
                             />
                           </div>
-                        </div>
+                        </motion.div>
                       </div>
                       
                       {/* Shadow Effect */}
@@ -3906,7 +4084,7 @@ const BlogsSection3D = () => {
                           boxShadow: `0 10px 30px rgba(37, 62, 92, 0.1)`,
                         }}
                       />
-                    </div>
+                    </motion.div>
                   </motion.article>
                 );
               })}
@@ -3915,7 +4093,7 @@ const BlogsSection3D = () => {
 
           {/* See All Blogs Button */}
           <motion.div
-            className="flex justify-center mt-12 mb-8"
+            className="flex justify-center mt-12 mb-0 md:mb-8"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -3969,7 +4147,7 @@ const BlogsSection3D = () => {
 
       {/* Background Decorative Elements */}
       <motion.div
-        className="absolute top-0 left-0 w-[900px] h-[900px] bg-gradient-to-br from-primary/15 to-transparent rounded-full blur-3xl -z-10"
+        className="absolute top-0 left-0 w-[0px] h-[0px] bg-gradient-to-br from-primary/15 to-transparent rounded-full blur-3xl -z-10 hidden md:block"
         animate={isInView ? {
           scale: [1, 1.3, 1],
           opacity: [0.3, 0.5, 0.3],
@@ -3982,7 +4160,7 @@ const BlogsSection3D = () => {
         }}
       />
       <motion.div
-        className="absolute bottom-0 right-0 w-[900px] h-[900px] bg-gradient-to-tl from-[#253E5C]/15 to-transparent rounded-full blur-3xl -z-10"
+        className="absolute bottom-0 right-0 w-[900px] h-[900px] bg-gradient-to-tl from-[#253E5C]/15 to-transparent rounded-full blur-3xl -z-10 hidden md:block"
         animate={isInView ? {
           scale: [1, 1.4, 1],
           opacity: [0.3, 0.5, 0.3],

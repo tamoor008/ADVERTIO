@@ -43,7 +43,6 @@ const servicesData = [
       { name: 'Alex Thompson', role: 'CEO, InnovateCo', text: 'Their performance marketing approach transformed our business. Data-driven campaigns engineered for maximum ROI delivered incredible growth!', highlight: 'Incredible Growth', rating: 5 },
       { name: 'Maria Garcia', role: 'CMO, TechVenture', text: 'Advertio\'s performance marketing expertise is unmatched. The campaigns drive measurable growth with maximum ROI every time!', highlight: 'Unmatched Expertise', rating: 5 },
     ],
-    icon: '📊',
   },
   { 
     id: 'digital-marketing',
@@ -75,7 +74,6 @@ const servicesData = [
       { name: 'Alex Thompson', role: 'CEO, InnovateCo', text: 'Their digital marketing strategies transformed our online presence. We now have a strong, engaging presence that converts!', highlight: 'Transformed Presence', rating: 5 },
       { name: 'Maria Garcia', role: 'CMO, TechVenture', text: 'Advertio\'s digital marketing expertise helped us build a strong online presence. The strategies connect, engage, and convert!', highlight: 'Expertise', rating: 5 },
     ],
-    icon: '📈',
   },
   { 
     id: 'social-media-handling-branding',
@@ -109,7 +107,6 @@ const servicesData = [
       { name: 'Daniel Kim', role: 'Founder, ShopSmart', text: 'Their social media strategy helped us grow our influence significantly. The content quality and engagement are outstanding!', highlight: 'Significant Growth', rating: 5 },
       { name: 'Olivia Davis', role: 'VP Brand, TrendSet', text: 'Advertio\'s branding approach resonated perfectly with our audience. Our brand identity is now strong and recognizable!', highlight: 'Strong Identity', rating: 5 },
     ],
-    icon: '📱',
   },
   { 
     id: 'creative-design',
@@ -141,7 +138,6 @@ const servicesData = [
       { name: 'Jennifer Liu', role: 'Founder, DesignHub', text: 'The design quality exceeded our expectations. Every visual asset is professional and strategically crafted!', highlight: 'Exceeded Expectations', rating: 5 },
       { name: 'Mark Stevens', role: 'VP Marketing, FutureTech', text: 'Advertio\'s creative work is exceptional. The designs perfectly capture our brand essence and inspire our audience!', highlight: 'Exceptional Work', rating: 5 },
     ],
-    icon: '🎨',
   },
   { 
     id: 'video-editing',
@@ -173,7 +169,6 @@ const servicesData = [
       { name: 'Brian Miller', role: 'Founder, LaunchPad', text: 'The editing quality is professional and cinematic. Our videos now stand out from the competition!', highlight: 'Professional Quality', rating: 5 },
       { name: 'Catherine Lee', role: 'CMO, ProductPro', text: 'Advertio\'s video editing transformed our content. The cinematic visuals truly elevate our brand presence!', highlight: 'Elevated Brand', rating: 5 },
     ],
-    icon: '🎬',
   },
   { 
     id: 'website-development',
@@ -205,7 +200,6 @@ const servicesData = [
       { name: 'Ryan Patel', role: 'CEO, ConvertMax', text: 'The website performance and conversion optimization exceeded our expectations. Highly recommend!', highlight: 'Exceeded Expectations', rating: 5 },
       { name: 'Lauren Taylor', role: 'Founder, EcomBoost', text: 'Advertio\'s website development is top-notch. The site is fast, SEO-friendly, and converts perfectly!', highlight: 'Top-Notch', rating: 5 },
     ],
-    icon: '🌐',
   },
   { 
     id: 'shopify-store-development',
@@ -237,7 +231,6 @@ const servicesData = [
       { name: 'Kevin Zhang', role: 'Founder, GrowthLabs', text: 'The Shopify store exceeded our expectations. The brand experience and functionality are outstanding!', highlight: 'Outstanding Experience', rating: 5 },
       { name: 'Nicole Foster', role: 'CMO, ScaleUp Inc', text: 'Advertio\'s Shopify development is exceptional. The store is scalable and perfectly aligned with our brand!', highlight: 'Exceptional Development', rating: 5 },
     ],
-    icon: '🛒',
   },
   { 
     id: 'ecommerce-solutions',
@@ -269,7 +262,6 @@ const servicesData = [
       { name: 'Patrick O\'Brien', role: 'CEO, EcomLeaders', text: 'Advertio provided everything we needed to succeed online. The comprehensive approach is exactly what we needed!', highlight: 'Complete Success', rating: 5 },
       { name: 'Victoria Adams', role: 'CMO, OnlineGrowth', text: 'The ecommerce solutions are comprehensive and effective. Our business is now empowered to grow and scale!', highlight: 'Empowered Growth', rating: 5 },
     ],
-    icon: '💼',
   },
 ];
 
@@ -282,13 +274,25 @@ const ServiceDetail = () => {
   const processRef = useRef(null);
   const reviewsRef = useRef(null);
   const contactFormRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
   
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
-  const mainContentInView = useInView(mainContentRef, { once: true, amount: 0.2 });
-  const whyChooseInView = useInView(whyChooseRef, { once: true, amount: 0.2 });
-  const processInView = useInView(processRef, { once: true, amount: 0.2 });
-  const reviewsInView = useInView(reviewsRef, { once: true, amount: 0.2 });
-  const contactFormInView = useInView(contactFormRef, { once: true, amount: 0.2 });
+  // Detect mobile on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
+  // Use lower threshold on mobile for better detection, or always true on mobile
+  const isInView = useInView(sectionRef, { once: true, amount: isMobile ? 0.05 : 0.2 });
+  const mainContentInView = useInView(mainContentRef, { once: true, amount: isMobile ? 0.05 : 0.2 });
+  const whyChooseInView = useInView(whyChooseRef, { once: true, amount: isMobile ? 0.05 : 0.2 });
+  const processInView = useInView(processRef, { once: true, amount: isMobile ? 0.05 : 0.2 });
+  const reviewsInView = useInView(reviewsRef, { once: true, amount: isMobile ? 0.05 : 0.2 });
+  const contactFormInView = useInView(contactFormRef, { once: true, amount: isMobile ? 0.05 : 0.2 });
 
   // Find the service by ID
   const service = servicesData.find(s => s.id === serviceId);
@@ -312,19 +316,23 @@ const ServiceDetail = () => {
   return (
     <motion.div
       ref={sectionRef}
-      className="relative min-h-screen pt-24 pb-20 overflow-visible"
-      initial={{ opacity: 0 }}
-      animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-      transition={{ duration: 0.6 }}
-      style={{ perspective: '1200px' }}
+      className="relative min-h-screen pt-24 pb-20 bg-white md:overflow-visible overflow-hidden"
+      style={{ 
+        backgroundColor: '#FFFFFF', 
+        background: '#FFFFFF',
+        perspective: isMobile ? 'none' : '1200px'
+      }}
+      initial={{ opacity: isMobile ? 1 : 0 }}
+      animate={isMobile ? { opacity: 1 } : (isInView ? { opacity: 1 } : { opacity: 0 })}
+      transition={{ duration: isMobile ? 0 : 0.6 }}
     >
       <div className="relative max-w-[1500px] mx-auto px-6 md:px-8 lg:px-12">
         {/* Back Button */}
         <motion.div
           className="mb-8"
-          initial={{ opacity: 0, x: -20 }}
-          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          initial={{ opacity: isMobile ? 1 : 0, x: isMobile ? 0 : -20 }}
+          animate={isMobile ? { opacity: 1, x: 0 } : (isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 })}
+          transition={{ duration: isMobile ? 0 : 0.6, delay: isMobile ? 0 : 0.2 }}
         >
           <Link
             to="/"
@@ -340,44 +348,10 @@ const ServiceDetail = () => {
         {/* Service Header */}
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
+          initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 40 }}
+          animate={isMobile ? { opacity: 1, y: 0 } : (isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 })}
+          transition={{ duration: isMobile ? 0 : 0.8, delay: isMobile ? 0 : 0.3 }}
         >
-          <motion.div
-            className="inline-flex items-center justify-center w-24 h-24 rounded-full mb-6 text-5xl relative z-10"
-            style={{
-              background: `linear-gradient(135deg, ${PRIMARY_COLOR}20, ${PRIMARY_COLOR}10)`,
-              border: `3px solid ${PRIMARY_COLOR}30`,
-              transformStyle: 'preserve-3d',
-            }}
-            initial={{ scale: 0, rotateY: -180, opacity: 0 }}
-            animate={{ 
-              scale: 1, 
-              rotateY: 0, 
-              opacity: 1,
-              y: [0, -8, 0],
-            }}
-            transition={{ 
-              default: {
-              duration: 0.8, 
-              delay: 0.4,
-              },
-              hover: { duration: 0, ease: 'linear' },
-              y: {
-                duration: 3,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }
-            }}
-            whileHover={{ 
-              scale: 1.1, 
-              rotateY: 5,
-              z: 20,
-            }}
-          >
-            {service.icon}
-          </motion.div>
           <motion.h1
             className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 relative z-10"
             style={{
@@ -386,17 +360,17 @@ const ServiceDetail = () => {
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
             }}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            transition={{ duration: isMobile ? 0 : 0.8, delay: isMobile ? 0 : 0.5 }}
           >
             {service.title}
           </motion.h1>
           <motion.p
             className="text-xl md:text-2xl text-[#253E5C]/70 max-w-3xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 20 }}
+            animate={isMobile ? { opacity: 1, y: 0 } : (isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
+            transition={{ duration: isMobile ? 0 : 0.8, delay: isMobile ? 0 : 0.5 }}
           >
             {service.desc}
           </motion.p>
@@ -409,16 +383,16 @@ const ServiceDetail = () => {
           style={{
             background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9))',
             backdropFilter: 'blur(20px)',
-            transformStyle: 'preserve-3d',
+            transformStyle: isMobile ? 'flat' : 'preserve-3d',
             boxShadow: `0 25px 50px ${SECONDARY_COLOR}30, 0 0 40px ${DEEP_BLUE}20, 0 10px 30px ${SECONDARY_COLOR}25`,
           }}
-          initial={{ opacity: 0, y: 60, rotateX: -10, z: -100 }}
-          animate={mainContentInView ? { opacity: 1, y: 0, rotateX: 0, z: 0 } : { opacity: 0, y: 60, rotateX: -10, z: -100 }}
-          transition={{ 
+          initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 60, rotateX: -10, z: -100 }}
+          animate={isMobile ? { opacity: 1, y: 0 } : (mainContentInView ? { opacity: 1, y: 0, rotateX: 0, z: 0 } : { opacity: 0, y: 60, rotateX: -10, z: -100 })}
+          transition={isMobile ? { duration: 0 } : { 
             default: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
             hover: { duration: 0, ease: 'linear' }
           }}
-          whileHover={{ 
+          whileHover={isMobile ? {} : { 
             y: -4,
             rotateX: 2,
             z: 10,
@@ -427,9 +401,9 @@ const ServiceDetail = () => {
           {/* Full Description */}
           <motion.div
             className="mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            animate={mainContentInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 30 }}
+            animate={isMobile ? { opacity: 1, y: 0 } : (mainContentInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 })}
+            transition={{ duration: isMobile ? 0 : 0.8, delay: isMobile ? 0 : 0.2 }}
           >
             <h2 className="text-3xl md:text-4xl font-black text-[#253E5C] mb-6">Overview</h2>
             <p className="text-lg md:text-xl text-[#253E5C]/80 leading-relaxed">
@@ -439,9 +413,9 @@ const ServiceDetail = () => {
 
           {/* Benefits Section */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={mainContentInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 30 }}
+            animate={isMobile ? { opacity: 1, y: 0 } : (mainContentInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 })}
+            transition={{ duration: isMobile ? 0 : 0.8, delay: isMobile ? 0 : 0.4 }}
           >
             <h2 className="text-3xl md:text-4xl font-black text-[#253E5C] mb-8">Key Benefits</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -452,15 +426,15 @@ const ServiceDetail = () => {
                   style={{
                     background: `linear-gradient(135deg, ${PRIMARY_COLOR}10, ${PRIMARY_COLOR}05)`,
                     border: `2px solid ${PRIMARY_COLOR}20`,
-                    transformStyle: 'preserve-3d',
+                    transformStyle: isMobile ? 'flat' : 'preserve-3d',
                   }}
-                  initial={{ opacity: 0, x: -20, rotateY: -15 }}
-                  animate={mainContentInView ? { opacity: 1, x: 0, rotateY: 0 } : { opacity: 0, x: -20, rotateY: -15 }}
-                  transition={{ 
+                  initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -20, rotateY: -15 }}
+                  animate={isMobile ? { opacity: 1, x: 0 } : (mainContentInView ? { opacity: 1, x: 0, rotateY: 0 } : { opacity: 0, x: -20, rotateY: -15 })}
+                  transition={isMobile ? { duration: 0 } : { 
                     default: { duration: 0.6, delay: 0.5 + index * 0.1, ease: [0.22, 1, 0.36, 1] },
                     hover: { duration: 0, ease: 'linear' }
                   }}
-                  whileHover={{
+                  whileHover={isMobile ? {} : {
                     scale: 1.05,
                     y: -8,
                     borderColor: PRIMARY_COLOR,
@@ -616,16 +590,16 @@ const ServiceDetail = () => {
           style={{
             background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9))',
             backdropFilter: 'blur(20px)',
-            transformStyle: 'preserve-3d',
+            transformStyle: isMobile ? 'flat' : 'preserve-3d',
             boxShadow: `0 25px 50px ${SECONDARY_COLOR}30, 0 0 40px ${DEEP_BLUE}20, 0 10px 30px ${SECONDARY_COLOR}25`,
           }}
-          initial={{ opacity: 0, y: 60, rotateX: -10, z: -100 }}
-          animate={whyChooseInView ? { opacity: 1, y: 0, rotateX: 0, z: 0 } : { opacity: 0, y: 60, rotateX: -10, z: -100 }}
-          transition={{ 
+          initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 60, rotateX: -10, z: -100 }}
+          animate={isMobile ? { opacity: 1, y: 0 } : (whyChooseInView ? { opacity: 1, y: 0, rotateX: 0, z: 0 } : { opacity: 0, y: 60, rotateX: -10, z: -100 })}
+          transition={isMobile ? { duration: 0 } : { 
             default: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
             hover: { duration: 0, ease: 'linear' }
           }}
-          whileHover={{ 
+          whileHover={isMobile ? {} : { 
             y: -4,
             rotateX: 2,
             z: 10,
@@ -633,9 +607,9 @@ const ServiceDetail = () => {
         >
           <motion.h2
             className="text-3xl md:text-4xl font-black text-[#253E5C] mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={whyChooseInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 20 }}
+            animate={isMobile ? { opacity: 1, y: 0 } : (whyChooseInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
+            transition={{ duration: isMobile ? 0 : 0.8, delay: isMobile ? 0 : 0.2 }}
           >
             Why Choose Advertio for {service.title}?
           </motion.h2>
@@ -647,15 +621,15 @@ const ServiceDetail = () => {
                   style={{
                     background: `linear-gradient(135deg, ${PRIMARY_COLOR}10, ${PRIMARY_COLOR}05)`,
                     border: `2px solid ${PRIMARY_COLOR}20`,
-                    transformStyle: 'preserve-3d',
+                    transformStyle: isMobile ? 'flat' : 'preserve-3d',
                   }}
-                  initial={{ opacity: 0, x: -20, rotateY: -15 }}
-                  animate={whyChooseInView ? { opacity: 1, x: 0, rotateY: 0 } : { opacity: 0, x: -20, rotateY: -15 }}
-                  transition={{ 
+                  initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -20, rotateY: -15 }}
+                  animate={isMobile ? { opacity: 1, x: 0 } : (whyChooseInView ? { opacity: 1, x: 0, rotateY: 0 } : { opacity: 0, x: -20, rotateY: -15 })}
+                  transition={isMobile ? { duration: 0 } : { 
                     default: { duration: 0.6, delay: 0.3 + index * 0.1, ease: [0.22, 1, 0.36, 1] },
                     hover: { duration: 0, ease: 'linear' }
                   }}
-                  whileHover={{
+                  whileHover={isMobile ? {} : {
                     scale: 1.05,
                     y: -8,
                     borderColor: PRIMARY_COLOR,
@@ -809,16 +783,16 @@ const ServiceDetail = () => {
           style={{
             background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9))',
             backdropFilter: 'blur(20px)',
-            transformStyle: 'preserve-3d',
+            transformStyle: isMobile ? 'flat' : 'preserve-3d',
             boxShadow: `0 25px 50px ${SECONDARY_COLOR}30, 0 0 40px ${DEEP_BLUE}20, 0 10px 30px ${SECONDARY_COLOR}25`,
           }}
-          initial={{ opacity: 0, y: 60, rotateX: -10, z: -100 }}
-          animate={processInView ? { opacity: 1, y: 0, rotateX: 0, z: 0 } : { opacity: 0, y: 60, rotateX: -10, z: -100 }}
-          transition={{ 
+          initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 60, rotateX: -10, z: -100 }}
+          animate={isMobile ? { opacity: 1, y: 0 } : (processInView ? { opacity: 1, y: 0, rotateX: 0, z: 0 } : { opacity: 0, y: 60, rotateX: -10, z: -100 })}
+          transition={isMobile ? { duration: 0 } : { 
             default: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
             hover: { duration: 0, ease: 'linear' }
           }}
-          whileHover={{ 
+          whileHover={isMobile ? {} : { 
             y: -4,
             rotateX: 2,
             z: 10,
@@ -826,9 +800,9 @@ const ServiceDetail = () => {
         >
           <motion.h2
             className="text-3xl md:text-4xl font-black text-[#253E5C] mb-12 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={processInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 20 }}
+            animate={isMobile ? { opacity: 1, y: 0 } : (processInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
+            transition={{ duration: isMobile ? 0 : 0.8, delay: isMobile ? 0 : 0.2 }}
           >
             How We Will Do This
           </motion.h2>
@@ -837,14 +811,14 @@ const ServiceDetail = () => {
               <motion.div
                 key={index}
                 className="flex gap-6 items-start"
-                style={{ transformStyle: 'preserve-3d' }}
-                initial={{ opacity: 0, x: -30, rotateY: -20 }}
-                animate={processInView ? { opacity: 1, x: 0, rotateY: 0 } : { opacity: 0, x: -30, rotateY: -20 }}
-                transition={{ 
+                style={{ transformStyle: isMobile ? 'flat' : 'preserve-3d' }}
+                initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -30, rotateY: -20 }}
+                animate={isMobile ? { opacity: 1, x: 0 } : (processInView ? { opacity: 1, x: 0, rotateY: 0 } : { opacity: 0, x: -30, rotateY: -20 })}
+                transition={isMobile ? { duration: 0 } : { 
                   default: { duration: 0.6, delay: 0.3 + index * 0.1, ease: [0.22, 1, 0.36, 1] },
                   hover: { duration: 0, ease: 'linear' }
                 }}
-                whileHover={{ 
+                whileHover={isMobile ? {} : { 
                   x: 5,
                   rotateY: 3,
                   z: 10,
@@ -852,8 +826,8 @@ const ServiceDetail = () => {
               >
                 <motion.div
                   className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center text-white font-black text-xl"
-                  style={{ background: PRIMARY_COLOR, transformStyle: 'preserve-3d' }}
-                  whileHover={{ scale: 1.1, rotateY: 360, z: 20 }}
+                  style={{ background: PRIMARY_COLOR, transformStyle: isMobile ? 'flat' : 'preserve-3d' }}
+                  whileHover={isMobile ? {} : { scale: 1.1, rotateY: 360, z: 20 }}
                   transition={{ duration: 0, ease: 'linear' }}
                 >
                   {step.step}
@@ -871,15 +845,15 @@ const ServiceDetail = () => {
         <motion.div
           ref={reviewsRef}
           className="mb-12"
-          initial={{ opacity: 0, y: 60 }}
-          animate={reviewsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 60 }}
+          animate={isMobile ? { opacity: 1, y: 0 } : (reviewsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 })}
+          transition={{ duration: isMobile ? 0 : 0.8 }}
         >
           <motion.h2
             className="text-3xl md:text-4xl font-black text-[#253E5C] mb-8 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={reviewsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 20 }}
+            animate={isMobile ? { opacity: 1, y: 0 } : (reviewsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
+            transition={{ duration: isMobile ? 0 : 0.8, delay: isMobile ? 0 : 0.2 }}
           >
             What Clients Say About Our {service.title}
           </motion.h2>
@@ -891,16 +865,16 @@ const ServiceDetail = () => {
                 style={{
                   background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9))',
                   backdropFilter: 'blur(20px)',
-                  transformStyle: 'preserve-3d',
+                  transformStyle: isMobile ? 'flat' : 'preserve-3d',
                   boxShadow: `0 15px 35px ${SECONDARY_COLOR}25, 0 0 25px ${DEEP_BLUE}15, 0 5px 15px ${SECONDARY_COLOR}20`,
                 }}
-                initial={{ opacity: 0, y: 40, rotateY: -15 }}
-                animate={reviewsInView ? { opacity: 1, y: 0, rotateY: 0 } : { opacity: 0, y: 40, rotateY: -15 }}
-                transition={{ 
+                initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 40, rotateY: -15 }}
+                animate={isMobile ? { opacity: 1, y: 0 } : (reviewsInView ? { opacity: 1, y: 0, rotateY: 0 } : { opacity: 0, y: 40, rotateY: -15 })}
+                transition={isMobile ? { duration: 0 } : { 
                   default: { duration: 0.6, delay: 0.3 + index * 0.15, ease: [0.22, 1, 0.36, 1] },
                   hover: { duration: 0, ease: 'linear' }
                 }}
-                whileHover={{
+                whileHover={isMobile ? {} : {
                   scale: 1.02,
                   boxShadow: `0 20px 50px ${SECONDARY_COLOR}40, 0 0 30px ${DEEP_BLUE}30, 0 10px 20px ${SECONDARY_COLOR}25`,
                   rotateY: 3,
@@ -949,14 +923,14 @@ const ServiceDetail = () => {
         </motion.div>
 
         {/* Contact Form Section */}
-        <ServiceContactForm service={service} contactFormRef={contactFormRef} contactFormInView={contactFormInView} />
+        <ServiceContactForm service={service} contactFormRef={contactFormRef} contactFormInView={contactFormInView} isMobile={isMobile} />
       </div>
     </motion.div>
   );
 };
 
 // Contact Form Component
-const ServiceContactForm = ({ service, contactFormRef, contactFormInView }) => {
+const ServiceContactForm = ({ service, contactFormRef, contactFormInView, isMobile = false }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -990,17 +964,17 @@ const ServiceContactForm = ({ service, contactFormRef, contactFormInView }) => {
       className="rounded-[36px] border border-white/20 p-8 md:p-12 lg:p-16 relative z-10 max-w-4xl mx-auto"
       style={{
         background: 'linear-gradient(135deg, rgba(233, 79, 55, 1) 0%, rgba(37, 62, 92, 1) 50%, rgba(233, 79, 55, 1) 100%)',
-        transformStyle: 'preserve-3d',
+        transformStyle: isMobile ? 'flat' : 'preserve-3d',
         boxShadow: `0 25px 60px ${SECONDARY_COLOR}40, 0 0 50px ${DEEP_BLUE}30, 0 15px 40px ${SECONDARY_COLOR}35`,
       }}
-      initial={{ opacity: 0, y: 60, rotateX: -10, z: -100 }}
-      animate={contactFormInView ? { opacity: 1, y: 0, rotateX: 0, z: 0 } : { opacity: 0, y: 60, rotateX: -10, z: -100 }}
-      transition={{ 
+      initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 60, rotateX: -10, z: -100 }}
+      animate={isMobile ? { opacity: 1, y: 0 } : (contactFormInView ? { opacity: 1, y: 0, rotateX: 0, z: 0 } : { opacity: 0, y: 60, rotateX: -10, z: -100 })}
+      transition={isMobile ? { duration: 0 } : { 
         duration: 0.8, 
         ease: [0.22, 1, 0.36, 1],
         hover: { duration: 0, ease: 'linear' }
       }}
-      whileHover={{ 
+      whileHover={isMobile ? {} : { 
         y: -4,
         rotateX: 2,
         z: 10,
@@ -1008,17 +982,17 @@ const ServiceContactForm = ({ service, contactFormRef, contactFormInView }) => {
     >
       <motion.h2
         className="text-3xl md:text-4xl font-black text-white mb-6 text-center"
-        initial={{ opacity: 0, y: 20 }}
-        animate={contactFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
+        initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 20 }}
+        animate={isMobile ? { opacity: 1, y: 0 } : (contactFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
+        transition={{ duration: isMobile ? 0 : 0.8, delay: isMobile ? 0 : 0.2 }}
       >
         Get Started with {service.title}
       </motion.h2>
       <motion.p
         className="text-lg text-white/70 text-center mb-8 max-w-2xl mx-auto"
-        initial={{ opacity: 0, y: 20 }}
-        animate={contactFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-        transition={{ duration: 0.8, delay: 0.3 }}
+        initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 20 }}
+        animate={isMobile ? { opacity: 1, y: 0 } : (contactFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
+        transition={{ duration: isMobile ? 0 : 0.8, delay: isMobile ? 0 : 0.3 }}
       >
         Ready to transform your business? Fill out the form below and we'll get back to you within 2 hours.
       </motion.p>
@@ -1032,9 +1006,9 @@ const ServiceContactForm = ({ service, contactFormRef, contactFormInView }) => {
           <motion.div
             key={field.name}
             className="space-y-2"
-            initial={{ opacity: 0, y: 30 }}
-            animate={contactFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
+            initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 30 }}
+            animate={isMobile ? { opacity: 1, y: 0 } : (contactFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 })}
+            transition={{ duration: isMobile ? 0 : 0.6, delay: isMobile ? 0 : 0.4 + index * 0.1 }}
           >
             <label className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70 block">
               {field.label}
@@ -1053,9 +1027,9 @@ const ServiceContactForm = ({ service, contactFormRef, contactFormInView }) => {
 
         <motion.div
           className="space-y-2"
-          initial={{ opacity: 0, y: 30 }}
-          animate={contactFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
+          initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 30 }}
+          animate={isMobile ? { opacity: 1, y: 0 } : (contactFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 })}
+          transition={{ duration: isMobile ? 0 : 0.6, delay: isMobile ? 0 : 0.7 }}
         >
           <label className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70 block">
             Project details
@@ -1076,15 +1050,15 @@ const ServiceContactForm = ({ service, contactFormRef, contactFormInView }) => {
           disabled={status === 'sending'}
             className="relative w-full flex items-center justify-center gap-3 px-6 py-4 rounded-2xl text-white font-semibold text-lg bg-gradient-to-r from-[#253E5C] via-primary to-[#FF6B4A] shadow-lg shadow-primary/40 transition-all disabled:opacity-60 overflow-hidden"
             style={{
-              transformStyle: 'preserve-3d',
+              transformStyle: isMobile ? 'flat' : 'preserve-3d',
             }}
-            initial={{ opacity: 0, y: 30, rotateX: -10 }}
-            animate={contactFormInView ? { opacity: 1, y: 0, rotateX: 0 } : { opacity: 0, y: 30, rotateX: -10 }}
-            transition={{ 
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30, rotateX: -10 }}
+            animate={isMobile ? { opacity: 1, y: 0 } : (contactFormInView ? { opacity: 1, y: 0, rotateX: 0 } : { opacity: 0, y: 30, rotateX: -10 })}
+            transition={isMobile ? { duration: 0 } : { 
               default: { duration: 0.6, delay: 0.8, ease: [0.22, 1, 0.36, 1] },
               hover: { duration: 0, ease: 'linear' }
             }}
-            whileHover={{ 
+            whileHover={isMobile ? {} : { 
               scale: 1.03, 
               boxShadow: '0 10px 40px rgba(233, 79, 55, 0.5)',
               translateZ: 20,

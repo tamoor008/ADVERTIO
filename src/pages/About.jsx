@@ -26,6 +26,9 @@ const About = () => {
   });
   const [formStatus, setFormStatus] = useState('idle');
   const [hoveredValueIndex, setHoveredValueIndex] = useState(null);
+  const [focusedCardIndex, setFocusedCardIndex] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const valuesContainerRef = useRef(null);
 
   const heroInView = useInView(heroRef, { once: true, amount: 0.1 });
   const whoWeAreInView = useInView(whoWeAreRef, { once: true, amount: 0.1 });
@@ -154,6 +157,38 @@ const About = () => {
 
   }, []);
 
+  // Detect mobile viewport
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Handle clicks outside cards to unfocus (mobile only)
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // Only handle on mobile (screen width < 768px)
+      if (!isMobile) return;
+      
+      if (valuesContainerRef.current && !valuesContainerRef.current.contains(event.target)) {
+        setFocusedCardIndex(null);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+    
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [isMobile]);
+
   const values = [
     {
       number: '01',
@@ -179,7 +214,7 @@ const About = () => {
 
 
   return (
-    <div className="relative min-h-screen overflow-visible">
+    <div className="relative min-h-screen overflow-visible bg-white" style={{ backgroundColor: '#FFFFFF', background: '#FFFFFF' }}>
       {/* Hero Section */}
       <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-visible pt-24 pb-20 z-10">
         <div className="container mx-auto px-6 relative z-30">
@@ -511,18 +546,21 @@ const About = () => {
             </div>
 
             {/* Values Grid with Unique Layout */}
-            <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 items-stretch">
+            <div ref={valuesContainerRef} className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 lg:gap-6 items-stretch">
               {values.map((value, index) => {
                 const isEven = index % 2 === 0;
-                const isHovered = hoveredValueIndex === index;
+                const isFocused = focusedCardIndex === index;
+                // On mobile, use focused state; on desktop, use hover state
+                const isHovered = isMobile ? isFocused : (hoveredValueIndex === index);
                 
                 return (
               <motion.div
                 key={index}
                     className="relative group"
                 style={{ 
-                      transformStyle: 'preserve-3d',
-                    }}
+                  transformStyle: 'preserve-3d',
+                  zIndex: isFocused && isMobile ? 50 : 1,
+                }}
                     initial={{ opacity: 0, y: 100, rotateX: -20 }}
                     whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
@@ -533,16 +571,22 @@ const About = () => {
                     }}
                     onMouseEnter={() => setHoveredValueIndex(index)}
                     onMouseLeave={() => setHoveredValueIndex(null)}
+                    onClick={() => {
+                      if (isMobile) {
+                        setFocusedCardIndex(isFocused ? null : index);
+                      }
+                    }}
                   >
                     {/* 3D Card Container */}
                     <motion.div
                       className="relative h-full"
                       style={{ transformStyle: 'preserve-3d' }}
                       animate={{
-                        rotateY: isHovered ? (isEven ? 5 : -5) : 0,
-                        rotateX: isHovered ? -3 : 0,
-                        scale: isHovered ? 1.05 : 1,
-                        z: isHovered ? 50 : 0,
+                        rotateY: isMobile && isFocused ? 0 : (isHovered ? (isEven ? 5 : -5) : 0),
+                        rotateX: isMobile && isFocused ? 0 : (isHovered ? -3 : 0),
+                        scale: isMobile && isFocused ? 1.08 : (isHovered ? 1.05 : 1),
+                        y: isMobile && isFocused ? -20 : 0,
+                        z: isMobile && isFocused ? 100 : (isHovered ? 50 : 0),
                       }}
                       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                     >
@@ -1215,14 +1259,61 @@ const ReviewsSection3D = () => {
   return (
     <>
       <style>{`
-        /* Hide horizontal scrollbar for Reviews Section */
+        /* Show horizontal scrollbar on mobile, hide on desktop/laptop */
         .reviews-scroll-container {
-          scrollbar-width: none; /* Firefox */
-          -ms-overflow-style: none; /* IE and Edge */
+          /* Mobile: show scrollbar */
+          scrollbar-width: thin; /* Firefox - thin scrollbar on mobile */
+          scrollbar-color: #253E5C rgba(37, 62, 92, 0.1); /* Dark blue thumb, light track */
+          -ms-overflow-style: auto; /* IE and Edge - show scrollbar on mobile */
         }
         
-        .reviews-scroll-container::-webkit-scrollbar {
-          display: none; /* WebKit - hide horizontal scrollbar */
+        /* Desktop/Laptop: hide scrollbar */
+        @media (min-width: 768px) {
+          .reviews-scroll-container {
+            scrollbar-width: none; /* Firefox - hide on desktop */
+            -ms-overflow-style: none; /* IE and Edge - hide on desktop */
+          }
+          
+          .reviews-scroll-container::-webkit-scrollbar {
+            display: none; /* WebKit - hide horizontal scrollbar on desktop */
+          }
+        }
+        
+        /* Mobile: style the scrollbar with dark blue */
+        @media (max-width: 767px) {
+          .reviews-scroll-container::-webkit-scrollbar {
+            display: block; /* Show scrollbar on mobile */
+            height: 8px;
+          }
+          
+          .reviews-scroll-container::-webkit-scrollbar-track {
+            background: rgba(37, 62, 92, 0.1);
+            border-radius: 10px;
+          }
+          
+          .reviews-scroll-container::-webkit-scrollbar-thumb {
+            background: #253E5C; /* Dark blue color */
+            border-radius: 10px;
+          }
+          
+          .reviews-scroll-container::-webkit-scrollbar-thumb:hover {
+            background: #1a2d42; /* Darker blue on hover */
+          }
+          
+          /* Reduce review card size on mobile */
+          .reviews-scroll-container .group {
+            width: 300px !important;
+            min-width: 300px !important;
+          }
+          
+          .reviews-scroll-container .group > div {
+            min-height: 450px !important;
+          }
+          
+          .reviews-scroll-container .review-card-content {
+            min-height: 450px !important;
+            padding: 1.5rem !important;
+          }
         }
         
         /* Ensure review cards stay crisp on hover */
@@ -1310,7 +1401,6 @@ const ReviewsSection3D = () => {
               ref={scrollContainerRef}
               className="reviews-scroll-container overflow-x-auto overflow-y-visible pb-12 pt-8"
               style={{
-                scrollbarWidth: 'none',
                 WebkitOverflowScrolling: 'touch',
                 minHeight: '700px',
                 paddingLeft: '1rem',

@@ -468,13 +468,9 @@ const Contact = () => {
                       onFocus={() => setFocusedField(field.name)}
                       onBlur={() => setFocusedField(null)}
                       required
-                      className="w-full px-5 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 focus:bg-white/15 transition-all"
-                      whileFocus={{ 
-                        scale: 1.02, 
-                        borderColor: 'rgba(233, 79, 55, 0.8)',
-                        boxShadow: '0 0 25px rgba(233, 79, 55, 0.4)',
-                        translateZ: 15
-                      }}
+                      className={`w-full px-5 py-4 rounded-2xl border border-white/20 placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 transition-all ${
+                        formData[field.name] ? 'bg-white text-[#253E5C]' : 'bg-white/10 text-white'
+                      }`}
                       style={{ transformStyle: 'preserve-3d' }}
                     />
                     <AnimatePresence>
@@ -524,13 +520,9 @@ const Contact = () => {
                     onFocus={() => setFocusedField('message')}
                     onBlur={() => setFocusedField(null)}
                     required
-                    className="w-full px-5 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 focus:bg-white/15 transition-all resize-none"
-                    whileFocus={{ 
-                      scale: 1.01, 
-                      borderColor: 'rgba(233, 79, 55, 0.8)',
-                      boxShadow: '0 0 25px rgba(233, 79, 55, 0.4)',
-                      translateZ: 15
-                    }}
+                    className={`w-full px-5 py-4 rounded-2xl border border-white/20 placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 transition-all resize-none ${
+                      formData.message ? 'bg-white text-[#253E5C]' : 'bg-white/10 text-white'
+                    }`}
                     style={{ transformStyle: 'preserve-3d' }}
                   />
                   <AnimatePresence>

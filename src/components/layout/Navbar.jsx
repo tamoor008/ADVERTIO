@@ -8,6 +8,8 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesHovered, setIsServicesHovered] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const servicesDropdownRef = useRef(null);
   const location = useLocation();
 
@@ -17,6 +19,36 @@ const Navbar = () => {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Get viewport height and handle resize
+  useEffect(() => {
+    const updateViewportHeight = () => {
+      setViewportHeight(window.innerHeight);
+    };
+    
+    updateViewportHeight();
+    window.addEventListener('resize', updateViewportHeight);
+    window.addEventListener('orientationchange', updateViewportHeight);
+    
+    return () => {
+      window.removeEventListener('resize', updateViewportHeight);
+      window.removeEventListener('orientationchange', updateViewportHeight);
+    };
+  }, []);
+
+  // Track mobile/desktop for logo scaling
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
   }, []);
 
   // Services data matching ServiceDetail.jsx
@@ -50,9 +82,13 @@ const Navbar = () => {
           <motion.img
             src={brandLogo}
             alt="Advertio"
-            className="h-40 -my-14 object-contain drop-shadow-[0_8px_32px_rgba(0,0,0,0.55)]"
-            style={{ transform: 'scale(1.35)', transformOrigin: 'left center', filter: 'brightness(1.35) contrast(1.15)' }}
-            whileHover={{ scale: 1.4 }}
+            className="h-24 md:h-40 -my-14 object-contain drop-shadow-[0_8px_32px_rgba(0,0,0,0.55)]"
+            style={{ 
+              transform: `scale(${isMobile ? '0.8' : '1.35'})`, 
+              transformOrigin: 'left center', 
+              filter: 'brightness(1.35) contrast(1.15)'
+            }}
+            whileHover={{ scale: isMobile ? 0.85 : 1.4 }}
             transition={{ type: 'spring', stiffness: 250 }}
           />
         </Link>
@@ -126,7 +162,7 @@ const Navbar = () => {
               {isServicesHovered && (
                 <motion.div
                   ref={servicesDropdownRef}
-                  className="absolute top-full left-0 ml-[-350px] mt-4 w-[900px] max-w-[calc(100vw-2rem)] bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-slate-200/50 overflow-hidden z-50"
+                  className="absolute top-full left-0 ml-[-650%] mt-4 w-[900px] max-w-[calc(100vw-2rem)] bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-slate-200/50 overflow-hidden z-50"
                   initial={{ opacity: 0, y: -10, scale: 0.95 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -10, scale: 0.95 }}
@@ -249,10 +285,14 @@ const Navbar = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            className="md:hidden bg-white/95 backdrop-blur-md border-t border-slate-200"
+            className="md:hidden bg-white/95 backdrop-blur-md border-t border-slate-200 overflow-y-auto"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
+            style={{
+              maxHeight: `${viewportHeight + 0}px`,
+              overflowY: 'auto'
+            }}
           >
             <div className="container mx-auto px-6 py-4 flex flex-col gap-4">
               {/* Get free Audit Button - First position */}
@@ -340,7 +380,13 @@ const Navbar = () => {
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <div className="pt-2 flex flex-col gap-3 max-h-[500px] overflow-y-auto">
+                      <div 
+                        className="pt-2 flex flex-col gap-3 overflow-y-auto"
+                        style={{
+                          maxHeight: `${Math.max(viewportHeight * 0.6, 300)}px`,
+                          paddingBottom: '30px'
+                        }}
+                      >
                         {services.map((service, index) => (
                           <motion.div
                             key={service.id}

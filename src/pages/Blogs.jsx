@@ -197,7 +197,7 @@ const Blogs = () => {
   ];
 
   return (
-    <div className="relative min-h-screen overflow-visible">
+    <div className="relative min-h-screen overflow-visible bg-white" style={{ backgroundColor: '#FFFFFF', background: '#FFFFFF' }}>
       <motion.section
         ref={sectionRef}
         className="relative z-10 pt-24 pb-32 overflow-visible bg-gradient-to-b from-white/50 via-white/70 to-white/90 w-full"
