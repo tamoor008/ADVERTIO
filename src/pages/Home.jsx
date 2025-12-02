@@ -295,8 +295,8 @@ const ProcessBackdrop = () => {
                     <div 
                       className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm overflow-hidden"
                       style={{
-                        background: 'transparent',
-                        border: `2px solid ${cardColors[index].bg}20`,
+                        background: cardColors[index].bg,
+                        border: `2px solid ${cardColors[index].bg}`,
                       }}
                     >
                       <img 
