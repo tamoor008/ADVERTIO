@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: #E94F37;
+    --dark: #253E5C;
+    --white: #FFFFFF;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox - hide vertical scrollbar */
+    -ms-overflow-style: none; /* IE and Edge - hide vertical scrollbar */
+  }
+
+  html::-webkit-scrollbar {
+    display: none; /* WebKit - hide vertical scrollbar */
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #FFFFFF;
+    color: var(--dark);
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox - hide vertical scrollbar */
+    -ms-overflow-style: none; /* IE and Edge - hide vertical scrollbar */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body::-webkit-scrollbar {
+    display: none; /* WebKit - hide vertical scrollbar */
+  }
+
+  canvas {
+    display: block;
+    outline: none;
+  }
+}
+
+@layer components {
+  .hero-animated-card {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    background: transparent;
+  }
+
+  .hero-animated-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(233, 79, 55, 0.85), transparent 55%),
+      radial-gradient(circle at 80% 30%, rgba(37, 62, 92, 0.85), transparent 60%),
+      radial-gradient(circle at 30% 80%, rgba(233, 79, 55, 0.55), transparent 55%),
+      conic-gradient(from 90deg, rgba(233, 79, 55, 0.4), rgba(37, 62, 92, 0.5), rgba(233, 79, 55, 0.4));
+    background-size: 200% 200%;
+    animation: hero-gradient-move 10s ease-in-out infinite alternate;
+    z-index: -2;
+  }
+
+  .hero-animated-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: inset 0 0 40px rgba(37, 62, 92, 0.12);
+    z-index: -1;
+  }
+}
+
+@keyframes hero-gradient-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@layer utilities {
+  /* Vertical scrollbar is now hidden in base layer above */
+
+  /* Selection */
+  ::selection {
+    background: #E94F37;
+    color: #FFFFFF;
+  }
+}
