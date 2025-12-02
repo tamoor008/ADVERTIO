@@ -293,15 +293,22 @@ const ProcessBackdrop = () => {
                 >
                   <div className="p-5 flex items-center gap-4">
                     <div 
-                      className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm overflow-hidden"
+                      className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm overflow-hidden bg-white"
                       style={{
-                        background: `${cardColors[index].bg}15`,
+                        border: `2px solid ${cardColors[index].bg}20`,
                       }}
                     >
                       <img 
                         src={processIcons[index]} 
                         alt={label}
                         className="w-8 h-8 object-contain"
+                        style={{
+                          imageRendering: 'crisp-edges',
+                          WebkitImageRendering: 'crisp-edges',
+                          filter: 'none',
+                          opacity: 1,
+                          mixBlendMode: 'normal',
+                        }}
                       />
                     </div>
                     <div className="flex-1">
