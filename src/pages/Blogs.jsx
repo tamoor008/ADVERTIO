@@ -301,7 +301,7 @@ const Blogs = () => {
                         <div
                           className="w-full h-full rounded-[30px] relative overflow-hidden transition-all duration-300"
                           style={{
-                            background: `linear-gradient(135deg, ${blog.color}15 0%, ${blog.color}08 50%, transparent 100%)`,
+                            background: 'transparent',
                           }}
                         >
                           {/* Blog Image */}

@@ -347,18 +347,20 @@ const ServiceDetail = () => {
 
         {/* Service Header */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-16 px-4"
           initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 40 }}
           animate={isMobile ? { opacity: 1, y: 0 } : (isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 })}
           transition={{ duration: isMobile ? 0 : 0.8, delay: isMobile ? 0 : 0.3 }}
         >
           <motion.h1
-            className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 relative z-10"
+            className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 relative z-10 leading-tight overflow-visible"
             style={{
               background: `linear-gradient(135deg, ${PRIMARY_COLOR}, ${SECONDARY_COLOR})`,
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
+              padding: '0.45rem 0',
+              wordBreak: 'break-word',
             }}
             initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -367,7 +369,7 @@ const ServiceDetail = () => {
             {service.title}
           </motion.h1>
           <motion.p
-            className="text-xl md:text-2xl text-[#253E5C]/70 max-w-3xl mx-auto leading-relaxed"
+            className="text-xl md:text-2xl text-[#253E5C]/70 max-w-3xl mx-auto leading-tight md:leading-relaxed"
             initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 20 }}
             animate={isMobile ? { opacity: 1, y: 0 } : (isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
             transition={{ duration: isMobile ? 0 : 0.8, delay: isMobile ? 0 : 0.5 }}
@@ -406,7 +408,7 @@ const ServiceDetail = () => {
             transition={{ duration: isMobile ? 0 : 0.8, delay: isMobile ? 0 : 0.2 }}
           >
             <h2 className="text-3xl md:text-4xl font-black text-[#253E5C] mb-6">Overview</h2>
-            <p className="text-lg md:text-xl text-[#253E5C]/80 leading-relaxed">
+            <p className="text-lg md:text-xl text-[#253E5C]/80 leading-tight md:leading-relaxed">
               {service.fullDescription}
             </p>
           </motion.div>
@@ -422,161 +424,44 @@ const ServiceDetail = () => {
               {service.benefits.map((benefit, index) => (
                 <motion.div
                   key={index}
-                  className="relative group flex items-start gap-4 p-6 rounded-2xl overflow-hidden"
+                  className="relative group flex items-start gap-4 p-6 rounded-2xl overflow-hidden transition-all duration-300"
                   style={{
                     background: `linear-gradient(135deg, ${PRIMARY_COLOR}10, ${PRIMARY_COLOR}05)`,
                     border: `2px solid ${PRIMARY_COLOR}20`,
-                    transformStyle: isMobile ? 'flat' : 'preserve-3d',
                   }}
-                  initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -20, rotateY: -15 }}
-                  animate={isMobile ? { opacity: 1, x: 0 } : (mainContentInView ? { opacity: 1, x: 0, rotateY: 0 } : { opacity: 0, x: -20, rotateY: -15 })}
-                  transition={isMobile ? { duration: 0 } : { 
-                    default: { duration: 0.6, delay: 0.5 + index * 0.1, ease: [0.22, 1, 0.36, 1] },
-                    hover: { duration: 0, ease: 'linear' }
-                  }}
+                  initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                  animate={isMobile ? { opacity: 1, x: 0 } : (mainContentInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 })}
+                  transition={{ duration: 0.6, delay: 0.5 + index * 0.1, ease: [0.22, 1, 0.36, 1] }}
                   whileHover={isMobile ? {} : {
-                    scale: 1.05,
-                    y: -8,
-                    borderColor: PRIMARY_COLOR,
-                    rotateY: 5,
-                    rotateX: -2,
-                    z: 20,
-                  }}
-                  onMouseMove={(e) => {
-                    const card = e.currentTarget;
-                    const rect = card.getBoundingClientRect();
-                    const x = ((e.clientX - rect.left) / rect.width) * 100;
-                    const y = ((e.clientY - rect.top) / rect.height) * 100;
-                    card.style.setProperty('--mouse-x', `${x}%`);
-                    card.style.setProperty('--mouse-y', `${y}%`);
+                    scale: 1.02,
+                    y: -4,
                   }}
                 >
-                  {/* Animated pulsing shadow effect */}
-                  <motion.div
-                    className="absolute -inset-2 rounded-2xl pointer-events-none -z-10"
-                    animate={{
-                      boxShadow: [
-                        `0 0 20px ${SECONDARY_COLOR}40, 0 0 40px ${SECONDARY_COLOR}30, 0 0 60px ${DEEP_BLUE}25, 0 0 80px ${SECONDARY_COLOR}20`,
-                        `0 0 40px ${SECONDARY_COLOR}70, 0 0 80px ${SECONDARY_COLOR}50, 0 0 120px ${DEEP_BLUE}40, 0 0 160px ${SECONDARY_COLOR}30, 0 0 20px ${DEEP_BLUE}35`,
-                        `0 0 20px ${SECONDARY_COLOR}40, 0 0 40px ${SECONDARY_COLOR}30, 0 0 60px ${DEEP_BLUE}25, 0 0 80px ${SECONDARY_COLOR}20`,
-                      ],
-                      opacity: [0.5, 1, 0.5],
-                    }}
-                    transition={{
-                      duration: 2.5,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                      delay: index * 0.3,
-                    }}
-                  />
-                  
-                  {/* Animated gradient background on hover */}
-                  <motion.div
-                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100"
+                  {/* Simple hover background */}
+                  <div
+                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     style={{
-                      background: `radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), ${PRIMARY_COLOR}35 0%, ${DARK_ACCENT}20 40%, transparent 70%)`,
-                      transition: 'opacity 0s ease',
+                      background: `linear-gradient(135deg, ${PRIMARY_COLOR}15, ${PRIMARY_COLOR}08)`,
                     }}
                   />
                   
-                  {/* Shimmer effect */}
-                  <motion.div
-                    className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none"
-                    initial={{ x: '-100%' }}
-                    whileHover={{ x: '200%' }}
-                    transition={{ duration: 0.4, ease: 'easeInOut' }}
-                    style={{
-                      background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent)',
-                      width: '50%',
-                      height: '100%',
-                    }}
-                  />
-                  
-                  <motion.div
-                    className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center relative z-10 overflow-hidden bottom-2"
+                  <div
+                    className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center relative z-10 overflow-hidden"
                     style={{ 
                       background: 'transparent',
-                      boxShadow: 'none',
-                      filter: 'none',
-                    }}
-                    animate={{
-                      scale: [1, 1.05, 1],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      delay: index * 0.2,
-                      hover: { duration: 0, ease: 'linear' }
-                    }}
-                    whileHover={{
-                      scale: 1.15,
                     }}
                   >
                     <img 
                       src={favicon} 
                       alt="Advertio" 
-                      className="w-full h-full object-contain rounded-full"
-                      style={{
-                        filter: 'none',
-                        boxShadow: 'none',
-                      }}
+                      className="w-full h-full object-contain rounded-full transition-transform duration-300 group-hover:scale-110"
                     />
-                  </motion.div>
-                  <motion.p 
-                    className="text-lg font-semibold text-[#1A2A3A] pt-1 relative z-10"
-                    whileHover={{ x: 4, color: PRIMARY_COLOR }}
-                    transition={{ duration: 0 }}
+                  </div>
+                  <p 
+                    className="text-lg font-semibold text-[#1A2A3A] pt-1 relative z-10 transition-colors duration-300 group-hover:text-[#C7361F] leading-tight md:leading-normal"
                   >
                     {benefit}
-                  </motion.p>
-                  
-                  {/* Enhanced glow effect with animation */}
-                  <motion.div
-                    className="absolute inset-0 rounded-2xl pointer-events-none"
-                    style={{
-                      background: `radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), ${PRIMARY_COLOR}40 0%, ${DARK_ACCENT}25 40%, transparent 70%)`,
-                      opacity: 0,
-                    }}
-                    animate={{
-                      opacity: [0, 0.3, 0],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                    }}
-                    whileHover={{ 
-                      opacity: 0.8,
-                      background: `radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), ${PRIMARY_COLOR}60 0%, ${DARK_ACCENT}40 40%, transparent 70%)`,
-                    }}
-                  />
-                  
-                  {/* Animated border glow */}
-                  <motion.div
-                    className="absolute inset-0 rounded-2xl pointer-events-none"
-                    style={{
-                      border: `2px solid ${SECONDARY_COLOR}`,
-                      opacity: 0,
-                    }}
-                    animate={{
-                      opacity: [0, 0.7, 0],
-                      boxShadow: [
-                        `0 0 15px ${SECONDARY_COLOR}40, 0 0 10px ${DEEP_BLUE}30`,
-                        `0 0 35px ${SECONDARY_COLOR}70, 0 0 25px ${DEEP_BLUE}50, 0 0 15px ${SECONDARY_COLOR}45`,
-                        `0 0 15px ${SECONDARY_COLOR}40, 0 0 10px ${DEEP_BLUE}30`,
-                      ],
-                    }}
-                    transition={{
-                      duration: 2.5,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                      delay: index * 0.2,
-                    }}
-                    whileHover={{
-                      opacity: 1,
-                      boxShadow: `0 0 50px ${SECONDARY_COLOR}90, 0 0 40px ${DEEP_BLUE}70, 0 0 30px ${SECONDARY_COLOR}60, inset 0 0 25px ${DEEP_BLUE}40`,
-                    }}
-                  />
+                  </p>
                 </motion.div>
               ))}
             </div>
@@ -617,160 +502,44 @@ const ServiceDetail = () => {
             {service.whyChooseUs.map((reason, index) => (
               <motion.div
                 key={index}
-                  className="relative group flex items-start gap-4 p-6 rounded-2xl overflow-hidden"
+                className="relative group flex items-start gap-4 p-6 rounded-2xl overflow-hidden transition-all duration-300"
+                style={{
+                  background: `linear-gradient(135deg, ${PRIMARY_COLOR}10, ${PRIMARY_COLOR}05)`,
+                  border: `2px solid ${PRIMARY_COLOR}20`,
+                }}
+                initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                animate={isMobile ? { opacity: 1, x: 0 } : (whyChooseInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 })}
+                transition={{ duration: 0.6, delay: 0.3 + index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                whileHover={isMobile ? {} : {
+                  scale: 1.02,
+                  y: -4,
+                }}
+              >
+                {/* Simple hover background */}
+                <div
+                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{
-                    background: `linear-gradient(135deg, ${PRIMARY_COLOR}10, ${PRIMARY_COLOR}05)`,
-                    border: `2px solid ${PRIMARY_COLOR}20`,
-                    transformStyle: isMobile ? 'flat' : 'preserve-3d',
+                    background: `linear-gradient(135deg, ${PRIMARY_COLOR}15, ${PRIMARY_COLOR}08)`,
                   }}
-                  initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -20, rotateY: -15 }}
-                  animate={isMobile ? { opacity: 1, x: 0 } : (whyChooseInView ? { opacity: 1, x: 0, rotateY: 0 } : { opacity: 0, x: -20, rotateY: -15 })}
-                  transition={isMobile ? { duration: 0 } : { 
-                    default: { duration: 0.6, delay: 0.3 + index * 0.1, ease: [0.22, 1, 0.36, 1] },
-                    hover: { duration: 0, ease: 'linear' }
-                  }}
-                  whileHover={isMobile ? {} : {
-                    scale: 1.05,
-                    y: -8,
-                    borderColor: PRIMARY_COLOR,
-                    rotateY: 5,
-                    rotateX: -2,
-                    z: 20,
-                  }}
-                  onMouseMove={(e) => {
-                    const card = e.currentTarget;
-                    const rect = card.getBoundingClientRect();
-                    const x = ((e.clientX - rect.left) / rect.width) * 100;
-                    const y = ((e.clientY - rect.top) / rect.height) * 100;
-                    card.style.setProperty('--mouse-x', `${x}%`);
-                    card.style.setProperty('--mouse-y', `${y}%`);
-                  }}
-                >
-                  {/* Animated pulsing shadow effect */}
-                  <motion.div
-                    className="absolute -inset-2 rounded-2xl pointer-events-none -z-10"
-                  animate={{
-                      boxShadow: [
-                        `0 0 20px ${PRIMARY_COLOR}30, 0 0 40px ${PRIMARY_COLOR}20, 0 0 60px ${DARK_ACCENT}15`,
-                        `0 0 40px ${PRIMARY_COLOR}60, 0 0 80px ${PRIMARY_COLOR}40, 0 0 120px ${DARK_ACCENT}30, 0 0 20px ${SECONDARY_COLOR}20`,
-                        `0 0 20px ${PRIMARY_COLOR}30, 0 0 40px ${PRIMARY_COLOR}20, 0 0 60px ${DARK_ACCENT}15`,
-                      ],
-                      opacity: [0.4, 0.9, 0.4],
-                    }}
-                    transition={{
-                      duration: 2.5,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                      delay: index * 0.3,
-                    }}
-                  />
-                  
-                  {/* Animated gradient background on hover */}
-                  <motion.div
-                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100"
-                    style={{
-                      background: `radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), ${PRIMARY_COLOR}35 0%, ${DARK_ACCENT}20 40%, transparent 70%)`,
-                      transition: 'opacity 0s ease',
-                    }}
-                  />
-                  
-                  {/* Shimmer effect */}
-                  <motion.div
-                    className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none"
-                    initial={{ x: '-100%' }}
-                    whileHover={{ x: '200%' }}
-                    transition={{ duration: 0.4, ease: 'easeInOut' }}
-                    style={{
-                      background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent)',
-                      width: '50%',
-                      height: '100%',
-                    }}
-                  />
-                  
-                  <motion.div
-                    className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center relative z-10 overflow-hidden bottom-2"
-                    style={{ 
-                      background: 'transparent',
-                      boxShadow: 'none',
-                      filter: 'none',
-                    }}
-                  animate={{
-                    scale: [1, 1.05, 1],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    delay: index * 0.2,
-                  }}
-                  whileHover={{
-                    scale: 1.15,
+                />
+                
+                <div
+                  className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center relative z-10 overflow-hidden"
+                  style={{ 
+                    background: 'transparent',
                   }}
                 >
                   <img 
                     src={favicon} 
                     alt="Advertio" 
-                    className="w-full h-full object-contain rounded-full"
-                    style={{
-                      filter: 'none',
-                      boxShadow: 'none',
-                    }}
+                    className="w-full h-full object-contain rounded-full transition-transform duration-300 group-hover:scale-110"
                   />
-                </motion.div>
-                <motion.p 
-                  className="text-lg font-semibold text-[#1A2A3A] pt-1 relative z-10"
-                  whileHover={{ x: 4, color: PRIMARY_COLOR }}
-                  transition={{ duration: 0.2 }}
+                </div>
+                <p 
+                  className="text-lg font-semibold text-[#1A2A3A] pt-1 relative z-10 transition-colors duration-300 group-hover:text-[#C7361F] leading-tight md:leading-normal"
                 >
                   {reason}
-                </motion.p>
-                  
-                  {/* Enhanced glow effect with animation */}
-                  <motion.div
-                    className="absolute inset-0 rounded-2xl pointer-events-none"
-                    style={{
-                      background: `radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), ${PRIMARY_COLOR}40 0%, ${DARK_ACCENT}25 40%, transparent 70%)`,
-                      opacity: 0,
-                    }}
-                    animate={{
-                      opacity: [0, 0.3, 0],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                    }}
-                    whileHover={{ 
-                      opacity: 0.8,
-                      background: `radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), ${PRIMARY_COLOR}60 0%, ${DARK_ACCENT}40 40%, transparent 70%)`,
-                    }}
-                  />
-                  
-                  {/* Animated border glow */}
-                  <motion.div
-                    className="absolute inset-0 rounded-2xl pointer-events-none"
-                    style={{
-                      border: `2px solid ${SECONDARY_COLOR}`,
-                      opacity: 0,
-                    }}
-                    animate={{
-                      opacity: [0, 0.7, 0],
-                      boxShadow: [
-                        `0 0 15px ${SECONDARY_COLOR}40, 0 0 10px ${DEEP_BLUE}30`,
-                        `0 0 35px ${SECONDARY_COLOR}70, 0 0 25px ${DEEP_BLUE}50, 0 0 15px ${SECONDARY_COLOR}45`,
-                        `0 0 15px ${SECONDARY_COLOR}40, 0 0 10px ${DEEP_BLUE}30`,
-                      ],
-                    }}
-                    transition={{
-                      duration: 2.5,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                      delay: index * 0.2,
-                    }}
-                    whileHover={{
-                      opacity: 1,
-                      boxShadow: `0 0 50px ${SECONDARY_COLOR}90, 0 0 40px ${DEEP_BLUE}70, 0 0 30px ${SECONDARY_COLOR}60, inset 0 0 25px ${DEEP_BLUE}40`,
-                    }}
-                  />
+                </p>
               </motion.div>
             ))}
           </div>
@@ -834,7 +603,7 @@ const ServiceDetail = () => {
                 </motion.div>
                 <div className="flex-1 pt-2">
                   <h3 className="text-2xl font-black text-[#253E5C] mb-2">{step.title}</h3>
-                  <p className="text-lg text-[#253E5C]/70 leading-relaxed">{step.desc}</p>
+                  <p className="text-lg text-[#253E5C]/70 leading-tight md:leading-relaxed">{step.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -905,7 +674,7 @@ const ServiceDetail = () => {
                     </svg>
                   ))}
                 </div>
-                <p className="text-[#253E5C]/80 mb-4 leading-relaxed">"{review.text}"</p>
+                <p className="text-[#253E5C]/80 mb-4 leading-tight md:leading-relaxed">"{review.text}"</p>
                 <div
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full"
                   style={{
@@ -989,7 +758,7 @@ const ServiceContactForm = ({ service, contactFormRef, contactFormInView, isMobi
         Get Started with {service.title}
       </motion.h2>
       <motion.p
-        className="text-lg text-white/70 text-center mb-8 max-w-2xl mx-auto"
+        className="text-lg text-white/70 text-center mb-8 max-w-2xl mx-auto leading-tight md:leading-normal"
         initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 20 }}
         animate={isMobile ? { opacity: 1, y: 0 } : (contactFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
         transition={{ duration: isMobile ? 0 : 0.8, delay: isMobile ? 0 : 0.3 }}
