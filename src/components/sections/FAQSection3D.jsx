@@ -64,7 +64,7 @@ const FAQSection3D = () => {
   return (
     <motion.section
       ref={sectionRef}
-      className="relative z-10 pt-8 pb-28 px-6 lg:px-8 bg-gradient-to-b from-white/90 via-[#F6F7FF]/80 to-white w-full overflow-visible"
+      className="relative z-10 -pt-2 pb-28 px-6 lg:px-8 bg-gradient-to-b from-white/90 via-[#F6F7FF]/80 to-white w-full overflow-visible"
       initial={{ opacity: 0 }}
       animate={isInView ? { opacity: 1 } : { opacity: 0 }}
       transition={{ duration: 0.8 }}
@@ -98,7 +98,7 @@ const FAQSection3D = () => {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            Answers with <span className="bg-gradient-to-r from-[#253E5C] via-primary to-[#ff6b4a] bg-clip-text text-transparent">Depth & Motion</span>
+            F A <span className="bg-gradient-to-r from-[#253E5C] via-primary to-[#ff6b4a] bg-clip-text text-transparent">Q</span>
           </motion.h3>
           <motion.p
             className="text-[#253E5C]/70 text-lg"

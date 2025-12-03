@@ -517,7 +517,7 @@ const About = () => {
           </motion.div>
 
           {/* Unique Layout: Diamond/Zigzag Pattern */}
-          <div className="relative" style={{ minHeight: '800px' }}>
+          <div className="relative" style={{ minHeight: '550px' }}>
             {/* Background decorative elements */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
               {[...Array(8)].map((_, i) => (
@@ -529,7 +529,7 @@ const About = () => {
                     height: `${200 + i * 50}px`,
                     left: `${(i % 4) * 25}%`,
                     top: `${Math.floor(i / 4) * 50}%`,
-                    background: `radial-gradient(circle, rgba(233, 79, 55, 0.3) 0%, transparent 70%)`,
+                    background: `radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%)`,
                   }}
                   animate={{
                     scale: [1, 1.3, 1],

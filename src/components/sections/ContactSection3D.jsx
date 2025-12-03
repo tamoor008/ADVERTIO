@@ -3,7 +3,7 @@ import { motion, useInView } from 'framer-motion';
 
 const ContactSection3D = () => {
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: false, amount: 0.3 });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
   const [formData, setFormData] = useState({
     name: '',
     email: '',
