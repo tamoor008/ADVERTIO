@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { servicesList } from '../components/sections/constants';
+import emailjs from '@emailjs/browser';
+import { EMAILJS_CONFIG } from '../config/emailjs.config';
 
 const Contact = () => {
   const heroRef = useRef(null);
@@ -78,7 +80,7 @@ const Contact = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
     
     if (!validateForm()) {
@@ -88,14 +90,48 @@ const Contact = () => {
     if (formStatus === 'sending') return;
     setFormStatus('sending');
     
-    // Simulate form submission
-    setTimeout(() => {
+    // Initialize EmailJS with your public key
+    emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+
+    // Prepare email template parameters
+    const templateParams = {
+      name: formData.name || 'Not provided',
+      email: formData.email || 'Not provided',
+      title: formData.service ? `Contact Form - ${formData.service}` : 'Contact Form',
+      company: formData.company || 'Not provided',
+      service: formData.service || 'Not provided',
+      ad_spend: formData.adSpend || 'Not provided',
+      message: formData.message || 'No message provided',
+      time: new Date().toLocaleString(),
+    };
+
+    // Debug: Log what we're sending
+    console.log('Sending email with params:', templateParams);
+
+    try {
+      // Send email using EmailJS
+      await emailjs.send(
+        EMAILJS_CONFIG.SERVICE_ID,
+        EMAILJS_CONFIG.TEMPLATES.CONTACT,
+        templateParams
+      );
+
+      // Success - reset form and show success message
       setFormStatus('sent');
       setFormData({ name: '', email: '', company: '', service: '', adSpend: '', message: '' });
       setFocusedField(null);
+      setErrors({});
 
+      // Reset status after 5 seconds
       setTimeout(() => setFormStatus('idle'), 5000);
-    }, 2000);
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      setFormStatus('error');
+      // Show error message for 5 seconds, then reset
+      setTimeout(() => {
+        setFormStatus('idle');
+      }, 5000);
+    }
   };
 
   const contactMethods = [
@@ -693,6 +729,18 @@ const Contact = () => {
                     transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                   >
                     Message received. We'll respond shortly.
+                  </motion.p>
+                )}
+
+                {/* Error Message */}
+                {formStatus === 'error' && (
+                  <motion.p
+                    className="text-center text-sm font-semibold text-red-300"
+                    initial={{ opacity: 0, y: -6, scale: 0.9 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                  >
+                    Failed to send message. Please try again or contact us directly.
                   </motion.p>
                 )}
               </div>

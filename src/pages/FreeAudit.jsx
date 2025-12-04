@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import emailjs from '@emailjs/browser';
+import { EMAILJS_CONFIG } from '../config/emailjs.config';
 
 const PRIMARY_COLOR = '#E94F37';
 const SECONDARY_COLOR = '#253E5C';
@@ -111,7 +113,7 @@ const FreeAudit = () => {
     );
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (status === 'sending') return;
 
@@ -144,8 +146,33 @@ const FreeAudit = () => {
     setErrors({});
     setStatus('sending');
 
-    // Simulate form submission
-    setTimeout(() => {
+    // Initialize EmailJS with your public key
+    emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+
+    // Prepare email template parameters
+    const templateParams = {
+      name: formData.fullName || 'Not provided',
+      email: formData.email || 'Not provided',
+      phone: formData.phone || 'Not provided',
+      company_name: formData.companyName || 'Not provided',
+      ad_platform: formData.adPlatform || 'Not provided',
+      monthly_ad_spend: formData.monthlyAdSpend || 'Not provided',
+      advertising_goals: formData.advertisingGoals || 'No goals specified',
+      time: new Date().toLocaleString(),
+    };
+
+    // Debug: Log what we're sending
+    console.log('Sending audit email with params:', templateParams);
+
+    try {
+      // Send email using EmailJS
+      await emailjs.send(
+        EMAILJS_CONFIG.SERVICE_ID,
+        EMAILJS_CONFIG.TEMPLATES.AUDIT,
+        templateParams
+      );
+
+      // Success - reset form and show success message
       setStatus('sent');
       setFormData({
         adPlatform: '',
@@ -158,7 +185,14 @@ const FreeAudit = () => {
       });
 
       setTimeout(() => setStatus('idle'), 3000);
-    }, 1500);
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      setStatus('error');
+      // Show error message for 5 seconds, then reset
+      setTimeout(() => {
+        setStatus('idle');
+      }, 5000);
+    }
   };
 
   return (
@@ -543,6 +577,38 @@ const FreeAudit = () => {
                     </h3>
                     <p className="text-sm text-green-700">
                       Thank you! We'll analyze your account and get back to you within 24 hours.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {/* Error Banner */}
+            {status === 'error' && (
+              <motion.div
+                className="mt-6 p-6 rounded-2xl bg-gradient-to-r from-red-50 to-rose-50 border-2 border-red-200 shadow-lg"
+                initial={{ opacity: 0, y: -20, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              >
+                <div className="flex items-center gap-3">
+                  <motion.div
+                    className="flex-shrink-0 w-10 h-10 rounded-full bg-red-500 flex items-center justify-center"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
+                  >
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </motion.div>
+                  <div>
+                    <h3 className="text-lg font-bold text-red-800 mb-1">
+                      Failed to Send Request
+                    </h3>
+                    <p className="text-sm text-red-700">
+                      There was an error sending your request. Please try again or contact us directly.
                     </p>
                   </div>
                 </div>
