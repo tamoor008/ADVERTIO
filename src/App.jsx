@@ -5,6 +5,7 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import PageTransition from './components/layout/PageTransition';
 import WhatsAppButton from './components/ui/WhatsAppButton';
+import BookMeetingButton from './components/ui/BookMeetingButton';
 import './App.css';
 import './styles/tokens.css';
 
@@ -54,6 +55,7 @@ function App() {
         </Suspense>
         <Footer />
         <WhatsAppButton />
+        <BookMeetingButton />
       </div>
     </Router>
   );

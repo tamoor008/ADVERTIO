@@ -128,3 +128,50 @@
     color: #FFFFFF;
   }
 }
+
+/* Calendly Popup Close Button Fix - Global Styles */
+.calendly-overlay .calendly-popup-close {
+  position: absolute !important;
+  top: 20px !important;
+  right: 20px !important;
+  z-index: 999999 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  width: 40px !important;
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  border-radius: 50% !important;
+  transition: background-color 0.2s ease !important;
+}
+
+.calendly-overlay .calendly-popup-close:hover {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.calendly-overlay .calendly-popup-close svg {
+  width: 24px !important;
+  height: 24px !important;
+  pointer-events: none !important;
+}
+
+/* Ensure Calendly popup overlay and content have proper z-index */
+.calendly-overlay {
+  z-index: 999998 !important;
+}
+
+.calendly-popup {
+  z-index: 999999 !important;
+}
+
+.calendly-popup-content {
+  pointer-events: auto !important;
+}
+
+/* Ensure close button is always on top */
+.calendly-popup-close {
+  position: absolute !important;
+  z-index: 1000000 !important;
+}
