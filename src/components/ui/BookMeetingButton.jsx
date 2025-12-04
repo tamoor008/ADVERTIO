@@ -7,7 +7,15 @@ const BookMeetingButton = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      
+      // Check if user is at the bottom (within 100px of the bottom)
+      const isAtBottom = scrollY + windowHeight >= documentHeight - 100;
+      
+      // Show button only if scrolled past 50px AND not at the bottom
+      setIsScrolled(scrollY > 50 && !isAtBottom);
     };
     
     window.addEventListener('scroll', handleScroll);

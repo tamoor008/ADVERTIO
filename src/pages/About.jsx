@@ -405,7 +405,7 @@ const About = () => {
               </h2>
               
               <h3 className="text-xl md:text-2xl font-semibold text-[#253E5C] mb-6">
-                Chief Executive Officer, Salman Rasheed
+                Chief Executive Officer, Talha Azmat
               </h3>
               
               <div className="space-y-6">
