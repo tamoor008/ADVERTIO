@@ -13,47 +13,47 @@ const FAQSection3D = () => {
         'Discovery to launch typically takes 21 days. Week one is immersion and data pulls, week two is concepting and motion prototyping, and week three is production plus ad-platform wiring with daily QA loops.',
       tag: 'Velocity',
       accent: '#E94F37',
-      background: 'linear-gradient(135deg, rgba(233, 79, 55, 0.12), rgba(255, 240, 236, 0.9))',
+      background: '#E94F37',
     },
     {
       question: 'What deliverables are included in the growth retainer?',
       answer:
         'We combine paid media orchestration, CRO audits, WebGL microsite drops, cinematic UGC editing, and real-time dashboards. Each sprint ships a measurable experiment tied to ROAS, LTV, or CPM efficiency.',
       tag: 'Scope',
-      accent: '#6D28D9',
-      background: 'linear-gradient(135deg, rgba(109, 40, 217, 0.12), rgba(240, 235, 255, 0.9))',
+      accent: '#253E5C',
+      background: '#253E5C',
     },
     {
       question: 'Do you integrate with our internal creative or dev team?',
       answer:
         'Absolutely. We work in shared Figma, Notion, and Git repos. Our shaders, particle rigs, and tracking libraries are modular so internal teams can iterate without waiting on us.',
       tag: 'Collaboration',
-      accent: '#16A34A',
-      background: 'linear-gradient(135deg, rgba(22, 163, 74, 0.1), rgba(233, 255, 244, 0.95))',
+      accent: '#E94F37',
+      background: '#E94F37',
     },
     {
       question: 'How do you report results from immersive experiences?',
       answer:
         'We pipe volumetric engagement, scroll-depth, dwell time, and assisted conversions into Looker dashboards. Each FAQ tap, product spin, or AR trigger is evented back to your attribution model.',
       tag: 'Measurement',
-      accent: '#0EA5E9',
-      background: 'linear-gradient(135deg, rgba(14, 165, 233, 0.12), rgba(231, 247, 255, 0.92))',
+      accent: '#253E5C',
+      background: '#253E5C',
     },
     {
       question: 'Can the 3D FAQ component plug into other pages?',
       answer:
         'Yes. It is built with headless props, accepts CMS data, and exposes a variant prop for light or dark backgrounds. Animations rely on Framer Motion so it stays GPU-friendly.',
       tag: 'Flexibility',
-      accent: '#EA580C',
-      background: 'linear-gradient(135deg, rgba(234, 88, 12, 0.12), rgba(255, 243, 232, 0.92))',
+      accent: '#E94F37',
+      background: '#E94F37',
     },
     {
       question: 'What makes the Advertio support model different?',
       answer:
         'You get a dedicated strategist, shader artist, and marketing engineer on one Slack bridge. Stand-ups happen twice a week and war rooms spin up within 15 minutes for launches.',
       tag: 'Support',
-      accent: '#F59E0B',
-      background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(255, 248, 234, 0.92))',
+      accent: '#253E5C',
+      background: '#253E5C',
     },
   ];
 
@@ -117,10 +117,10 @@ const FAQSection3D = () => {
               <motion.div
                 key={faq.question}
                 layout
-                className="relative rounded-[28px] border backdrop-blur-xl overflow-hidden group"
+                className="relative rounded-[28px] border overflow-hidden group"
                 style={{
                   background: faq.background,
-                  borderColor: `${faq.accent}22`,
+                  borderColor: `${faq.accent}40`,
                   boxShadow: isActive
                     ? `0 30px 80px ${faq.accent}33, 0 15px 40px rgba(15,23,42,0.1)`
                     : '0 18px 45px rgba(15,23,42,0.08)',
@@ -131,16 +131,6 @@ const FAQSection3D = () => {
                 }}
                 transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               >
-                <motion.div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background: `linear-gradient(135deg, ${faq.accent}26, transparent)`,
-                  }}
-                  animate={{
-                    opacity: isActive ? 1 : 0.7,
-                  }}
-                />
-
                 <div className="relative p-6 md:p-8">
                   <button
                     type="button"
@@ -149,22 +139,22 @@ const FAQSection3D = () => {
                   >
                     <div className="flex items-start justify-between gap-4">
                       <div>
-                        <p className="text-xs uppercase tracking-[0.4em] text-[#253E5C]/55 mb-2">
+                        <p className="text-xs uppercase tracking-[0.4em] text-white/70 mb-2">
                           {faq.tag}
                         </p>
-                        <h4 className="text-xl md:text-2xl font-black text-[#253E5C]">
+                        <h4 className="text-xl md:text-2xl font-black text-white">
                           {faq.question}
                         </h4>
                       </div>
                       <motion.span
-                        className="flex items-center justify-center w-12 h-12 rounded-2xl border border-[#253E5C]/10 bg-white/80 backdrop-blur-md"
+                        className="flex items-center justify-center w-12 h-12 rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md"
                         animate={{
                           rotate: isActive ? 45 : 0,
-                          background: isActive ? `${faq.accent}1A` : 'rgba(255,255,255,0.8)',
-                          color: isActive ? faq.accent : '#253E5C',
+                          background: isActive ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.1)',
+                          color: '#FFFFFF',
                           boxShadow: isActive
-                            ? `0 0 25px ${faq.accent}66`
-                            : '0 5px 15px rgba(37,62,92,0.1)',
+                            ? `0 0 25px rgba(255,255,255,0.3)`
+                            : '0 5px 15px rgba(0,0,0,0.1)',
                         }}
                         transition={{ duration: 0.3 }}
                       >
@@ -192,7 +182,7 @@ const FAQSection3D = () => {
                   >
                     {isActive && (
                       <>
-                        <p className="text-[#253E5C]/80 text-sm md:text-base leading-relaxed">
+                        <p className="text-white/90 text-sm md:text-base leading-relaxed">
                           {faq.answer}
                         </p>
                         <motion.div
@@ -201,7 +191,7 @@ const FAQSection3D = () => {
                           animate={{ scaleX: 1, opacity: 1 }}
                           transition={{ duration: 0.5, delay: 0.1 }}
                           style={{
-                            background: `linear-gradient(90deg, transparent, ${faq.accent}, transparent)`,
+                            background: `linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent)`,
                             transformOrigin: 'left',
                           }}
                         />

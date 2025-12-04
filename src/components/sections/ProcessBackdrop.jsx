@@ -25,15 +25,15 @@ const processIcons = [
 const ProcessBackdrop = () => {
   const [expandedCardIndex, setExpandedCardIndex] = useState(null);
 
-  // Solid colors for each card based on brand color scheme
+  // Solid colors for each card based on brand color scheme - using only primary colors
   const cardColors = [
     { bg: '#253E5C', text: '#FFFFFF' },      // Store Analysis - Dark blue
-    { bg: '#16A34A', text: '#FFFFFF' },      // Growth Strategy - Green
-    { bg: '#6D28D9', text: '#FFFFFF' },      // Multi-Channel Ads - Purple
-    { bg: '#EA580C', text: '#FFFFFF' },      // Content Creation - Orange
-    { bg: '#DC2626', text: '#FFFFFF' },      // Campaign Launch - Red
-    { bg: '#0F766E', text: '#FFFFFF' },      // Performance Tracking - Teal
-    { bg: '#059669', text: '#FFFFFF' },      // ROI Reports - Green
+    { bg: '#E94F37', text: '#FFFFFF' },      // Growth Strategy - Primary red/orange
+    { bg: '#253E5C', text: '#FFFFFF' },      // Multi-Channel Ads - Dark blue
+    { bg: '#E94F37', text: '#FFFFFF' },      // Content Creation - Primary red/orange
+    { bg: '#253E5C', text: '#FFFFFF' },      // Campaign Launch - Dark blue
+    { bg: '#E94F37', text: '#FFFFFF' },      // Performance Tracking - Primary red/orange
+    { bg: '#253E5C', text: '#FFFFFF' },      // ROI Reports - Dark blue
   ];
 
   // CARD POSITIONING STYLES

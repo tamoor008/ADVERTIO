@@ -3,6 +3,7 @@ import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import talhaImage from '../assets/talha.jpg';
+import { servicesList } from '../components/sections/constants';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,6 +23,8 @@ const About = () => {
     name: '',
     email: '',
     company: '',
+    service: '',
+    adSpend: '',
     message: '',
   });
   const [formStatus, setFormStatus] = useState('idle');
@@ -106,7 +109,7 @@ const About = () => {
 
     setTimeout(() => {
       setFormStatus('sent');
-      setFormData({ name: '', email: '', company: '', message: '' });
+      setFormData({ name: '', email: '', company: '', service: '', adSpend: '', message: '' });
 
       setTimeout(() => setFormStatus('idle'), 3000);
     }, 1500);
@@ -1012,7 +1015,94 @@ const About = () => {
                   animate={contactInView ? { opacity: 1, y: 0, rotateX: 0 } : { opacity: 0, y: 30, rotateX: -10 }}
                   transition={{ 
                     duration: 0.6, 
+                    delay: 0.55,
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
+                  whileHover={{ scale: 1.01, translateZ: 10 }}
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  <motion.label 
+                    className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70 block"
+                  >
+                    Service
+                  </motion.label>
+                  <select
+                    name="service"
+                    value={formData.service}
+                    onChange={handleFormChange}
+                    required
+                    className="w-full px-5 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 focus:bg-white/15 transition-all appearance-none cursor-pointer"
+                    style={{ 
+                      transformStyle: 'preserve-3d',
+                      backgroundImage: formData.service 
+                        ? 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'12\' viewBox=\'0 0 12 12\'%3E%3Cpath fill=\'%23253E5C\' d=\'M6 9L1 4h10z\'/%3E%3C/svg%3E")'
+                        : 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'12\' viewBox=\'0 0 12 12\'%3E%3Cpath fill=\'%23ffffff\' d=\'M6 9L1 4h10z\'/%3E%3C/svg%3E")',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition: 'right 1rem center',
+                      paddingRight: '2.5rem',
+                    }}
+                    onFocus={(e) => {
+                      e.target.style.scale = '1.02';
+                      e.target.style.borderColor = 'rgba(233, 79, 55, 0.6)';
+                      e.target.style.boxShadow = '0 0 20px rgba(233, 79, 55, 0.3)';
+                    }}
+                    onBlur={(e) => {
+                      e.target.style.scale = '1';
+                      e.target.style.borderColor = '';
+                      e.target.style.boxShadow = '';
+                    }}
+                  >
+                    <option value="" className="bg-[#253E5C] text-white">Select a service</option>
+                    {servicesList.map((service) => (
+                      <option key={service.id} value={service.title} className="bg-[#253E5C] text-white">
+                        {service.title}
+                      </option>
+                    ))}
+                  </select>
+                </motion.div>
+
+                <motion.div
+                  className="space-y-2"
+                  initial={{ opacity: 0, y: 30, rotateX: -10 }}
+                  animate={contactInView ? { opacity: 1, y: 0, rotateX: 0 } : { opacity: 0, y: 30, rotateX: -10 }}
+                  transition={{ 
+                    duration: 0.6, 
                     delay: 0.65,
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
+                  whileHover={{ scale: 1.01, translateZ: 10 }}
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  <motion.label 
+                    className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70 block"
+                  >
+                    Monthly Ad spend
+                  </motion.label>
+                  <motion.input
+                    type="text"
+                    name="adSpend"
+                    placeholder="e.g., $5,000 - $10,000"
+                    value={formData.adSpend}
+                    onChange={handleFormChange}
+                    required
+                    className="w-full px-5 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 focus:bg-white/15 transition-all"
+                    whileFocus={{ 
+                      scale: 1.02, 
+                      borderColor: 'rgba(233, 79, 55, 0.6)',
+                      boxShadow: '0 0 20px rgba(233, 79, 55, 0.3)',
+                      translateZ: 15
+                    }}
+                    style={{ transformStyle: 'preserve-3d' }}
+                  />
+                </motion.div>
+
+                <motion.div
+                  className="space-y-2"
+                  initial={{ opacity: 0, y: 30, rotateX: -10 }}
+                  animate={contactInView ? { opacity: 1, y: 0, rotateX: 0 } : { opacity: 0, y: 30, rotateX: -10 }}
+                  transition={{ 
+                    duration: 0.6, 
+                    delay: 0.75,
                     ease: [0.22, 1, 0.36, 1]
                   }}
                   whileHover={{ scale: 1.01, translateZ: 10 }}
@@ -1029,7 +1119,6 @@ const About = () => {
                     placeholder="Share context, goals, or launch date..."
                     value={formData.message}
                     onChange={handleFormChange}
-                    required
                     className="w-full px-5 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 focus:bg-white/15 transition-all resize-none"
                     whileFocus={{ 
                       scale: 1.01, 
@@ -1111,7 +1200,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'Working with Advertio has been a game-changer. Their immersive landing pages and conversion optimization increased our conversion rate by 8.2%. Highly recommend their services!',
       highlight: '8.2% Conversion Rate',
-      color: '#6D28D9',
+      color: '#253E5C',
     },
     {
       id: 3,
@@ -1122,7 +1211,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'The team at Advertio understands e-commerce like no other. Their social storytelling campaigns and influencer partnerships drove 2.4M impressions. Exceptional results!',
       highlight: '2.4M Impressions',
-      color: '#16A34A',
+      color: '#E94F37',
     },
     {
       id: 4,
@@ -1133,7 +1222,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'Advertio\'s product reveal films and AR kits created an unforgettable launch experience. Our engagement rate increased by 45% year over year. Outstanding creative work!',
       highlight: '+45% Engagement',
-      color: '#EA580C',
+      color: '#253E5C',
     },
     {
       id: 5,
@@ -1144,7 +1233,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'Their MarTech automation and personalized journeys reduced our CAC by 24%. The team is professional, creative, and always delivers on time. Best marketing partner we\'ve worked with!',
       highlight: '-24% CAC Reduction',
-      color: '#0F766E',
+      color: '#E94F37',
     },
     {
       id: 6,
@@ -1155,7 +1244,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'Advertio\'s brand positioning and thought leadership content elevated our executive voices. Brand lift increased by 18% and customer LTV by 52%. Phenomenal results!',
       highlight: '+52% LTV Increase',
-      color: '#DC2626',
+      color: '#253E5C',
     },
     {
       id: 7,
@@ -1166,7 +1255,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'The conversion-focused optimization and UX audits transformed our customer journey. Our conversion rate improved dramatically, and the team provided actionable insights throughout.',
       highlight: '+67% Conversions',
-      color: '#8B5CF6',
+      color: '#E94F37',
     },
     {
       id: 8,
@@ -1177,7 +1266,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'Advertio\'s performance media and cross-channel campaigns delivered exceptional ROAS. Their real-time optimization and intelligence helped us scale profitably. Highly recommended!',
       highlight: '5.4x Average ROAS',
-      color: '#F59E0B',
+      color: '#253E5C',
     },
     {
       id: 9,
@@ -1188,7 +1277,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'Their immersive landing pages and WebGL-powered microsites created an unforgettable brand experience. Engagement rates soared, and our brand awareness increased significantly.',
       highlight: '+38% Brand Awareness',
-      color: '#EC4899',
+      color: '#E94F37',
     },
     {
       id: 10,
@@ -1199,7 +1288,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'Advertio\'s crisis narrative control and rapid-response playbooks protected our brand during challenging times. Their strategic approach and execution were flawless.',
       highlight: '100% Brand Protection',
-      color: '#10B981',
+      color: '#253E5C',
     },
     {
       id: 11,
@@ -1210,7 +1299,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'The experiential AR kits and mixed reality campaigns extended our reach into new dimensions. Their innovative approach and creative execution exceeded all expectations.',
       highlight: '+89% Reach Increase',
-      color: '#3B82F6',
+      color: '#E94F37',
     },
     {
       id: 12,
@@ -1221,7 +1310,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'Working with Advertio transformed our marketing operations. Their integrated solutions and data-driven approach delivered measurable results that exceeded our goals.',
       highlight: '+156% ROI',
-      color: '#EF4444',
+      color: '#253E5C',
     },
   ];
 

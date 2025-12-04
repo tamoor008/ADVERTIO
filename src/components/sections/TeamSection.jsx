@@ -74,18 +74,18 @@ const TeamSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 lg:gap-6 w-full">
           {teamMembers.map((member, index) => {
             const cardHeights = [
-              'h-[440px] md:h-[540px] lg:h-[580px]',
-              'h-[490px] md:h-[640px] lg:h-[680px]',
-              'h-[470px] md:h-[570px] lg:h-[600px]',
-              'h-[510px] md:h-[610px] lg:h-[660px]',
+              'h-[520px] md:h-[650px] lg:h-[700px]', // First card - larger
+              'h-[420px] md:h-[520px] lg:h-[560px]', // Second card - smaller
+              'h-[520px] md:h-[650px] lg:h-[700px]', // Third card - larger
+              'h-[420px] md:h-[520px] lg:h-[560px]', // Fourth card - smaller
             ];
             
             return (
               <motion.div
                 key={member.id}
                 className={`relative group ${
-                  index === 0 ? 'mt-8 md:mt-12 lg:mt-16' : 
-                  index === 2 ? 'mt-4 md:mt-6 lg:mt-8' : ''
+                  index === 1 ? 'mt-8 md:mt-12 lg:mt-16' : 
+                  index === 3 ? 'mt-8 md:mt-12 lg:mt-16' : ''
                 }`}
                 initial={{ opacity: 0, scale: 1 }}
                 animate={

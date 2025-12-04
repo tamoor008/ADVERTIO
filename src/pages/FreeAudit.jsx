@@ -66,6 +66,27 @@ const FreeAudit = () => {
     } else if (name === 'fullName') {
       setErrors((prev) => ({ ...prev, fullName: '' }));
     }
+    
+    // Validate phone in real-time
+    if (name === 'phone' && value.trim() === '') {
+      setErrors((prev) => ({ ...prev, phone: 'Please enter your phone number' }));
+    } else if (name === 'phone') {
+      setErrors((prev) => ({ ...prev, phone: '' }));
+    }
+    
+    // Validate companyName in real-time
+    if (name === 'companyName' && value.trim() === '') {
+      setErrors((prev) => ({ ...prev, companyName: 'Please enter your company name' }));
+    } else if (name === 'companyName') {
+      setErrors((prev) => ({ ...prev, companyName: '' }));
+    }
+    
+    // Validate monthlyAdSpend in real-time
+    if (name === 'monthlyAdSpend' && value.trim() === '') {
+      setErrors((prev) => ({ ...prev, monthlyAdSpend: 'Please enter your monthly ad spend' }));
+    } else if (name === 'monthlyAdSpend') {
+      setErrors((prev) => ({ ...prev, monthlyAdSpend: '' }));
+    }
   };
 
   const handleSelectPlatform = (platform) => {
@@ -83,7 +104,10 @@ const FreeAudit = () => {
       formData.adPlatform.trim() !== '' &&
       formData.fullName.trim() !== '' &&
       formData.email.trim() !== '' &&
-      validateEmail(formData.email)
+      validateEmail(formData.email) &&
+      formData.phone.trim() !== '' &&
+      formData.companyName.trim() !== '' &&
+      formData.monthlyAdSpend.trim() !== ''
     );
   };
 
@@ -100,6 +124,15 @@ const FreeAudit = () => {
     }
     if (!formData.email || !validateEmail(formData.email)) {
       setErrors((prev) => ({ ...prev, email: 'Please enter a valid email address' }));
+    }
+    if (!formData.phone.trim()) {
+      setErrors((prev) => ({ ...prev, phone: 'Please enter your phone number' }));
+    }
+    if (!formData.companyName.trim()) {
+      setErrors((prev) => ({ ...prev, companyName: 'Please enter your company name' }));
+    }
+    if (!formData.monthlyAdSpend.trim()) {
+      setErrors((prev) => ({ ...prev, monthlyAdSpend: 'Please enter your monthly ad spend' }));
     }
 
     // Don't submit if form is invalid
@@ -370,6 +403,8 @@ const FreeAudit = () => {
               onChange={handleChange}
               formInView={formInView}
               delay={0.5}
+              required={true}
+              error={errors.phone}
             />
 
             {/* Company Name */}
@@ -382,6 +417,8 @@ const FreeAudit = () => {
               onChange={handleChange}
               formInView={formInView}
               delay={0.6}
+              required={true}
+              error={errors.companyName}
             />
 
             {/* Monthly Ad Spend */}
@@ -394,6 +431,8 @@ const FreeAudit = () => {
               onChange={handleChange}
               formInView={formInView}
               delay={0.7}
+              required={true}
+              error={errors.monthlyAdSpend}
             />
 
             {/* Advertising Goals */}

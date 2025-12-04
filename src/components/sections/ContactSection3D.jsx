@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { servicesList } from './constants';
 
 const ContactSection3D = () => {
   const sectionRef = useRef(null);
@@ -8,6 +9,8 @@ const ContactSection3D = () => {
     name: '',
     email: '',
     company: '',
+    service: '',
+    adSpend: '',
     message: '',
   });
   const [status, setStatus] = useState('idle');
@@ -24,7 +27,7 @@ const ContactSection3D = () => {
 
     setTimeout(() => {
       setStatus('sent');
-      setFormData({ name: '', email: '', company: '', message: '' });
+      setFormData({ name: '', email: '', company: '', service: '', adSpend: '', message: '' });
 
       setTimeout(() => setStatus('idle'), 3000);
     }, 1500);
@@ -189,7 +192,70 @@ const ContactSection3D = () => {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ 
                 duration: 0.5, 
+                delay: 0.5,
+              }}
+            >
+              <label className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70 block">
+                Service
+              </label>
+              <select
+                name="service"
+                value={formData.service}
+                onChange={handleChange}
+                required
+                className={`w-full px-5 py-4 rounded-2xl border border-white/20 placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 transition-all appearance-none cursor-pointer ${
+                  formData.service ? 'bg-white text-[#253E5C]' : 'bg-white/10 text-white'
+                }`}
+                style={{
+                  backgroundImage: formData.service 
+                    ? 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'12\' viewBox=\'0 0 12 12\'%3E%3Cpath fill=\'%23253E5C\' d=\'M6 9L1 4h10z\'/%3E%3C/svg%3E")'
+                    : 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'12\' viewBox=\'0 0 12 12\'%3E%3Cpath fill=\'%23ffffff\' d=\'M6 9L1 4h10z\'/%3E%3C/svg%3E")',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'right 1rem center',
+                  paddingRight: '2.5rem',
+                }}
+              >
+                <option value="" className="bg-[#253E5C] text-white">Select a service</option>
+                {servicesList.map((service) => (
+                  <option key={service.id} value={service.title} className="bg-[#253E5C] text-white">
+                    {service.title}
+                  </option>
+                ))}
+              </select>
+            </motion.div>
+
+            <motion.div
+              className="space-y-2"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ 
+                duration: 0.5, 
                 delay: 0.6,
+              }}
+            >
+              <label className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70 block">
+                Monthly Ad spend
+              </label>
+              <input
+                type="text"
+                name="adSpend"
+                placeholder="e.g., $5,000 - $10,000"
+                value={formData.adSpend}
+                onChange={handleChange}
+                required
+                className={`w-full px-5 py-4 rounded-2xl border border-white/20 placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 transition-all ${
+                  formData.adSpend ? 'bg-white text-[#253E5C]' : 'bg-white/10 text-white'
+                }`}
+              />
+            </motion.div>
+
+            <motion.div
+              className="space-y-2"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ 
+                duration: 0.5, 
+                delay: 0.7,
               }}
             >
               <label className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70 block">
@@ -201,7 +267,6 @@ const ContactSection3D = () => {
                 placeholder="Share context, goals, or launch date..."
                 value={formData.message}
                 onChange={handleChange}
-                required
                 className={`w-full px-5 py-4 rounded-2xl border border-white/20 placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 transition-all resize-none ${
                   formData.message ? 'bg-white text-[#253E5C]' : 'bg-white/10 text-white'
                 }`}

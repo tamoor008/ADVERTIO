@@ -28,7 +28,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'Working with Advertio has been a game-changer. Their immersive landing pages and conversion optimization increased our conversion rate by 8.2%. Highly recommend their services!',
       highlight: '8.2% Conversion Rate',
-      color: '#6D28D9',
+      color: '#253E5C',
     },
     {
       id: 3,
@@ -39,7 +39,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'The team at Advertio understands e-commerce like no other. Their social storytelling campaigns and influencer partnerships drove 2.4M impressions. Exceptional results!',
       highlight: '2.4M Impressions',
-      color: '#16A34A',
+      color: '#E94F37',
     },
     {
       id: 4,
@@ -50,7 +50,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'Advertio\'s product reveal films and AR kits created an unforgettable launch experience. Our engagement rate increased by 45% year over year. Outstanding creative work!',
       highlight: '+45% Engagement',
-      color: '#EA580C',
+      color: '#253E5C',
     },
     {
       id: 5,
@@ -61,7 +61,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'Their MarTech automation and personalized journeys reduced our CAC by 24%. The team is professional, creative, and always delivers on time. Best marketing partner we\'ve worked with!',
       highlight: '-24% CAC Reduction',
-      color: '#0F766E',
+      color: '#E94F37',
     },
     {
       id: 6,
@@ -72,7 +72,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'Advertio\'s brand positioning and thought leadership content elevated our executive voices. Brand lift increased by 18% and customer LTV by 52%. Phenomenal results!',
       highlight: '+52% LTV Increase',
-      color: '#DC2626',
+      color: '#253E5C',
     },
     {
       id: 7,
@@ -83,7 +83,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'The conversion-focused optimization and UX audits transformed our customer journey. Our conversion rate improved dramatically, and the team provided actionable insights throughout.',
       highlight: '+67% Conversions',
-      color: '#8B5CF6',
+      color: '#E94F37',
     },
     {
       id: 8,
@@ -94,7 +94,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'Advertio\'s performance media and cross-channel campaigns delivered exceptional ROAS. Their real-time optimization and intelligence helped us scale profitably. Highly recommended!',
       highlight: '5.4x Average ROAS',
-      color: '#F59E0B',
+      color: '#253E5C',
     },
     {
       id: 9,
@@ -105,7 +105,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'Their immersive landing pages and WebGL-powered microsites created an unforgettable brand experience. Engagement rates soared, and our brand awareness increased significantly.',
       highlight: '+38% Brand Awareness',
-      color: '#EC4899',
+      color: '#E94F37',
     },
     {
       id: 10,
@@ -116,7 +116,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'Advertio\'s crisis narrative control and rapid-response playbooks protected our brand during challenging times. Their strategic approach and execution were flawless.',
       highlight: '100% Brand Protection',
-      color: '#10B981',
+      color: '#253E5C',
     },
     {
       id: 11,
@@ -127,7 +127,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'The experiential AR kits and mixed reality campaigns extended our reach into new dimensions. Their innovative approach and creative execution exceeded all expectations.',
       highlight: '+89% Reach Increase',
-      color: '#3B82F6',
+      color: '#E94F37',
     },
     {
       id: 12,
@@ -138,7 +138,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'Working with Advertio transformed our marketing operations. Their integrated solutions and data-driven approach delivered measurable results that exceeded our goals.',
       highlight: '+156% ROI',
-      color: '#EF4444',
+      color: '#253E5C',
     },
   ];
 

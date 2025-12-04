@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { servicesList } from '../components/sections/constants';
 
 const Contact = () => {
   const heroRef = useRef(null);
@@ -13,6 +14,8 @@ const Contact = () => {
     phone: '',
     company: '',
     subject: '',
+    service: '',
+    adSpend: '',
     message: '',
   });
   
@@ -72,10 +75,11 @@ const Contact = () => {
     if (!formData.subject.trim()) {
       newErrors.subject = 'Subject is required';
     }
-    if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
-    } else if (formData.message.trim().length < 10) {
-      newErrors.message = 'Message must be at least 10 characters';
+    if (!formData.service.trim()) {
+      newErrors.service = 'Service is required';
+    }
+    if (!formData.adSpend.trim()) {
+      newErrors.adSpend = 'Monthly Ad spend is required';
     }
 
     setErrors(newErrors);
@@ -488,7 +492,71 @@ const Contact = () => {
                   </motion.div>
                 ))}
 
-                {/* Message Textarea */}
+                {/* Service Dropdown */}
+                <motion.div
+                  className="space-y-2"
+                  initial={{ opacity: 0, y: 30, rotateX: -10 }}
+                  animate={formInView ? { opacity: 1, y: 0, rotateX: 0 } : { opacity: 0, y: 30, rotateX: -10 }}
+                  transition={{ 
+                    duration: 0.6, 
+                    delay: 0.65,
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
+                  whileHover={{ scale: 1.01, translateZ: 10 }}
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  <motion.label 
+                    className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70 block flex items-center gap-2"
+                    animate={{
+                      color: focusedField === 'service' ? '#FFFFFF' : 'rgba(255, 255, 255, 0.7)',
+                    }}
+                  >
+                    <span>🎯</span>
+                    Service
+                    <span className="text-primary">*</span>
+                  </motion.label>
+                  <select
+                    name="service"
+                    value={formData.service}
+                    onChange={handleFormChange}
+                    onFocus={() => setFocusedField('service')}
+                    onBlur={() => setFocusedField(null)}
+                    required
+                    className={`w-full px-5 py-4 rounded-2xl border border-white/20 placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 transition-all appearance-none cursor-pointer ${
+                      formData.service ? 'bg-white text-[#253E5C]' : 'bg-white/10 text-white'
+                    }`}
+                    style={{ 
+                      transformStyle: 'preserve-3d',
+                      backgroundImage: formData.service 
+                        ? 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'12\' viewBox=\'0 0 12 12\'%3E%3Cpath fill=\'%23253E5C\' d=\'M6 9L1 4h10z\'/%3E%3C/svg%3E")'
+                        : 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'12\' viewBox=\'0 0 12 12\'%3E%3Cpath fill=\'%23ffffff\' d=\'M6 9L1 4h10z\'/%3E%3C/svg%3E")',
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition: 'right 1rem center',
+                      paddingRight: '2.5rem',
+                    }}
+                  >
+                    <option value="" className="bg-[#253E5C] text-white">Select a service</option>
+                    {servicesList.map((service) => (
+                      <option key={service.id} value={service.title} className="bg-[#253E5C] text-white">
+                        {service.title}
+                      </option>
+                    ))}
+                  </select>
+                  <AnimatePresence>
+                    {errors.service && (
+                      <motion.p
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        className="text-sm text-red-300 font-medium"
+                      >
+                        {errors.service}
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+
+                {/* Monthly Ad spend */}
                 <motion.div
                   className="space-y-2"
                   initial={{ opacity: 0, y: 30, rotateX: -10 }}
@@ -504,12 +572,62 @@ const Contact = () => {
                   <motion.label 
                     className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70 block flex items-center gap-2"
                     animate={{
+                      color: focusedField === 'adSpend' ? '#FFFFFF' : 'rgba(255, 255, 255, 0.7)',
+                    }}
+                  >
+                    <span>💰</span>
+                    Monthly Ad spend
+                    <span className="text-primary">*</span>
+                  </motion.label>
+                  <motion.input
+                    type="text"
+                    name="adSpend"
+                    placeholder="e.g., $5,000 - $10,000"
+                    value={formData.adSpend}
+                    onChange={handleFormChange}
+                    onFocus={() => setFocusedField('adSpend')}
+                    onBlur={() => setFocusedField(null)}
+                    required
+                    className={`w-full px-5 py-4 rounded-2xl border border-white/20 placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 transition-all ${
+                      formData.adSpend ? 'bg-white text-[#253E5C]' : 'bg-white/10 text-white'
+                    }`}
+                    style={{ transformStyle: 'preserve-3d' }}
+                  />
+                  <AnimatePresence>
+                    {errors.adSpend && (
+                      <motion.p
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        className="text-sm text-red-300 font-medium"
+                      >
+                        {errors.adSpend}
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+
+                {/* Message Textarea */}
+                <motion.div
+                  className="space-y-2"
+                  initial={{ opacity: 0, y: 30, rotateX: -10 }}
+                  animate={formInView ? { opacity: 1, y: 0, rotateX: 0 } : { opacity: 0, y: 30, rotateX: -10 }}
+                  transition={{ 
+                    duration: 0.6, 
+                    delay: 0.85,
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
+                  whileHover={{ scale: 1.01, translateZ: 10 }}
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  <motion.label 
+                    className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70 block flex items-center gap-2"
+                    animate={{
                       color: focusedField === 'message' ? '#FFFFFF' : 'rgba(255, 255, 255, 0.7)',
                     }}
                   >
                     <span>💬</span>
                     Your Message
-                    <span className="text-primary">*</span>
                   </motion.label>
                   <motion.textarea
                     name="message"
@@ -519,7 +637,6 @@ const Contact = () => {
                     onChange={handleFormChange}
                     onFocus={() => setFocusedField('message')}
                     onBlur={() => setFocusedField(null)}
-                    required
                     className={`w-full px-5 py-4 rounded-2xl border border-white/20 placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 transition-all resize-none ${
                       formData.message ? 'bg-white text-[#253E5C]' : 'bg-white/10 text-white'
                     }`}

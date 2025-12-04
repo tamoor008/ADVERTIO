@@ -3,6 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import favicon from '../assets/favicon.JPG';
+import { servicesList } from '../components/sections/constants';
 
 // Consistent color scheme for all services - Darker and more robust
 const PRIMARY_COLOR = '#C7361F';
@@ -274,25 +275,56 @@ const ServiceDetail = () => {
   const processRef = useRef(null);
   const reviewsRef = useRef(null);
   const contactFormRef = useRef(null);
-  const [isMobile, setIsMobile] = useState(false);
   
-  // Detect mobile on mount and resize
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+  // Check screen size synchronously on initial render - ensure it runs immediately
+  const getInitialScreenSize = () => {
+    if (typeof window === 'undefined') return { isMobile: true, isSmallScreen: true }; // Default to showing on SSR
+    const width = window.innerWidth;
+    return {
+      isMobile: width < 768,
+      isSmallScreen: width < 1024
     };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+  };
+  
+  const [isMobile, setIsMobile] = useState(() => getInitialScreenSize().isMobile);
+  const [isSmallScreen, setIsSmallScreen] = useState(() => getInitialScreenSize().isSmallScreen);
+  
+  // Detect mobile and small screens on mount and resize - ensure immediate detection
+  useEffect(() => {
+    const checkScreenSize = () => {
+      const width = window.innerWidth;
+      const mobile = width < 768;
+      const small = width < 1024;
+      setIsMobile(mobile);
+      setIsSmallScreen(small);
+    };
+    
+    // Check immediately on mount
+    checkScreenSize();
+    
+    // Also listen for resize
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
   
-  // Use lower threshold on mobile for better detection, or always true on mobile
-  const isInView = useInView(sectionRef, { once: true, amount: isMobile ? 0.05 : 0.2 });
-  const mainContentInView = useInView(mainContentRef, { once: true, amount: isMobile ? 0.05 : 0.2 });
-  const whyChooseInView = useInView(whyChooseRef, { once: true, amount: isMobile ? 0.05 : 0.2 });
-  const processInView = useInView(processRef, { once: true, amount: isMobile ? 0.05 : 0.2 });
-  const reviewsInView = useInView(reviewsRef, { once: true, amount: isMobile ? 0.05 : 0.2 });
-  const contactFormInView = useInView(contactFormRef, { once: true, amount: isMobile ? 0.05 : 0.2 });
+  // Helper: use immediate visibility on mobile and small screens
+  const shouldShowImmediately = isMobile || isSmallScreen;
+  
+  // Always call hooks (React rules), but override values on small screens
+  const _isInView = useInView(sectionRef, { once: true, amount: shouldShowImmediately ? 1 : 0.2 });
+  const _mainContentInView = useInView(mainContentRef, { once: true, amount: shouldShowImmediately ? 1 : 0.2 });
+  const _whyChooseInView = useInView(whyChooseRef, { once: true, amount: shouldShowImmediately ? 1 : 0.2 });
+  const _processInView = useInView(processRef, { once: true, amount: shouldShowImmediately ? 1 : 0.2 });
+  const _reviewsInView = useInView(reviewsRef, { once: true, amount: shouldShowImmediately ? 1 : 0.2 });
+  const _contactFormInView = useInView(contactFormRef, { once: true, amount: shouldShowImmediately ? 1 : 0.2 });
+  
+  // Override to always show on small screens
+  const isInView = shouldShowImmediately ? true : _isInView;
+  const mainContentInView = shouldShowImmediately ? true : _mainContentInView;
+  const whyChooseInView = shouldShowImmediately ? true : _whyChooseInView;
+  const processInView = shouldShowImmediately ? true : _processInView;
+  const reviewsInView = shouldShowImmediately ? true : _reviewsInView;
+  const contactFormInView = shouldShowImmediately ? true : _contactFormInView;
 
   // Find the service by ID
   const service = servicesData.find(s => s.id === serviceId);
@@ -314,25 +346,24 @@ const ServiceDetail = () => {
   }
 
   return (
-    <motion.div
+    <div
       ref={sectionRef}
-      className="relative min-h-screen pt-24 pb-20 bg-white md:overflow-visible overflow-hidden"
+      className="relative min-h-screen pt-24 pb-20 bg-white md:overflow-visible overflow-visible"
       style={{ 
         backgroundColor: '#FFFFFF', 
         background: '#FFFFFF',
-        perspective: isMobile ? 'none' : '1200px'
+        opacity: 1,
+        visibility: 'visible',
+        display: 'block'
       }}
-      initial={{ opacity: isMobile ? 1 : 0 }}
-      animate={isMobile ? { opacity: 1 } : (isInView ? { opacity: 1 } : { opacity: 0 })}
-      transition={{ duration: isMobile ? 0 : 0.6 }}
     >
       <div className="relative max-w-[1500px] mx-auto px-6 md:px-8 lg:px-12">
         {/* Back Button */}
         <motion.div
           className="mb-8"
-          initial={{ opacity: isMobile ? 1 : 0, x: isMobile ? 0 : -20 }}
-          animate={isMobile ? { opacity: 1, x: 0 } : (isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 })}
-          transition={{ duration: isMobile ? 0 : 0.6, delay: isMobile ? 0 : 0.2 }}
+          initial={{ opacity: shouldShowImmediately ? 1 : 0, x: shouldShowImmediately ? 0 : -20 }}
+          animate={shouldShowImmediately ? { opacity: 1, x: 0 } : (isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 })}
+          transition={{ duration: shouldShowImmediately ? 0 : 0.6, delay: shouldShowImmediately ? 0 : 0.2 }}
         >
           <Link
             to="/"
@@ -346,37 +377,44 @@ const ServiceDetail = () => {
         </motion.div>
 
         {/* Service Header */}
-        <motion.div
-          className="text-center mb-16 px-4"
-          initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 40 }}
-          animate={isMobile ? { opacity: 1, y: 0 } : (isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 })}
-          transition={{ duration: isMobile ? 0 : 0.8, delay: isMobile ? 0 : 0.3 }}
-        >
-          <motion.h1
+        <div className="text-center mb-16 px-4" style={{ opacity: 1, visibility: 'visible', display: 'block' }}>
+          <h1
             className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 relative z-10 leading-tight overflow-visible"
-            style={{
+            style={isMobile || isSmallScreen ? {
+              // Simple solid color on small screens for better compatibility
+              color: PRIMARY_COLOR,
+              padding: '0.45rem 0',
+              wordBreak: 'break-word',
+              opacity: 1,
+              visibility: 'visible',
+              display: 'block',
+            } : {
+              // Gradient effect on larger screens
               background: `linear-gradient(135deg, ${PRIMARY_COLOR}, ${SECONDARY_COLOR})`,
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
               padding: '0.45rem 0',
               wordBreak: 'break-word',
+              opacity: 1,
+              visibility: 'visible',
+              display: 'block',
+              color: PRIMARY_COLOR, // Fallback color
             }}
-            initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: isMobile ? 0 : 0.8, delay: isMobile ? 0 : 0.5 }}
           >
             {service.title}
-          </motion.h1>
-          <motion.p
+          </h1>
+          <p
             className="text-xl md:text-2xl text-[#253E5C]/70 max-w-3xl mx-auto leading-tight md:leading-relaxed"
-            initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 20 }}
-            animate={isMobile ? { opacity: 1, y: 0 } : (isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
-            transition={{ duration: isMobile ? 0 : 0.8, delay: isMobile ? 0 : 0.5 }}
+            style={{
+              opacity: 1,
+              visibility: 'visible',
+              display: 'block',
+            }}
           >
             {service.desc}
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
 
         {/* Main Content Card */}
         <motion.div
@@ -385,16 +423,16 @@ const ServiceDetail = () => {
           style={{
             background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9))',
             backdropFilter: 'blur(20px)',
-            transformStyle: isMobile ? 'flat' : 'preserve-3d',
+            transformStyle: shouldShowImmediately ? 'flat' : 'preserve-3d',
             boxShadow: `0 25px 50px ${SECONDARY_COLOR}30, 0 0 40px ${DEEP_BLUE}20, 0 10px 30px ${SECONDARY_COLOR}25`,
           }}
           initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 60, rotateX: -10, z: -100 }}
-          animate={isMobile ? { opacity: 1, y: 0 } : (mainContentInView ? { opacity: 1, y: 0, rotateX: 0, z: 0 } : { opacity: 0, y: 60, rotateX: -10, z: -100 })}
+          animate={shouldShowImmediately ? { opacity: 1, y: 0 } : (mainContentInView ? { opacity: 1, y: 0, rotateX: 0, z: 0 } : { opacity: 0, y: 60, rotateX: -10, z: -100 })}
           transition={isMobile ? { duration: 0 } : { 
             default: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
             hover: { duration: 0, ease: 'linear' }
           }}
-          whileHover={isMobile ? {} : { 
+          whileHover={shouldShowImmediately ? {} : { 
             y: -4,
             rotateX: 2,
             z: 10,
@@ -403,9 +441,9 @@ const ServiceDetail = () => {
           {/* Full Description */}
           <motion.div
             className="mb-12"
-            initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 30 }}
-            animate={isMobile ? { opacity: 1, y: 0 } : (mainContentInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 })}
-            transition={{ duration: isMobile ? 0 : 0.8, delay: isMobile ? 0 : 0.2 }}
+            initial={{ opacity: shouldShowImmediately ? 1 : 0, y: shouldShowImmediately ? 0 : 30 }}
+            animate={shouldShowImmediately ? { opacity: 1, y: 0 } : (mainContentInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 })}
+            transition={{ duration: shouldShowImmediately ? 0 : 0.8, delay: shouldShowImmediately ? 0 : 0.2 }}
           >
             <h2 className="text-3xl md:text-4xl font-black text-[#253E5C] mb-6">Overview</h2>
             <p className="text-lg md:text-xl text-[#253E5C]/80 leading-tight md:leading-relaxed">
@@ -415,9 +453,9 @@ const ServiceDetail = () => {
 
           {/* Benefits Section */}
           <motion.div
-            initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 30 }}
-            animate={isMobile ? { opacity: 1, y: 0 } : (mainContentInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 })}
-            transition={{ duration: isMobile ? 0 : 0.8, delay: isMobile ? 0 : 0.4 }}
+            initial={{ opacity: shouldShowImmediately ? 1 : 0, y: shouldShowImmediately ? 0 : 30 }}
+            animate={shouldShowImmediately ? { opacity: 1, y: 0 } : (mainContentInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 })}
+            transition={{ duration: shouldShowImmediately ? 0 : 0.8, delay: shouldShowImmediately ? 0 : 0.4 }}
           >
             <h2 className="text-3xl md:text-4xl font-black text-[#253E5C] mb-8">Key Benefits</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -430,9 +468,9 @@ const ServiceDetail = () => {
                     border: `2px solid ${PRIMARY_COLOR}20`,
                   }}
                   initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                  animate={isMobile ? { opacity: 1, x: 0 } : (mainContentInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 })}
+                  animate={shouldShowImmediately ? { opacity: 1, x: 0 } : (mainContentInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 })}
                   transition={{ duration: 0.6, delay: 0.5 + index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                  whileHover={isMobile ? {} : {
+                  whileHover={shouldShowImmediately ? {} : {
                     scale: 1.02,
                     y: -4,
                   }}
@@ -475,16 +513,16 @@ const ServiceDetail = () => {
           style={{
             background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9))',
             backdropFilter: 'blur(20px)',
-            transformStyle: isMobile ? 'flat' : 'preserve-3d',
+            transformStyle: shouldShowImmediately ? 'flat' : 'preserve-3d',
             boxShadow: `0 25px 50px ${SECONDARY_COLOR}30, 0 0 40px ${DEEP_BLUE}20, 0 10px 30px ${SECONDARY_COLOR}25`,
           }}
           initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 60, rotateX: -10, z: -100 }}
-          animate={isMobile ? { opacity: 1, y: 0 } : (whyChooseInView ? { opacity: 1, y: 0, rotateX: 0, z: 0 } : { opacity: 0, y: 60, rotateX: -10, z: -100 })}
+          animate={shouldShowImmediately ? { opacity: 1, y: 0 } : (whyChooseInView ? { opacity: 1, y: 0, rotateX: 0, z: 0 } : { opacity: 0, y: 60, rotateX: -10, z: -100 })}
           transition={isMobile ? { duration: 0 } : { 
             default: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
             hover: { duration: 0, ease: 'linear' }
           }}
-          whileHover={isMobile ? {} : { 
+          whileHover={shouldShowImmediately ? {} : { 
             y: -4,
             rotateX: 2,
             z: 10,
@@ -492,9 +530,9 @@ const ServiceDetail = () => {
         >
           <motion.h2
             className="text-3xl md:text-4xl font-black text-[#253E5C] mb-8"
-            initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 20 }}
-            animate={isMobile ? { opacity: 1, y: 0 } : (whyChooseInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
-            transition={{ duration: isMobile ? 0 : 0.8, delay: isMobile ? 0 : 0.2 }}
+            initial={{ opacity: shouldShowImmediately ? 1 : 0, y: shouldShowImmediately ? 0 : 20 }}
+            animate={shouldShowImmediately ? { opacity: 1, y: 0 } : (whyChooseInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
+            transition={{ duration: shouldShowImmediately ? 0 : 0.8, delay: shouldShowImmediately ? 0 : 0.2 }}
           >
             Why Choose Advertio for {service.title}?
           </motion.h2>
@@ -508,9 +546,9 @@ const ServiceDetail = () => {
                   border: `2px solid ${PRIMARY_COLOR}20`,
                 }}
                 initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                animate={isMobile ? { opacity: 1, x: 0 } : (whyChooseInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 })}
+                animate={shouldShowImmediately ? { opacity: 1, x: 0 } : (whyChooseInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 })}
                 transition={{ duration: 0.6, delay: 0.3 + index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                whileHover={isMobile ? {} : {
+                whileHover={shouldShowImmediately ? {} : {
                   scale: 1.02,
                   y: -4,
                 }}
@@ -552,16 +590,16 @@ const ServiceDetail = () => {
           style={{
             background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9))',
             backdropFilter: 'blur(20px)',
-            transformStyle: isMobile ? 'flat' : 'preserve-3d',
+            transformStyle: shouldShowImmediately ? 'flat' : 'preserve-3d',
             boxShadow: `0 25px 50px ${SECONDARY_COLOR}30, 0 0 40px ${DEEP_BLUE}20, 0 10px 30px ${SECONDARY_COLOR}25`,
           }}
           initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 60, rotateX: -10, z: -100 }}
-          animate={isMobile ? { opacity: 1, y: 0 } : (processInView ? { opacity: 1, y: 0, rotateX: 0, z: 0 } : { opacity: 0, y: 60, rotateX: -10, z: -100 })}
+          animate={shouldShowImmediately ? { opacity: 1, y: 0 } : (processInView ? { opacity: 1, y: 0, rotateX: 0, z: 0 } : { opacity: 0, y: 60, rotateX: -10, z: -100 })}
           transition={isMobile ? { duration: 0 } : { 
             default: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
             hover: { duration: 0, ease: 'linear' }
           }}
-          whileHover={isMobile ? {} : { 
+          whileHover={shouldShowImmediately ? {} : { 
             y: -4,
             rotateX: 2,
             z: 10,
@@ -569,9 +607,9 @@ const ServiceDetail = () => {
         >
           <motion.h2
             className="text-3xl md:text-4xl font-black text-[#253E5C] mb-12 text-center"
-            initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 20 }}
-            animate={isMobile ? { opacity: 1, y: 0 } : (processInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
-            transition={{ duration: isMobile ? 0 : 0.8, delay: isMobile ? 0 : 0.2 }}
+            initial={{ opacity: shouldShowImmediately ? 1 : 0, y: shouldShowImmediately ? 0 : 20 }}
+            animate={shouldShowImmediately ? { opacity: 1, y: 0 } : (processInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
+            transition={{ duration: shouldShowImmediately ? 0 : 0.8, delay: shouldShowImmediately ? 0 : 0.2 }}
           >
             How We Will Do This
           </motion.h2>
@@ -580,14 +618,14 @@ const ServiceDetail = () => {
               <motion.div
                 key={index}
                 className="flex gap-6 items-start"
-                style={{ transformStyle: isMobile ? 'flat' : 'preserve-3d' }}
+                style={{ transformStyle: shouldShowImmediately ? 'flat' : 'preserve-3d' }}
                 initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -30, rotateY: -20 }}
-                animate={isMobile ? { opacity: 1, x: 0 } : (processInView ? { opacity: 1, x: 0, rotateY: 0 } : { opacity: 0, x: -30, rotateY: -20 })}
+                animate={shouldShowImmediately ? { opacity: 1, x: 0 } : (processInView ? { opacity: 1, x: 0, rotateY: 0 } : { opacity: 0, x: -30, rotateY: -20 })}
                 transition={isMobile ? { duration: 0 } : { 
                   default: { duration: 0.6, delay: 0.3 + index * 0.1, ease: [0.22, 1, 0.36, 1] },
                   hover: { duration: 0, ease: 'linear' }
                 }}
-                whileHover={isMobile ? {} : { 
+                whileHover={shouldShowImmediately ? {} : { 
                   x: 5,
                   rotateY: 3,
                   z: 10,
@@ -595,8 +633,8 @@ const ServiceDetail = () => {
               >
                 <motion.div
                   className="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center text-white font-black text-xl"
-                  style={{ background: PRIMARY_COLOR, transformStyle: isMobile ? 'flat' : 'preserve-3d' }}
-                  whileHover={isMobile ? {} : { scale: 1.1, rotateY: 360, z: 20 }}
+                  style={{ background: PRIMARY_COLOR, transformStyle: shouldShowImmediately ? 'flat' : 'preserve-3d' }}
+                  whileHover={shouldShowImmediately ? {} : { scale: 1.1, rotateY: 360, z: 20 }}
                   transition={{ duration: 0, ease: 'linear' }}
                 >
                   {step.step}
@@ -614,15 +652,15 @@ const ServiceDetail = () => {
         <motion.div
           ref={reviewsRef}
           className="mb-12"
-          initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 60 }}
-          animate={isMobile ? { opacity: 1, y: 0 } : (reviewsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 })}
-          transition={{ duration: isMobile ? 0 : 0.8 }}
+          initial={{ opacity: shouldShowImmediately ? 1 : 0, y: shouldShowImmediately ? 0 : 60 }}
+          animate={shouldShowImmediately ? { opacity: 1, y: 0 } : (reviewsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 })}
+          transition={{ duration: shouldShowImmediately ? 0 : 0.8 }}
         >
           <motion.h2
             className="text-3xl md:text-4xl font-black text-[#253E5C] mb-8 text-center"
-            initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 20 }}
-            animate={isMobile ? { opacity: 1, y: 0 } : (reviewsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
-            transition={{ duration: isMobile ? 0 : 0.8, delay: isMobile ? 0 : 0.2 }}
+            initial={{ opacity: shouldShowImmediately ? 1 : 0, y: shouldShowImmediately ? 0 : 20 }}
+            animate={shouldShowImmediately ? { opacity: 1, y: 0 } : (reviewsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
+            transition={{ duration: shouldShowImmediately ? 0 : 0.8, delay: shouldShowImmediately ? 0 : 0.2 }}
           >
             What Clients Say About Our {service.title}
           </motion.h2>
@@ -634,16 +672,16 @@ const ServiceDetail = () => {
                 style={{
                   background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9))',
                   backdropFilter: 'blur(20px)',
-                  transformStyle: isMobile ? 'flat' : 'preserve-3d',
+                  transformStyle: shouldShowImmediately ? 'flat' : 'preserve-3d',
                   boxShadow: `0 15px 35px ${SECONDARY_COLOR}25, 0 0 25px ${DEEP_BLUE}15, 0 5px 15px ${SECONDARY_COLOR}20`,
                 }}
                 initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 40, rotateY: -15 }}
-                animate={isMobile ? { opacity: 1, y: 0 } : (reviewsInView ? { opacity: 1, y: 0, rotateY: 0 } : { opacity: 0, y: 40, rotateY: -15 })}
+                animate={shouldShowImmediately ? { opacity: 1, y: 0 } : (reviewsInView ? { opacity: 1, y: 0, rotateY: 0 } : { opacity: 0, y: 40, rotateY: -15 })}
                 transition={isMobile ? { duration: 0 } : { 
                   default: { duration: 0.6, delay: 0.3 + index * 0.15, ease: [0.22, 1, 0.36, 1] },
                   hover: { duration: 0, ease: 'linear' }
                 }}
-                whileHover={isMobile ? {} : {
+                whileHover={shouldShowImmediately ? {} : {
                   scale: 1.02,
                   boxShadow: `0 20px 50px ${SECONDARY_COLOR}40, 0 0 30px ${DEEP_BLUE}30, 0 10px 20px ${SECONDARY_COLOR}25`,
                   rotateY: 3,
@@ -692,20 +730,21 @@ const ServiceDetail = () => {
         </motion.div>
 
         {/* Contact Form Section */}
-        <ServiceContactForm service={service} contactFormRef={contactFormRef} contactFormInView={contactFormInView} isMobile={isMobile} />
+        <ServiceContactForm service={service} contactFormRef={contactFormRef} contactFormInView={contactFormInView} isMobile={isMobile} shouldShowImmediately={shouldShowImmediately} />
       </div>
-    </motion.div>
+    </div>
   );
 };
 
 // Contact Form Component
-const ServiceContactForm = ({ service, contactFormRef, contactFormInView, isMobile = false }) => {
+const ServiceContactForm = ({ service, contactFormRef, contactFormInView, isMobile = false, shouldShowImmediately = false }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     company: '',
-    message: '',
     service: service.title,
+    adSpend: '',
+    message: '',
   });
   const [status, setStatus] = useState('idle');
 
@@ -733,17 +772,17 @@ const ServiceContactForm = ({ service, contactFormRef, contactFormInView, isMobi
       className="rounded-[36px] border border-white/20 p-8 md:p-12 lg:p-16 relative z-10 max-w-4xl mx-auto"
       style={{
         background: 'linear-gradient(135deg, rgba(233, 79, 55, 1) 0%, rgba(37, 62, 92, 1) 50%, rgba(233, 79, 55, 1) 100%)',
-        transformStyle: isMobile ? 'flat' : 'preserve-3d',
+        transformStyle: shouldShowImmediately ? 'flat' : 'preserve-3d',
         boxShadow: `0 25px 60px ${SECONDARY_COLOR}40, 0 0 50px ${DEEP_BLUE}30, 0 15px 40px ${SECONDARY_COLOR}35`,
       }}
       initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 60, rotateX: -10, z: -100 }}
-      animate={isMobile ? { opacity: 1, y: 0 } : (contactFormInView ? { opacity: 1, y: 0, rotateX: 0, z: 0 } : { opacity: 0, y: 60, rotateX: -10, z: -100 })}
+      animate={shouldShowImmediately ? { opacity: 1, y: 0 } : (contactFormInView ? { opacity: 1, y: 0, rotateX: 0, z: 0 } : { opacity: 0, y: 60, rotateX: -10, z: -100 })}
       transition={isMobile ? { duration: 0 } : { 
         duration: 0.8, 
         ease: [0.22, 1, 0.36, 1],
         hover: { duration: 0, ease: 'linear' }
       }}
-      whileHover={isMobile ? {} : { 
+      whileHover={shouldShowImmediately ? {} : { 
         y: -4,
         rotateX: 2,
         z: 10,
@@ -751,17 +790,17 @@ const ServiceContactForm = ({ service, contactFormRef, contactFormInView, isMobi
     >
       <motion.h2
         className="text-3xl md:text-4xl font-black text-white mb-6 text-center"
-        initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 20 }}
-        animate={isMobile ? { opacity: 1, y: 0 } : (contactFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
-        transition={{ duration: isMobile ? 0 : 0.8, delay: isMobile ? 0 : 0.2 }}
+        initial={{ opacity: shouldShowImmediately ? 1 : 0, y: shouldShowImmediately ? 0 : 20 }}
+        animate={shouldShowImmediately ? { opacity: 1, y: 0 } : (contactFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
+        transition={{ duration: shouldShowImmediately ? 0 : 0.8, delay: shouldShowImmediately ? 0 : 0.2 }}
       >
         Get Started with {service.title}
       </motion.h2>
       <motion.p
         className="text-lg text-white/70 text-center mb-8 max-w-2xl mx-auto leading-tight md:leading-normal"
-        initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 20 }}
-        animate={isMobile ? { opacity: 1, y: 0 } : (contactFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
-        transition={{ duration: isMobile ? 0 : 0.8, delay: isMobile ? 0 : 0.3 }}
+        initial={{ opacity: shouldShowImmediately ? 1 : 0, y: shouldShowImmediately ? 0 : 20 }}
+        animate={shouldShowImmediately ? { opacity: 1, y: 0 } : (contactFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
+        transition={{ duration: shouldShowImmediately ? 0 : 0.8, delay: shouldShowImmediately ? 0 : 0.3 }}
       >
         Ready to transform your business? Fill out the form below and we'll get back to you within 2 hours.
       </motion.p>
@@ -775,9 +814,9 @@ const ServiceContactForm = ({ service, contactFormRef, contactFormInView, isMobi
           <motion.div
             key={field.name}
             className="space-y-2"
-            initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 30 }}
-            animate={isMobile ? { opacity: 1, y: 0 } : (contactFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 })}
-            transition={{ duration: isMobile ? 0 : 0.6, delay: isMobile ? 0 : 0.4 + index * 0.1 }}
+            initial={{ opacity: shouldShowImmediately ? 1 : 0, y: shouldShowImmediately ? 0 : 30 }}
+            animate={shouldShowImmediately ? { opacity: 1, y: 0 } : (contactFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 })}
+            transition={{ duration: shouldShowImmediately ? 0 : 0.6, delay: shouldShowImmediately ? 0 : 0.4 + index * 0.1 }}
           >
             <label className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70 block">
               {field.label}
@@ -796,9 +835,61 @@ const ServiceContactForm = ({ service, contactFormRef, contactFormInView, isMobi
 
         <motion.div
           className="space-y-2"
-          initial={{ opacity: isMobile ? 1 : 0, y: isMobile ? 0 : 30 }}
-          animate={isMobile ? { opacity: 1, y: 0 } : (contactFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 })}
-          transition={{ duration: isMobile ? 0 : 0.6, delay: isMobile ? 0 : 0.7 }}
+          initial={{ opacity: shouldShowImmediately ? 1 : 0, y: shouldShowImmediately ? 0 : 30 }}
+          animate={shouldShowImmediately ? { opacity: 1, y: 0 } : (contactFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 })}
+          transition={{ duration: shouldShowImmediately ? 0 : 0.6, delay: shouldShowImmediately ? 0 : 0.6 }}
+        >
+          <label className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70 block">
+            Service
+          </label>
+          <select
+            name="service"
+            value={formData.service}
+            onChange={handleChange}
+            required
+            className="w-full px-5 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 focus:bg-white/15 transition-all appearance-none cursor-pointer"
+            style={{
+              backgroundImage: formData.service 
+                ? 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'12\' viewBox=\'0 0 12 12\'%3E%3Cpath fill=\'%23ffffff\' d=\'M6 9L1 4h10z\'/%3E%3C/svg%3E")'
+                : 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'12\' height=\'12\' viewBox=\'0 0 12 12\'%3E%3Cpath fill=\'%23ffffff\' d=\'M6 9L1 4h10z\'/%3E%3C/svg%3E")',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'right 1rem center',
+              paddingRight: '2.5rem',
+            }}
+          >
+            {servicesList.map((svc) => (
+              <option key={svc.id} value={svc.title} className="bg-[#253E5C] text-white">
+                {svc.title}
+              </option>
+            ))}
+          </select>
+        </motion.div>
+
+        <motion.div
+          className="space-y-2"
+          initial={{ opacity: shouldShowImmediately ? 1 : 0, y: shouldShowImmediately ? 0 : 30 }}
+          animate={shouldShowImmediately ? { opacity: 1, y: 0 } : (contactFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 })}
+          transition={{ duration: shouldShowImmediately ? 0 : 0.6, delay: shouldShowImmediately ? 0 : 0.7 }}
+        >
+          <label className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70 block">
+            Monthly Ad spend
+          </label>
+          <input
+            type="text"
+            name="adSpend"
+            placeholder="e.g., $5,000 - $10,000"
+            value={formData.adSpend}
+            onChange={handleChange}
+            required
+            className="w-full px-5 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 focus:bg-white/15 transition-all"
+          />
+        </motion.div>
+
+        <motion.div
+          className="space-y-2"
+          initial={{ opacity: shouldShowImmediately ? 1 : 0, y: shouldShowImmediately ? 0 : 30 }}
+          animate={shouldShowImmediately ? { opacity: 1, y: 0 } : (contactFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 })}
+          transition={{ duration: shouldShowImmediately ? 0 : 0.6, delay: shouldShowImmediately ? 0 : 0.8 }}
         >
           <label className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70 block">
             Project details
@@ -809,7 +900,6 @@ const ServiceContactForm = ({ service, contactFormRef, contactFormInView, isMobi
             placeholder="Tell us about your project, goals, timeline, or any specific requirements..."
             value={formData.message}
             onChange={handleChange}
-            required
             className="w-full px-5 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 focus:bg-white/15 transition-all resize-none"
           />
         </motion.div>
@@ -819,15 +909,15 @@ const ServiceContactForm = ({ service, contactFormRef, contactFormInView, isMobi
           disabled={status === 'sending'}
             className="relative w-full flex items-center justify-center gap-3 px-6 py-4 rounded-2xl text-white font-semibold text-lg bg-gradient-to-r from-[#253E5C] via-primary to-[#FF6B4A] shadow-lg shadow-primary/40 transition-all disabled:opacity-60 overflow-hidden"
             style={{
-              transformStyle: isMobile ? 'flat' : 'preserve-3d',
+              transformStyle: shouldShowImmediately ? 'flat' : 'preserve-3d',
             }}
             initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30, rotateX: -10 }}
-            animate={isMobile ? { opacity: 1, y: 0 } : (contactFormInView ? { opacity: 1, y: 0, rotateX: 0 } : { opacity: 0, y: 30, rotateX: -10 })}
+            animate={shouldShowImmediately ? { opacity: 1, y: 0 } : (contactFormInView ? { opacity: 1, y: 0, rotateX: 0 } : { opacity: 0, y: 30, rotateX: -10 })}
             transition={isMobile ? { duration: 0 } : { 
               default: { duration: 0.6, delay: 0.8, ease: [0.22, 1, 0.36, 1] },
               hover: { duration: 0, ease: 'linear' }
             }}
-            whileHover={isMobile ? {} : { 
+            whileHover={shouldShowImmediately ? {} : { 
               scale: 1.03, 
               boxShadow: '0 10px 40px rgba(233, 79, 55, 0.5)',
               translateZ: 20,

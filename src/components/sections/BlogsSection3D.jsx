@@ -30,7 +30,7 @@ const BlogsSection3D = () => {
       date: 'March 12, 2024',
       readTime: '7 min read',
       image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&q=80',
-      color: '#6D28D9',
+      color: '#253E5C',
       tags: ['Performance', 'Analytics', 'Growth'],
     },
     {
@@ -42,7 +42,7 @@ const BlogsSection3D = () => {
       date: 'March 10, 2024',
       readTime: '6 min read',
       image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop&q=80',
-      color: '#16A34A',
+      color: '#E94F37',
       tags: ['AR', 'Innovation', 'Engagement'],
     },
     {
@@ -54,7 +54,7 @@ const BlogsSection3D = () => {
       date: 'March 8, 2024',
       readTime: '8 min read',
       image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=600&fit=crop&q=80',
-      color: '#EA580C',
+      color: '#253E5C',
       tags: ['CRO', 'UX', 'Conversion'],
     },
   ];
