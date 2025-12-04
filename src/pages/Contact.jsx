@@ -11,9 +11,7 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
     company: '',
-    subject: '',
     service: '',
     adSpend: '',
     message: '',
@@ -66,14 +64,8 @@ const Contact = () => {
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = 'Please enter a valid email';
     }
-    if (!formData.phone.trim()) {
-      newErrors.phone = 'Phone is required';
-    }
     if (!formData.company.trim()) {
       newErrors.company = 'Company is required';
-    }
-    if (!formData.subject.trim()) {
-      newErrors.subject = 'Subject is required';
     }
     if (!formData.service.trim()) {
       newErrors.service = 'Service is required';
@@ -99,7 +91,7 @@ const Contact = () => {
     // Simulate form submission
     setTimeout(() => {
       setFormStatus('sent');
-      setFormData({ name: '', email: '', phone: '', company: '', subject: '', message: '' });
+      setFormData({ name: '', email: '', company: '', service: '', adSpend: '', message: '' });
       setFocusedField(null);
 
       setTimeout(() => setFormStatus('idle'), 5000);
@@ -143,11 +135,9 @@ const Contact = () => {
   ];
 
   const formFields = [
-    { name: 'name', label: 'Full Name', type: 'text', placeholder: 'John Doe', icon: '👤' },
-    { name: 'email', label: 'Email Address', type: 'email', placeholder: 'john@company.com', icon: '✉️' },
-    { name: 'phone', label: 'Phone Number', type: 'tel', placeholder: '+1 (234) 567-8900', icon: '📱' },
-    { name: 'company', label: 'Company Name', type: 'text', placeholder: 'Your Company', icon: '🏢' },
-    { name: 'subject', label: 'Subject', type: 'text', placeholder: 'Project Inquiry', icon: '📋' },
+    { name: 'name', label: 'Full name', type: 'text', placeholder: 'Ariana Collins' },
+    { name: 'email', label: 'Work email', type: 'email', placeholder: 'ariana@brand.com' },
+    { name: 'company', label: 'Company or product', type: 'text', placeholder: 'Peak Aurora' },
   ];
 
   return (
@@ -454,14 +444,12 @@ const Contact = () => {
                     style={{ transformStyle: 'preserve-3d' }}
                   >
                     <motion.label 
-                      className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70 block flex items-center gap-2"
+                      className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70 block"
                       animate={{
                         color: focusedField === field.name ? '#FFFFFF' : 'rgba(255, 255, 255, 0.7)',
                       }}
                     >
-                      <span>{field.icon}</span>
                       {field.label}
-                      <span className="text-primary">*</span>
                     </motion.label>
                     <motion.input
                       type={field.type}
@@ -506,14 +494,12 @@ const Contact = () => {
                   style={{ transformStyle: 'preserve-3d' }}
                 >
                   <motion.label 
-                    className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70 block flex items-center gap-2"
+                    className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70 block"
                     animate={{
                       color: focusedField === 'service' ? '#FFFFFF' : 'rgba(255, 255, 255, 0.7)',
                     }}
                   >
-                    <span>🎯</span>
                     Service
-                    <span className="text-primary">*</span>
                   </motion.label>
                   <select
                     name="service"
@@ -570,14 +556,12 @@ const Contact = () => {
                   style={{ transformStyle: 'preserve-3d' }}
                 >
                   <motion.label 
-                    className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70 block flex items-center gap-2"
+                    className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70 block"
                     animate={{
                       color: focusedField === 'adSpend' ? '#FFFFFF' : 'rgba(255, 255, 255, 0.7)',
                     }}
                   >
-                    <span>💰</span>
                     Monthly Ad spend
-                    <span className="text-primary">*</span>
                   </motion.label>
                   <motion.input
                     type="text"
@@ -621,18 +605,17 @@ const Contact = () => {
                   style={{ transformStyle: 'preserve-3d' }}
                 >
                   <motion.label 
-                    className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70 block flex items-center gap-2"
+                    className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70 block"
                     animate={{
                       color: focusedField === 'message' ? '#FFFFFF' : 'rgba(255, 255, 255, 0.7)',
                     }}
                   >
-                    <span>💬</span>
-                    Your Message
+                    Project notes
                   </motion.label>
                   <motion.textarea
                     name="message"
-                    rows={6}
-                    placeholder="Tell us about your project, goals, and how we can help..."
+                    rows={5}
+                    placeholder="Share context, goals, or launch date..."
                     value={formData.message}
                     onChange={handleFormChange}
                     onFocus={() => setFocusedField('message')}
@@ -677,7 +660,7 @@ const Contact = () => {
                   />
                   
                   <span className="relative z-10">
-                    {formStatus === 'sending' ? 'Sending...' : formStatus === 'sent' ? 'Message Sent!' : 'Send Message'}
+                    {formStatus === 'sending' ? 'Sending...' : 'Send the brief'}
                   </span>
                   
                   {formStatus !== 'sending' && (
@@ -702,29 +685,16 @@ const Contact = () => {
                 </motion.button>
 
                 {/* Success Message */}
-                <AnimatePresence>
-                  {formStatus === 'sent' && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -20, scale: 0.9 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: -20, scale: 0.9 }}
-                      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                      className="text-center p-4 rounded-2xl bg-white/10 border border-white/20"
-                    >
-                      <motion.p
-                        className="text-lg font-semibold text-white mb-2"
-                        initial={{ scale: 0 }}
-                        animate={{ scale: [0, 1.2, 1] }}
-                        transition={{ delay: 0.2, duration: 0.5 }}
-                      >
-                        🎉 Message received successfully!
-                      </motion.p>
-                      <p className="text-sm text-white/70">
-                        We'll get back to you within 24 hours.
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {formStatus === 'sent' && (
+                  <motion.p
+                    className="text-center text-sm font-semibold text-white"
+                    initial={{ opacity: 0, y: -6, scale: 0.9 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                  >
+                    Message received. We'll respond shortly.
+                  </motion.p>
+                )}
               </div>
             </motion.form>
           </div>
