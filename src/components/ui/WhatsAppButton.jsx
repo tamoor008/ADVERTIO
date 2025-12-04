@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const WhatsAppButton = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const phoneNumber = '+923104824942';
+  const phoneNumber = '+923366424379';
   const whatsappUrl = `https://wa.me/${phoneNumber.replace(/[^0-9]/g, '')}`;
 
   useEffect(() => {

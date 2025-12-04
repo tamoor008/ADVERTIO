@@ -191,7 +191,7 @@ const Blogs = () => {
       ),
       label: 'WhatsApp',
       value: 'WhatsApp Us',
-      href: 'https://wa.me/923234304559',
+      href: 'https://wa.me/923366424379',
       color: '#25D366',
     },
   ];

@@ -932,13 +932,13 @@ const About = () => {
                   info@advertio.com
                 </motion.a>
                 <motion.a
-                  href="https://wa.me/923234304559"
+                  href="https://wa.me/923366424379"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block text-lg text-white/70 hover:text-primary transition-colors"
                   whileHover={{ x: 5, scale: 1.05 }}
                 >
-                  WhatsApp · (+92) 323 4304559
+                  WhatsApp · (+92) 336 6424379
                 </motion.a>
               </div>
             </motion.div>
