@@ -25,7 +25,7 @@ export const useScrollAnimation = (options = {}) => {
         trigger: element,
         start,
         end,
-        toggleActions: 'play none none reverse',
+        toggleActions: 'play none none none',
       },
     });
 

@@ -75,7 +75,7 @@ const ProcessBackdrop = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 1 }}
-      className="relative z-10 py-24"
+      className="relative z-10 py-8 md:py-24"
     >
       <div className="w-full rounded-[36px] bg-[#f9f6f0] border border-white/70 shadow-[0_40px_140px_rgba(37,62,92,0.25)] px-8 py-12 lg:px-16">
         <div className="text-center mb-10">

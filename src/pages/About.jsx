@@ -37,7 +37,7 @@ const About = () => {
   const whoWeAreInView = useInView(whoWeAreRef, { once: true, amount: 0.1 });
   const leadershipInView = useInView(leadershipRef, { once: true, amount: 0.1 });
   const valuesInView = useInView(valuesRef, { once: true, amount: 0.1 });
-  const contactInView = useInView(contactSectionRef, { once: false, amount: 0.3 });
+  const contactInView = useInView(contactSectionRef, { once: true, amount: 0.3 });
 
   const testimonials = [
     {
@@ -219,7 +219,7 @@ const About = () => {
   return (
     <div className="relative min-h-screen overflow-visible bg-white" style={{ backgroundColor: '#FFFFFF', background: '#FFFFFF' }}>
       {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-visible pt-24 pb-20 z-10">
+      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-visible pt-24 pb-8 md:pb-20 z-10">
         <div className="container mx-auto px-6 relative z-30">
             <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -268,7 +268,7 @@ const About = () => {
       </section>
 
       {/* Who We Are Section with Testimonials Carousel and Vision/Mission */}
-      <section ref={whoWeAreRef} className="relative py-20 px-6 z-30">
+      <section ref={whoWeAreRef} className="relative py-8 md:py-20 px-6 z-30">
         <div className="container mx-auto max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -388,7 +388,7 @@ const About = () => {
       </section>
 
       {/* Leadership Section */}
-      <section ref={leadershipRef} className="relative py-20 px-6 z-30 bg-gradient-to-b from-white to-[#f8f9fa]">
+      <section ref={leadershipRef} className="relative py-8 md:py-20 px-6 z-30 bg-gradient-to-b from-white to-[#f8f9fa]">
         <div className="container mx-auto max-w-7xl">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Side - Text Content */}
@@ -455,7 +455,7 @@ const About = () => {
       </section>
 
       {/* Contact CTA Section */}
-      <section className="relative py-20 px-6 z-30">
+      <section className="relative py-8 md:py-20 px-6 z-30">
         <div className="container mx-auto max-w-4xl">
             <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -502,7 +502,7 @@ const About = () => {
       </section>
 
       {/* Our Values Section */}
-      <section ref={valuesRef} className="relative pt-32 pb-0 px-6 z-30 overflow-visible">
+      <section ref={valuesRef} className="relative pt-8 md:pt-32 pb-0 px-6 z-30 overflow-visible">
         <div className="container mx-auto max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -865,85 +865,10 @@ const About = () => {
       <ReviewsSection3D />
 
       {/* Final CTA Section - Contact Cards */}
-      <section ref={contactSectionRef} className="relative py-20 px-6 z-30">
+      <section ref={contactSectionRef} className="relative py-8 md:py-20 px-6 z-30">
         <div className="container mx-auto max-w-[1500px]">
-          <div className="grid grid-cols-1 lg:grid-cols-[0.9fr,1.1fr] gap-10 items-stretch">
-            {/* Left Card - Contact Info */}
-            <motion.div
-              className="rounded-[32px] border border-white/10 p-10 shadow-[0_20px_80px_rgba(0,0,0,0.3)]"
-              style={{
-                background: 'linear-gradient(135deg, rgba(37, 62, 92, 1) 0%, rgba(233, 79, 55, 1) 50%, rgba(37, 62, 92, 1) 100%)',
-                transformStyle: 'preserve-3d'
-              }}
-              initial={{ opacity: 0, y: 50, rotateY: -15 }}
-              animate={contactInView ? { opacity: 1, y: 0, rotateY: 0 } : { opacity: 0, y: 50, rotateY: -15 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              whileHover={{ scale: 1.02, translateZ: 20 }}
-            >
-              <motion.p
-                className="text-xs uppercase tracking-[0.6em] text-white/60 mb-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={contactInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                Contact
-              </motion.p>
-              <motion.h3
-                className="text-4xl md:text-5xl font-black text-white mb-6 leading-tight"
-                initial={{ opacity: 0, y: 30 }}
-                animate={contactInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-              >
-                Have questions? Get in touch!
-              </motion.h3>
-              <p className="text-white/70 text-lg mb-10">
-                A digital agency who delivers revenue-generating digital marketing solutions
-              </p>
-
-              <div className="space-y-6">
-                {[
-                  { label: 'Response window', value: '< 2 hours' },
-                  { label: 'Avg. engagement', value: '90 day retained pod' },
-                  { label: 'Formats', value: 'Paid media + 3D creative + CRO' },
-                ].map((item, idx) => (
-                  <motion.div
-                    key={item.label}
-                    className="flex items-center justify-between rounded-2xl border border-white/20 px-5 py-4"
-                    style={{
-                      background: 'rgba(255, 255, 255, 0.05)'
-                    }}
-                    initial={{ opacity: 0, y: 20, x: -20 }}
-                    animate={contactInView ? { opacity: 1, y: 0, x: 0 } : { opacity: 0, y: 20, x: -20 }}
-                    transition={{ duration: 0.6, delay: 0.4 + idx * 0.1 }}
-                    whileHover={{ scale: 1.03, borderColor: 'rgba(233, 79, 55, 0.3)', translateX: 5 }}
-                  >
-                    <span className="text-xs tracking-[0.35em] uppercase text-white/90 font-semibold">{item.label}</span>
-                    <span className="text-base font-semibold text-white">{item.value}</span>
-                  </motion.div>
-                ))}
-              </div>
-
-              <div className="mt-10 space-y-3">
-                <motion.a
-                  href="mailto:info@advertio.com"
-                  className="block text-lg font-semibold text-white hover:text-primary transition-colors"
-                  whileHover={{ x: 5, scale: 1.05 }}
-                >
-                  info@advertio.com
-                </motion.a>
-                <motion.a
-                  href="https://wa.me/923366424379"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-lg text-white/70 hover:text-primary transition-colors"
-                  whileHover={{ x: 5, scale: 1.05 }}
-                >
-                  WhatsApp · (+92) 336 6424379
-                </motion.a>
-              </div>
-            </motion.div>
-
-            {/* Right Card - Contact Form */}
+          <div className="grid grid-cols-1 lg:grid-cols-1 gap-10 items-stretch">
+            {/* Contact Form */}
             <motion.form
               ref={contactCardRef}
               onSubmit={handleFormSubmit}
@@ -1176,7 +1101,7 @@ const About = () => {
 const ReviewsSection3D = () => {
   const sectionRef = useRef(null);
   const scrollContainerRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: false, amount: 0.1, margin: '-100px' });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.1, margin: '-100px' });
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const reviews = [
@@ -1424,11 +1349,10 @@ const ReviewsSection3D = () => {
       `}</style>
       <motion.section
         ref={sectionRef}
-        className="relative z-10 pt-0 pb-0 overflow-visible bg-gradient-to-b from-white/50 via-white/70 to-white/90 w-full"
+        className="relative z-10 pt-0 pb-0 md:pb-0 overflow-visible bg-gradient-to-b from-white/50 via-white/70 to-white/90 w-full min-h-[600px] md:min-h-[900px]"
         initial={{ opacity: 1 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
-        style={{ minHeight: '900px' }}
       >
         {/* Static Background Elements - Optimized for performance */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -1450,7 +1374,7 @@ const ReviewsSection3D = () => {
         <div className="relative w-[90%] mx-auto">
           {/* Section Header */}
           <motion.div
-            className="text-center mb-16 max-w-4xl mx-auto"
+            className="text-center mb-4 md:mb-16 max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 50, scale: 0.9 }}
             animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.9 }}
             transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
@@ -1484,19 +1408,18 @@ const ReviewsSection3D = () => {
           </motion.div>
 
           {/* Horizontal Scrollable Container */}
-          <div className="relative min-h-[700px] py-8">
+          <div className="relative min-h-[500px] md:min-h-[700px] py-4 md:py-8">
             {/* Scroll Container */}
             <div
               ref={scrollContainerRef}
-              className="reviews-scroll-container overflow-x-auto overflow-y-visible pb-12 pt-8"
+              className="reviews-scroll-container overflow-x-auto overflow-y-visible pb-0 md:pb-12 pt-4 md:pt-8 min-h-[500px] md:min-h-[700px]"
               style={{
                 WebkitOverflowScrolling: 'touch',
-                minHeight: '700px',
                 paddingLeft: '1rem',
                 paddingRight: '1rem',
               }}
             >
-              <div className="flex gap-6 md:gap-8 lg:gap-10 items-start" style={{ width: 'max-content', minHeight: '600px', paddingTop: '20px', paddingBottom: '40px' }}>
+              <div className="flex gap-6 md:gap-8 lg:gap-10 items-start pb-0 md:pb-10 min-h-[400px] md:min-h-[600px]" style={{ width: 'max-content', paddingTop: '10px' }}>
                 {reviews.map((review, index) => {
                   const isHovered = hoveredIndex === index;
 
@@ -1509,12 +1432,12 @@ const ReviewsSection3D = () => {
                         x: 0,
                         scale: 1,
                       }}
-                      whileInView={{ 
-                        opacity: 1, 
-                        x: 0,
-                        scale: 1,
-                      }}
-                      viewport={{ once: false, amount: 0.2 }}
+                    whileInView={{ 
+                      opacity: 1, 
+                      x: 0,
+                      scale: 1,
+                    }}
+                    viewport={{ once: true, amount: 0.2 }}
                       transition={{
                         duration: 0.6,
                         delay: index * 0.05,
@@ -1531,10 +1454,9 @@ const ReviewsSection3D = () => {
                       }}
                     >
                       <motion.div
-                        className="relative h-full rounded-[32px] overflow-visible cursor-pointer"
+                        className="relative h-full rounded-[32px] overflow-visible cursor-pointer min-h-[400px] md:min-h-[550px]"
                         style={{
                           transformStyle: 'preserve-3d',
-                          minHeight: '550px',
                           position: 'relative',
                           zIndex: hoveredIndex === index ? 20 : 1,
                           WebkitFontSmoothing: 'antialiased',
@@ -1591,7 +1513,7 @@ const ReviewsSection3D = () => {
                             />
 
                             {/* Content Container */}
-                            <div className="relative z-10 p-8 md:p-10 bg-white/95 min-h-[550px] rounded-[30px] review-card-content">
+                            <div className="relative z-10 p-8 md:p-10 bg-white/95 min-h-[400px] md:min-h-[550px] rounded-[30px] review-card-content">
                               {/* Profile Section */}
                               <div className="flex items-center gap-4 mb-6">
                                 <motion.div

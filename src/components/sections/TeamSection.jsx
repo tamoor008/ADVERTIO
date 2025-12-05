@@ -47,7 +47,7 @@ const TeamSection = () => {
   return (
     <motion.section
       ref={sectionRef}
-      className="relative z-10 py-24 overflow-hidden bg-gradient-to-b from-white/30 via-white/50 to-white/80 w-full"
+      className="relative z-10 py-8 md:py-24 overflow-hidden bg-gradient-to-b from-white/30 via-white/50 to-white/80 w-full"
       initial={{ opacity: 0, scale: 1 }}
       animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 1 }}
       style={{ scale: 1 }}

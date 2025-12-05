@@ -750,7 +750,7 @@ const Portfolio = () => {
       </section>
 
       {/* Projects Grid */}
-      <section ref={projectsRef} className="relative py-20 px-6 z-30 min-h-screen" style={{ zIndex: 100, background: 'transparent' }}>
+      <section ref={projectsRef} className="relative py-8 md:py-20 px-6 z-30 min-h-screen" style={{ zIndex: 100, background: 'transparent' }}>
         <div className="container mx-auto max-w-7xl">
           <div
             key={selectedCategory}
@@ -772,7 +772,7 @@ const Portfolio = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-20 px-6 z-30">
+      <section className="relative py-8 md:py-20 px-6 z-30">
         <div className="container mx-auto max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

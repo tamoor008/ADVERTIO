@@ -3,7 +3,7 @@ import { motion, useInView } from 'framer-motion';
 
 const FAQSection3D = () => {
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: false, amount: 0.25 });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.25 });
   const [activeIndex, setActiveIndex] = useState(null);
 
   const faqs = [
@@ -64,7 +64,7 @@ const FAQSection3D = () => {
   return (
     <motion.section
       ref={sectionRef}
-      className="relative z-10 -pt-2 pb-28 px-6 lg:px-8 bg-gradient-to-b from-white/90 via-[#F6F7FF]/80 to-white w-full overflow-visible"
+      className="relative z-10 pt-8 md:pt-8 pb-28 px-6 lg:px-8 bg-gradient-to-b from-white/90 via-[#F6F7FF]/80 to-white w-full overflow-visible"
       initial={{ opacity: 0 }}
       animate={isInView ? { opacity: 1 } : { opacity: 0 }}
       transition={{ duration: 0.8 }}
@@ -87,7 +87,7 @@ const FAQSection3D = () => {
 
       <div className="relative max-w-[1500px] mx-auto">
         <motion.div
-          className="text-center mb-16 max-w-3xl mx-auto"
+          className="text-center mb-8 md:mb-16 max-w-3xl mx-auto"
           initial={{ opacity: 0, y: 40, scale: 0.95 }}
           animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 40, scale: 0.95 }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}

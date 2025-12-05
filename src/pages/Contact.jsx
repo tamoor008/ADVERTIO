@@ -25,7 +25,7 @@ const Contact = () => {
   const [errors, setErrors] = useState({});
 
   const heroInView = useInView(heroRef, { once: true, amount: 0.1 });
-  const formInView = useInView(formSectionRef, { once: false, amount: 0.2 });
+  const formInView = useInView(formSectionRef, { once: true, amount: 0.2 });
   const contactInfoInView = useInView(contactInfoRef, { once: true, amount: 0.2 });
 
   // Scroll to top on mount
@@ -179,7 +179,7 @@ const Contact = () => {
   return (
     <div className="relative min-h-screen overflow-visible">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-visible pt-24 pb-20 z-10">
+      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-visible pt-24 pb-8 md:pb-20 z-10">
         <div className="container mx-auto px-6 relative z-30 w-full">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -237,7 +237,7 @@ const Contact = () => {
       </section>
 
       {/* Contact Info Cards Section */}
-      <section ref={contactInfoRef} className="relative py-20 px-6 z-30">
+      <section ref={contactInfoRef} className="relative py-8 md:py-20 px-6 z-30">
         <div className="container mx-auto max-w-7xl">
           <div className="grid md:grid-cols-3 gap-6 mb-20">
             {contactMethods.map((method, index) => (
@@ -337,7 +337,7 @@ const Contact = () => {
       </section>
 
       {/* Contact Form Section */}
-      <section ref={formSectionRef} className="relative py-20 px-6 z-30">
+      <section ref={formSectionRef} className="relative py-8 md:py-20 px-6 z-30">
         <div className="container mx-auto max-w-[1500px]">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -354,76 +354,8 @@ const Contact = () => {
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-[1fr,1.2fr] gap-10 items-start">
-            {/* Left Side - Info Card */}
-            <motion.div
-              className="relative"
-              initial={{ opacity: 0, x: -50, rotateY: -15 }}
-              whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              style={{ transformStyle: 'preserve-3d' }}
-            >
-              <motion.div
-                className="rounded-[32px] border border-white/10 p-10 shadow-[0_20px_80px_rgba(0,0,0,0.3)] h-full"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(37, 62, 92, 1) 0%, rgba(233, 79, 55, 1) 50%, rgba(37, 62, 92, 1) 100%)',
-                  transformStyle: 'preserve-3d'
-                }}
-                whileHover={{ scale: 1.02, translateZ: 20 }}
-              >
-                <motion.p
-                  className="text-xs uppercase tracking-[0.6em] text-white/60 mb-4"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                >
-                  Why Choose Us
-                </motion.p>
-                <motion.h3
-                  className="text-4xl md:text-5xl font-black text-white mb-6 leading-tight"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
-                >
-                  Let's Build Your Success Story
-                </motion.h3>
-                <p className="text-white/70 text-lg mb-10">
-                  Our team is ready to help you achieve your digital marketing goals with innovative solutions and proven strategies.
-                </p>
-
-                <div className="space-y-6">
-                  {[
-                    { label: 'Response Time', value: '< 2 hours', icon: '⚡' },
-                    { label: 'Success Rate', value: '98% Client Satisfaction', icon: '🎯' },
-                    { label: 'Support', value: '24/7 Available', icon: '💬' },
-                  ].map((item, idx) => (
-                    <motion.div
-                      key={item.label}
-                      className="flex items-center justify-between rounded-2xl border border-white/20 px-5 py-4"
-                      style={{
-                        background: 'rgba(255, 255, 255, 0.05)'
-                      }}
-                      initial={{ opacity: 0, y: 20, x: -20 }}
-                      whileInView={{ opacity: 1, y: 0, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: 0.4 + idx * 0.1 }}
-                      whileHover={{ scale: 1.03, borderColor: 'rgba(233, 79, 55, 0.3)', translateX: 5 }}
-                    >
-                      <div className="flex items-center gap-3">
-                        <span className="text-2xl">{item.icon}</span>
-                        <span className="text-xs tracking-[0.35em] uppercase text-white/90 font-semibold">{item.label}</span>
-            </div>
-                      <span className="text-base font-semibold text-white">{item.value}</span>
-                    </motion.div>
-                  ))}
-            </div>
-          </motion.div>
-            </motion.div>
-
-            {/* Right Side - Contact Form */}
+          <div className="grid lg:grid-cols-1 gap-10 items-start">
+            {/* Contact Form */}
             <motion.form
               ref={formRef}
               onSubmit={handleFormSubmit}

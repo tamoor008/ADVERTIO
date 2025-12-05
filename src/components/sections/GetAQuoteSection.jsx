@@ -15,7 +15,7 @@ const GetAQuoteSection = () => {
   return (
     <motion.section
       ref={sectionRef}
-      className="relative z-10 pt-24 pb-8 overflow-visible bg-transparent w-full"
+      className="relative z-10 pt-8 md:pt-24 pb-8 overflow-visible bg-transparent w-full"
       initial={{ opacity: 0 }}
       animate={isInView ? { opacity: 1 } : { opacity: 0 }}
       transition={{ duration: 0.6 }}

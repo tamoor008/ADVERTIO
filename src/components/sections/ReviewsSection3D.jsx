@@ -4,7 +4,7 @@ import { motion, useInView } from 'framer-motion';
 const ReviewsSection3D = () => {
   const sectionRef = useRef(null);
   const scrollContainerRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: false, amount: 0.1, margin: '-100px' });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.1, margin: '-100px' });
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const reviews = [
@@ -162,11 +162,10 @@ const ReviewsSection3D = () => {
   return (
     <motion.section
       ref={sectionRef}
-      className="relative z-10 pt-8 pb-32 overflow-visible bg-gradient-to-b from-white/50 via-white/70 to-white/90 w-full"
+      className="relative z-10 pt-8 pb-0 md:pb-32 overflow-visible bg-gradient-to-b from-white/50 via-white/70 to-white/90 w-full min-h-[600px] md:min-h-[900px]"
       initial={{ opacity: 1 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}
-      style={{ minHeight: '900px' }}
     >
       {/* Static Background Elements - Optimized for performance */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -188,7 +187,7 @@ const ReviewsSection3D = () => {
       <div className="relative w-[90%] mx-auto">
         {/* Section Header */}
         <motion.div
-          className="text-center mb-16 max-w-4xl mx-auto"
+          className="text-center mb-4 md:mb-16 max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 50, scale: 0.9 }}
           animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.9 }}
           transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
@@ -222,19 +221,18 @@ const ReviewsSection3D = () => {
         </motion.div>
 
         {/* Horizontal Scrollable Container */}
-        <div className="relative min-h-[700px] py-8">
+        <div className="relative min-h-[500px] md:min-h-[700px] py-4 md:py-8">
           {/* Scroll Container */}
           <div
             ref={scrollContainerRef}
-            className="reviews-scroll-container overflow-x-auto overflow-y-visible pb-12 pt-8"
+            className="reviews-scroll-container overflow-x-auto overflow-y-visible pb-0 md:pb-12 pt-4 md:pt-8 min-h-[500px] md:min-h-[700px]"
             style={{
               WebkitOverflowScrolling: 'touch',
-              minHeight: '700px',
               paddingLeft: '1rem',
               paddingRight: '1rem',
             }}
           >
-            <div className="flex gap-6 md:gap-8 lg:gap-10 items-start" style={{ width: 'max-content', minHeight: '600px', paddingTop: '20px', paddingBottom: '40px' }}>
+            <div className="flex gap-6 md:gap-8 lg:gap-10 items-start min-h-[400px] md:min-h-[600px]" style={{ width: 'max-content', paddingTop: '10px', paddingBottom: '40px' }}>
               {reviews.map((review, index) => {
                 const isHovered = hoveredIndex === index;
 
@@ -252,7 +250,7 @@ const ReviewsSection3D = () => {
                       x: 0,
                       scale: 1,
                     }}
-                    viewport={{ once: false, amount: 0.2 }}
+                    viewport={{ once: true, amount: 0.2 }}
                     transition={{
                       duration: 0.6,
                       delay: index * 0.05,
@@ -269,9 +267,8 @@ const ReviewsSection3D = () => {
                     }}
                   >
                     <motion.div
-                      className="relative h-full rounded-[32px] overflow-visible cursor-pointer transition-all duration-300"
+                      className="relative h-full rounded-[32px] overflow-visible cursor-pointer transition-all duration-300 min-h-[400px] md:min-h-[550px]"
                       style={{
-                        minHeight: '550px',
                         position: 'relative',
                         zIndex: hoveredIndex === index ? 20 : 1,
                       }}
@@ -292,7 +289,7 @@ const ReviewsSection3D = () => {
                           }}
                         >
                           {/* Content Container */}
-                          <div className="relative z-10 p-8 md:p-10 bg-white/95 min-h-[550px] rounded-[30px] review-card-content">
+                          <div className="relative z-10 p-8 md:p-10 bg-white/95 min-h-[400px] md:min-h-[550px] rounded-[30px] review-card-content">
                             {/* Profile Section */}
                             <div className="flex items-center gap-4 mb-6">
                               <div className="relative">

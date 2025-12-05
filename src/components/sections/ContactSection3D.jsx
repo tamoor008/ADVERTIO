@@ -36,7 +36,7 @@ const ContactSection3D = () => {
   return (
     <motion.section
       ref={sectionRef}
-      className="relative z-10 py-24 px-6 lg:px-8 overflow-hidden bg-transparent"
+      className="relative z-10 py-8 md:py-24 px-6 lg:px-8 overflow-hidden bg-transparent"
       initial={{ opacity: 0 }}
       animate={isInView ? { opacity: 1 } : { opacity: 0 }}
       transition={{ duration: 0.8 }}
@@ -73,76 +73,7 @@ const ContactSection3D = () => {
         ))}
       </div>
 
-      <div className="relative max-w-[1500px] mx-auto grid grid-cols-1 lg:grid-cols-[0.9fr,1.1fr] gap-10 items-stretch">
-        <motion.div
-          className="rounded-[32px] border border-white/10 p-10 shadow-[0_20px_80px_rgba(0,0,0,0.3)]"
-          style={{
-            background: 'linear-gradient(135deg, rgba(37, 62, 92, 1) 0%, rgba(233, 79, 55, 1) 50%, rgba(37, 62, 92, 1) 100%)',
-          }}
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
-          <motion.p
-            className="text-xs uppercase tracking-[0.6em] text-white/60 mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            Contact
-          </motion.p>
-          <motion.h3
-            className="text-4xl md:text-5xl font-black text-white mb-6 leading-tight"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            Reserve a growth sprint with our hybrid 3D marketing pod.
-          </motion.h3>
-          <p className="text-white/70 text-lg mb-10">
-            Drop the essentials of your project and we'll return a calibrated roadmap within one business day.
-          </p>
-
-          <div className="space-y-6">
-            {[
-              { label: 'Response window', value: '< 2 hours' },
-              { label: 'Avg. engagement', value: '90 day retained pod' },
-              { label: 'Formats', value: 'Paid media + 3D creative + CRO' },
-            ].map((item, idx) => (
-              <motion.div
-                key={item.label}
-                className="flex items-center justify-between rounded-2xl border border-white/20 px-5 py-4"
-                style={{
-                  background: 'rgba(255, 255, 255, 0.05)'
-                }}
-                initial={{ opacity: 0, y: 20, x: -20 }}
-                animate={isInView ? { opacity: 1, y: 0, x: 0 } : { opacity: 0, y: 20, x: -20 }}
-                transition={{ duration: 0.6, delay: 0.4 + idx * 0.1 }}
-              >
-                <span className="text-xs tracking-[0.35em] uppercase text-white/90 font-semibold">{item.label}</span>
-                <span className="text-base font-semibold text-white">{item.value}</span>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="mt-10 space-y-3">
-            <motion.a
-              href="mailto:hello@advertio.com"
-              className="block text-lg font-semibold text-white transition-colors"
-            >
-              hello@advertio.com
-            </motion.a>
-            <motion.a
-              href="https://wa.me/1234567890"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block text-lg text-white/70 transition-colors"
-            >
-              WhatsApp · +1 (234) 567-890
-            </motion.a>
-          </div>
-        </motion.div>
-
+      <div className="relative max-w-[1500px] mx-auto grid grid-cols-1 lg:grid-cols-1 gap-10 items-stretch">
         <motion.form
           onSubmit={handleSubmit}
           className="relative rounded-[36px] border border-white/20 shadow-[0_25px_80px_rgba(0,0,0,0.4)] p-8 md:p-10"

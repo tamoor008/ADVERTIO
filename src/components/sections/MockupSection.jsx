@@ -24,7 +24,7 @@ const MockupSection = () => {
   return (
     <motion.section
       ref={sectionRef}
-      className="relative z-10 py-28 px-6 lg:px-8 bg-gradient-to-b from-white via-[#F6F7FF] to-white w-full overflow-hidden"
+      className="relative z-10 py-8 md:py-28 px-6 lg:px-8 bg-gradient-to-b from-white via-[#F6F7FF] to-white w-full overflow-hidden"
       initial={{ opacity: 0 }}
       animate={isInView ? { opacity: 1 } : { opacity: 0 }}
       transition={{ duration: 0.8 }}

@@ -5,7 +5,7 @@ import playButton from '../../assets/play-buttons.png';
 
 const VideoSection3D = () => {
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: false, amount: 0.1, margin: '-100px' });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.1, margin: '-100px' });
   const [playingVideo, setPlayingVideo] = useState(null);
 
   const videos = [
@@ -45,7 +45,7 @@ const VideoSection3D = () => {
   return (
     <motion.section
       ref={sectionRef}
-      className="relative z-10 pt-8 pb-32 overflow-visible bg-gradient-to-b from-white/50 via-white/70 to-white/90 w-full"
+      className="relative z-10 pt-0 md:pt-8 pb-12 md:pb-32 overflow-visible bg-gradient-to-b from-white/50 via-white/70 to-white/90 w-full"
       initial={{ opacity: 1 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.3 }}

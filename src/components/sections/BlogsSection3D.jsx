@@ -62,7 +62,7 @@ const BlogsSection3D = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative z-10 pt-8 pb-0 md:pb-32 overflow-visible bg-gradient-to-b from-white/50 via-white/70 to-white/90 w-full"
+      className="relative z-10 pt-12 md:pt-8 pb-0 md:pb-52 overflow-visible bg-gradient-to-b from-white/50 via-white/70 to-white/90 w-full"
       style={{ minHeight: '900px' }}
     >
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

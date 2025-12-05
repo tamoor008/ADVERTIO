@@ -444,7 +444,7 @@ const Blogs = () => {
       </motion.section>
 
       {/* Contact Info Cards Section */}
-      <section ref={contactInfoRef} className="relative py-20 px-6 z-30 bg-white/90">
+      <section ref={contactInfoRef} className="relative py-8 md:py-20 px-6 z-30 bg-white/90">
         <div className="container mx-auto max-w-7xl">
           <motion.div
             className="text-center mb-12"
