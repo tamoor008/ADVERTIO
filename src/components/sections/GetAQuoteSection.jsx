@@ -1,10 +1,16 @@
 import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import favicon from '../../assets/favicon.JPG';
 
 const GetAQuoteSection = () => {
   const sectionRef = useRef(null);
+  const navigate = useNavigate();
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+
+  const handleGetQuote = () => {
+    navigate('/contact');
+  };
 
   return (
     <motion.section
@@ -63,6 +69,7 @@ const GetAQuoteSection = () => {
               
               {/* Ball Button */}
               <motion.button
+                onClick={handleGetQuote}
                 className="absolute z-20 rounded-full bg-gradient-to-br from-primary via-[#ff6b4a] to-[#e94f37] text-white font-bold text-xs md:text-sm px-3 py-2 md:px-4 md:py-2.5 border-2 border-white/30 cursor-pointer flex items-center justify-center"
                 style={{
                   left: 'calc(21% - 40px)',
@@ -100,6 +107,7 @@ const GetAQuoteSection = () => {
             
             {/* Mobile Ball Button */}
             <motion.button
+              onClick={handleGetQuote}
               className="absolute z-20 rounded-full bg-gradient-to-br from-primary via-[#ff6b4a] to-[#e94f37] text-white font-bold text-xs px-3 py-2 border-2 border-white/30 cursor-pointer flex items-center justify-center shadow-lg"
               style={{
                 left: 'calc(18% - 35px)',
