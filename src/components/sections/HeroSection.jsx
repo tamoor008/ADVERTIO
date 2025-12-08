@@ -1,9 +1,10 @@
+'use client'
+
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import advertioLogo from '../../assets/logo-Advertio.png';
 import { heroBadges, heroModes, staticHeroLinePoints, staticHeroSignals } from './constants';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -118,7 +119,7 @@ const HeroSection = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <Link
-                  to="/free-audit"
+                  href="/free-audit"
                   className="px-8 py-4 bg-primary text-white font-semibold rounded-full shadow-xl shadow-primary/30 hover:bg-primary/90 transition-colors inline-block"
                 >
                   Get Free Audit
@@ -129,7 +130,7 @@ const HeroSection = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 <Link
-                  to="/services/performance-marketing"
+                  href="/services/performance-marketing"
                   className="px-8 py-4 border-2 border-primary text-primary font-semibold rounded-full bg-white/80 backdrop-blur hover:bg-primary/10 transition-colors inline-block"
                 >
                   Learn More
@@ -153,7 +154,7 @@ const HeroSection = () => {
             <div className="relative rounded-[36px] border border-white/10 p-10 w-full">
               <div className="flex items-start justify-between mb-6">
                 <div>
-                  <img src={advertioLogo} alt="Advertio logo" className="h-12 object-contain -mb-3" loading="lazy" />
+                  <img src="/logo-Advertio.png" alt="Advertio logo" className="h-12 object-contain -mb-3" loading="lazy" />
                   <p className="text-3xl font-black text-[#253E5C]">Advertio Launch Sprint</p>
                 </div>
                 <div className="text-right">

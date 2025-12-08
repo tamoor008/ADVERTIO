@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CALENDLY_CONFIG } from '../../config/calendly.config';
@@ -6,6 +8,8 @@ const BookMeetingButton = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;

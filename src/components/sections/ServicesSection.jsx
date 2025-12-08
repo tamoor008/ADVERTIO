@@ -1,15 +1,17 @@
+'use client'
+
 import { useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import { servicesList } from './constants';
 
 const ServicesSection = ({ expanded, setExpanded }) => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleServiceClick = (serviceId) => {
-    navigate(`/services/${serviceId}`);
+    router.push(`/services/${serviceId}`);
   };
 
   return (

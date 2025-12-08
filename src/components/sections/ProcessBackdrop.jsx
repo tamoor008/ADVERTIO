@@ -1,25 +1,16 @@
 import { useState } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
-import favicon from '../../assets/favicon.JPG';
 import { processSteps, processLabels, processLabelsSplit } from './constants';
 
-// Process icons imports
-import storeAnalysisIcon from '../../assets/Store-analysis.png';
-import growthStrategyIcon from '../../assets/Growht-Strategy.png';
-import multiChannelIcon from '../../assets/multi-channel.png';
-import contentCreatorIcon from '../../assets/content-creator.png';
-import campaignLaunchIcon from '../../assets/compaign-launch.png';
-import performanceIcon from '../../assets/performance.png';
-import analyticsIcon from '../../assets/analytics.png';
-
+// Process icons from public folder
 const processIcons = [
-  storeAnalysisIcon,
-  growthStrategyIcon,
-  multiChannelIcon,
-  contentCreatorIcon,
-  campaignLaunchIcon,
-  performanceIcon,
-  analyticsIcon,
+  '/Store-analysis.png',
+  '/Growht-Strategy.png',
+  '/multi-channel.png',
+  '/content-creator.png',
+  '/compaign-launch.png',
+  '/performance.png',
+  '/analytics.png',
 ];
 
 const ProcessBackdrop = () => {
@@ -367,7 +358,7 @@ const ProcessBackdrop = () => {
                 );
               })()}
               <img 
-                src={favicon} 
+                src="/logo-Advertio.png" 
                 alt="Advertio Logo" 
                 className="w-full h-full object-contain rounded-full relative z-10"
                 loading="lazy"

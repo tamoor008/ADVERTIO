@@ -1,7 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
-import favicon from '../../assets/favicon.JPG';
-import playButton from '../../assets/play-buttons.png';
 
 const VideoSection3D = () => {
   const sectionRef = useRef(null);
@@ -103,7 +101,7 @@ const VideoSection3D = () => {
         >
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <img
-              src={favicon}
+              src="/favicon.JPG"
               alt="Background"
               className="w-full h-full max-w-[1400px] max-h-[1400px] object-contain"
               style={{
@@ -157,7 +155,7 @@ const VideoSection3D = () => {
                       }}
                     >
                       <img
-                        src={playButton}
+                        src="/play-buttons.png"
                         alt="Play"
                         className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]"
                         loading="lazy"

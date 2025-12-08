@@ -1,7 +1,12 @@
+'use client'
+
+'use client'
+
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Image from 'next/image';
 import talhaImage from '../assets/talha.jpg';
 import { servicesList } from '../components/sections/constants';
 
@@ -442,11 +447,13 @@ const About = () => {
               className="relative"
             >
               <div className="relative w-full aspect-[3/4] max-w-md mx-auto">
-                <img
+                <Image
                   src={talhaImage}
                   alt="Leadership"
-                  className="w-full h-full object-cover rounded-2xl shadow-2xl"
-                  loading="lazy"
+                  fill
+                  className="object-cover rounded-2xl shadow-2xl"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  priority={false}
                 />
               </div>
             </motion.div>
@@ -1525,17 +1532,19 @@ const ReviewsSection3D = () => {
                                   style={{ willChange: 'transform' }}
                                 >
                                   <motion.div
-                                    className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-4"
+                                    className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-4 relative"
                                     style={{ borderColor: review.color }}
                                     animate={{
                                       borderWidth: isHovered ? '5px' : '4px',
                                     }}
                                     transition={{ duration: 0.3 }}
                                   >
-                                    <img
+                                    <Image
                                       src={review.image}
                                       alt={review.name}
-                                      className="w-full h-full object-cover review-card-image"
+                                      fill
+                                      className="object-cover review-card-image"
+                                      sizes="(max-width: 768px) 64px, 80px"
                                     />
                                   </motion.div>
                                   {/* Animated Ring */}

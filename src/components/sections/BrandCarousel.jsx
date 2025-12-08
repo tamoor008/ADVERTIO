@@ -1,53 +1,32 @@
+'use client'
+
 import { motion } from 'framer-motion';
 
-// Brand images imports
-import baileyMercer from '../../assets/bailey mercer.png';
-import celvora from '../../assets/Celvora.png';
-import customizology from '../../assets/customizology.jpg';
-import donior from '../../assets/donior new logo  (1).png';
-import glamboon from '../../assets/glamboon.jpg';
-import gloet from '../../assets/Gloet.jpeg';
-import htFinds from '../../assets/HT Finds.png';
-import infiniteage from '../../assets/infiniteage.jpeg';
-import lr from '../../assets/LR.jpeg';
-import naturelox from '../../assets/naturelox.jpeg';
-import neuroreform from '../../assets/neuroreform.jpg';
-import novelle from '../../assets/Novelle.png';
-import outdoorplay from '../../assets/outdoorplay.png';
-import palm from '../../assets/Palm v2.png';
-import sarwayush from '../../assets/sarwayush.jpeg';
-import smartykat from '../../assets/smartykat.jpeg';
-import ssLogo from '../../assets/ss logo bgr (1).jpg';
-import techhunts from '../../assets/techhunts.jpg';
-import valueMakers from '../../assets/Value makers .png';
-import vikingbags from '../../assets/vikingbags.jpeg';
-import xoegan from '../../assets/xoegan.png';
-import zhanng from '../../assets/zhanng.jpg';
-
 const BrandCarousel = () => {
+  // Brand images from public folder
   const brandImages = [
-    baileyMercer,
-    celvora,
-    customizology,
-    donior,
-    glamboon,
-    gloet,
-    htFinds,
-    infiniteage,
-    lr,
-    naturelox,
-    neuroreform,
-    novelle,
-    outdoorplay,
-    palm,
-    sarwayush,
-    smartykat,
-    ssLogo,
-    techhunts,
-    valueMakers,
-    vikingbags,
-    xoegan,
-    zhanng,
+    '/bailey mercer.png',
+    '/Celvora.png',
+    '/customizology.jpg',
+    '/donior new logo  (1).png',
+    '/glamboon.jpg',
+    '/Gloet.jpeg',
+    '/HT Finds.png',
+    '/infiniteage.jpeg',
+    '/LR.jpeg',
+    '/naturelox.jpeg',
+    '/neuroreform.jpg',
+    '/Novelle.png',
+    '/outdoorplay.png',
+    '/Palm v2.png',
+    '/sarwayush.jpeg',
+    '/smartykat.jpeg',
+    '/ss logo bgr (1).jpg',
+    '/techhunts.jpg',
+    '/Value makers .png',
+    '/vikingbags.jpeg',
+    '/xoegan.png',
+    '/zhanng.jpg',
   ];
 
   return (

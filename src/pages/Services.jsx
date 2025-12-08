@@ -1,8 +1,10 @@
+'use client'
+
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -92,7 +94,7 @@ const Services = () => {
               whileHover={{ y: -10, rotateY: 5 }}
               className="group"
             >
-              <Link to={service.link}>
+              <Link href={service.link}>
                 <div className="bg-dark/50 backdrop-blur-md p-8 rounded-2xl border border-white/10 hover:border-primary/50 transition-all h-full">
                   <div className="text-6xl mb-6 group-hover:scale-110 transition-transform">
                     {service.icon}

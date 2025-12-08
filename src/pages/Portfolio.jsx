@@ -1,6 +1,3 @@
-import { useEffect, useRef, useState, useMemo, memo, useCallback } from 'react';
-import { motion, AnimatePresence, useInView } from 'framer-motion';
-import { Link } from 'react-router-dom';
 
 // Brand images imports
 import baileyMercer from '../assets/bailey mercer.png';

@@ -1,5 +1,8 @@
+'use client'
+
 import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
+import Image from 'next/image';
 import mockup1 from '../../assets/mockups1.png';
 import mockup2 from '../../assets/mockups2.png';
 import mockup3 from '../../assets/Mockup3.png';
@@ -104,11 +107,12 @@ const MockupSection = () => {
               >
                 {/* Mockup Image */}
                 <div className="relative aspect-[4/3] overflow-hidden">
-                  <img
+                  <Image
                     src={mockup.image}
                     alt={mockup.title}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    loading="lazy"
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
                   />
                 </div>
               </motion.div>

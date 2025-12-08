@@ -45,14 +45,15 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  #root {
+  /* Next.js doesn't use #root, so we apply styles directly to body and html */
+  html, body {
     background-color: #FFFFFF !important;
     background: #FFFFFF !important;
     min-height: 100vh;
   }
 
   /* Ensure all page containers have white background */
-  body > #root > div {
+  body > div {
     background-color: #FFFFFF !important;
     background: #FFFFFF !important;
   }

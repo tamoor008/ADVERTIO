@@ -1,12 +1,12 @@
 import { useRef } from 'react';
 import { useInView } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/router';
 
 const BlogsSection3D = () => {
   const sectionRef = useRef(null);
   const scrollContainerRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const blogs = [
     {
@@ -204,7 +204,7 @@ const BlogsSection3D = () => {
           >
             <button
               type="button"
-              onClick={() => navigate('/blogs')}
+              onClick={() => router.push('/blogs')}
               className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-base font-semibold tracking-wide text-white shadow-lg shadow-black/10 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:-translate-y-0.5 active:scale-95"
               style={{ 
                 background: 'linear-gradient(135deg, #253E5C, #E94F37)',

@@ -1,0 +1,62 @@
+{
+  "pages/index.jsx -> ../components/sections/BlogsSection3D": {
+    "id": "pages/index.jsx -> ../components/sections/BlogsSection3D",
+    "files": [
+      "static/chunks/_pages-dir-browser_src_components_sections_BlogsSection3D_jsx.js"
+    ]
+  },
+  "pages/index.jsx -> ../components/sections/BrandCarousel": {
+    "id": "pages/index.jsx -> ../components/sections/BrandCarousel",
+    "files": [
+      "static/chunks/_pages-dir-browser_src_components_sections_BrandCarousel_jsx.js"
+    ]
+  },
+  "pages/index.jsx -> ../components/sections/ContactSection3D": {
+    "id": "pages/index.jsx -> ../components/sections/ContactSection3D",
+    "files": [
+      "static/chunks/_pages-dir-browser_src_components_sections_ContactSection3D_jsx.js"
+    ]
+  },
+  "pages/index.jsx -> ../components/sections/FAQSection3D": {
+    "id": "pages/index.jsx -> ../components/sections/FAQSection3D",
+    "files": [
+      "static/chunks/_pages-dir-browser_src_components_sections_FAQSection3D_jsx.js"
+    ]
+  },
+  "pages/index.jsx -> ../components/sections/GetAQuoteSection": {
+    "id": "pages/index.jsx -> ../components/sections/GetAQuoteSection",
+    "files": [
+      "static/chunks/_pages-dir-browser_src_components_sections_GetAQuoteSection_jsx.js"
+    ]
+  },
+  "pages/index.jsx -> ../components/sections/MockupSection": {
+    "id": "pages/index.jsx -> ../components/sections/MockupSection",
+    "files": [
+      "static/chunks/_pages-dir-browser_src_components_sections_MockupSection_jsx.js"
+    ]
+  },
+  "pages/index.jsx -> ../components/sections/ReviewsSection3D": {
+    "id": "pages/index.jsx -> ../components/sections/ReviewsSection3D",
+    "files": [
+      "static/chunks/_pages-dir-browser_src_components_sections_ReviewsSection3D_jsx.js"
+    ]
+  },
+  "pages/index.jsx -> ../components/sections/TeamSection": {
+    "id": "pages/index.jsx -> ../components/sections/TeamSection",
+    "files": [
+      "static/chunks/_pages-dir-browser_src_components_sections_TeamSection_jsx.js"
+    ]
+  },
+  "pages/index.jsx -> ../components/sections/VideoSection3D": {
+    "id": "pages/index.jsx -> ../components/sections/VideoSection3D",
+    "files": [
+      "static/chunks/_pages-dir-browser_src_components_sections_VideoSection3D_jsx.js"
+    ]
+  },
+  "pages/index.jsx -> ../components/sections/WhyChooseAdvertio": {
+    "id": "pages/index.jsx -> ../components/sections/WhyChooseAdvertio",
+    "files": [
+      "static/chunks/_pages-dir-browser_src_components_sections_WhyChooseAdvertio_jsx.js"
+    ]
+  }
+}

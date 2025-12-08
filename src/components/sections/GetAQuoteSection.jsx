@@ -1,15 +1,16 @@
+'use client'
+
 import { useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import { motion, useInView } from 'framer-motion';
-import favicon from '../../assets/favicon.JPG';
 
 const GetAQuoteSection = () => {
   const sectionRef = useRef(null);
-  const navigate = useNavigate();
+  const router = useRouter();
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
   const handleGetQuote = () => {
-    navigate('/contact');
+    router.push('/contact');
   };
 
   return (
@@ -61,7 +62,7 @@ const GetAQuoteSection = () => {
           <div className="relative z-10">
             <div className="relative">
               <img
-                src={favicon}
+                src="/favicon.JPG"
                 alt="Dolphin"
                 className="w-64 md:w-80 h-auto object-contain relative z-10"
                 loading="lazy"
@@ -99,7 +100,7 @@ const GetAQuoteSection = () => {
         <div className="relative z-10">
           <div className="relative">
             <img
-              src={favicon}
+              src="/favicon.JPG"
               alt="Dolphin"
               className="w-48 h-auto object-contain relative z-10"
               loading="lazy"

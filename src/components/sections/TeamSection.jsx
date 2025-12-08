@@ -1,8 +1,5 @@
 import { useRef, useState } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
-import talhaImage from '../../assets/talha.jpg';
-import tabishImage from '../../assets/tabish.jpg';
-import seoImage from '../../assets/SEO.jpg';
 
 const TeamSection = () => {
   const sectionRef = useRef(null);
@@ -16,7 +13,7 @@ const TeamSection = () => {
       role: 'Founder & CEO',
       bio: 'Leading innovative campaigns with a passion for storytelling and brand transformation.',
       expertise: ['Brand Strategy', 'Creative Direction', 'Campaign Design'],
-      image: talhaImage,
+      image: '/talha.jpg',
     },
     {
       id: 2,
@@ -24,7 +21,7 @@ const TeamSection = () => {
       role: 'Creative Director',
       bio: 'Driving data-driven growth strategies that deliver measurable results for e-commerce brands.',
       expertise: ['Performance Marketing', 'Growth Strategy', 'Analytics'],
-      image: tabishImage,
+      image: '/tabish.jpg',
     },
     {
       id: 3,
@@ -32,7 +29,7 @@ const TeamSection = () => {
       role: 'SEO consultant',
       bio: 'Building immersive digital experiences with cutting-edge technology and creative solutions.',
       expertise: ['Web Development', '3D Design', 'Technical Innovation'],
-      image: seoImage,
+      image: '/SEO.jpg',
     },
     {
       id: 4,

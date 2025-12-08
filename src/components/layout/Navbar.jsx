@@ -1,19 +1,20 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { motion, AnimatePresence } from 'framer-motion';
-import brandLogo from '../../assets/logo-Advertio.png';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesHovered, setIsServicesHovered] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
-  const [viewportHeight, setViewportHeight] = useState(window.innerHeight);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [viewportHeight, setViewportHeight] = useState(typeof window !== 'undefined' ? window.innerHeight : 1000);
+  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 768 : false);
   const servicesDropdownRef = useRef(null);
-  const location = useLocation();
+  const router = useRouter();
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
@@ -23,6 +24,7 @@ const Navbar = () => {
 
   // Get viewport height and handle resize
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const updateViewportHeight = () => {
       setViewportHeight(window.innerHeight);
     };
@@ -39,6 +41,7 @@ const Navbar = () => {
 
   // Track mobile/desktop for logo scaling
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
@@ -78,9 +81,9 @@ const Navbar = () => {
       transition={{ duration: 0.6 }}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
-        <Link to="/" className="flex items-center">
+        <Link href="/" className="flex items-center">
           <motion.img
-            src={brandLogo}
+            src="/logo-Advertio.png"
             alt="Advertio"
             className="h-24 md:h-40 -my-14 object-contain drop-shadow-[0_8px_32px_rgba(0,0,0,0.55)]"
             style={{ 
@@ -101,13 +104,13 @@ const Navbar = () => {
             transition={{ type: 'spring', stiffness: 400, damping: 17 }}
           >
             <Link
-              to="/"
+              href="/"
               className={`relative text-sm font-medium transition-colors ${
-                location.pathname === '/' ? 'text-primary' : 'text-slate-900/90 hover:text-primary'
+                router.pathname === '/' ? 'text-primary' : 'text-slate-900/90 hover:text-primary'
               }`}
             >
               Home
-              {location.pathname === '/' && (
+              {router.pathname === '/' && (
                 <motion.div
                   className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
                   layoutId="navbar-indicator"
@@ -127,7 +130,7 @@ const Navbar = () => {
           >
             <div
               className={`relative text-sm font-medium transition-colors cursor-pointer flex items-center gap-1.5 ${
-                location.pathname.startsWith('/services/') ? 'text-primary' : 'text-slate-900/90 hover:text-primary'
+                router.pathname.startsWith('/services/') ? 'text-primary' : 'text-slate-900/90 hover:text-primary'
               }`}
             >
               Services
@@ -150,7 +153,7 @@ const Navbar = () => {
                   />
                 </svg>
               </motion.div>
-              {location.pathname.startsWith('/services/') && (
+              {router.pathname.startsWith('/services/') && (
                 <motion.div
                   className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
                   layoutId="navbar-indicator"
@@ -189,7 +192,7 @@ const Navbar = () => {
                             className="h-full"
                           >
                             <Link
-                              to={`/services/${service.id}`}
+                              href={`/services/${service.id}`}
                               className="block p-5 rounded-xl bg-gradient-to-br from-white to-slate-50 border border-slate-200/50 hover:border-primary/50 shadow-[0_4px_16px_rgba(37,62,92,0.25)] hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 group h-full relative overflow-hidden"
                               onClick={() => setIsServicesHovered(false)}
                             >
@@ -240,13 +243,13 @@ const Navbar = () => {
               transition={{ type: 'spring', stiffness: 400, damping: 17 }}
             >
               <Link
-                to={link.path}
+                href={link.path}
                 className={`relative text-sm font-medium transition-colors ${
-                  location.pathname === link.path ? 'text-primary' : 'text-slate-900/90 hover:text-primary'
+                  router.pathname === link.path ? 'text-primary' : 'text-slate-900/90 hover:text-primary'
                 }`}
               >
                 {link.label}
-                {location.pathname === link.path && (
+                {router.pathname === link.path && (
                   <motion.div
                     className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
                     layoutId="navbar-indicator"
@@ -261,7 +264,7 @@ const Navbar = () => {
             transition={{ type: 'spring', stiffness: 400, damping: 17 }}
           >
             <Link
-              to="/free-audit"
+              href="/free-audit"
               className="px-6 py-2.5 rounded-full text-white text-sm font-bold transition-all border border-white/20 hover:shadow-lg hover:shadow-primary/50 hover:brightness-110 block"
               style={{
                 background: 'linear-gradient(135deg, rgba(233, 79, 55, 1) 0%, rgb(0, 37, 82) 50%, rgba(233, 79, 55, 1) 100%)'
@@ -302,7 +305,7 @@ const Navbar = () => {
                 transition={{ type: 'spring', stiffness: 400, damping: 17 }}
               >
                 <Link
-                  to="/free-audit"
+                  href="/free-audit"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="px-6 py-2.5 rounded-full text-white text-sm font-bold transition-all text-center border border-white/20 hover:shadow-lg hover:shadow-primary/50 hover:brightness-110 block"
                   style={{
@@ -319,10 +322,10 @@ const Navbar = () => {
                 transition={{ type: 'spring', stiffness: 400, damping: 17 }}
               >
                 <Link
-                  to="/"
+                  href="/"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`text-sm font-medium transition-colors ${
-                    location.pathname === '/' ? 'text-primary' : 'text-slate-900/80 hover:text-primary'
+                    router.pathname === '/' ? 'text-primary' : 'text-slate-900/80 hover:text-primary'
                   }`}
                 >
                   Home
@@ -337,10 +340,10 @@ const Navbar = () => {
                   transition={{ type: 'spring', stiffness: 400, damping: 17 }}
                 >
                   <Link
-                    to={link.path}
+                    href={link.path}
                     onClick={() => setIsMobileMenuOpen(false)}
                     className={`text-sm font-medium transition-colors ${
-                      location.pathname === link.path ? 'text-primary' : 'text-slate-900/80 hover:text-primary'
+                      router.pathname === link.path ? 'text-primary' : 'text-slate-900/80 hover:text-primary'
                     }`}
                   >
                     {link.label}
@@ -395,17 +398,17 @@ const Navbar = () => {
                             transition={{ delay: index * 0.05, duration: 0.2 }}
                           >
                             <Link
-                              to={`/services/${service.id}`}
+                              href={`/services/${service.id}`}
                               onClick={() => {
                                 setIsMobileMenuOpen(false);
                                 setIsMobileServicesOpen(false);
                               }}
                               className={`block p-4 rounded-xl bg-gradient-to-br from-white to-slate-50 border border-slate-200/50 shadow-sm hover:shadow-md hover:border-primary/50 transition-all duration-300 ${
-                                location.pathname === `/services/${service.id}` ? 'border-primary/50 shadow-md' : ''
+                                router.pathname === `/services/${service.id}` ? 'border-primary/50 shadow-md' : ''
                               }`}
                             >
                               <h3 className={`text-sm font-bold mb-1.5 ${
-                                location.pathname === `/services/${service.id}` ? 'text-primary' : 'text-slate-900'
+                                router.pathname === `/services/${service.id}` ? 'text-primary' : 'text-slate-900'
                               }`}>
                                 {service.title}
                               </h3>

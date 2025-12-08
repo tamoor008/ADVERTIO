@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { servicesList } from '../components/sections/constants';
