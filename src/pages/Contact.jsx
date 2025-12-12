@@ -145,7 +145,7 @@ const Contact = () => {
       ),
       label: 'Email',
       value: 'info@advertio.com',
-      href: 'mailto:info@advertio.com',
+      href: 'https://mail.google.com/mail/?view=cm&to=info@advertio.com',
       color: '#E94F37',
     },
     {
