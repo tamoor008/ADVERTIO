@@ -1,3 +1,8 @@
+'use client'
+
+import { memo, useRef, useState } from 'react';
+import { motion, useInView } from 'framer-motion';
+import Link from 'next/link';
 
 // Brand images imports
 import baileyMercer from '../assets/bailey mercer.png';
@@ -788,10 +793,10 @@ const Portfolio = () => {
               Ready to Start Your Project?
             </h2>
             <p className="text-xl text-[#253E5C]/80 mb-8">
-              Let's create something amazing together. Get in touch with our team today.
+              Let&apos;s create something amazing together. Get in touch with our team today.
             </p>
             <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-              <Link to="/contact">
+              <Link href="/contact">
                 <motion.button
                   className="px-8 py-4 rounded-2xl text-white font-semibold text-lg bg-gradient-to-r from-primary to-[#ff6b4a] shadow-lg shadow-primary/40"
                   whileHover={{ scale: 1.05, boxShadow: '0 10px 40px rgba(233, 79, 55, 0.5)' }}
@@ -800,7 +805,7 @@ const Portfolio = () => {
                   Get Started
                 </motion.button>
               </Link>
-              <Link to="/services">
+              <Link href="/services">
                 <motion.button
                   className="px-8 py-4 rounded-2xl text-[#253E5C] font-semibold text-lg bg-white/80 backdrop-blur-md border-2 border-[#253E5C]/20 hover:border-primary/50"
                   whileHover={{ scale: 1.05 }}
