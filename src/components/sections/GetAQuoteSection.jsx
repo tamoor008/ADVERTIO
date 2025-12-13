@@ -120,7 +120,7 @@ const GetAQuoteSection = () => {
       animate={isInView ? { opacity: 1 } : { opacity: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <div className="relative w-full px-6 md:px-8 lg:px-12 max-w-7xl mx-auto">
+      <div className="relative w-full px-6 md:px-8 lg:px-12 max-w-7xl mx-auto overflow-x-hidden">
         {/* Section Header */}
         <motion.div
           className="text-center mb-8 md:mb-12 max-w-4xl mx-auto"
@@ -152,7 +152,7 @@ const GetAQuoteSection = () => {
         </motion.div>
 
         {/* Two Column Layout: Dolphin Left + Formula Right */}
-        <div ref={gridRef} className="relative grid grid-cols-2 md:grid-cols-2 gap-4 md:gap-12 items-start md:items-center">
+        <div ref={gridRef} className="relative grid grid-cols-2 md:grid-cols-2 gap-4 md:gap-4 lg:gap-12 items-start md:items-center">
           {/* Curved Arrow from DTC Brand to Get Quote Button - Desktop Only */}
           <motion.svg
             className="hidden md:block absolute z-5 pointer-events-none"
@@ -240,19 +240,19 @@ const GetAQuoteSection = () => {
 
           {/* Right Side: Value Proposition Formula */}
           <motion.div
-            className="relative p-2 md:p-12"
+            className="relative p-2 md:p-4 lg:p-12"
                         initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
             {/* Content */}
             <div className="relative z-10">
-              <div className="flex flex-col md:flex-row items-start md:items-center justify-center gap-2 md:gap-6 lg:gap-8 overflow-x-auto pb-4 md:pb-0">
+              <div className="flex flex-col md:flex-row items-start md:items-center justify-center gap-2 md:gap-3 lg:gap-8 overflow-x-auto md:overflow-x-visible pb-4 md:pb-0">
                 {/* Your DTC Brand */}
-                <div ref={dtcBrandRef} className="flex flex-row md:flex-col items-center gap-2 md:gap-3">
-                  <div className="w-16 h-16 md:w-24 md:h-24 border-2 border-[#253E5C] rounded-lg flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40">
+                <div ref={dtcBrandRef} className="flex flex-row md:flex-col items-center gap-2 md:gap-3 flex-shrink-0">
+                  <div className="w-16 h-16 md:w-20 lg:w-24 md:h-20 lg:h-24 border-2 border-[#253E5C] rounded-lg flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40">
                     {/* Shopping bag/Store icon for DTC Brand */}
-                    <svg className="w-8 h-8 md:w-12 md:h-12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg className="w-8 h-8 md:w-10 lg:w-12 md:h-10 lg:h-12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M8 12V26C8 27.1 8.9 28 10 28H22C23.1 28 24 27.1 24 26V12" stroke="white" strokeWidth="2" strokeLinecap="round"/>
                       <path d="M12 12V8C12 6.9 12.9 6 14 6H18C19.1 6 20 6.9 20 8V12" stroke="white" strokeWidth="2" strokeLinecap="round"/>
                       <path d="M8 12H24" stroke="white" strokeWidth="2" strokeLinecap="round"/>
@@ -264,13 +264,13 @@ const GetAQuoteSection = () => {
                 </div>
 
                 {/* Plus Sign */}
-                <div className="text-[#253E5C] text-2xl md:text-4xl font-bold self-center md:self-start mt-0 md:mt-16">+</div>
+                <div className="text-[#253E5C] text-2xl md:text-3xl lg:text-4xl font-bold self-center md:self-start mt-0 md:mt-16 flex-shrink-0">+</div>
 
                 {/* Our Performance Marketing Team */}
-                <div ref={performanceCardRef} className="flex flex-row md:flex-col items-center gap-2 md:gap-3 mt-0 md:mt-11">
-                  <div className="w-16 h-16 md:w-24 md:h-24 border-2 border-[#253E5C] rounded-full flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40">
+                <div ref={performanceCardRef} className="flex flex-row md:flex-col items-center gap-2 md:gap-3 mt-0 md:mt-11 flex-shrink-0">
+                  <div className="w-16 h-16 md:w-20 lg:w-24 md:h-20 lg:h-24 border-2 border-[#253E5C] rounded-full flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40">
                     {/* Analytics/Chart icon for Performance Marketing */}
-                    <svg className="w-8 h-8 md:w-12 md:h-12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg className="w-8 h-8 md:w-10 lg:w-12 md:h-10 lg:h-12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M6 26V20H10V26H6Z" fill="white"/>
                       <path d="M12 26V14H16V26H12Z" fill="white"/>
                       <path d="M18 26V18H22V26H18Z" fill="white"/>
@@ -282,13 +282,13 @@ const GetAQuoteSection = () => {
                 </div>
 
                 {/* Equals Sign */}
-                <div className="text-[#253E5C] text-2xl md:text-4xl font-bold self-center md:self-start mt-0 md:mt-16">=</div>
+                <div className="text-[#253E5C] text-2xl md:text-3xl lg:text-4xl font-bold self-center md:self-start mt-0 md:mt-16 flex-shrink-0">=</div>
 
                 {/* Result */}
-                <div className="flex flex-row md:flex-col items-center gap-2 md:gap-3 mt-0 md:mt-6">
-                  <div className="w-16 h-16 md:w-24 md:h-24 border-2 border-[#253E5C] rounded-full flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40">
+                <div className="flex flex-row md:flex-col items-center gap-2 md:gap-3 mt-0 md:mt-6 flex-shrink-0">
+                  <div className="w-16 h-16 md:w-20 lg:w-24 md:h-20 lg:h-24 border-2 border-[#253E5C] rounded-full flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40">
                     {/* Growth/Upward trend chart for ROAS Consistent Growth */}
-                    <svg className="w-8 h-8 md:w-12 md:h-12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg className="w-8 h-8 md:w-10 lg:w-12 md:h-10 lg:h-12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M6 24L12 16L18 20L26 8" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                       <path d="M22 8H26V12" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                       <circle cx="6" cy="24" r="1.5" fill="white"/>
