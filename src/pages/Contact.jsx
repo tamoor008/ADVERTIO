@@ -223,7 +223,7 @@ const Contact = () => {
                 maxWidth: '100%',
               }}
             >
-              Let's Create Something Amazing
+              Let&apos;s Create Something Amazing
             </motion.h1>
             
             <motion.p
@@ -232,7 +232,7 @@ const Contact = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-xl md:text-2xl text-[#253E5C]/80 leading-relaxed px-4 sm:px-6 md:px-8"
             >
-              Ready to transform your digital presence? Reach out and let's discuss your next big project.
+              Ready to transform your digital presence? Reach out and let&apos;s discuss your next big project.
             </motion.p>
           </motion.div>
               </div>
@@ -352,7 +352,7 @@ const Contact = () => {
               Send Us a Message
             </h2>
             <p className="text-lg text-[#253E5C]/70 max-w-2xl mx-auto">
-              Fill out the form below and we'll get back to you within 24 hours
+              Fill out the form below and we&apos;ll get back to you within 24 hours
             </p>
           </motion.div>
 
@@ -662,7 +662,7 @@ const Contact = () => {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                   >
-                    Message received. We'll respond shortly.
+                    Message received. We&apos;ll respond shortly.
                   </motion.p>
                 )}
 

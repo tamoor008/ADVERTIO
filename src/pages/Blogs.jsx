@@ -461,7 +461,7 @@ const Blogs = () => {
               </span>
             </h2>
             <p className="text-[#253E5C]/70 text-lg max-w-2xl mx-auto">
-              Ready to transform your digital presence? Reach out and let's discuss your next big project.
+              Ready to transform your digital presence? Reach out and let&apos;s discuss your next big project.
             </p>
           </motion.div>
 
