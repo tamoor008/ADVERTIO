@@ -9,9 +9,12 @@ const GetAQuoteSection = () => {
   const gridRef = useRef(null);
   const dtcBrandRef = useRef(null);
   const buttonRef = useRef(null);
+  const performanceCardRef = useRef(null);
   const router = useRouter();
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
   const [pathData, setPathData] = useState('M 550 180 Q 450 100, 350 130 Q 250 150, 160 100');
+  const [mobilePathData, setMobilePathData] = useState('');
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const updatePath = () => {
@@ -34,10 +37,10 @@ const GetAQuoteSection = () => {
       const endY = ((buttonRect.top + buttonRect.height / 2 - gridRect.top) / gridRect.height) * viewBoxHeight;
 
       // Control points for a pronounced curve
-      const midX1 = startX - (startX - endX) * 0.2;
-      const midY1 = startY - 80; // Curve upward
+      const midX1 = startX - (startX - endX) * 0.44;
+      const midY1 = startY - 10; // Curve upward
       const midX2 = startX - (startX - endX) * 0.6;
-      const midY2 = startY - 50;
+      const midY2 = startY - 12;
       const midX3 = startX - (startX - endX) * 0.8;
       const midY3 = endY + 50;
 
@@ -48,6 +51,61 @@ const GetAQuoteSection = () => {
     window.addEventListener('resize', updatePath);
     return () => window.removeEventListener('resize', updatePath);
   }, [isInView]);
+
+  // Mobile path calculation: from DTC Brand card to Get Quote button
+  useEffect(() => {
+    const updateMobilePath = () => {
+      if (!gridRef.current || !dtcBrandRef.current || !buttonRef.current) return;
+      
+      // Only calculate on mobile screens
+      if (window.innerWidth >= 768) {
+        setMobilePathData('');
+        return;
+      }
+
+      const gridRect = gridRef.current.getBoundingClientRect();
+      const cardRect = dtcBrandRef.current.getBoundingClientRect();
+      const buttonRect = buttonRef.current.getBoundingClientRect();
+
+      // Calculate relative positions within the grid
+      const viewBoxWidth = 1000;
+      const viewBoxHeight = 800;
+
+      // Start point: left edge of DTC Brand card
+      const startX = ((cardRect.left - gridRect.left) / gridRect.width) * viewBoxWidth;
+      const startY = ((cardRect.top + cardRect.height / 2 - gridRect.top) / gridRect.height) * viewBoxHeight;
+
+      // End point: right edge of Get Quote button
+      const endX = ((buttonRect.left + buttonRect.width - gridRect.left) / gridRect.width) * viewBoxWidth;
+      const endY = ((buttonRect.top + buttonRect.height / 2 - gridRect.top) / gridRect.height) * viewBoxHeight;
+
+      // Create a smooth curved path with gentle curve
+      // Control points for a smoother, less sharp curve
+      const midX1 = startX - (startX - endX) * 0.35;
+      const midY1 = startY - 8; // Gentle curve upward
+      const midX2 = startX - (startX - endX) * 0.5;
+      const midY2 = startY - 6;
+      const midX3 = startX - (startX - endX) * 0.7;
+      const midY3 = endY + 35;
+
+      // Use quadratic Bezier curves for smooth curve
+      setMobilePathData(`M ${startX} ${startY} Q ${midX1} ${midY1}, ${midX2} ${midY2} Q ${midX3} ${midY3}, ${endX} ${endY}`);
+    };
+
+    updateMobilePath();
+    window.addEventListener('resize', updateMobilePath);
+    return () => window.removeEventListener('resize', updateMobilePath);
+  }, [isInView]);
+
+  // Track mobile state for button sizing
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleGetQuote = () => {
     router.push('/contact');
@@ -93,7 +151,7 @@ const GetAQuoteSection = () => {
         </motion.div>
 
         {/* Two Column Layout: Dolphin Left + Formula Right */}
-        <div ref={gridRef} className="relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+        <div ref={gridRef} className="relative grid grid-cols-2 md:grid-cols-2 gap-4 md:gap-12 items-start md:items-center">
           {/* Curved Arrow from DTC Brand to Get Quote Button - Desktop Only */}
           <motion.svg
             className="hidden md:block absolute z-5 pointer-events-none"
@@ -129,7 +187,7 @@ const GetAQuoteSection = () => {
             {/* Curved path: starts from left edge of DTC Brand icon (right column ~55%) to Get Quote button (left column ~16%) */}
             {/* Coordinates scale with viewBox (1000x400) for responsiveness */}
             <path
-              d="M 520 160 Q 450 100, 350 130 Q 250 150, 160 100"
+              d="M 555 170 Q 490 100, 350 130 Q 250 150, 160 100"
               stroke="#253E5C"
               strokeWidth="3"
               strokeDasharray="8,5"
@@ -139,9 +197,54 @@ const GetAQuoteSection = () => {
             />
           </motion.svg>
 
+          {/* Mobile: Curved Arrow from Performance Marketing Card to Get Quote Button */}
+          <motion.svg
+            className="md:hidden absolute z-5 pointer-events-none"
+            style={{
+              left: '0',
+              top: '0',
+              width: '100%',
+              height: '100%',
+              overflow: 'visible',
+            }}
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            viewBox="0 0 1000 800"
+            preserveAspectRatio="none"
+          >
+            <defs>
+              <marker
+                id="arrowhead-mobile"
+                markerWidth="22"
+                markerHeight="22"
+                refX="18"
+                refY="6.5"
+                orient="auto"
+                markerUnits="userSpaceOnUse"
+              >
+                <polygon
+                  points="0 0, 22 6.5, 0 13"
+                  fill="#253E5C"
+                />
+              </marker>
+            </defs>
+            {mobilePathData && (
+              <path
+                d={mobilePathData}
+                stroke="#253E5C"
+                strokeWidth="3"
+                strokeDasharray="8,5"
+                fill="none"
+                markerEnd="url(#arrowhead-mobile)"
+                opacity="1"
+              />
+            )}
+          </motion.svg>
+
           {/* Left Side: Dolphin and Ball Button */}
           <motion.div
-            className="relative flex items-center justify-center md:justify-start min-h-[300px] md:min-h-[400px]"
+            className="relative flex items-center justify-center md:justify-start min-h-[300px] md:min-h-[400px] mt-0 md:mt-0"
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
             transition={{ duration: 0.6, delay: 0.5 }}
@@ -151,7 +254,7 @@ const GetAQuoteSection = () => {
                 <img
                   src="/favicon.JPG"
                   alt="Dolphin"
-                  className="w-64 md:w-80 h-auto object-contain relative z-10"
+                  className="w-48 md:w-80 h-auto object-contain relative z-10"
                   loading="lazy"
                 />
                 
@@ -162,14 +265,14 @@ const GetAQuoteSection = () => {
                   className="absolute z-20 rounded-full bg-gradient-to-br from-primary via-[#ff6b4a] to-[#e94f37] text-white font-bold text-xs md:text-sm px-3 py-2 md:px-4 md:py-2.5 border-2 border-white/30 cursor-pointer flex items-center justify-center shadow-xl"
                   style={{
                     left: 'calc(28% - 2px)',
-                    bottom: '225px',
-                    width: '100px',
-                    height: '100px',
+                    bottom: isMobile ? '140px' : '225px',
+                    width: isMobile ? '80px' : '100px',
+                    height: isMobile ? '80px' : '100px',
                   }}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <span className="text-center leading-tight font-extrabold whitespace-nowrap">
+                  <span className="text-center leading-tight font-extrabold whitespace-nowrap text-xs md:text-sm">
                     Get a Quote
                   </span>
                 </motion.button>
@@ -179,19 +282,19 @@ const GetAQuoteSection = () => {
 
           {/* Right Side: Value Proposition Formula */}
           <motion.div
-            className="relative p-8 md:p-12 border-2 border-[#253E5C] rounded-xl bg-gradient-to-br from-primary via-[#ff6b4a] to-[#e94f37]"
+            className="relative p-2 md:p-12"
                         initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
             {/* Content */}
             <div className="relative z-10">
-              <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 lg:gap-8">
+              <div className="flex flex-col md:flex-row items-start md:items-center justify-center gap-2 md:gap-6 lg:gap-8 overflow-x-auto pb-4 md:pb-0">
                 {/* Your DTC Brand */}
-                <div ref={dtcBrandRef} className="flex flex-col items-center gap-3">
-                  <div className="w-16 h-16 md:w-20 md:h-20 border-2 border-[#253E5C] rounded-lg flex items-center justify-center relative bg-[#253E5C]">
+                <div ref={dtcBrandRef} className="flex flex-row md:flex-col items-center gap-2 md:gap-3">
+                  <div className="w-16 h-16 md:w-24 md:h-24 border-2 border-[#253E5C] rounded-lg flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40">
                     {/* Shopping bag/Store icon for DTC Brand */}
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg className="w-8 h-8 md:w-12 md:h-12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M8 12V26C8 27.1 8.9 28 10 28H22C23.1 28 24 27.1 24 26V12" stroke="white" strokeWidth="2" strokeLinecap="round"/>
                       <path d="M12 12V8C12 6.9 12.9 6 14 6H18C19.1 6 20 6.9 20 8V12" stroke="white" strokeWidth="2" strokeLinecap="round"/>
                       <path d="M8 12H24" stroke="white" strokeWidth="2" strokeLinecap="round"/>
@@ -199,17 +302,17 @@ const GetAQuoteSection = () => {
                       <circle cx="18" cy="19" r="1" fill="white"/>
                     </svg>
                   </div>
-                  <p className="text-white text-sm md:text-base font-semibold text-center">Your DTC Brand</p>
+                  <p className="text-[#253E5C] text-sm md:text-base font-semibold text-center">Your DTC Brand</p>
                 </div>
 
                 {/* Plus Sign */}
-                <div className="text-white text-3xl md:text-4xl font-bold self-start mt-12 md:mt-14">+</div>
+                <div className="text-[#253E5C] text-2xl md:text-4xl font-bold self-center md:self-start mt-0 md:mt-16">+</div>
 
                 {/* Our Performance Marketing Team */}
-                <div className="flex flex-col items-center gap-3 mt-6 md:mt-11">
-                  <div className="w-16 h-16 md:w-20 md:h-20 border-2 border-[#253E5C] rounded-full flex items-center justify-center relative bg-[#253E5C]">
+                <div ref={performanceCardRef} className="flex flex-row md:flex-col items-center gap-2 md:gap-3 mt-0 md:mt-11">
+                  <div className="w-16 h-16 md:w-24 md:h-24 border-2 border-[#253E5C] rounded-full flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40">
                     {/* Analytics/Chart icon for Performance Marketing */}
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg className="w-8 h-8 md:w-12 md:h-12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M6 26V20H10V26H6Z" fill="white"/>
                       <path d="M12 26V14H16V26H12Z" fill="white"/>
                       <path d="M18 26V18H22V26H18Z" fill="white"/>
@@ -217,17 +320,17 @@ const GetAQuoteSection = () => {
                       <line x1="6" y1="26" x2="28" y2="26" stroke="white" strokeWidth="2" strokeLinecap="round"/>
                     </svg>
                   </div>
-                  <p className="text-white text-sm md:text-base font-semibold text-center">Our Performance<br />Marketing Team</p>
+                  <p className="text-[#253E5C] text-sm md:text-base font-semibold text-center">Our Performance<br />Marketing Team</p>
                 </div>
 
                 {/* Equals Sign */}
-                <div className="text-white text-3xl md:text-4xl font-bold self-start mt-12 md:mt-14">=</div>
+                <div className="text-[#253E5C] text-2xl md:text-4xl font-bold self-center md:self-start mt-0 md:mt-16">=</div>
 
                 {/* Result */}
-                <div className="flex flex-col items-center gap-3 mt-4 md:mt-6">
-                  <div className="w-16 h-16 md:w-20 md:h-20 border-2 border-[#253E5C] rounded-full flex items-center justify-center relative bg-[#253E5C]">
+                <div className="flex flex-row md:flex-col items-center gap-2 md:gap-3 mt-0 md:mt-6">
+                  <div className="w-16 h-16 md:w-24 md:h-24 border-2 border-[#253E5C] rounded-full flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40">
                     {/* Growth/Upward trend chart for ROAS Consistent Growth */}
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg className="w-8 h-8 md:w-12 md:h-12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M6 24L12 16L18 20L26 8" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                       <path d="M22 8H26V12" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                       <circle cx="6" cy="24" r="1.5" fill="white"/>
@@ -236,68 +339,13 @@ const GetAQuoteSection = () => {
                       <circle cx="26" cy="8" r="1.5" fill="white"/>
                     </svg>
                   </div>
-                  <p className="text-white text-sm md:text-base font-bold text-center">5-7x ROAS<br />Consistent Growth</p>
+                  <p className="text-[#253E5C] text-sm md:text-base font-bold text-center">5-7x ROAS<br />Consistent Growth</p>
                 </div>
               </div>
             </div>
           </motion.div>
         </div>
 
-        {/* Mobile: Formula Section Below Dolphin */}
-        <motion.div
-          className="md:hidden relative p-8 mt-8 border-2 border-[#253E5C] rounded-xl bg-gradient-to-br from-primary via-[#ff6b4a] to-[#e94f37]"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
-        >
-          <div className="relative z-10">
-            <div className="flex items-center justify-center gap-4 overflow-x-auto pb-4">
-              <div className="flex flex-col items-center gap-2 min-w-[80px]">
-                <div className="w-14 h-14 border-2 border-[#253E5C] rounded-lg flex items-center justify-center bg-[#253E5C]">
-                  <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 12V26C8 27.1 8.9 28 10 28H22C23.1 28 24 27.1 24 26V12" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                    <path d="M12 12V8C12 6.9 12.9 6 14 6H18C19.1 6 20 6.9 20 8V12" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                    <path d="M8 12H24" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                    <circle cx="14" cy="19" r="1" fill="white"/>
-                    <circle cx="18" cy="19" r="1" fill="white"/>
-                  </svg>
-                </div>
-                <p className="text-white text-xs font-semibold text-center">Your DTC Brand</p>
-              </div>
-
-              <div className="text-white text-2xl font-bold self-start mt-10">+</div>
-
-              <div className="flex flex-col items-center gap-2 min-w-[80px]">
-                <div className="w-14 h-14 border-2 border-[#253E5C] rounded-full flex items-center justify-center bg-[#253E5C]">
-                  <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6 26V20H10V26H6Z" fill="white"/>
-                    <path d="M12 26V14H16V26H12Z" fill="white"/>
-                    <path d="M18 26V18H22V26H18Z" fill="white"/>
-                    <path d="M24 26V10H28V26H24Z" fill="white"/>
-                    <line x1="6" y1="26" x2="28" y2="26" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                  </svg>
-                </div>
-                <p className="text-white text-xs font-semibold text-center">Our Team</p>
-              </div>
-
-              <div className="text-white text-2xl font-bold self-start mt-10">=</div>
-
-              <div className="flex flex-col items-center gap-2 min-w-[100px]">
-                <div className="w-14 h-14 border-2 border-[#253E5C] rounded-full flex items-center justify-center bg-[#253E5C]">
-                  <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6 24L12 16L18 20L26 8" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M22 8H26V12" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    <circle cx="6" cy="24" r="1.5" fill="white"/>
-                    <circle cx="12" cy="16" r="1.5" fill="white"/>
-                    <circle cx="18" cy="20" r="1.5" fill="white"/>
-                    <circle cx="26" cy="8" r="1.5" fill="white"/>
-                  </svg>
-                </div>
-                <p className="text-white text-xs font-bold text-center">5-7x ROAS</p>
-              </div>
-            </div>
-          </div>
-        </motion.div>
       </div>
 
       {/* Background Decorative Elements - Static */}
