@@ -32,7 +32,7 @@ export const useScrollAnimation = (options = {}) => {
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
-  }, [trigger, start, end, duration, stagger]);
+  }, [trigger, start, end, duration, stagger, animation]);
 
   return ref;
 };

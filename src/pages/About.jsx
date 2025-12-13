@@ -293,7 +293,7 @@ const About = () => {
               Our purpose is simple: combine strategy, creativity, and innovation to empower businesses with cost-effective solutions that drive long-term success.
             </p>
             <p className="text-xl md:text-2xl text-[#253E5C] leading-relaxed max-w-4xl mt-4">
-              At Advertio, we don't just run campaigns—we build digital ecosystems that transform businesses into powerful, future-ready brands.
+              At Advertio, we don&apos;t just run campaigns—we build digital ecosystems that transform businesses into powerful, future-ready brands.
             </p>
           </motion.div>
 

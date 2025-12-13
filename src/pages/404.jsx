@@ -47,7 +47,7 @@ const NotFound = () => {
           </h1>
           <h2 className="text-4xl font-bold text-[#253E5C] mb-6">Page Not Found</h2>
           <p className="text-[#253E5C]/80 mb-8 max-w-md mx-auto">
-            The page you're looking for seems to have drifted into the void.
+            The page you&apos;re looking for seems to have drifted into the void.
           </p>
           <Link
             href="/"
