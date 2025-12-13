@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { motion, useInView } from 'framer-motion';
+import Image from 'next/image';
 
 const GetAQuoteSection = () => {
   const sectionRef = useRef(null);
@@ -207,11 +208,12 @@ const GetAQuoteSection = () => {
           >
             <div className="relative z-10">
               <div className="relative">
-                <img
+                <Image
                   src="/favicon.JPG"
                   alt="Dolphin"
+                  width={320}
+                  height={320}
                   className="w-48 md:w-80 h-auto object-contain relative z-10"
-                  loading="lazy"
                 />
                 
                 {/* Ball Button */}

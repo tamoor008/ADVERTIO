@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'framer-motion';
+import Image from 'next/image';
 import favicon from '../../assets/favicon.JPG';
 import { servicesList } from '../../components/sections/constants';
 
@@ -492,10 +493,11 @@ export default function ServiceDetail() {
                       background: 'transparent',
                     }}
                   >
-                    <img 
+                    <Image 
                       src={typeof favicon === 'string' ? favicon : (favicon?.src || favicon?.default || favicon)}
                       alt="Advertio" 
-                      className="w-full h-full object-contain rounded-full transition-transform duration-300 group-hover:scale-110"
+                      fill
+                      className="object-contain rounded-full transition-transform duration-300 group-hover:scale-110"
                     />
                   </div>
                   <p 
@@ -570,10 +572,11 @@ export default function ServiceDetail() {
                     background: 'transparent',
                   }}
                 >
-                  <img 
+                  <Image 
                     src={favicon.src || favicon} 
                     alt="Advertio" 
-                    className="w-full h-full object-contain rounded-full transition-transform duration-300 group-hover:scale-110"
+                    fill
+                    className="object-contain rounded-full transition-transform duration-300 group-hover:scale-110"
                   />
                 </div>
                 <p 

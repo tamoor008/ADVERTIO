@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
+import Image from 'next/image';
 
 const TeamSection = () => {
   const sectionRef = useRef(null);
@@ -101,15 +102,15 @@ const TeamSection = () => {
                 <div className={`relative ${cardHeights[index]} rounded-[32px] overflow-hidden cursor-pointer`}>
                   {/* Image Container */}
                   <div className="absolute inset-0 z-0">
-                    <img
+                    <Image
                       src={member.image}
                       alt={member.name}
-                      className="w-full h-full object-cover transition-all duration-300"
+                      fill
+                      className="object-cover transition-all duration-300"
                       style={{
                         filter: hoveredIndex === index ? 'brightness(0.4)' : 'brightness(1)',
                         transform: hoveredIndex === index ? 'scale(1.05)' : 'scale(1)',
                       }}
-                      loading="lazy"
                     />
                     {/* Gradient Overlay - Hidden on hover */}
                     <div 

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
+import Image from 'next/image';
 
 const Blogs = () => {
   const sectionRef = useRef(null);
@@ -308,10 +309,11 @@ const Blogs = () => {
                         >
                           {/* Blog Image */}
                           <div className="relative w-full h-44 overflow-hidden">
-                            <img
+                            <Image
                               src={blog.image}
                               alt={blog.title}
-                              className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-110"
+                              fill
+                              className="object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-110"
                             />
                             {/* Image Overlay Gradient */}
                             <div

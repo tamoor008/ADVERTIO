@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
+import Image from 'next/image';
 
 const VideoSection3D = () => {
   const sectionRef = useRef(null);
@@ -100,15 +101,16 @@ const VideoSection3D = () => {
           }}
         >
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <img
+            <Image
               src="/favicon.JPG"
               alt="Background"
+              width={1400}
+              height={1400}
               className="w-full h-full max-w-[1400px] max-h-[1400px] object-contain"
               style={{
                 filter: 'blur(60px)',
                 opacity: 0.4,
               }}
-              loading="lazy"
             />
           </div>
 
@@ -139,11 +141,11 @@ const VideoSection3D = () => {
                     minHeight: '400px',
                   }}
                 >
-                  <img
+                  <Image
                     src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
                     alt={video.title}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
+                    fill
+                    className="object-cover"
                   />
                   
                   <div className="absolute inset-0 flex items-center justify-center bg-black/10">
@@ -154,11 +156,12 @@ const VideoSection3D = () => {
                         height: '48px',
                       }}
                     >
-                      <img
+                      <Image
                         src="/play-buttons.png"
                         alt="Play"
+                        width={48}
+                        height={48}
                         className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]"
-                        loading="lazy"
                       />
                     </div>
                   </div>
