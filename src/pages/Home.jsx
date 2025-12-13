@@ -1,5 +1,4 @@
 import { useState, Suspense, lazy } from 'react';
-import '../components/sections/sectionStyles.css';
 
 // Eagerly loaded components (above the fold)
 import HeroSection from '../components/sections/HeroSection';

@@ -197,50 +197,6 @@ const GetAQuoteSection = () => {
             />
           </motion.svg>
 
-          {/* Mobile: Curved Arrow from Performance Marketing Card to Get Quote Button */}
-          <motion.svg
-            className="md:hidden absolute z-5 pointer-events-none"
-            style={{
-              left: '0',
-              top: '0',
-              width: '100%',
-              height: '100%',
-              overflow: 'visible',
-            }}
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            viewBox="0 0 1000 800"
-            preserveAspectRatio="none"
-          >
-            <defs>
-              <marker
-                id="arrowhead-mobile"
-                markerWidth="22"
-                markerHeight="22"
-                refX="18"
-                refY="6.5"
-                orient="auto"
-                markerUnits="userSpaceOnUse"
-              >
-                <polygon
-                  points="0 0, 22 6.5, 0 13"
-                  fill="#253E5C"
-                />
-              </marker>
-            </defs>
-            {mobilePathData && (
-              <path
-                d={mobilePathData}
-                stroke="#253E5C"
-                strokeWidth="3"
-                strokeDasharray="8,5"
-                fill="none"
-                markerEnd="url(#arrowhead-mobile)"
-                opacity="1"
-              />
-            )}
-          </motion.svg>
 
           {/* Left Side: Dolphin and Ball Button */}
           <motion.div
