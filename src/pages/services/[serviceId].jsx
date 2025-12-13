@@ -715,7 +715,7 @@ export default function ServiceDetail() {
                     </svg>
                   ))}
                 </div>
-                <p className="text-[#253E5C]/80 mb-4 leading-tight md:leading-relaxed">"{review.text}"</p>
+                <p className="text-[#253E5C]/80 mb-4 leading-tight md:leading-relaxed">&ldquo;{review.text}&rdquo;</p>
                 <div
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full"
                   style={{
@@ -805,7 +805,7 @@ function ServiceContactForm({ service, contactFormRef, contactFormInView, isMobi
         animate={shouldShowImmediately ? { opacity: 1, y: 0 } : (contactFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
         transition={{ duration: shouldShowImmediately ? 0 : 0.8, delay: shouldShowImmediately ? 0 : 0.3 }}
       >
-        Ready to transform your business? Fill out the form below and we'll get back to you within 2 hours.
+        Ready to transform your business? Fill out the form below and we&apos;ll get back to you within 2 hours.
       </motion.p>
 
       <form onSubmit={handleSubmit} className="w-full space-y-6">
@@ -953,7 +953,7 @@ function ServiceContactForm({ service, contactFormRef, contactFormInView, isMobi
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
           >
-            Message received! We'll respond within 2 hours.
+            Message received! We&apos;ll respond within 2 hours.
           </motion.p>
         )}
       </form>

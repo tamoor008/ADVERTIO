@@ -201,11 +201,10 @@ const FreeAudit = () => {
     <motion.div
       ref={sectionRef}
       className="relative min-h-screen pt-24 pb-20 overflow-visible bg-white"
-      style={{ backgroundColor: '#FFFFFF', background: '#FFFFFF' }}
+      style={{ backgroundColor: '#FFFFFF', background: '#FFFFFF', perspective: '1200px' }}
       initial={{ opacity: 0 }}
       animate={isInView ? { opacity: 1 } : { opacity: 0 }}
       transition={{ duration: 0.6 }}
-      style={{ perspective: '1200px' }}
     >
       <div className="relative max-w-6xl mx-auto px-6 md:px-8 lg:px-12">
         {/* Back Button */}
@@ -254,7 +253,7 @@ const FreeAudit = () => {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
-            Let's analyze your advertising strategy and unlock your growth potential
+            Let&apos;s analyze your advertising strategy and unlock your growth potential
           </motion.p>
         </motion.div>
 
@@ -578,7 +577,7 @@ const FreeAudit = () => {
                       Your Audit Request Has Been Sent!
                     </h3>
                     <p className="text-sm text-green-700">
-                      Thank you! We'll analyze your account and get back to you within 24 hours.
+                      Thank you! We&apos;ll analyze your account and get back to you within 24 hours.
                     </p>
                   </div>
                 </div>
