@@ -1,7 +1,7 @@
 import '../index.css';
 import '../App.css';
 import '../styles/tokens.css';
-import '../components/sections/sectionStyles.css';
+import '../styles/sectionStyles.css';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import WhatsAppButton from '../components/ui/WhatsAppButton';
