@@ -100,7 +100,7 @@ const FAQSection3D = () => {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            F A <span className="bg-gradient-to-r from-[#253E5C] via-primary to-[#ff6b4a] bg-clip-text text-transparent">Q</span>
+            F A <span className="bg-gradient-to-r from-[#253E5C] via-primary to-[#ff6b4a] bg-clip-text text-transparent">q</span>
           </motion.h3>
           <motion.p
             className="text-[#253E5C]/70 text-lg"
