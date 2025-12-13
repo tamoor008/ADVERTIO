@@ -333,7 +333,7 @@ const About = () => {
                       ))}
                     </div>
                     <p className="text-[#253E5C]/80 leading-relaxed">
-                      "{testimonials[currentTestimonialIndex].text}".
+                      &ldquo;{testimonials[currentTestimonialIndex].text}&rdquo;.
                     </p>
                     <p className="mt-4 font-semibold text-[#253E5C]">{testimonials[currentTestimonialIndex].author}</p>
                   </motion.div>
@@ -1092,7 +1092,7 @@ const About = () => {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                   >
-                    Message received. We'll respond shortly.
+                    Message received. We&apos;ll respond shortly.
                   </motion.p>
                 )}
               </div>
@@ -1590,7 +1590,7 @@ const ReviewsSection3D = () => {
                                 }}
                                 transition={{ duration: 0.3 }}
                               >
-                                "{review.text}"
+                                &ldquo;{review.text}&rdquo;
                               </motion.p>
 
                               {/* Highlight Badge */}
