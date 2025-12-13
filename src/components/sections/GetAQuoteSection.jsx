@@ -152,7 +152,7 @@ const GetAQuoteSection = () => {
         </motion.div>
 
         {/* Two Column Layout: Dolphin Left + Formula Right */}
-        <div ref={gridRef} className="relative grid grid-cols-2 md:grid-cols-2 gap-4 md:gap-12 items-start md:items-center">
+        <div ref={gridRef} className="relative grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-12 items-start md:items-center">
           {/* Curved Arrow from DTC Brand to Get Quote Button - Desktop Only */}
           <motion.svg
             className="hidden md:block absolute z-5 pointer-events-none"
@@ -201,7 +201,7 @@ const GetAQuoteSection = () => {
 
           {/* Left Side: Dolphin and Ball Button */}
           <motion.div
-            className="relative flex items-center justify-center md:justify-start min-h-[300px] md:min-h-[400px] mt-0 md:mt-0"
+            className="relative flex items-center justify-center md:justify-start min-h-[250px] sm:min-h-[300px] md:min-h-[400px] mt-0 md:mt-0 mb-4 md:mb-0"
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
             transition={{ duration: 0.6, delay: 0.5 }}
@@ -213,7 +213,7 @@ const GetAQuoteSection = () => {
                   alt="Dolphin"
                   width={320}
                   height={320}
-                  className="w-48 md:w-80 h-auto object-contain relative z-10"
+                  className="w-32 sm:w-40 md:w-48 lg:w-80 h-auto object-contain relative z-10"
                 />
                 
                 {/* Ball Button */}
@@ -246,13 +246,13 @@ const GetAQuoteSection = () => {
             transition={{ duration: 0.6, delay: 0.6 }}
           >
             {/* Content */}
-            <div className="relative z-10">
-              <div className="flex flex-col md:flex-row items-start md:items-center justify-center gap-2 md:gap-6 lg:gap-8 overflow-x-auto pb-4 md:pb-0">
+            <div className="relative z-10 w-full">
+              <div className="flex flex-col md:flex-row items-center md:items-center justify-center gap-3 md:gap-6 lg:gap-8 pb-4 md:pb-0 flex-wrap md:flex-nowrap">
                 {/* Your DTC Brand */}
-                <div ref={dtcBrandRef} className="flex flex-row md:flex-col items-center gap-2 md:gap-3">
-                  <div className="w-16 h-16 md:w-24 md:h-24 border-2 border-[#253E5C] rounded-lg flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40">
+                <div ref={dtcBrandRef} className="flex flex-col items-center gap-2 md:gap-3 flex-shrink-0">
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-24 md:h-24 border-2 border-[#253E5C] rounded-lg flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40">
                     {/* Shopping bag/Store icon for DTC Brand */}
-                    <svg className="w-8 h-8 md:w-12 md:h-12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg className="w-7 h-7 sm:w-8 sm:h-8 md:w-12 md:h-12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M8 12V26C8 27.1 8.9 28 10 28H22C23.1 28 24 27.1 24 26V12" stroke="white" strokeWidth="2" strokeLinecap="round"/>
                       <path d="M12 12V8C12 6.9 12.9 6 14 6H18C19.1 6 20 6.9 20 8V12" stroke="white" strokeWidth="2" strokeLinecap="round"/>
                       <path d="M8 12H24" stroke="white" strokeWidth="2" strokeLinecap="round"/>
@@ -260,17 +260,17 @@ const GetAQuoteSection = () => {
                       <circle cx="18" cy="19" r="1" fill="white"/>
                     </svg>
                   </div>
-                  <p className="text-[#253E5C] text-sm md:text-base font-semibold text-center">Your DTC Brand</p>
+                  <p className="text-[#253E5C] text-xs sm:text-sm md:text-base font-semibold text-center whitespace-nowrap">Your DTC Brand</p>
                 </div>
 
                 {/* Plus Sign */}
-                <div className="text-[#253E5C] text-2xl md:text-4xl font-bold self-center md:self-start mt-0 md:mt-16">+</div>
+                <div className="text-[#253E5C] text-xl sm:text-2xl md:text-4xl font-bold self-center md:self-start mt-0 md:mt-16 flex-shrink-0">+</div>
 
                 {/* Our Performance Marketing Team */}
-                <div ref={performanceCardRef} className="flex flex-row md:flex-col items-center gap-2 md:gap-3 mt-0 md:mt-11">
-                  <div className="w-16 h-16 md:w-24 md:h-24 border-2 border-[#253E5C] rounded-full flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40">
+                <div ref={performanceCardRef} className="flex flex-col items-center gap-2 md:gap-3 mt-0 md:mt-11 flex-shrink-0">
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-24 md:h-24 border-2 border-[#253E5C] rounded-full flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40">
                     {/* Analytics/Chart icon for Performance Marketing */}
-                    <svg className="w-8 h-8 md:w-12 md:h-12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg className="w-7 h-7 sm:w-8 sm:h-8 md:w-12 md:h-12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M6 26V20H10V26H6Z" fill="white"/>
                       <path d="M12 26V14H16V26H12Z" fill="white"/>
                       <path d="M18 26V18H22V26H18Z" fill="white"/>
@@ -278,17 +278,17 @@ const GetAQuoteSection = () => {
                       <line x1="6" y1="26" x2="28" y2="26" stroke="white" strokeWidth="2" strokeLinecap="round"/>
                     </svg>
                   </div>
-                  <p className="text-[#253E5C] text-sm md:text-base font-semibold text-center">Our Performance<br />Marketing Team</p>
+                  <p className="text-[#253E5C] text-xs sm:text-sm md:text-base font-semibold text-center">Our Performance<br className="hidden sm:block" />Marketing Team</p>
                 </div>
 
                 {/* Equals Sign */}
-                <div className="text-[#253E5C] text-2xl md:text-4xl font-bold self-center md:self-start mt-0 md:mt-16">=</div>
+                <div className="text-[#253E5C] text-xl sm:text-2xl md:text-4xl font-bold self-center md:self-start mt-0 md:mt-16 flex-shrink-0">=</div>
 
                 {/* Result */}
-                <div className="flex flex-row md:flex-col items-center gap-2 md:gap-3 mt-0 md:mt-6">
-                  <div className="w-16 h-16 md:w-24 md:h-24 border-2 border-[#253E5C] rounded-full flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40">
+                <div className="flex flex-col items-center gap-2 md:gap-3 mt-0 md:mt-6 flex-shrink-0">
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-24 md:h-24 border-2 border-[#253E5C] rounded-full flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40">
                     {/* Growth/Upward trend chart for ROAS Consistent Growth */}
-                    <svg className="w-8 h-8 md:w-12 md:h-12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg className="w-7 h-7 sm:w-8 sm:h-8 md:w-12 md:h-12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M6 24L12 16L18 20L26 8" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                       <path d="M22 8H26V12" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                       <circle cx="6" cy="24" r="1.5" fill="white"/>
@@ -297,7 +297,7 @@ const GetAQuoteSection = () => {
                       <circle cx="26" cy="8" r="1.5" fill="white"/>
                     </svg>
                   </div>
-                  <p className="text-[#253E5C] text-sm md:text-base font-bold text-center">5-7x ROAS<br />Consistent Growth</p>
+                  <p className="text-[#253E5C] text-xs sm:text-sm md:text-base font-bold text-center">5-7x ROAS<br className="hidden sm:block" />Consistent Growth</p>
                 </div>
               </div>
             </div>
