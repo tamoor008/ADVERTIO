@@ -329,7 +329,7 @@ const ReviewsSection3D = () => {
 
                             {/* Review Text */}
                             <p className="text-[#253E5C]/80 text-base md:text-lg leading-relaxed mb-6 font-medium">
-                              "{review.text}"
+                              &ldquo;{review.text}&rdquo;
                             </p>
 
                             {/* Highlight Badge */}

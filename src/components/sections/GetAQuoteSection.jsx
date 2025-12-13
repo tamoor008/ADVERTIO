@@ -147,7 +147,7 @@ const GetAQuoteSection = () => {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            Let's discuss how we can help grow your business. Get a personalized quote tailored to your needs.
+            Let&apos;s discuss how we can help grow your business. Get a personalized quote tailored to your needs.
           </motion.p>
         </motion.div>
 

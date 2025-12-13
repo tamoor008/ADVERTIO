@@ -90,7 +90,7 @@ const HeroSection = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.3 }}
               >
-                We scale DTC ecommerce brands through digital marketing that's:{' '}
+                We scale DTC ecommerce brands through digital marketing that&apos;s:{' '}
                 <span className="relative inline-flex items-end h-[1.1em] w-[16ch] align-baseline">
                   <AnimatePresence mode="wait" initial={false}>
                     <motion.span

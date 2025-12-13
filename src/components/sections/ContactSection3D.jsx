@@ -223,7 +223,7 @@ const ContactSection3D = () => {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               >
-                Message received. We'll respond shortly.
+                Message received. We&apos;ll respond shortly.
               </motion.p>
             )}
           </div>
