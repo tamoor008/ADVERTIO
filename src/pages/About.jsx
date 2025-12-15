@@ -1,7 +1,5 @@
 'use client'
 
-'use client'
-
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
@@ -10,7 +8,6 @@ import Image from 'next/image';
 import talhaImage from '../assets/talha.jpg';
 import { servicesList } from '../components/sections/constants';
 
-gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
   const heroRef = useRef(null);
@@ -122,6 +119,10 @@ const About = () => {
 
   // Scroll to top on mount
   useEffect(() => {
+    // Register GSAP plugin only in browser
+    if (typeof window !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+    }
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, []);
 
