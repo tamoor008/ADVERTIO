@@ -4,6 +4,9 @@ import { useRef, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
+import shopifyIcon from '../../assets/shopify.png';
+import teamIcon from '../../assets/team icon.png';
+import growthIcon from '../../assets/growth icon.png';
 
 const GetAQuoteSection = () => {
   const sectionRef = useRef(null);
@@ -247,55 +250,51 @@ const GetAQuoteSection = () => {
           >
             {/* Content */}
             <div className="relative z-10">
-              <div className="flex flex-col md:flex-row items-start md:items-center justify-center gap-2 md:gap-3 lg:gap-8 overflow-x-auto md:overflow-x-visible pb-4 md:pb-0">
+              <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 lg:gap-8 overflow-x-auto md:overflow-x-visible pb-4 md:pb-0">
                 {/* Your DTC Brand */}
                 <div ref={dtcBrandRef} className="flex flex-row md:flex-col items-center gap-2 md:gap-3 flex-shrink-0">
-                  <div className="w-16 h-16 md:w-20 lg:w-24 md:h-20 lg:h-24 border-2 border-[#253E5C] rounded-lg flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40">
-                    {/* Shopping bag/Store icon for DTC Brand */}
-                    <svg className="w-8 h-8 md:w-10 lg:w-12 md:h-10 lg:h-12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M8 12V26C8 27.1 8.9 28 10 28H22C23.1 28 24 27.1 24 26V12" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                      <path d="M12 12V8C12 6.9 12.9 6 14 6H18C19.1 6 20 6.9 20 8V12" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                      <path d="M8 12H24" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                      <circle cx="14" cy="19" r="1" fill="white"/>
-                      <circle cx="18" cy="19" r="1" fill="white"/>
-                    </svg>
+                  <div className="w-16 h-16 md:w-20 lg:w-24 md:h-20 lg:h-24 border-2 border-[#253E5C] rounded-lg flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40 p-2">
+                    <Image
+                      src={shopifyIcon}
+                      alt="Shopify"
+                      width={64}
+                      height={64}
+                      className="w-full h-full object-contain"
+                    />
                   </div>
                   <p className="text-[#253E5C] text-sm md:text-base font-semibold text-center">Your DTC Brand</p>
                 </div>
 
                 {/* Plus Sign */}
-                <div className="text-[#253E5C] text-2xl md:text-3xl lg:text-4xl font-bold self-center md:self-start mt-0 md:mt-16 flex-shrink-0">+</div>
+                <div className="text-[#253E5C] text-2xl md:text-3xl lg:text-4xl font-bold self-center flex-shrink-0 -mt-6 md:-mt-7">+</div>
 
                 {/* Our Performance Marketing Team */}
-                <div ref={performanceCardRef} className="flex flex-row md:flex-col items-center gap-2 md:gap-3 mt-0 md:mt-11 flex-shrink-0">
-                  <div className="w-16 h-16 md:w-20 lg:w-24 md:h-20 lg:h-24 border-2 border-[#253E5C] rounded-full flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40">
-                    {/* Analytics/Chart icon for Performance Marketing */}
-                    <svg className="w-8 h-8 md:w-10 lg:w-12 md:h-10 lg:h-12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M6 26V20H10V26H6Z" fill="white"/>
-                      <path d="M12 26V14H16V26H12Z" fill="white"/>
-                      <path d="M18 26V18H22V26H18Z" fill="white"/>
-                      <path d="M24 26V10H28V26H24Z" fill="white"/>
-                      <line x1="6" y1="26" x2="28" y2="26" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                    </svg>
+                <div ref={performanceCardRef} className="flex flex-row md:flex-col items-center gap-2 md:gap-3 flex-shrink-0 mt-2 md:mt-3">
+                  <div className="w-16 h-16 md:w-20 lg:w-24 md:h-20 lg:h-24 border-2 border-[#253E5C] rounded-full flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40 p-2">
+                    <Image
+                      src={teamIcon}
+                      alt="Team"
+                      width={64}
+                      height={64}
+                      className="w-full h-full object-contain"
+                    />
                   </div>
                   <p className="text-[#253E5C] text-sm md:text-base font-semibold text-center">Our Performance<br />Marketing Team</p>
                 </div>
 
                 {/* Equals Sign */}
-                <div className="text-[#253E5C] text-2xl md:text-3xl lg:text-4xl font-bold self-center md:self-start mt-0 md:mt-16 flex-shrink-0">=</div>
+                <div className="text-[#253E5C] text-2xl md:text-3xl lg:text-4xl font-bold self-center flex-shrink-0 -mt-6 md:-mt-7">=</div>
 
                 {/* Result */}
-                <div className="flex flex-row md:flex-col items-center gap-2 md:gap-3 mt-0 md:mt-6 flex-shrink-0">
-                  <div className="w-16 h-16 md:w-20 lg:w-24 md:h-20 lg:h-24 border-2 border-[#253E5C] rounded-full flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40">
-                    {/* Growth/Upward trend chart for ROAS Consistent Growth */}
-                    <svg className="w-8 h-8 md:w-10 lg:w-12 md:h-10 lg:h-12" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M6 24L12 16L18 20L26 8" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M22 8H26V12" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      <circle cx="6" cy="24" r="1.5" fill="white"/>
-                      <circle cx="12" cy="16" r="1.5" fill="white"/>
-                      <circle cx="18" cy="20" r="1.5" fill="white"/>
-                      <circle cx="26" cy="8" r="1.5" fill="white"/>
-                    </svg>
+                <div className="flex flex-row md:flex-col items-center gap-2 md:gap-3 flex-shrink-0 mt-2 md:mt-3">
+                  <div className="w-16 h-16 md:w-20 lg:w-24 md:h-20 lg:h-24 border-2 border-[#253E5C] rounded-full flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40 p-2">
+                    <Image
+                      src={growthIcon}
+                      alt="Growth"
+                      width={64}
+                      height={64}
+                      className="w-full h-full object-contain"
+                    />
                   </div>
                   <p className="text-[#253E5C] text-sm md:text-base font-bold text-center">5-7x ROAS<br />Consistent Growth</p>
                 </div>
