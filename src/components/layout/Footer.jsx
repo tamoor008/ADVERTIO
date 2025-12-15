@@ -136,7 +136,7 @@ const Footer = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="absolute -top-8 -right-8 md:right-0 md:top-0"
+              className="absolute top-16 -right-8 md:top-0 md:-top-8 md:-right-8"
             >
               <motion.div 
                 className="w-40 h-40 md:w-44 md:h-44 rounded-full flex items-center justify-center bg-dark/50 backdrop-blur-sm"
