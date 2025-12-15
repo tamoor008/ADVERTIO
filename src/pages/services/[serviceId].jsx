@@ -491,6 +491,7 @@ export default function ServiceDetail() {
                     className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center relative z-10 overflow-hidden"
                     style={{ 
                       background: 'transparent',
+                      position: 'relative',
                     }}
                   >
                     <Image 
@@ -498,6 +499,7 @@ export default function ServiceDetail() {
                       alt="Advertio" 
                       fill
                       className="object-contain rounded-full transition-transform duration-300 group-hover:scale-110"
+                      style={{ position: 'absolute' }}
                     />
                   </div>
                   <p 
@@ -570,6 +572,7 @@ export default function ServiceDetail() {
                   className="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center relative z-10 overflow-hidden"
                   style={{ 
                     background: 'transparent',
+                    position: 'relative',
                   }}
                 >
                   <Image 
@@ -577,6 +580,7 @@ export default function ServiceDetail() {
                     alt="Advertio" 
                     fill
                     className="object-contain rounded-full transition-transform duration-300 group-hover:scale-110"
+                    style={{ position: 'absolute' }}
                   />
                 </div>
                 <p 
