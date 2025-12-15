@@ -266,17 +266,17 @@ Stay One Step Ahead          </textPath>
 
           {/* Right Side: Value Proposition Formula */}
           <motion.div
-            className="relative p-2 md:p-4 lg:p-12"
+            className="relative p-1 md:p-4 lg:p-12"
                         initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
             transition={{ duration: 0.6, delay: 0.6 }}
           >
             {/* Content */}
             <div className="relative z-10">
-              <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 lg:gap-8 overflow-x-auto md:overflow-x-visible pb-4 md:pb-0">
+              <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 lg:gap-8 overflow-x-hidden md:overflow-x-visible pb-4 md:pb-0">
                 {/* Your DTC Brand */}
-                <div ref={dtcBrandRef} className="flex flex-row md:flex-col items-center gap-2 md:gap-3 flex-shrink-0">
-                  <div className="w-16 h-16 md:w-20 lg:w-24 md:h-20 lg:h-24 border-2 border-[#253E5C] rounded-full flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40 p-2">
+                <div ref={dtcBrandRef} className="flex flex-row md:flex-col items-center gap-1.5 md:gap-3 flex-shrink-0">
+                  <div className="w-14 h-14 md:w-20 lg:w-24 md:h-20 lg:h-24 border-2 border-[#253E5C] rounded-full flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40 p-2">
                     <Image
                       src={shopifyIcon}
                       alt="Shopify"
@@ -286,15 +286,15 @@ Stay One Step Ahead          </textPath>
                       quality={100}
                     />
                   </div>
-                  <p className="text-[#253E5C] text-sm md:text-base font-semibold text-center">Your DTC Brand</p>
+                  <p className="text-[#253E5C] text-xs md:text-base font-semibold text-center">Your DTC Brand</p>
                 </div>
 
                 {/* Plus Sign */}
-                <div className="text-[#253E5C] text-2xl md:text-3xl lg:text-4xl font-bold self-center flex-shrink-0 -mt-6 md:-mt-7">+</div>
+                <div className="text-[#253E5C] text-xl md:text-3xl lg:text-4xl font-bold self-center flex-shrink-0 -mt-6 md:-mt-7">+</div>
 
                 {/* Our Performance Marketing Team */}
-                <div ref={performanceCardRef} className="flex flex-row md:flex-col items-center gap-2 md:gap-3 flex-shrink-0 mt-2 md:mt-3">
-                  <div className="w-16 h-16 md:w-20 lg:w-24 md:h-20 lg:h-24 border-2 border-[#253E5C] rounded-full flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40 p-2">
+                <div ref={performanceCardRef} className="flex flex-row md:flex-col items-center gap-1.5 md:gap-3 flex-shrink-0 mt-0 md:mt-3">
+                  <div className="w-14 h-14 md:w-20 lg:w-24 md:h-20 lg:h-24 border-2 border-[#253E5C] rounded-full flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40 p-2">
                     <Image
                       src={teamIcon}
                       alt="Team"
@@ -304,15 +304,15 @@ Stay One Step Ahead          </textPath>
                       quality={100}
                     />
                   </div>
-                  <p className="text-[#253E5C] text-sm md:text-base font-semibold text-center">Our Performance<br />Marketing Team</p>
+                  <p className="text-[#253E5C] text-xs md:text-base font-semibold text-center">Our Performance<br />Marketing Team</p>
                 </div>
 
                 {/* Equals Sign */}
-                <div className="text-[#253E5C] text-2xl md:text-3xl lg:text-4xl font-bold self-center flex-shrink-0 -mt-6 md:-mt-7">=</div>
+                <div className="text-[#253E5C] text-xl md:text-3xl lg:text-4xl font-bold self-center flex-shrink-0 -mt-3 md:-mt-7">=</div>
 
                 {/* Result */}
-                <div className="flex flex-row md:flex-col items-center gap-2 md:gap-3 flex-shrink-0 mt-2 md:mt-3">
-                  <div className="w-16 h-16 md:w-20 lg:w-24 md:h-20 lg:h-24 border-2 border-[#253E5C] rounded-lg flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40 p-2">
+                <div className="flex flex-row md:flex-col items-center gap-1.5 md:gap-3 flex-shrink-0 mt-0 md:mt-3">
+                  <div className="w-14 h-14 md:w-20 lg:w-24 md:h-20 lg:h-24 border-2 border-[#253E5C] rounded-lg flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40 p-2">
                     <Image
                       src={growthIcon}
                       alt="Growth"
@@ -322,7 +322,7 @@ Stay One Step Ahead          </textPath>
                       quality={100}
                     />
                   </div>
-                  <p className="text-[#253E5C] text-sm md:text-base font-bold text-center">5-7x ROAS<br />Consistent Growth</p>
+                  <p className="text-[#253E5C] text-xs md:text-base font-bold text-center">5-7x ROAS<br />Consistent Growth</p>
                 </div>
               </div>
             </div>
