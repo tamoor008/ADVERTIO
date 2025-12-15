@@ -1,8 +1,9 @@
 'use client'
 
-import { memo, useRef, useState, useMemo, useCallback, useEffect } from 'react';
+import { memo, useRef, useState, useMemo, useCallback } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 
 // Brand images imports
 import baileyMercer from '../assets/bailey mercer.png';
@@ -123,11 +124,11 @@ const PortfolioCard = memo(({ project, index, isHovered, onMouseEnter, onMouseLe
                     }}
                   >
                     {project.brandLogo ? (
-                      <img
+                      <Image
                         src={project.brandLogo}
                         alt={project.title}
-                        className="w-full h-full object-contain"
-                        loading="lazy"
+                        fill
+                        className="object-contain"
                       />
                     ) : (
                       <PlaceholderLogo title={project.title} color={project.color} />
@@ -152,11 +153,11 @@ const PortfolioCard = memo(({ project, index, isHovered, onMouseEnter, onMouseLe
 
               {/* Mockup Image */}
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl mb-6">
-                <img
+                <Image
                   src={project.mockup}
                   alt={project.title}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
+                  fill
+                  className="object-cover"
                   style={{
                     transform: isHovered ? 'scale(1.05)' : 'scale(1)',
                     transition: 'transform 0.4s ease',
