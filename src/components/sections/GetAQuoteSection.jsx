@@ -253,7 +253,7 @@ const GetAQuoteSection = () => {
               <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 lg:gap-8 overflow-x-auto md:overflow-x-visible pb-4 md:pb-0">
                 {/* Your DTC Brand */}
                 <div ref={dtcBrandRef} className="flex flex-row md:flex-col items-center gap-2 md:gap-3 flex-shrink-0">
-                  <div className="w-16 h-16 md:w-20 lg:w-24 md:h-20 lg:h-24 border-2 border-[#253E5C] rounded-lg flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40 p-2">
+                  <div className="w-16 h-16 md:w-20 lg:w-24 md:h-20 lg:h-24 border-2 border-[#253E5C] rounded-full flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40 p-2">
                     <Image
                       src={shopifyIcon}
                       alt="Shopify"
@@ -289,7 +289,7 @@ const GetAQuoteSection = () => {
 
                 {/* Result */}
                 <div className="flex flex-row md:flex-col items-center gap-2 md:gap-3 flex-shrink-0 mt-2 md:mt-3">
-                  <div className="w-16 h-16 md:w-20 lg:w-24 md:h-20 lg:h-24 border-2 border-[#253E5C] rounded-full flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40 p-2">
+                  <div className="w-16 h-16 md:w-20 lg:w-24 md:h-20 lg:h-24 border-2 border-[#253E5C] rounded-lg flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40 p-2">
                     <Image
                       src={growthIcon}
                       alt="Growth"

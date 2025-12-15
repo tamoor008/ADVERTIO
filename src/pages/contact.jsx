@@ -144,8 +144,8 @@ const Contact = () => {
         </svg>
       ),
       label: 'Email',
-      value: 'info@advertio.com',
-      href: 'https://mail.google.com/mail/?view=cm&to=info@advertio.com',
+      value: 'info@advertio.online',
+      href: 'https://mail.google.com/mail/?view=cm&to=info@advertio.online',
       color: '#E94F37',
     },
     {
@@ -155,20 +155,59 @@ const Contact = () => {
         </svg>
       ),
       label: 'Phone',
-      value: '(+92) 323 4304559',
-      href: 'tel:+923234304559',
+      value: '+92 336 6424379',
+      href: 'tel:+923366424379',
       color: '#253E5C',
     },
     {
       icon: (
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
         </svg>
       ),
       label: 'WhatsApp',
       value: 'WhatsApp Us',
       href: 'https://wa.me/923366424379',
       color: '#25D366',
+    },
+  ];
+
+  const addresses = [
+    {
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+      ),
+      label: 'Address',
+      value: (
+        <>
+          Unit A10 539 Bizspace Business Park Kings Road<br />
+          Tyseley Birmingham<br />
+          B11 2AL
+        </>
+      ),
+      href: 'https://www.google.com/maps/search/?api=1&query=Unit+A10+539+Bizspace+Business+Park+Kings+Road+Tyseley+Birmingham+B11+2AL',
+      color: '#253E5C',
+    },
+    {
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+      ),
+      label: 'Address',
+      value: (
+        <>
+          Value Tower, Ghalib Market, near Main Boulevard<br />
+          Gulberg III, Punjab<br />
+          Lahore, Pakistan
+        </>
+      ),
+      href: 'https://www.google.com/maps/search/?api=1&query=Value+Tower+Ghalib+Market+Gulberg+III+Lahore+Pakistan',
+      color: '#253E5C',
     },
   ];
 
@@ -313,6 +352,102 @@ const Contact = () => {
                         width: '4px',
                         height: '4px',
                         background: method.color,
+                        left: `${30 + i * 20}%`,
+                        top: `${20 + i * 15}%`,
+                      }}
+                      initial={{ scale: 0, opacity: 0 }}
+                      whileHover={{
+                        scale: [0, 1, 0],
+                        opacity: [0, 0.8, 0],
+                        y: [0, -20],
+                        x: [0, (i % 2 === 0 ? 1 : -1) * 10],
+                      }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                        delay: i * 0.2,
+                        ease: 'easeOut',
+                      }}
+                    />
+                  ))}
+                </motion.div>
+              </motion.a>
+            ))}
+          </div>
+
+          {/* Address Cards */}
+          <div className="grid md:grid-cols-2 gap-6 mt-8">
+            {addresses.map((address, index) => (
+              <motion.a
+                key={index}
+                href={address.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative"
+                initial={{ opacity: 0, y: 50, rotateX: -15 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{
+                  duration: 0.8,
+                  delay: index * 0.15,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                whileHover={{ y: -10, scale: 1.02 }}
+                style={{ transformStyle: 'preserve-3d' }}
+              >
+                <motion.div
+                  className="relative rounded-[32px] p-8 bg-white/95 backdrop-blur-md shadow-lg overflow-hidden"
+                  style={{
+                    border: '2px solid transparent',
+                    backgroundImage: 'linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95)), linear-gradient(135deg, #253E5C, #E94F37)',
+                    backgroundOrigin: 'border-box',
+                    backgroundClip: 'padding-box, border-box',
+                  }}
+                  whileHover={{
+                    boxShadow: `0 25px 60px ${address.color}30, 0 0 30px ${address.color}20`,
+                  }}
+                >
+                  {/* Animated Background */}
+                  <motion.div
+                    className="absolute inset-0 opacity-0"
+                    style={{
+                      background: `radial-gradient(circle at 50% 50%, ${address.color}15 0%, transparent 70%)`,
+                    }}
+                    whileHover={{ opacity: 1 }}
+                    transition={{ duration: 0.4 }}
+                  />
+
+                  <div className="relative z-10">
+                    <motion.div
+                      className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4"
+                      style={{
+                        background: `linear-gradient(135deg, ${address.color}20, ${address.color}10)`,
+                      }}
+                      whileHover={{ rotate: 360, scale: 1.1 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <div style={{ color: address.color }}>
+                        {address.icon}
+                      </div>
+                    </motion.div>
+                    
+                    <h3 className="text-sm uppercase tracking-[0.3em] text-[#253E5C]/60 mb-2 font-semibold">
+                      {address.label}
+                    </h3>
+                    <p className="text-xl font-bold text-[#253E5C] group-hover:text-primary transition-colors">
+                      {address.value}
+                    </p>
+                  </div>
+
+                  {/* Floating particles on hover */}
+                  {[...Array(3)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute rounded-full pointer-events-none"
+                      style={{
+                        width: '4px',
+                        height: '4px',
+                        background: address.color,
                         left: `${30 + i * 20}%`,
                         top: `${20 + i * 15}%`,
                       }}
