@@ -257,9 +257,10 @@ const GetAQuoteSection = () => {
                     <Image
                       src={shopifyIcon}
                       alt="Shopify"
-                      width={64}
-                      height={64}
-                      className="w-full h-full object-contain"
+                      width={116}
+                      height={116}
+                      className="w-[70%] h-[70%] object-contain"
+                      quality={100}
                     />
                   </div>
                   <p className="text-[#253E5C] text-sm md:text-base font-semibold text-center">Your DTC Brand</p>
@@ -274,9 +275,10 @@ const GetAQuoteSection = () => {
                     <Image
                       src={teamIcon}
                       alt="Team"
-                      width={64}
-                      height={64}
-                      className="w-full h-full object-contain"
+                      width={116}
+                      height={116}
+                      className="w-[110%] h-[110%] object-cover"
+                      quality={100}
                     />
                   </div>
                   <p className="text-[#253E5C] text-sm md:text-base font-semibold text-center">Our Performance<br />Marketing Team</p>
@@ -291,9 +293,10 @@ const GetAQuoteSection = () => {
                     <Image
                       src={growthIcon}
                       alt="Growth"
-                      width={64}
-                      height={64}
+                      width={116}
+                      height={116}
                       className="w-full h-full object-contain"
+                      quality={100}
                     />
                   </div>
                   <p className="text-[#253E5C] text-sm md:text-base font-bold text-center">5-7x ROAS<br />Consistent Growth</p>
