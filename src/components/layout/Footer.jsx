@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const Footer = () => {
@@ -48,7 +48,7 @@ const Footer = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               <Link
-                href="/contact"
+                to="/contact"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors"
               >
                 Contact Us Today!
@@ -172,19 +172,19 @@ const Footer = () => {
 
             {/* Navigation Links - Center */}
             <nav className="flex flex-wrap justify-center gap-6">
-              <Link href="/" className="text-white/60 hover:text-primary text-sm transition-colors">
+              <Link to="/" className="text-white/60 hover:text-primary text-sm transition-colors">
                 Home
               </Link>
-              <Link href="/about" className="text-white/60 hover:text-primary text-sm transition-colors">
+              <Link to="/about" className="text-white/60 hover:text-primary text-sm transition-colors">
                 About
               </Link>
-              <Link href="/services/performance-marketing" className="text-white/60 hover:text-primary text-sm transition-colors">
+              <Link to="/services/performance-marketing" className="text-white/60 hover:text-primary text-sm transition-colors">
                 Services
               </Link>
-              <Link href="/blogs" className="text-white/60 hover:text-primary text-sm transition-colors">
+              <Link to="/blogs" className="text-white/60 hover:text-primary text-sm transition-colors">
                 Blogs
               </Link>
-              <Link href="/contact" className="text-white/60 hover:text-primary text-sm transition-colors">
+              <Link to="/contact" className="text-white/60 hover:text-primary text-sm transition-colors">
                 Contact
               </Link>
             </nav>
