@@ -220,8 +220,7 @@ const GetAQuoteSection = () => {
                 startOffset="50%"
                 textAnchor="middle"
               >
-                Get Your Quote Today
-              </textPath>
+Stay One Step Ahead          </textPath>
             </text>
           </motion.svg>
 
