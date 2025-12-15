@@ -191,7 +191,8 @@ const GetAQuoteSection = () => {
             {/* Curved path: starts from left edge of DTC Brand icon (right column ~55%) to Get Quote button (left column ~16%) */}
             {/* Coordinates scale with viewBox (1000x400) for responsiveness */}
             <path
-              d="M 555 170 Q 490 100, 350 130 Q 250 150, 160 100"
+              id="quote-path"
+              d="M 555 170 Q 490 60, 350 130 Q 250 200, 160 100"
               stroke="#253E5C"
               strokeWidth="3"
               strokeDasharray="8,5"
@@ -199,6 +200,29 @@ const GetAQuoteSection = () => {
               markerEnd="url(#arrowhead-dtc)"
               opacity="1"
             />
+            {/* Reversed path for text to read correctly */}
+            <path
+              id="quote-path-text"
+              d="M 160 100 Q 250 200, 350 130 Q 490 60, 555 170"
+              fill="none"
+              opacity="0"
+            />
+            {/* Text along the path */}
+            <text
+              fill="#253E5C"
+              fontSize="16"
+              fontWeight="900"
+              opacity="1"
+              dy="-10"
+            >
+              <textPath
+                href="#quote-path-text"
+                startOffset="50%"
+                textAnchor="middle"
+              >
+                Get Your Quote Today
+              </textPath>
+            </text>
           </motion.svg>
 
 
