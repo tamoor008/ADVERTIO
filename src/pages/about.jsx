@@ -8,7 +8,6 @@ import Image from 'next/image';
 import talhaImage from '../assets/talha.jpg';
 import { servicesList } from '../components/sections/constants';
 
-
 const About = () => {
   const heroRef = useRef(null);
   const testimonialsRef = useRef(null);
