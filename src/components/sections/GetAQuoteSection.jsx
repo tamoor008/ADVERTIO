@@ -155,7 +155,7 @@ const GetAQuoteSection = () => {
         </motion.div>
 
         {/* Two Column Layout: Dolphin Left + Formula Right */}
-        <div ref={gridRef} className="relative grid grid-cols-2 md:grid-cols-2 gap-4 md:gap-4 lg:gap-12 items-start md:items-center">
+        <div ref={gridRef} className="relative grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-4 lg:gap-12 items-start md:items-center">
           {/* Curved Arrow from DTC Brand to Get Quote Button - Desktop Only */}
           <motion.svg
             className="hidden md:block absolute z-5 pointer-events-none"
@@ -266,7 +266,7 @@ Stay One Step Ahead          </textPath>
 
           {/* Right Side: Value Proposition Formula */}
           <motion.div
-            className="relative p-1 md:p-4 lg:p-12"
+            className="hidden md:block relative p-1 md:p-4 lg:p-12"
                         initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
             transition={{ duration: 0.6, delay: 0.6 }}
