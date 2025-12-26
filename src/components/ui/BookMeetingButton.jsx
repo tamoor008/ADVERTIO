@@ -5,8 +5,6 @@ import { motion } from 'framer-motion';
 import { CALENDLY_CONFIG } from '../../config/calendly.config';
 
 const BookMeetingButton = () => {
-  // Initialize as true so button shows by default
-  const [isScrolled, setIsScrolled] = useState(true);
   const [isMobile, setIsMobile] = useState(() => {
     if (typeof window !== 'undefined') {
       return window.innerWidth < 768;
@@ -22,37 +20,6 @@ const BookMeetingButton = () => {
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-      
-      // Check if user is at the bottom (within 100px of the bottom)
-      // Only hide if page is actually tall enough and user is at bottom
-      const isAtBottom = documentHeight > windowHeight && scrollY + windowHeight >= documentHeight - 100;
-      
-      // Show button all the time EXCEPT when at the bottom
-      setIsScrolled(!isAtBottom);
-    };
-    
-    // Wait for page to fully load before checking scroll
-    // This ensures buttons are visible initially
-    const timeoutId = setTimeout(() => {
-      handleScroll();
-      window.addEventListener('scroll', handleScroll);
-      window.addEventListener('resize', handleScroll);
-    }, 1000);
-    
-    return () => {
-      clearTimeout(timeoutId);
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
-    };
   }, []);
 
   // Fix Calendly popup close button after it loads
@@ -160,15 +127,15 @@ const BookMeetingButton = () => {
     <motion.div
       initial={{ opacity: 1, scale: 1, y: 0 }}
       animate={{ 
-        opacity: isScrolled ? 1 : 0, 
-        scale: isScrolled ? 1 : 0.8, 
+        opacity: 1, 
+        scale: 1, 
         y: 0 
       }}
       transition={{ duration: 0.3 }}
       className="fixed bottom-6 left-6 z-[10000]"
       style={{ 
-        pointerEvents: isScrolled ? 'auto' : 'none',
-        display: isScrolled ? 'block' : 'none'
+        pointerEvents: 'auto',
+        display: 'block'
       }}
     >
           {/* Small dot banner */}
