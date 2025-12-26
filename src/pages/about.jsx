@@ -116,16 +116,13 @@ const About = () => {
     }, 1500);
   };
 
-  // Scroll to top on mount - only on desktop
+  // Scroll to top on mount
   useEffect(() => {
     // Register GSAP plugin only in browser
     if (typeof window !== 'undefined') {
-      const isMobile = window.innerWidth < 768;
-      if (!isMobile) {
-        gsap.registerPlugin(ScrollTrigger);
-        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-      }
+      gsap.registerPlugin(ScrollTrigger);
     }
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, []);
 
   // Auto-advance carousel (pauses on hover)
@@ -145,28 +142,27 @@ const About = () => {
   }, [testimonials.length, isHovered]);
 
   useEffect(() => {
-    // Skip GSAP animations on mobile for better performance
-    const isMobile = window.innerWidth < 768;
-    if (isMobile || !valuesRef.current) return;
-    
-    // Animate value cards - desktop only
-    const cards = valuesRef.current.querySelectorAll('.value-card');
-    gsap.set(cards, { opacity: 0, y: 50 });
-    
-    cards.forEach((card, index) => {
-      gsap.to(card, {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: 'power2.out',
+    // Animate value cards
+    if (valuesRef.current) {
+      const cards = valuesRef.current.querySelectorAll('.value-card');
+      gsap.set(cards, { opacity: 0, y: 50 });
+      
+      cards.forEach((card, index) => {
+        gsap.to(card, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power2.out',
         scrollTrigger: {
-          trigger: card,
-          start: 'top 85%',
-          toggleActions: 'play none none none',
+            trigger: card,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
         },
-        delay: index * 0.15,
+          delay: index * 0.15,
+        });
       });
-    });
+    }
+
   }, []);
 
   // Detect mobile viewport

@@ -15,20 +15,10 @@ const Navbar = () => {
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    let ticking = false;
-    const isMobile = window.innerWidth < 768;
-    
     const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          setIsScrolled(window.scrollY > 50);
-          ticking = false;
-        });
-        ticking = true;
-      }
+      setIsScrolled(window.scrollY > 50);
     };
-    
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 

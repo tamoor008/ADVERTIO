@@ -119,23 +119,23 @@ const GetAQuoteSection = () => {
     <motion.section
       ref={sectionRef}
       className="relative z-10 pt-8 md:pt-24 pb-8 md:pb-16 overflow-visible bg-transparent w-full"
-      initial={isMobile ? { opacity: 1 } : { opacity: 0 }}
-      animate={isInView ? { opacity: 1 } : (isMobile ? { opacity: 1 } : { opacity: 0 })}
-      transition={isMobile ? { duration: 0 } : { duration: 0.6 }}
+      initial={{ opacity: 0 }}
+      animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+      transition={{ duration: 0.6 }}
     >
       <div className="relative w-full px-6 md:px-8 lg:px-12 max-w-7xl mx-auto overflow-x-hidden">
         {/* Section Header */}
         <motion.div
           className="text-center mb-8 md:mb-12 max-w-4xl mx-auto"
-          initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : (isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 })}
-          transition={isMobile ? { duration: 0 } : { duration: 0.6, delay: 0.2 }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
         >
           <motion.h3
             className="text-4xl md:text-5xl lg:text-6xl font-black text-[#253E5C] mb-4"
-            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : (isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
-            transition={isMobile ? { duration: 0 } : { duration: 0.6, delay: 0.3 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
           >
             <div className="flex flex-col items-center gap-2">
               <span>Ready to Transform</span>
@@ -146,9 +146,9 @@ const GetAQuoteSection = () => {
           </motion.h3>
           <motion.p
             className="text-[#253E5C]/70 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed font-medium"
-            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : (isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
-            transition={isMobile ? { duration: 0 } : { duration: 0.6, delay: 0.4 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
           >
             Let&apos;s discuss how we can help grow your business. Get a personalized quote tailored to your needs.
           </motion.p>
@@ -228,9 +228,9 @@ Stay One Step Ahead          </textPath>
           {/* Left Side: Dolphin and Ball Button */}
           <motion.div
             className="relative flex items-center justify-center md:justify-start min-h-[300px] md:min-h-[400px] mt-0 md:mt-0"
-            initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : (isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 })}
-            transition={isMobile ? { duration: 0 } : { duration: 0.6, delay: 0.5 }}
+            initial={{ opacity: 0, x: -30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
           >
             <div className="relative z-10">
               <div className="relative">

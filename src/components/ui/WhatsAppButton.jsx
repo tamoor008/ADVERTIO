@@ -9,29 +9,19 @@ const WhatsAppButton = () => {
   const whatsappUrl = `https://wa.me/${phoneNumber.replace(/[^0-9]/g, '')}`;
 
   useEffect(() => {
-    let ticking = false;
-    const isMobile = window.innerWidth < 768;
-    const throttleDelay = isMobile ? 100 : 16; // Throttle more on mobile
-    
     const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const scrollY = window.scrollY;
-          const windowHeight = window.innerHeight;
-          const documentHeight = document.documentElement.scrollHeight;
-          
-          // Check if user is at the bottom (within 100px of the bottom)
-          const isAtBottom = scrollY + windowHeight >= documentHeight - 100;
-          
-          // Show button only if scrolled past 50px AND not at the bottom
-          setIsScrolled(scrollY > 50 && !isAtBottom);
-          ticking = false;
-        });
-        ticking = true;
-      }
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      
+      // Check if user is at the bottom (within 100px of the bottom)
+      const isAtBottom = scrollY + windowHeight >= documentHeight - 100;
+      
+      // Show button only if scrolled past 50px AND not at the bottom
+      setIsScrolled(scrollY > 50 && !isAtBottom);
     };
     
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -52,7 +42,6 @@ const WhatsAppButton = () => {
             damping: 20,
             duration: 0.3 
           }}
-          style={{ willChange: 'transform, opacity' }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           onClick={handleClick}

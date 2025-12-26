@@ -331,9 +331,9 @@ export default function ServiceDetail() {
   // Find the service by ID
   const service = servicesData.find(s => s.id === serviceId);
 
-  // Scroll to top when component mounts or serviceId changes - only on desktop
+  // Scroll to top when component mounts or serviceId changes
   useEffect(() => {
-    if (serviceId && typeof window !== 'undefined' && window.innerWidth >= 768) {
+    if (serviceId) {
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }
   }, [serviceId]);
