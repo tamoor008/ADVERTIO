@@ -96,19 +96,29 @@
 
     /* Reset transforms that cause positioning issues on mobile */
     /* Only reset x, y, and scale transforms, keep translateZ for performance */
-    section[style*="transform"]:not(footer section), 
-    div[style*="transform"]:not(footer div),
-    [class*="motion-"][style*="transform"]:not(footer [class*="motion-"]) {
+    /* EXCEPT: Don't reset transforms on fixed positioned buttons and nav */
+    section[style*="transform"]:not(footer section):not(nav):not([class*="fixed"]), 
+    div[style*="transform"]:not(footer div):not([class*="fixed"]):not(button[aria-label] *),
+    [class*="motion-"][style*="transform"]:not(footer [class*="motion-"]):not([class*="fixed"]) {
       transform: translateZ(0) !important;
       -webkit-transform: translateZ(0) !important;
     }
     
     /* Ensure sections don't have unwanted x/y transforms */
     /* Exception: Don't reset footer transforms to preserve dolphin rotation */
-    section:not(footer section), 
-    div[class*="section"]:not(footer div) {
+    /* Exception: Don't reset fixed buttons and nav */
+    section:not(footer section):not(nav), 
+    div[class*="section"]:not(footer div):not([class*="fixed"]) {
       transform: translateZ(0) !important;
       -webkit-transform: translateZ(0) !important;
+    }
+    
+    /* Preserve fixed button positioning - don't reset their transforms */
+    button[aria-label],
+    div[class*="fixed"][class*="bottom-6"],
+    nav[class*="fixed"] {
+      transform: none !important;
+      -webkit-transform: none !important;
     }
     
     /* Preserve footer dolphin rotation - don't override framer-motion animations */
@@ -128,6 +138,42 @@
       -webkit-transform: none !important;
     }
 
+    /* Ensure WhatsApp and Book Meeting buttons are visible on mobile, but allow hiding when footer is visible */
+    button[aria-label="Chat on WhatsApp"]:not([data-hidden]),
+    button[aria-label="Book a Meeting"]:not([data-hidden]) {
+      display: flex !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
+    
+    /* Allow buttons to hide when footer is visible */
+    button[aria-label="Chat on WhatsApp"][data-hidden],
+    button[aria-label="Book a Meeting"][data-hidden] {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+    
+    /* Book Meeting button container - show when visible */
+    div.fixed.bottom-6.left-6:not([data-hidden]),
+    div[class*="fixed"][class*="bottom-6"]:not([data-hidden]) {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
+    
+    /* Allow Book Meeting button container to hide when footer is visible */
+    div.fixed.bottom-6.left-6[data-hidden],
+    div[class*="fixed"][class*="bottom-6"][data-hidden] {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+
     /* Disable 3D transforms on mobile for better performance */
     [style*="preserve-3d"] {
       transform-style: flat !important;
@@ -144,11 +190,7 @@
       transform: none !important;
     }
 
-    /* Force GPU acceleration for smooth scrolling - but reset transforms */
-    body {
-      transform: translateZ(0) !important;
-      -webkit-transform: translateZ(0) !important;
-    }
+    /* Removed body transform to fix fixed positioning - causes stacking context issues */
   }
 }
 

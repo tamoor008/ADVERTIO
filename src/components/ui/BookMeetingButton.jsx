@@ -1,25 +1,82 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { CALENDLY_CONFIG } from '../../config/calendly.config';
 
 const BookMeetingButton = () => {
-  const [isMobile, setIsMobile] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return window.innerWidth < 768;
-    }
-    return false;
-  });
+  const [isVisible, setIsVisible] = useState(true);
 
+  // Footer visibility detection
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+
+    const checkFooterVisibility = () => {
+      const footer = document.querySelector('footer');
+      if (!footer) {
+        setIsVisible(true);
+        return;
+      }
+
+      const footerRect = footer.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const documentHeight = document.documentElement.scrollHeight;
+      
+      // Button position: bottom-6 = 24px from bottom
+      const buttonOffset = 24;
+      const buttonHeight = window.innerWidth < 768 ? 80 : 80;
+      const buttonTopPosition = windowHeight - buttonOffset - buttonHeight;
+      
+      // Check if footer is visible in viewport
+      // Footer is visible if its top is in viewport (0 to windowHeight) OR if bottom is in viewport
+      const footerTop = footerRect.top;
+      const footerBottom = footerRect.bottom;
+      const footerVisible = (footerTop >= 0 && footerTop < windowHeight) || (footerBottom > 0 && footerBottom <= windowHeight);
+      
+      // Check if footer is overlapping button area
+      const footerOverlappingButton = footerTop < (buttonTopPosition + 20);
+      
+      // Check if user is at bottom of page (within 100px on mobile, 50px on desktop)
+      const distanceFromBottom = documentHeight - (scrollTop + windowHeight);
+      const isMobile = window.innerWidth < 768;
+      const bottomThreshold = isMobile ? 100 : 50;
+      const atBottom = distanceFromBottom <= bottomThreshold;
+      
+      // Hide if footer is visible OR overlapping button OR at bottom
+      const shouldHide = footerVisible || footerOverlappingButton || atBottom;
+      
+      setIsVisible(!shouldHide);
     };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+
+    // Check immediately
+    checkFooterVisibility();
+
+    // Check on scroll with throttling
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          checkFooterVisibility();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    // Check on resize
+    const handleResize = () => {
+      checkFooterVisibility();
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    document.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleResize, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   // Fix Calendly popup close button after it loads
@@ -124,84 +181,66 @@ const BookMeetingButton = () => {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 1, scale: 1, y: 0 }}
-      animate={{ 
-        opacity: 1, 
-        scale: 1, 
-        y: 0 
-      }}
-      transition={{ duration: 0.3 }}
+    <div
       className="fixed bottom-6 left-6 z-[10000]"
       style={{ 
-        pointerEvents: 'auto',
-        display: 'block'
+        pointerEvents: isVisible ? 'auto' : 'none',
+        display: 'block',
+        visibility: isVisible ? 'visible' : 'hidden',
+        opacity: isVisible ? 1 : 0,
+        position: 'fixed',
+        bottom: '1.5rem',
+        left: '1.5rem',
+        zIndex: 10000,
+        transition: 'opacity 0.3s ease-in-out, visibility 0.3s ease-in-out'
       }}
+      {...(!isVisible && { 'data-hidden': 'true' })}
     >
-          {/* Small dot banner */}
-          <motion.div
-            initial={isMobile ? { scale: 1 } : { scale: 0 }}
-            animate={isMobile ? { scale: 1 } : { scale: 1 }}
-            transition={isMobile ? { duration: 0 } : { delay: 0.2, type: 'spring', stiffness: 200 }}
-            className="absolute -top-1 -right-1 w-2 h-2 bg-gradient-to-r from-primary to-dark rounded-full z-10 shadow-lg"
-          />
+      {/* Small dot banner */}
+      <div className="absolute -top-1 -right-1 w-2 h-2 bg-gradient-to-r from-primary to-dark rounded-full z-10 shadow-lg" />
 
-          <motion.button
-            whileHover={isMobile ? {} : { scale: 1.05 }}
-            whileTap={isMobile ? {} : { scale: 0.95 }}
-            onClick={handleClick}
-            className="relative px-4 py-3 md:px-6 md:py-4 bg-gradient-to-r from-primary to-dark rounded-full shadow-2xl hover:shadow-primary/50 flex items-center justify-center gap-2 transition-all duration-300 group overflow-visible"
-            style={{
-              background: 'linear-gradient(135deg, #E94F37 0%, #253E5C 100%)',
-              backgroundSize: '200% 200%',
-              animation: isMobile ? 'none' : 'gradientShift 3s ease infinite',
-            }}
-            aria-label="Book a Meeting"
-          >
-            {/* Animated gradient overlay */}
-            <motion.div
-              className="absolute inset-0 rounded-full opacity-75"
-              style={{
-                background: 'linear-gradient(135deg, #E94F37 0%, #253E5C 100%)',
-                backgroundSize: '200% 200%',
-              }}
-              animate={isMobile ? {} : {
-                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-              }}
-              transition={isMobile ? { duration: 0 } : {
-                duration: 3,
-                repeat: Infinity,
-                ease: 'linear',
-              }}
-            />
-            
-            {/* Glow effect */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary to-dark opacity-50 blur-xl group-hover:opacity-75 transition-opacity" />
-            
-            {/* Content */}
-            <svg
-              className="relative w-5 h-5 md:w-6 md:h-6 text-white z-10"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-              />
-            </svg>
-            <span className="relative text-white font-bold text-sm md:text-base whitespace-nowrap z-10 drop-shadow-lg">
-              Book a Meeting
-            </span>
-            <motion.div
-              className="absolute -top-1 -right-1 w-3 h-3 bg-primary rounded-full z-10"
-              animate={isMobile ? { scale: 1, opacity: 1 } : { scale: [1, 1.3, 1], opacity: [1, 0.7, 1] }}
-              transition={isMobile ? { duration: 0 } : { duration: 2, repeat: Infinity }}
-            />
-          </motion.button>
+      <button
+        onClick={handleClick}
+        className="relative px-4 py-3 md:px-6 md:py-4 bg-gradient-to-r from-primary to-dark rounded-full shadow-2xl hover:shadow-primary/50 flex items-center justify-center gap-2 transition-all duration-300 group overflow-visible"
+        style={{
+          background: 'linear-gradient(135deg, #E94F37 0%, #253E5C 100%)',
+          backgroundSize: '200% 200%',
+        }}
+        {...(!isVisible && { 'data-hidden': 'true' })}
+        aria-label="Book a Meeting"
+      >
+        {/* Animated gradient overlay */}
+        <div
+          className="absolute inset-0 rounded-full opacity-75"
+          style={{
+            background: 'linear-gradient(135deg, #E94F37 0%, #253E5C 100%)',
+            backgroundSize: '200% 200%',
+          }}
+        />
+        
+        {/* Glow effect */}
+        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary to-dark opacity-50 blur-xl group-hover:opacity-75 transition-opacity" />
+        
+        {/* Content */}
+        <svg
+          className="relative w-5 h-5 md:w-6 md:h-6 text-white z-10"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+          />
+        </svg>
+        <span className="relative text-white font-bold text-sm md:text-base whitespace-nowrap z-10 drop-shadow-lg">
+          Book a Meeting
+        </span>
+        <div className="absolute -top-1 -right-1 w-3 h-3 bg-primary rounded-full z-10" />
+      </button>
 
           {/* Add CSS animation for gradient */}
           <style>{`
@@ -259,7 +298,7 @@ const BookMeetingButton = () => {
               pointer-events: auto !important;
             }
           `}</style>
-        </motion.div>
+    </div>
   );
 };
 
