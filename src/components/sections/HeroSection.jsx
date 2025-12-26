@@ -19,6 +19,13 @@ const HeroSection = () => {
   const heroLinePoints = staticHeroLinePoints.map((point) => `${point.x},${point.y}`).join(' ');
 
   useEffect(() => {
+    const isMobile = window.innerWidth < 768;
+    
+    // Skip GSAP animations on mobile for better performance
+    if (isMobile) {
+      return;
+    }
+
     const tl = gsap.timeline();
     
     if (textRef.current) {

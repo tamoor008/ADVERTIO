@@ -654,9 +654,11 @@ const Portfolio = () => {
     setHoveredIndex(null);
   }, []);
 
-  // Scroll to top on mount
+  // Scroll to top on mount - only on desktop
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    if (typeof window !== 'undefined' && window.innerWidth >= 768) {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }
   }, []);
 
   return (

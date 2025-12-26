@@ -10,19 +10,28 @@ const BookMeetingButton = () => {
   useEffect(() => {
     if (typeof window === 'undefined') return;
     
+    let ticking = false;
+    const isMobile = window.innerWidth < 768;
+    
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-      
-      // Check if user is at the bottom (within 100px of the bottom)
-      const isAtBottom = scrollY + windowHeight >= documentHeight - 100;
-      
-      // Show button only if scrolled past 50px AND not at the bottom
-      setIsScrolled(scrollY > 50 && !isAtBottom);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          const windowHeight = window.innerHeight;
+          const documentHeight = document.documentElement.scrollHeight;
+          
+          // Check if user is at the bottom (within 100px of the bottom)
+          const isAtBottom = scrollY + windowHeight >= documentHeight - 100;
+          
+          // Show button only if scrolled past 50px AND not at the bottom
+          setIsScrolled(scrollY > 50 && !isAtBottom);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -140,6 +149,7 @@ const BookMeetingButton = () => {
             damping: 20,
             duration: 0.3 
           }}
+          style={{ willChange: 'transform, opacity' }}
           className="fixed bottom-6 left-6 z-[10000]"
         >
           {/* Small dot banner */}
