@@ -46,7 +46,7 @@ const PageTransition = ({ children }) => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Completely disable animations on mobile for smooth performance
+  // Completely disable animations on mobile - everything renders immediately
   const mobileVariants = {
     initial: { opacity: 1 },
     animate: { opacity: 1 },

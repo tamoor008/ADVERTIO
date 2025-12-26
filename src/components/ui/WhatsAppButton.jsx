@@ -5,8 +5,24 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const WhatsAppButton = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth < 768;
+    }
+    return false;
+  });
   const phoneNumber = '+923366424379';
   const whatsappUrl = `https://wa.me/${phoneNumber.replace(/[^0-9]/g, '')}`;
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,9 +33,12 @@ const WhatsAppButton = () => {
       // Check if user is at the bottom (within 100px of the bottom)
       const isAtBottom = scrollY + windowHeight >= documentHeight - 100;
       
-      // Show button only if scrolled past 50px AND not at the bottom
-      setIsScrolled(scrollY > 50 && !isAtBottom);
+      // Show button all the time EXCEPT when at the bottom
+      setIsScrolled(!isAtBottom);
     };
+    
+    // Check initial scroll position
+    handleScroll();
     
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -33,17 +52,17 @@ const WhatsAppButton = () => {
     <AnimatePresence>
       {isScrolled && (
         <motion.button
-          initial={{ opacity: 0, scale: 0, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0, y: 20 }}
-          transition={{ 
+          initial={isMobile ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0, y: 20 }}
+          animate={isMobile ? { opacity: 1, scale: 1, y: 0 } : { opacity: 1, scale: 1, y: 0 }}
+          exit={isMobile ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0, y: 20 }}
+          transition={isMobile ? { duration: 0 } : { 
             type: 'spring', 
             stiffness: 300, 
             damping: 20,
             duration: 0.3 
           }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
+          whileHover={isMobile ? {} : { scale: 1.1 }}
+          whileTap={isMobile ? {} : { scale: 0.95 }}
           onClick={handleClick}
           className="fixed bottom-6 right-6 z-[10000] w-14 h-14 md:w-16 md:h-16 bg-[#25D366] rounded-full shadow-lg hover:shadow-xl flex items-center justify-center transition-all duration-300 group"
           aria-label="Chat on WhatsApp"
@@ -58,8 +77,8 @@ const WhatsAppButton = () => {
           </svg>
           <motion.div
             className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full flex items-center justify-center"
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
+            animate={isMobile ? { scale: 1 } : { scale: [1, 1.2, 1] }}
+            transition={isMobile ? { duration: 0 } : { duration: 2, repeat: Infinity }}
           >
             <span className="w-2 h-2 bg-white rounded-full"></span>
           </motion.div>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { processSteps, processLabels, processLabelsSplit } from './constants';
 
@@ -15,6 +15,22 @@ const processIcons = [
 
 const ProcessBackdrop = () => {
   const [expandedCardIndex, setExpandedCardIndex] = useState(null);
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth < 768;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Solid colors for each card based on brand color scheme - using only primary colors
   const cardColors = [
@@ -62,11 +78,12 @@ const ProcessBackdrop = () => {
 
   return (
     <motion.section
-      initial={{ opacity: 0, y: 60 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
+      whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 1 }}
+      transition={isMobile ? { duration: 0 } : { duration: 1 }}
       className="relative z-10 py-8 md:py-24"
+      style={isMobile ? { transform: 'none' } : {}}
     >
       <div className="w-full rounded-[36px] bg-[#f9f6f0] border border-white/70 shadow-[0_40px_140px_rgba(37,62,92,0.25)] px-8 py-12 lg:px-16">
         <div className="text-center mb-10">
@@ -81,11 +98,12 @@ const ProcessBackdrop = () => {
               {processSteps.map((text, index) => (
                 <motion.div
                   key={text}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                  whileInView={isMobile ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.4, delay: index * 0.08 }}
+                  transition={isMobile ? { duration: 0 } : { duration: 0.4, delay: index * 0.08 }}
                   className="flex gap-4 items-start"
+                  style={isMobile ? { transform: 'none' } : {}}
                 >
                   <div 
                     className="px-3 py-1 rounded-full font-bold text-sm flex items-center justify-center shadow-md flex-shrink-0"
@@ -111,13 +129,14 @@ const ProcessBackdrop = () => {
                 return (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                    whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.4, delay: index * 0.05 }}
+                    transition={isMobile ? { duration: 0 } : { duration: 0.4, delay: index * 0.05 }}
                     className="bg-white rounded-2xl border border-[#253E5C]/10 shadow-md overflow-hidden"
                     style={{
                       borderLeft: `4px solid ${cardColors[index].bg}`,
+                      transform: isMobile ? 'none' : undefined,
                     }}
                   >
                     <div className="p-5 flex items-center gap-4">
@@ -166,8 +185,8 @@ const ProcessBackdrop = () => {
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
-                          animate={{ rotate: isExpanded ? 45 : 0 }}
-                          transition={{ duration: 0.3 }}
+                          animate={isMobile ? { rotate: isExpanded ? 45 : 0 } : { rotate: isExpanded ? 45 : 0 }}
+                          transition={isMobile ? { duration: 0 } : { duration: 0.3 }}
                         >
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
                         </motion.svg>
@@ -176,10 +195,10 @@ const ProcessBackdrop = () => {
                     <AnimatePresence>
                       {isExpanded && (
                         <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: 'auto', opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3, ease: 'easeInOut' }}
+                          initial={isMobile ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
+                          animate={isMobile ? { height: 'auto', opacity: 1 } : { height: 'auto', opacity: 1 }}
+                          exit={isMobile ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
+                          transition={isMobile ? { duration: 0 } : { duration: 0.3, ease: 'easeInOut' }}
                           className="overflow-hidden"
                         >
                           <div className="px-5 pb-5 pt-0">
@@ -198,11 +217,12 @@ const ProcessBackdrop = () => {
 
           {/* Desktop: Right side with complex diagram */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={isMobile ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            whileInView={isMobile ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={isMobile ? { duration: 0 } : { duration: 0.6, delay: 0.2 }}
             className="hidden md:flex flex-shrink-0 relative w-[500px] h-[500px] lg:w-[600px] lg:h-[600px] items-center justify-center overflow-visible"
+            style={isMobile ? { transform: 'none' } : {}}
           >
             {/* 7 Dotted lines */}
             {processSteps.map((text, index) => {
@@ -229,10 +249,10 @@ const ProcessBackdrop = () => {
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+                  initial={isMobile ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
+                  whileInView={isMobile ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
                   viewport={{ once: true, amount: 0.3 }}
-                  transition={{ 
+                  transition={isMobile ? { duration: 0 } : { 
                     duration: 0.5, 
                     delay: 0.3 + index * 0.1,
                     type: "spring",

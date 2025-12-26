@@ -73,7 +73,7 @@
     outline: none;
   }
 
-  /* Mobile optimizations - prevent layout shifts and improve performance */
+  /* Mobile optimizations - disable ALL animations except hero text changing */
   @media (max-width: 767px) {
     /* Prevent horizontal scrolling */
     * {
@@ -91,10 +91,29 @@
       will-change: auto !important;
     }
 
-    /* Prevent layout shifts from transforms */
-    section, div[class*="section"], main {
+    /* Exception: Keep hero text changing animation */
+    /* The hero text animation is handled via JavaScript, so CSS won't affect it */
+
+    /* Reset transforms that cause positioning issues on mobile */
+    /* Only reset x, y, and scale transforms, keep translateZ for performance */
+    section[style*="transform"]:not(footer section), 
+    div[style*="transform"]:not(footer div),
+    [class*="motion-"][style*="transform"]:not(footer [class*="motion-"]) {
       transform: translateZ(0) !important;
       -webkit-transform: translateZ(0) !important;
+    }
+    
+    /* Ensure sections don't have unwanted x/y transforms */
+    /* Exception: Don't reset footer transforms to preserve dolphin rotation */
+    section:not(footer section), 
+    div[class*="section"]:not(footer div) {
+      transform: translateZ(0) !important;
+      -webkit-transform: translateZ(0) !important;
+    }
+    
+    /* Preserve footer dolphin rotation - don't override framer-motion animations */
+    footer [class*="rounded-full"] {
+      /* Let framer-motion handle the rotation transform */
     }
 
     /* Disable 3D transforms on mobile for better performance */
@@ -113,10 +132,10 @@
       transform: none !important;
     }
 
-    /* Force GPU acceleration for smooth scrolling */
+    /* Force GPU acceleration for smooth scrolling - but reset transforms */
     body {
-      transform: translateZ(0);
-      -webkit-transform: translateZ(0);
+      transform: translateZ(0) !important;
+      -webkit-transform: translateZ(0) !important;
     }
   }
 }

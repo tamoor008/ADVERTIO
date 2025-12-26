@@ -6,6 +6,22 @@ import { CALENDLY_CONFIG } from '../../config/calendly.config';
 
 const BookMeetingButton = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth < 768;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -18,9 +34,12 @@ const BookMeetingButton = () => {
       // Check if user is at the bottom (within 100px of the bottom)
       const isAtBottom = scrollY + windowHeight >= documentHeight - 100;
       
-      // Show button only if scrolled past 50px AND not at the bottom
-      setIsScrolled(scrollY > 50 && !isAtBottom);
+      // Show button all the time EXCEPT when at the bottom
+      setIsScrolled(!isAtBottom);
     };
+    
+    // Check initial scroll position
+    handleScroll();
     
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -131,10 +150,10 @@ const BookMeetingButton = () => {
     <AnimatePresence>
       {isScrolled && (
         <motion.div
-          initial={{ opacity: 0, scale: 0, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0, y: 20 }}
-          transition={{ 
+          initial={isMobile ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0, y: 20 }}
+          animate={isMobile ? { opacity: 1, scale: 1, y: 0 } : { opacity: 1, scale: 1, y: 0 }}
+          exit={isMobile ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0, y: 20 }}
+          transition={isMobile ? { duration: 0 } : { 
             type: 'spring', 
             stiffness: 300, 
             damping: 20,
@@ -144,21 +163,21 @@ const BookMeetingButton = () => {
         >
           {/* Small dot banner */}
           <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
+            initial={isMobile ? { scale: 1 } : { scale: 0 }}
+            animate={isMobile ? { scale: 1 } : { scale: 1 }}
+            transition={isMobile ? { duration: 0 } : { delay: 0.2, type: 'spring', stiffness: 200 }}
             className="absolute -top-1 -right-1 w-2 h-2 bg-gradient-to-r from-primary to-dark rounded-full z-10 shadow-lg"
           />
 
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={isMobile ? {} : { scale: 1.05 }}
+            whileTap={isMobile ? {} : { scale: 0.95 }}
             onClick={handleClick}
             className="relative px-4 py-3 md:px-6 md:py-4 bg-gradient-to-r from-primary to-dark rounded-full shadow-2xl hover:shadow-primary/50 flex items-center justify-center gap-2 transition-all duration-300 group overflow-visible"
             style={{
               background: 'linear-gradient(135deg, #E94F37 0%, #253E5C 100%)',
               backgroundSize: '200% 200%',
-              animation: 'gradientShift 3s ease infinite',
+              animation: isMobile ? 'none' : 'gradientShift 3s ease infinite',
             }}
             aria-label="Book a Meeting"
           >
@@ -169,10 +188,10 @@ const BookMeetingButton = () => {
                 background: 'linear-gradient(135deg, #E94F37 0%, #253E5C 100%)',
                 backgroundSize: '200% 200%',
               }}
-              animate={{
+              animate={isMobile ? {} : {
                 backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
               }}
-              transition={{
+              transition={isMobile ? { duration: 0 } : {
                 duration: 3,
                 repeat: Infinity,
                 ease: 'linear',
@@ -202,8 +221,8 @@ const BookMeetingButton = () => {
             </span>
             <motion.div
               className="absolute -top-1 -right-1 w-3 h-3 bg-primary rounded-full z-10"
-              animate={{ scale: [1, 1.3, 1], opacity: [1, 0.7, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
+              animate={isMobile ? { scale: 1, opacity: 1 } : { scale: [1, 1.3, 1], opacity: [1, 0.7, 1] }}
+              transition={isMobile ? { duration: 0 } : { duration: 2, repeat: Infinity }}
             />
           </motion.button>
 

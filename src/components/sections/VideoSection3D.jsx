@@ -6,6 +6,22 @@ const VideoSection3D = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.1, margin: '-100px' });
   const [playingVideo, setPlayingVideo] = useState(null);
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth < 768;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const videos = [
     { id: 'ke8xYx4itng', title: 'Video 1' },
@@ -52,9 +68,10 @@ const VideoSection3D = () => {
       <div className="relative z-10 max-w-[1500px] mx-auto px-6 sm:px-8 lg:px-10">
         <motion.div
           className="text-center mb-16 md:mb-20"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          animate={isMobile ? { opacity: 1, y: 0 } : (isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 })}
+          transition={isMobile ? { duration: 0 } : { duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          style={isMobile ? { transform: 'none' } : {}}
         >
           <h2
             className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 relative"
@@ -69,9 +86,10 @@ const VideoSection3D = () => {
           </h2>
           <motion.p
             className="text-lg md:text-xl lg:text-2xl text-gray-600 max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            animate={isMobile ? { opacity: 1, y: 0 } : (isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
+            transition={isMobile ? { duration: 0 } : { duration: 0.8, delay: 0.3 }}
+            style={isMobile ? { transform: 'none' } : {}}
           >
             Experience our creative journey through immersive video content
           </motion.p>
@@ -79,15 +97,19 @@ const VideoSection3D = () => {
       </div>
 
       <div 
-        className="relative"
-        style={{
+        className="relative w-full flex justify-center"
+        style={isMobile ? {
+          width: '100%',
+          marginLeft: 0,
+          transform: 'none',
+        } : {
           width: '100vw',
           marginLeft: '50%',
           transform: 'translateX(-50%)',
         }}
       >
         <div 
-          className="relative w-full border-2 border-gray-300/50 bg-white/50 backdrop-blur-sm p-8 md:p-12 lg:p-16 overflow-hidden" 
+          className="relative w-full max-w-[1500px] border-2 border-gray-300/50 bg-white/50 backdrop-blur-sm p-8 md:p-12 lg:p-16 overflow-hidden" 
           style={{ 
             borderRadius: 0,
             boxShadow: `
@@ -114,25 +136,29 @@ const VideoSection3D = () => {
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 lg:gap-12 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 lg:gap-12 relative z-10 justify-items-center md:justify-items-stretch">
             {videos.map((video, index) => (
               <motion.div
                 key={video.id}
-                className="relative cursor-pointer"
-                initial={{ opacity: 0, y: 40 }}
-                animate={isInView ? { 
+                className="relative cursor-pointer w-full max-w-[400px] md:max-w-none"
+                initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+                animate={isMobile ? { 
+                  opacity: 1, 
+                  y: 0,
+                } : (isInView ? { 
                   opacity: 1, 
                   y: 0,
                 } : { 
                   opacity: 0, 
                   y: 40,
-                }}
-                transition={{
+                })}
+                transition={isMobile ? { duration: 0 } : {
                   duration: 0.6,
                   delay: index * 0.1,
                   ease: [0.22, 1, 0.36, 1],
                 }}
                 onClick={() => handlePlayVideo(video.id)}
+                style={isMobile ? { transform: 'none' } : {}}
               >
                 <div 
                   className="relative w-full rounded-3xl overflow-hidden bg-gray-900 shadow-2xl"
