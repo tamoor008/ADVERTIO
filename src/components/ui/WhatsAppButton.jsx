@@ -1,10 +1,11 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const WhatsAppButton = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
+  // Initialize as true so button shows by default
+  const [isScrolled, setIsScrolled] = useState(true);
   const [isMobile, setIsMobile] = useState(() => {
     if (typeof window !== 'undefined') {
       return window.innerWidth < 768;
@@ -25,23 +26,35 @@ const WhatsAppButton = () => {
   }, []);
 
   useEffect(() => {
+    // Keep button visible initially, only check scroll after page loads
+    if (typeof window === 'undefined') return;
+    
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
       
       // Check if user is at the bottom (within 100px of the bottom)
-      const isAtBottom = scrollY + windowHeight >= documentHeight - 100;
+      // Only hide if page is actually tall enough and user is at bottom
+      const isAtBottom = documentHeight > windowHeight && scrollY + windowHeight >= documentHeight - 100;
       
       // Show button all the time EXCEPT when at the bottom
       setIsScrolled(!isAtBottom);
     };
     
-    // Check initial scroll position
-    handleScroll();
+    // Wait for page to fully load before checking scroll
+    // This ensures buttons are visible initially
+    const timeoutId = setTimeout(() => {
+      handleScroll();
+      window.addEventListener('scroll', handleScroll);
+      window.addEventListener('resize', handleScroll);
+    }, 1000);
     
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
   }, []);
 
   const handleClick = () => {
@@ -49,24 +62,24 @@ const WhatsAppButton = () => {
   };
 
   return (
-    <AnimatePresence>
-      {isScrolled && (
-        <motion.button
-          initial={isMobile ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0, y: 20 }}
-          animate={isMobile ? { opacity: 1, scale: 1, y: 0 } : { opacity: 1, scale: 1, y: 0 }}
-          exit={isMobile ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0, y: 20 }}
-          transition={isMobile ? { duration: 0 } : { 
-            type: 'spring', 
-            stiffness: 300, 
-            damping: 20,
-            duration: 0.3 
-          }}
-          whileHover={isMobile ? {} : { scale: 1.1 }}
-          whileTap={isMobile ? {} : { scale: 0.95 }}
-          onClick={handleClick}
-          className="fixed bottom-6 right-6 z-[10000] w-14 h-14 md:w-16 md:h-16 bg-[#25D366] rounded-full shadow-lg hover:shadow-xl flex items-center justify-center transition-all duration-300 group"
-          aria-label="Chat on WhatsApp"
-        >
+    <motion.button
+      initial={{ opacity: 1, scale: 1, y: 0 }}
+      animate={{ 
+        opacity: isScrolled ? 1 : 0, 
+        scale: isScrolled ? 1 : 0.8, 
+        y: 0
+      }}
+      transition={{ duration: 0.3 }}
+      whileHover={isMobile ? {} : { scale: 1.1 }}
+      whileTap={isMobile ? {} : { scale: 0.95 }}
+      onClick={handleClick}
+      className="fixed bottom-6 right-6 z-[10000] w-14 h-14 md:w-16 md:h-16 bg-[#25D366] rounded-full shadow-lg hover:shadow-xl flex items-center justify-center transition-all duration-300 group"
+      style={{ 
+        pointerEvents: isScrolled ? 'auto' : 'none',
+        display: isScrolled ? 'flex' : 'none'
+      }}
+      aria-label="Chat on WhatsApp"
+    >
           <svg
             className="w-8 h-8 md:w-10 md:h-10 text-white"
             fill="currentColor"
@@ -83,8 +96,6 @@ const WhatsAppButton = () => {
             <span className="w-2 h-2 bg-white rounded-full"></span>
           </motion.div>
         </motion.button>
-      )}
-    </AnimatePresence>
   );
 };
 

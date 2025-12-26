@@ -115,6 +115,18 @@
     footer [class*="rounded-full"] {
       /* Let framer-motion handle the rotation transform */
     }
+    
+    /* Ensure navbar stays fixed on mobile - don't reset its position */
+    nav[class*="fixed"],
+    nav.fixed,
+    [class*="fixed"][class*="top-0"] {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      transform: none !important;
+      -webkit-transform: none !important;
+    }
 
     /* Disable 3D transforms on mobile for better performance */
     [style*="preserve-3d"] {

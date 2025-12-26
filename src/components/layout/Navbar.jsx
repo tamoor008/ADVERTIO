@@ -18,6 +18,8 @@ const Navbar = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
+    // Check initial state
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -72,13 +74,18 @@ const Navbar = () => {
   ];
 
   return (
-    <motion.nav
+    <nav
       className={`fixed top-0 left-0 right-0 z-[10001] transition-all duration-300 ${
         isScrolled ? 'bg-white/95 shadow-lg backdrop-blur-md py-4' : 'bg-transparent py-6'
       }`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
+      style={{ 
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        width: '100%',
+        zIndex: 10001
+      }}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         <Link href="/" className="flex items-center">
@@ -427,7 +434,7 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </nav>
   );
 };
 
