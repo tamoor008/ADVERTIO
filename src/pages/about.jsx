@@ -116,13 +116,16 @@ const About = () => {
     }, 1500);
   };
 
-  // Scroll to top on mount
+  // Scroll to top on mount - disabled on mobile to prevent auto-scroll
   useEffect(() => {
     // Register GSAP plugin only in browser
     if (typeof window !== 'undefined') {
       gsap.registerPlugin(ScrollTrigger);
+      // Only scroll to top on desktop, not on mobile
+      if (window.innerWidth >= 768) {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      }
     }
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, []);
 
   // Auto-advance carousel (pauses on hover)
@@ -142,28 +145,42 @@ const About = () => {
   }, [testimonials.length, isHovered]);
 
   useEffect(() => {
-    // Animate value cards
+    // Animate value cards - simplified on mobile
     if (valuesRef.current) {
       const cards = valuesRef.current.querySelectorAll('.value-card');
+      
+      // On mobile, set cards to visible immediately to prevent disappearing
+      if (isMobile) {
+        gsap.set(cards, { opacity: 1, y: 0 });
+        return;
+      }
+      
+      // Desktop: use ScrollTrigger animations
       gsap.set(cards, { opacity: 0, y: 50 });
       
+      const scrollTriggers = [];
       cards.forEach((card, index) => {
-        gsap.to(card, {
+        const st = gsap.to(card, {
           opacity: 1,
           y: 0,
           duration: 0.8,
           ease: 'power2.out',
-        scrollTrigger: {
+          scrollTrigger: {
             trigger: card,
             start: 'top 85%',
             toggleActions: 'play none none none',
-        },
+          },
           delay: index * 0.15,
         });
+        scrollTriggers.push(st.scrollTrigger);
       });
+      
+      // Cleanup ScrollTrigger instances
+      return () => {
+        scrollTriggers.forEach(st => st?.kill());
+      };
     }
-
-  }, []);
+  }, [isMobile]);
 
   // Detect mobile viewport
   useEffect(() => {
@@ -227,15 +244,15 @@ const About = () => {
       <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-visible pt-24 pb-8 md:pb-20 z-10">
         <div className="container mx-auto px-6 relative z-30">
             <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.8 }}
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            animate={isMobile ? { opacity: 1, y: 0 } : (heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 })}
+              transition={isMobile ? { duration: 0 } : { duration: 0.8 }}
             className="text-center max-w-4xl mx-auto"
             >
         <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
+              initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              animate={isMobile ? { opacity: 1, y: 0 } : (heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
+                transition={isMobile ? { duration: 0 } : { duration: 0.8, delay: 0.2 }}
                 className="mb-6"
               >
                 <span className="px-4 py-2 rounded-full border border-primary/40 text-primary text-sm font-semibold tracking-wide uppercase bg-white/80 backdrop-blur">
@@ -244,18 +261,18 @@ const About = () => {
               </motion.div>
               
               <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
+              initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              animate={isMobile ? { opacity: 1, y: 0 } : (heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
+                transition={isMobile ? { duration: 0 } : { duration: 0.8, delay: 0.3 }}
               className="text-6xl md:text-8xl font-black mb-8 bg-gradient-to-r from-primary via-[#ff6b4a] to-[#253E5C] bg-clip-text text-transparent"
               >
               Unleash your potential with Advertio
               </motion.h1>
               
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
+              initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              animate={isMobile ? { opacity: 1, y: 0 } : (heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
+                transition={isMobile ? { duration: 0 } : { duration: 0.8, delay: 0.4 }}
               className="flex justify-center"
               >
               <motion.div
@@ -276,10 +293,10 @@ const About = () => {
       <section ref={whoWeAreRef} className="relative py-8 md:py-20 px-6 z-30">
         <div className="container mx-auto max-w-7xl">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={isMobile ? { duration: 0 } : { duration: 0.8 }}
             className="mb-12"
           >
             <h2 className="text-5xl md:text-6xl font-black mb-6">
@@ -309,11 +326,11 @@ const About = () => {
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.div
                     key={currentTestimonialIndex}
-                    initial={{ opacity: 0, x: 300 }}
+                    initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: 300 }}
                     animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -300 }}
-                    transition={{ duration: 0.5, ease: 'easeInOut' }}
-                    drag="x"
+                    exit={isMobile ? { opacity: 0 } : { opacity: 0, x: -300 }}
+                    transition={isMobile ? { duration: 0.3 } : { duration: 0.5, ease: 'easeInOut' }}
+                    drag={isMobile ? false : "x"}
                     dragConstraints={{ left: -100, right: 100 }}
                     dragElastic={0.2}
                     onDragEnd={handleDragEnd}
@@ -345,10 +362,10 @@ const About = () => {
             <div className="space-y-8">
               {/* Vision Section */}
               <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={isMobile ? { opacity: 1 } : { opacity: 0, x: 50 }}
+                whileInView={isMobile ? { opacity: 1 } : { opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
+                transition={isMobile ? { duration: 0 } : { duration: 0.8 }}
                 className="flex items-start gap-6"
               >
                 <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-[#253E5C] to-primary flex items-center justify-center">
@@ -366,10 +383,10 @@ const About = () => {
 
               {/* Mission Section */}
             <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={isMobile ? { opacity: 1 } : { opacity: 0, x: 50 }}
+                whileInView={isMobile ? { opacity: 1 } : { opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
+                transition={isMobile ? { duration: 0 } : { duration: 0.8, delay: 0.2 }}
                 className="flex items-start gap-6"
               >
                 <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-[#253E5C] to-primary flex items-center justify-center">
@@ -398,10 +415,10 @@ const About = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Side - Text Content */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={isMobile ? { opacity: 1 } : { opacity: 0, x: -50 }}
+              whileInView={isMobile ? { opacity: 1 } : { opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              transition={isMobile ? { duration: 0 } : { duration: 0.8 }}
               className="space-y-6"
             >
               <h2 className="text-5xl md:text-6xl font-black mb-4">
@@ -440,10 +457,10 @@ const About = () => {
 
             {/* Right Side - Portrait Image */}
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={isMobile ? { opacity: 1 } : { opacity: 0, x: 50 }}
+              whileInView={isMobile ? { opacity: 1 } : { opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              transition={isMobile ? { duration: 0 } : { duration: 0.8 }}
               className="relative"
             >
               <div className="relative w-full aspect-[3/4] max-w-md mx-auto">
@@ -464,11 +481,11 @@ const About = () => {
       {/* Contact CTA Section */}
       <section className="relative py-8 md:py-20 px-6 z-30">
         <div className="container mx-auto max-w-4xl">
-            <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+              <motion.div
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              transition={isMobile ? { duration: 0 } : { duration: 0.8 }}
             className="text-center bg-white/90 backdrop-blur-md p-8 md:p-12 rounded-3xl shadow-xl"
               style={{
                 border: '2px solid transparent',
@@ -512,10 +529,10 @@ const About = () => {
       <section ref={valuesRef} className="relative pt-8 md:pt-32 pb-0 px-6 z-30 overflow-visible">
         <div className="container mx-auto max-w-7xl">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={isMobile ? { duration: 0 } : { duration: 0.8 }}
             className="text-center mb-20"
           >
             <h2 className="text-5xl md:text-6xl font-black mb-6 bg-gradient-to-r from-primary to-[#253E5C] bg-clip-text text-transparent">
@@ -566,15 +583,15 @@ const About = () => {
                 return (
               <motion.div
                 key={index}
-                    className="relative group"
+                    className="relative group value-card"
                 style={{ 
-                  transformStyle: 'preserve-3d',
+                  transformStyle: isMobile ? 'flat' : 'preserve-3d',
                   zIndex: isFocused && isMobile ? 50 : 1,
                 }}
-                    initial={{ opacity: 0, y: 100, rotateX: -20 }}
-                    whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                    initial={isMobile ? { opacity: 1, y: 0, rotateX: 0 } : { opacity: 0, y: 100, rotateX: -20 }}
+                    whileInView={isMobile ? { opacity: 1, y: 0, rotateX: 0 } : { opacity: 1, y: 0, rotateX: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
-                    transition={{
+                    transition={isMobile ? { duration: 0 } : {
                       duration: 0.8,
                       delay: index * 0.15,
                       ease: [0.22, 1, 0.36, 1],
@@ -590,13 +607,16 @@ const About = () => {
                     {/* 3D Card Container */}
                     <motion.div
                       className="relative h-full"
-                      style={{ transformStyle: 'preserve-3d' }}
-                      animate={{
-                        rotateY: isMobile && isFocused ? 0 : (isHovered ? (isEven ? 5 : -5) : 0),
-                        rotateX: isMobile && isFocused ? 0 : (isHovered ? -3 : 0),
-                        scale: isMobile && isFocused ? 1.08 : (isHovered ? 1.05 : 1),
-                        y: isMobile && isFocused ? -20 : 0,
-                        z: isMobile && isFocused ? 100 : (isHovered ? 50 : 0),
+                      style={{ transformStyle: isMobile ? 'flat' : 'preserve-3d' }}
+                      animate={isMobile ? {
+                        scale: isFocused ? 1.05 : 1,
+                        y: isFocused ? -10 : 0,
+                      } : {
+                        rotateY: isHovered ? (isEven ? 5 : -5) : 0,
+                        rotateX: isHovered ? -3 : 0,
+                        scale: isHovered ? 1.05 : 1,
+                        y: 0,
+                        z: isHovered ? 50 : 0,
                       }}
                       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                     >
@@ -879,15 +899,18 @@ const About = () => {
             <motion.form
               ref={contactCardRef}
               onSubmit={handleFormSubmit}
-              onMouseMove={handleMouseMove}
-              onMouseLeave={resetTilt}
+              onMouseMove={isMobile ? undefined : handleMouseMove}
+              onMouseLeave={isMobile ? undefined : resetTilt}
               className="relative rounded-[36px] border border-white/20 shadow-[0_25px_80px_rgba(0,0,0,0.4)] p-8 md:p-10"
               style={{
                 background: 'linear-gradient(135deg, rgba(233, 79, 55, 1) 0%, rgba(37, 62, 92, 1) 50%, rgba(233, 79, 55, 1) 100%)',
-                transformStyle: 'preserve-3d'
+                transformStyle: isMobile ? 'flat' : 'preserve-3d'
               }}
-              initial={{ opacity: 0, y: 60, rotateY: 15 }}
-              animate={{
+              initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 60, rotateY: 15 }}
+              animate={isMobile ? {
+                opacity: 1,
+                y: 0,
+              } : {
                 opacity: contactInView ? 1 : 0,
                 y: contactInView ? 0 : 60,
                 rotateX: mouseTilt.y * 8,
@@ -895,8 +918,8 @@ const About = () => {
                 translateZ: contactInView ? 0 : -100,
                 scale: contactInView ? 1 : 0.95,
               }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              whileHover={{ scale: 1.01 }}
+              transition={isMobile ? { duration: 0 } : { duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={isMobile ? {} : { scale: 1.01 }}
             >
               <div className="relative space-y-6">
                 {[
@@ -907,15 +930,15 @@ const About = () => {
                   <motion.div
                     key={field.name}
                     className="space-y-2"
-                    initial={{ opacity: 0, y: 30, rotateX: -10 }}
-                    animate={contactInView ? { opacity: 1, y: 0, rotateX: 0 } : { opacity: 0, y: 30, rotateX: -10 }}
-                    transition={{ 
+                    initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30, rotateX: -10 }}
+                    animate={isMobile ? { opacity: 1, y: 0 } : (contactInView ? { opacity: 1, y: 0, rotateX: 0 } : { opacity: 0, y: 30, rotateX: -10 })}
+                    transition={isMobile ? { duration: 0 } : { 
                       duration: 0.6, 
                       delay: 0.25 + index * 0.12,
                       ease: [0.22, 1, 0.36, 1]
                     }}
-                    whileHover={{ scale: 1.02, translateZ: 10 }}
-                    style={{ transformStyle: 'preserve-3d' }}
+                    whileHover={isMobile ? {} : { scale: 1.02, translateZ: 10 }}
+                    style={{ transformStyle: isMobile ? 'flat' : 'preserve-3d' }}
                   >
                     <motion.label 
                       className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70 block"
@@ -930,28 +953,28 @@ const About = () => {
                       onChange={handleFormChange}
                       required
                       className="w-full px-5 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 focus:bg-white/15 transition-all"
-                      whileFocus={{ 
+                      whileFocus={isMobile ? {} : { 
                         scale: 1.02, 
                         borderColor: 'rgba(233, 79, 55, 0.6)',
                         boxShadow: '0 0 20px rgba(233, 79, 55, 0.3)',
                         translateZ: 15
                       }}
-                      style={{ transformStyle: 'preserve-3d' }}
+                      style={{ transformStyle: isMobile ? 'flat' : 'preserve-3d' }}
                     />
                   </motion.div>
                 ))}
 
                 <motion.div
                   className="space-y-2"
-                  initial={{ opacity: 0, y: 30, rotateX: -10 }}
-                  animate={contactInView ? { opacity: 1, y: 0, rotateX: 0 } : { opacity: 0, y: 30, rotateX: -10 }}
-                  transition={{ 
+                  initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30, rotateX: -10 }}
+                  animate={isMobile ? { opacity: 1, y: 0 } : (contactInView ? { opacity: 1, y: 0, rotateX: 0 } : { opacity: 0, y: 30, rotateX: -10 })}
+                  transition={isMobile ? { duration: 0 } : { 
                     duration: 0.6, 
                     delay: 0.55,
                     ease: [0.22, 1, 0.36, 1]
                   }}
-                  whileHover={{ scale: 1.01, translateZ: 10 }}
-                  style={{ transformStyle: 'preserve-3d' }}
+                  whileHover={isMobile ? {} : { scale: 1.01, translateZ: 10 }}
+                  style={{ transformStyle: isMobile ? 'flat' : 'preserve-3d' }}
                 >
                   <motion.label 
                     className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70 block"
@@ -995,15 +1018,15 @@ const About = () => {
 
                 <motion.div
                   className="space-y-2"
-                  initial={{ opacity: 0, y: 30, rotateX: -10 }}
-                  animate={contactInView ? { opacity: 1, y: 0, rotateX: 0 } : { opacity: 0, y: 30, rotateX: -10 }}
-                  transition={{ 
+                  initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30, rotateX: -10 }}
+                  animate={isMobile ? { opacity: 1, y: 0 } : (contactInView ? { opacity: 1, y: 0, rotateX: 0 } : { opacity: 0, y: 30, rotateX: -10 })}
+                  transition={isMobile ? { duration: 0 } : { 
                     duration: 0.6, 
                     delay: 0.65,
                     ease: [0.22, 1, 0.36, 1]
                   }}
-                  whileHover={{ scale: 1.01, translateZ: 10 }}
-                  style={{ transformStyle: 'preserve-3d' }}
+                  whileHover={isMobile ? {} : { scale: 1.01, translateZ: 10 }}
+                  style={{ transformStyle: isMobile ? 'flat' : 'preserve-3d' }}
                 >
                   <motion.label 
                     className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70 block"
@@ -1030,15 +1053,15 @@ const About = () => {
 
                 <motion.div
                   className="space-y-2"
-                  initial={{ opacity: 0, y: 30, rotateX: -10 }}
-                  animate={contactInView ? { opacity: 1, y: 0, rotateX: 0 } : { opacity: 0, y: 30, rotateX: -10 }}
-                  transition={{ 
+                  initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30, rotateX: -10 }}
+                  animate={isMobile ? { opacity: 1, y: 0 } : (contactInView ? { opacity: 1, y: 0, rotateX: 0 } : { opacity: 0, y: 30, rotateX: -10 })}
+                  transition={isMobile ? { duration: 0 } : { 
                     duration: 0.6, 
                     delay: 0.75,
                     ease: [0.22, 1, 0.36, 1]
                   }}
-                  whileHover={{ scale: 1.01, translateZ: 10 }}
-                  style={{ transformStyle: 'preserve-3d' }}
+                  whileHover={isMobile ? {} : { scale: 1.01, translateZ: 10 }}
+                  style={{ transformStyle: isMobile ? 'flat' : 'preserve-3d' }}
                 >
                   <motion.label 
                     className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70 block"
@@ -1052,13 +1075,13 @@ const About = () => {
                     value={formData.message}
                     onChange={handleFormChange}
                     className="w-full px-5 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 focus:bg-white/15 transition-all resize-none"
-                    whileFocus={{ 
+                    whileFocus={isMobile ? {} : { 
                       scale: 1.01, 
                       borderColor: 'rgba(233, 79, 55, 0.6)',
                       boxShadow: '0 0 20px rgba(233, 79, 55, 0.3)',
                       translateZ: 15
                     }}
-                    style={{ transformStyle: 'preserve-3d' }}
+                    style={{ transformStyle: isMobile ? 'flat' : 'preserve-3d' }}
                   />
                 </motion.div>
 
@@ -1066,9 +1089,9 @@ const About = () => {
                   type="submit"
                   disabled={formStatus === 'sending'}
                   className="relative w-full flex items-center justify-center gap-3 px-6 py-4 rounded-2xl text-white font-semibold text-lg bg-gradient-to-r from-[#253E5C] via-primary to-[#FF6B4A] shadow-lg shadow-primary/40 transition-all disabled:opacity-60 overflow-hidden"
-                  whileHover={{ scale: 1.03, translateZ: 20, boxShadow: '0 10px 40px rgba(233, 79, 55, 0.5)' }}
+                  whileHover={isMobile ? {} : { scale: 1.03, translateZ: 20, boxShadow: '0 10px 40px rgba(233, 79, 55, 0.5)' }}
                   whileTap={{ scale: 0.98 }}
-                  style={{ transformStyle: 'preserve-3d' }}
+                  style={{ transformStyle: isMobile ? 'flat' : 'preserve-3d' }}
                 >
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
@@ -1110,6 +1133,18 @@ const ReviewsSection3D = () => {
   const scrollContainerRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.1, margin: '-100px' });
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile viewport
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const reviews = [
     {
@@ -1382,9 +1417,9 @@ const ReviewsSection3D = () => {
           {/* Section Header */}
           <motion.div
             className="text-center mb-4 md:mb-16 max-w-4xl mx-auto"
-            initial={{ opacity: 0, y: 50, scale: 0.9 }}
-            animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.9 }}
-            transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            initial={isMobile ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.9 }}
+            animate={isMobile ? { opacity: 1, y: 0, scale: 1 } : (isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.9 })}
+            transition={isMobile ? { duration: 0 } : { duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
             <motion.p
               className="text-xs uppercase tracking-[0.5em] text-[#253E5C]/60 mb-4"
@@ -1445,33 +1480,36 @@ const ReviewsSection3D = () => {
                       scale: 1,
                     }}
                     viewport={{ once: true, amount: 0.2 }}
-                      transition={{
+                      transition={isMobile ? { duration: 0 } : {
                         duration: 0.6,
                         delay: index * 0.05,
                         ease: [0.22, 1, 0.36, 1],
                       }}
-                      onMouseEnter={() => setHoveredIndex(index)}
-                      onMouseLeave={() => setHoveredIndex(null)}
+                      onMouseEnter={isMobile ? undefined : () => setHoveredIndex(index)}
+                      onMouseLeave={isMobile ? undefined : () => setHoveredIndex(null)}
                       style={{ 
-                        transformStyle: 'preserve-3d',
+                        transformStyle: isMobile ? 'flat' : 'preserve-3d',
                         width: '380px',
                         minWidth: '380px',
-                        willChange: 'transform',
+                        willChange: isMobile ? 'auto' : 'transform',
                         zIndex: hoveredIndex === index ? 10 : 1,
                       }}
                     >
                       <motion.div
                         className="relative h-full rounded-[32px] overflow-visible cursor-pointer min-h-[400px] md:min-h-[550px]"
                         style={{
-                          transformStyle: 'preserve-3d',
+                          transformStyle: isMobile ? 'flat' : 'preserve-3d',
                           position: 'relative',
                           zIndex: hoveredIndex === index ? 20 : 1,
                           WebkitFontSmoothing: 'antialiased',
                           textRendering: 'optimizeLegibility',
-                          WebkitBackfaceVisibility: 'hidden',
-                          backfaceVisibility: 'hidden',
+                          WebkitBackfaceVisibility: isMobile ? 'visible' : 'hidden',
+                          backfaceVisibility: isMobile ? 'visible' : 'hidden',
                         }}
-                        animate={{
+                        animate={isMobile ? {
+                          scale: 1,
+                          y: 0,
+                        } : {
                           rotateY: isHovered ? 3 : 0,
                           rotateX: isHovered ? -2 : 0,
                           scale: isHovered ? 1.05 : 1,

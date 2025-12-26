@@ -72,6 +72,39 @@
     display: block;
     outline: none;
   }
+
+  /* Mobile optimizations - prevent layout shifts and improve performance */
+  @media (max-width: 767px) {
+    /* Prevent horizontal scrolling */
+    * {
+      max-width: 100%;
+    }
+
+    /* Optimize animations on mobile */
+    [class*="motion-"], [class*="animate-"] {
+      will-change: auto !important;
+      transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    /* Prevent layout shifts from transforms */
+    section, div[class*="section"] {
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+    }
+
+    /* Disable 3D transforms on mobile for better performance */
+    [style*="preserve-3d"] {
+      transform-style: flat !important;
+    }
+
+    /* Optimize scrolling */
+    body {
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+    }
+  }
 }
 
 @layer components {
