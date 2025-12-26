@@ -46,11 +46,11 @@ const PageTransition = ({ children }) => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Simplified variants for mobile - no y transform to prevent layout shifts
+  // Completely disable animations on mobile for smooth performance
   const mobileVariants = {
-    initial: { opacity: 0 },
+    initial: { opacity: 1 },
     animate: { opacity: 1 },
-    exit: { opacity: 0 },
+    exit: { opacity: 1 },
   };
 
   return (
@@ -59,7 +59,7 @@ const PageTransition = ({ children }) => {
       animate="animate"
       exit="exit"
       variants={isMobile ? mobileVariants : pageVariants}
-      transition={isMobile ? { duration: 0.2 } : pageTransition}
+      transition={isMobile ? { duration: 0 } : pageTransition}
     >
       {children}
     </motion.div>

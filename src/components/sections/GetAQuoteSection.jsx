@@ -119,23 +119,23 @@ const GetAQuoteSection = () => {
     <motion.section
       ref={sectionRef}
       className="relative z-10 pt-8 md:pt-24 pb-8 md:pb-16 overflow-visible bg-transparent w-full"
-      initial={{ opacity: 0 }}
-      animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-      transition={{ duration: 0.6 }}
+      initial={isMobile ? { opacity: 1 } : { opacity: 0 }}
+      animate={isMobile ? { opacity: 1 } : (isInView ? { opacity: 1 } : { opacity: 0 })}
+      transition={isMobile ? { duration: 0 } : { duration: 0.6 }}
     >
       <div className="relative w-full px-6 md:px-8 lg:px-12 max-w-7xl mx-auto overflow-x-hidden">
         {/* Section Header */}
         <motion.div
           className="text-center mb-8 md:mb-12 max-w-4xl mx-auto"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          animate={isMobile ? { opacity: 1, y: 0 } : (isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 })}
+          transition={isMobile ? { duration: 0 } : { duration: 0.6, delay: 0.2 }}
         >
           <motion.h3
             className="text-4xl md:text-5xl lg:text-6xl font-black text-[#253E5C] mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            animate={isMobile ? { opacity: 1, y: 0 } : (isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
+            transition={isMobile ? { duration: 0 } : { duration: 0.6, delay: 0.3 }}
           >
             <div className="flex flex-col items-center gap-2">
               <span>Ready to Transform</span>
@@ -146,9 +146,9 @@ const GetAQuoteSection = () => {
           </motion.h3>
           <motion.p
             className="text-[#253E5C]/70 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed font-medium"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            animate={isMobile ? { opacity: 1, y: 0 } : (isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
+            transition={isMobile ? { duration: 0 } : { duration: 0.6, delay: 0.4 }}
           >
             Let&apos;s discuss how we can help grow your business. Get a personalized quote tailored to your needs.
           </motion.p>
@@ -166,9 +166,9 @@ const GetAQuoteSection = () => {
               height: '100%',
               overflow: 'visible',
             }}
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
+            initial={isMobile ? { opacity: 1 } : { opacity: 0 }}
+            animate={isMobile ? { opacity: 1 } : (isInView ? { opacity: 1 } : { opacity: 0 })}
+            transition={isMobile ? { duration: 0 } : { duration: 0.8, delay: 0.8 }}
             viewBox="0 0 1000 400"
             preserveAspectRatio="none"
           >
@@ -228,9 +228,9 @@ Stay One Step Ahead          </textPath>
           {/* Left Side: Dolphin and Ball Button */}
           <motion.div
             className="relative flex items-center justify-center md:justify-start min-h-[300px] md:min-h-[400px] mt-0 md:mt-0"
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
+            initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+            animate={isMobile ? { opacity: 1, x: 0 } : (isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 })}
+            transition={isMobile ? { duration: 0 } : { duration: 0.6, delay: 0.5 }}
           >
             <div className="relative z-10">
               <div className="relative">
@@ -246,17 +246,18 @@ Stay One Step Ahead          </textPath>
                 <motion.button
                   ref={buttonRef}
                   onClick={handleGetQuote}
-                  className="absolute z-20 rounded-full bg-gradient-to-br from-primary via-[#ff6b4a] to-[#e94f37] text-white font-bold text-xs md:text-sm px-3 py-2 md:px-4 md:py-2.5 border-2 border-white/30 cursor-pointer flex items-center justify-center shadow-xl"
+                  className="absolute z-20 rounded-full bg-gradient-to-br from-primary via-[#ff6b4a] to-[#e94f37] text-white font-bold text-xs md:text-sm border-2 border-white/30 cursor-pointer flex items-center justify-center shadow-xl"
                   style={{
                     left: 'calc(28% - 2px)',
                     bottom: isMobile ? '140px' : '225px',
                     width: isMobile ? '80px' : '100px',
                     height: isMobile ? '80px' : '100px',
+                    padding: 0,
                   }}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={isMobile ? {} : { scale: 1.1 }}
+                  whileTap={isMobile ? {} : { scale: 0.95 }}
                 >
-                  <span className="text-center leading-tight font-extrabold whitespace-nowrap text-xs md:text-sm">
+                  <span className="text-center leading-tight font-extrabold whitespace-nowrap text-xs md:text-sm flex items-center justify-center w-full h-full">
                     Get a Quote
                   </span>
                 </motion.button>
@@ -267,9 +268,9 @@ Stay One Step Ahead          </textPath>
           {/* Right Side: Value Proposition Formula */}
           <motion.div
             className="hidden md:block relative p-1 md:p-4 lg:p-12"
-                        initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
+            initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+            animate={isMobile ? { opacity: 1, x: 0 } : (isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 })}
+            transition={isMobile ? { duration: 0 } : { duration: 0.6, delay: 0.6 }}
           >
             {/* Content */}
             <div className="relative z-10">

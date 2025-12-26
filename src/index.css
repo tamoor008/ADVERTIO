@@ -80,18 +80,21 @@
       max-width: 100%;
     }
 
-    /* Optimize animations on mobile */
-    [class*="motion-"], [class*="animate-"] {
+    /* Disable all CSS animations and transitions on mobile */
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0s !important;
+      animation-delay: 0s !important;
+      transition-duration: 0s !important;
+      transition-delay: 0s !important;
       will-change: auto !important;
-      transform: translateZ(0);
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
     }
 
     /* Prevent layout shifts from transforms */
-    section, div[class*="section"] {
-      transform: translateZ(0);
-      -webkit-transform: translateZ(0);
+    section, div[class*="section"], main {
+      transform: translateZ(0) !important;
+      -webkit-transform: translateZ(0) !important;
     }
 
     /* Disable 3D transforms on mobile for better performance */
@@ -100,9 +103,20 @@
     }
 
     /* Optimize scrolling */
-    body {
+    html, body {
       -webkit-overflow-scrolling: touch;
       overscroll-behavior: contain;
+    }
+
+    /* Disable hover effects on mobile */
+    *:hover {
+      transform: none !important;
+    }
+
+    /* Force GPU acceleration for smooth scrolling */
+    body {
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
     }
   }
 }
