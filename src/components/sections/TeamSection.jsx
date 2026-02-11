@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import Image from 'next/image';
+import hibaImage from '../../assets/Hiba Tahir.jpg';
 
 const TeamSection = () => {
   const sectionRef = useRef(null);
@@ -34,11 +35,11 @@ const TeamSection = () => {
     },
     {
       id: 4,
-      name: 'Emma Thompson',
-      role: 'Content Specialist',
+      name: 'Hiba Tahir',
+      role: 'Brand Communications Manager',
       bio: 'Crafting compelling narratives that engage audiences and drive meaningful connections.',
       expertise: ['Content Strategy', 'Social Media', 'Storytelling'],
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=500&fit=crop&q=80',
+      image: hibaImage,
     },
   ];
 
@@ -77,14 +78,13 @@ const TeamSection = () => {
               'h-[520px] md:h-[650px] lg:h-[700px]', // Third card - larger
               'h-[420px] md:h-[520px] lg:h-[560px]', // Fourth card - smaller
             ];
-            
+
             return (
               <motion.div
                 key={member.id}
-                className={`relative group ${
-                  index === 1 ? 'mt-8 md:mt-12 lg:mt-16' : 
-                  index === 3 ? 'mt-8 md:mt-12 lg:mt-16' : ''
-                }`}
+                className={`relative group ${index === 1 ? 'mt-8 md:mt-12 lg:mt-16' :
+                    index === 3 ? 'mt-8 md:mt-12 lg:mt-16' : ''
+                  }`}
                 initial={{ opacity: 0, scale: 1 }}
                 animate={
                   isInView
@@ -113,7 +113,7 @@ const TeamSection = () => {
                       }}
                     />
                     {/* Gradient Overlay - Hidden on hover */}
-                    <div 
+                    <div
                       className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-0 transition-opacity duration-300"
                       style={{
                         opacity: hoveredIndex === index ? 0 : 1,
