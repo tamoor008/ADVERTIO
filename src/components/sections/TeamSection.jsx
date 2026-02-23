@@ -19,11 +19,11 @@ const TeamSection = () => {
     },
     {
       id: 2,
-      name: 'Tabish Islam',
-      role: 'Creative Director',
-      bio: 'Driving data-driven growth strategies that deliver measurable results for e-commerce brands.',
-      expertise: ['Performance Marketing', 'Growth Strategy', 'Analytics'],
-      image: '/tabish.jpg',
+      name: 'Hiba Tahir',
+      role: 'Co-Founder',
+      bio: 'Crafting compelling narratives that engage audiences and drive meaningful connections.',
+      expertise: ['Content Strategy', 'Social Media', 'Storytelling'],
+      image: hibaImage,
     },
     {
       id: 3,
@@ -35,11 +35,11 @@ const TeamSection = () => {
     },
     {
       id: 4,
-      name: 'Hiba Tahir',
-      role: 'Brand Communications Manager',
-      bio: 'Crafting compelling narratives that engage audiences and drive meaningful connections.',
-      expertise: ['Content Strategy', 'Social Media', 'Storytelling'],
-      image: hibaImage,
+      name: 'Tabish Islam',
+      role: 'Creative Director',
+      bio: 'Driving data-driven growth strategies that deliver measurable results for e-commerce brands.',
+      expertise: ['Performance Marketing', 'Growth Strategy', 'Analytics'],
+      image: '/tabish.jpg',
     },
   ];
 
@@ -83,7 +83,7 @@ const TeamSection = () => {
               <motion.div
                 key={member.id}
                 className={`relative group ${index === 1 ? 'mt-8 md:mt-12 lg:mt-16' :
-                    index === 3 ? 'mt-8 md:mt-12 lg:mt-16' : ''
+                  index === 3 ? 'mt-8 md:mt-12 lg:mt-16' : ''
                   }`}
                 initial={{ opacity: 0, scale: 1 }}
                 animate={
