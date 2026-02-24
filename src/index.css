@@ -20,15 +20,17 @@
   html {
     scroll-behavior: smooth;
     overflow-x: hidden;
-    overflow-y: auto;
-    scrollbar-width: none; /* Firefox - hide vertical scrollbar */
-    -ms-overflow-style: none; /* IE and Edge - hide vertical scrollbar */
+    scrollbar-width: none;
+    /* Firefox - hide vertical scrollbar */
+    -ms-overflow-style: none;
+    /* IE and Edge - hide vertical scrollbar */
     background-color: #FFFFFF !important;
     background: #FFFFFF !important;
   }
 
   html::-webkit-scrollbar {
-    display: none; /* WebKit - hide vertical scrollbar */
+    display: none;
+    /* WebKit - hide vertical scrollbar */
   }
 
   body {
@@ -38,34 +40,39 @@
     background: #FFFFFF !important;
     color: var(--dark);
     overflow-x: hidden;
-    overflow-y: auto;
-    scrollbar-width: none; /* Firefox - hide vertical scrollbar */
-    -ms-overflow-style: none; /* IE and Edge - hide vertical scrollbar */
+    scrollbar-width: none;
+    /* Firefox - hide vertical scrollbar */
+    -ms-overflow-style: none;
+    /* IE and Edge - hide vertical scrollbar */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   /* Next.js doesn't use #root, so we apply styles directly to body and html */
-  html, body {
+  html,
+  body {
     background-color: #FFFFFF !important;
     background: #FFFFFF !important;
     min-height: 100vh;
   }
 
   /* Ensure all page containers have white background */
-  body > div {
+  body>div {
     background-color: #FFFFFF !important;
     background: #FFFFFF !important;
   }
 
   /* Ensure all main page sections default to white */
-  main, section[class*="min-h-screen"], div[class*="min-h-screen"] {
+  main,
+  section[class*="min-h-screen"],
+  div[class*="min-h-screen"] {
     background-color: #FFFFFF !important;
     background: #FFFFFF !important;
   }
 
   body::-webkit-scrollbar {
-    display: none; /* WebKit - hide vertical scrollbar */
+    display: none;
+    /* WebKit - hide vertical scrollbar */
   }
 
   canvas {
@@ -75,6 +82,7 @@
 
   /* Mobile optimizations - disable ALL animations except hero text changing */
   @media (max-width: 767px) {
+
     /* Prevent horizontal scrolling */
     * {
       max-width: 100%;
@@ -97,22 +105,22 @@
     /* Reset transforms that cause positioning issues on mobile */
     /* Only reset x, y, and scale transforms, keep translateZ for performance */
     /* EXCEPT: Don't reset transforms on fixed positioned buttons and nav */
-    section[style*="transform"]:not(footer section):not(nav):not([class*="fixed"]), 
+    section[style*="transform"]:not(footer section):not(nav):not([class*="fixed"]),
     div[style*="transform"]:not(footer div):not([class*="fixed"]):not(button[aria-label] *),
     [class*="motion-"][style*="transform"]:not(footer [class*="motion-"]):not([class*="fixed"]) {
       transform: translateZ(0) !important;
       -webkit-transform: translateZ(0) !important;
     }
-    
+
     /* Ensure sections don't have unwanted x/y transforms */
     /* Exception: Don't reset footer transforms to preserve dolphin rotation */
     /* Exception: Don't reset fixed buttons and nav */
-    section:not(footer section):not(nav), 
+    section:not(footer section):not(nav),
     div[class*="section"]:not(footer div):not([class*="fixed"]) {
       transform: translateZ(0) !important;
       -webkit-transform: translateZ(0) !important;
     }
-    
+
     /* Preserve fixed button positioning - don't reset their transforms */
     button[aria-label],
     div[class*="fixed"][class*="bottom-6"],
@@ -120,12 +128,12 @@
       transform: none !important;
       -webkit-transform: none !important;
     }
-    
+
     /* Preserve footer dolphin rotation - don't override framer-motion animations */
     footer [class*="rounded-full"] {
       /* Let framer-motion handle the rotation transform */
     }
-    
+
     /* Ensure navbar stays fixed on mobile - don't reset its position */
     nav[class*="fixed"],
     nav.fixed,
@@ -146,7 +154,7 @@
       opacity: 1 !important;
       pointer-events: auto !important;
     }
-    
+
     /* Allow buttons to hide when footer is visible */
     button[aria-label="Chat on WhatsApp"][data-hidden],
     button[aria-label="Book a Meeting"][data-hidden] {
@@ -155,7 +163,7 @@
       opacity: 0 !important;
       pointer-events: none !important;
     }
-    
+
     /* Book Meeting button container - show when visible */
     div.fixed.bottom-6.left-6:not([data-hidden]),
     div[class*="fixed"][class*="bottom-6"]:not([data-hidden]) {
@@ -164,7 +172,7 @@
       opacity: 1 !important;
       pointer-events: auto !important;
     }
-    
+
     /* Allow Book Meeting button container to hide when footer is visible */
     div.fixed.bottom-6.left-6[data-hidden],
     div[class*="fixed"][class*="bottom-6"][data-hidden] {
@@ -177,12 +185,6 @@
     /* Disable 3D transforms on mobile for better performance */
     [style*="preserve-3d"] {
       transform-style: flat !important;
-    }
-
-    /* Optimize scrolling */
-    html, body {
-      -webkit-overflow-scrolling: touch;
-      overscroll-behavior: contain;
     }
 
     /* Disable hover effects on mobile */
@@ -232,9 +234,11 @@
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
