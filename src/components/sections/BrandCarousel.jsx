@@ -53,23 +53,25 @@ const BrandCarousel = () => {
             Forward-thinking companies collaborating with us on cinematic campaigns and measurable growth.
           </p>
         </div>
-        <div className="overflow-hidden">
+        <div className="overflow-hidden py-12">
           <div className="flex animate-scroll group">
             {/* First set of brands */}
             {brands.map((brand, index) => (
               <div
                 key={`brand-1-${index}`}
-                className="flex-shrink-0 mx-6 md:mx-8 flex items-center justify-center transition-transform"
+                className="flex-shrink-0 mx-6 md:mx-8 flex items-center justify-center"
                 style={{ 
                   width: '180px', 
-                  height: '100px',
-                  transform: brand.scale ? `scale(${brand.scale})` : 'scale(1)'
+                  height: '100px'
                 }}
               >
                 <img
                   src={brand.src}
                   alt={`Brand ${index + 1}`}
-                  className="max-w-full max-h-full object-contain transition-opacity duration-300 opacity-90 hover:opacity-100"
+                  className="max-w-full max-h-full object-contain transition-all duration-300 opacity-90 hover:opacity-100"
+                  style={{
+                    transform: brand.scale ? `scale(${brand.scale})` : 'scale(1)'
+                  }}
                   loading="lazy"
                 />
               </div>
@@ -78,17 +80,19 @@ const BrandCarousel = () => {
             {brands.map((brand, index) => (
               <div
                 key={`brand-2-${index}`}
-                className="flex-shrink-0 mx-6 md:mx-8 flex items-center justify-center transition-transform"
+                className="flex-shrink-0 mx-6 md:mx-8 flex items-center justify-center"
                 style={{ 
                   width: '180px', 
-                  height: '100px',
-                  transform: brand.scale ? `scale(${brand.scale})` : 'scale(1)'
+                  height: '100px'
                 }}
               >
                 <img
                   src={brand.src}
                   alt={`Brand ${index + 1}`}
-                  className="max-w-full max-h-full object-contain transition-opacity duration-300 opacity-90 hover:opacity-100"
+                  className="max-w-full max-h-full object-contain transition-all duration-300 opacity-90 hover:opacity-100"
+                  style={{
+                    transform: brand.scale ? `scale(${brand.scale})` : 'scale(1)'
+                  }}
                   loading="lazy"
                 />
               </div>
