@@ -5,7 +5,8 @@ import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
-import talhaImage from '../assets/talha.jpg';
+// Removed local import of talhaImage, will use public path directy
+
 import { servicesList } from '../components/sections/constants';
 
 const About = () => {
@@ -465,7 +466,7 @@ const About = () => {
             >
               <div className="relative w-full aspect-[3/4] max-w-md mx-auto">
                 <Image
-                  src={talhaImage}
+                  src="/talha.jpg"
                   alt="Leadership"
                   fill
                   className="object-cover rounded-2xl shadow-2xl"
