@@ -175,7 +175,7 @@ const HeroSection = () => {
             <div className="relative rounded-[36px] border border-white/10 p-10 w-full">
               <div className="flex items-start justify-between mb-6">
                 <div>
-                  <img src="/logo-Advertio.png" alt="Advertio logo" className="h-12 object-contain -mb-3" loading="lazy" />
+                  <img src="/logo-Advertio.png" alt="Advertio logo" className="h-12 object-contain -mb-3" loading="now" />
                   <p className="text-3xl font-black text-[#253E5C]">Advertio Launch Sprint</p>
                 </div>
                 <div className="text-right">

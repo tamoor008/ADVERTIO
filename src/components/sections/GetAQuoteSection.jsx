@@ -237,9 +237,9 @@ Stay One Step Ahead          </textPath>
                 <Image
                   src="/favicon.JPG"
                   alt="Dolphin"
-                  width={320}
-                  height={320}
-                  className="w-48 md:w-80 h-auto object-contain relative z-10"
+                  width={240}
+                  height={240}
+                  className="w-32 md:w-64 h-auto object-contain relative z-10"
                 />
                 
                 {/* Ball Button */}
