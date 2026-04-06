@@ -5,10 +5,10 @@ export default function Document() {
     <Html lang="en">
       <Head>
         {/* Favicon for the browser tab */}
-        <link rel="icon" type="image/jpeg" href="/sarwayush.jpeg" />
+        <link rel="icon" type="image/jpeg" href="/favicon.JPG" />
         <meta name="description" content="Advertio - Premium marketing agency creating cinematic 3D digital experiences." />
       </Head>
-      <body style={{ backgroundColor: '#FFFFFF', background: '#FFFFFF' }}>
+      <body>
         <Main />
         <NextScript />
       </body>

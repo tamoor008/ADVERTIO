@@ -60,7 +60,7 @@ const GetAQuoteSection = () => {
   useEffect(() => {
     const updateMobilePath = () => {
       if (!gridRef.current || !dtcBrandRef.current || !buttonRef.current) return;
-      
+
       // Only calculate on mobile screens
       if (window.innerWidth >= 768) {
         setMobilePathData('');
@@ -158,7 +158,7 @@ const GetAQuoteSection = () => {
         <div ref={gridRef} className="relative grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-4 lg:gap-12 items-start md:items-center">
           {/* Curved Arrow from DTC Brand to Get Quote Button - Desktop Only */}
           <motion.svg
-            className="hidden md:block absolute z-5 pointer-events-none"
+            className="hidden md:block absolute z-30 pointer-events-none"
             style={{
               left: '0',
               top: '0',
@@ -235,13 +235,13 @@ Stay One Step Ahead          </textPath>
             <div className="relative z-10">
               <div className="relative">
                 <Image
-                  src="/favicon.JPG"
+                  src="/favicon1.JPG"
                   alt="Dolphin"
-                  width={240}
-                  height={240}
-                  className="w-32 md:w-64 h-auto object-contain relative z-10"
+                  width={320}
+                  height={320}
+                  className="w-48 md:w-80 h-auto object-contain relative z-10 bg-transparent"
                 />
-                
+
                 {/* Ball Button */}
                 <motion.button
                   ref={buttonRef}

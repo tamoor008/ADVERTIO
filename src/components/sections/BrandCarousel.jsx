@@ -4,34 +4,35 @@ import { motion } from 'framer-motion';
 
 const BrandCarousel = () => {
   // Brand images from public folder
-  const brandImages = [
-    '/Aidtonic.png',
-    '/bailey mercer.png',
-    '/Celvora.png',
-    '/customizology.jpg',
-    '/DHNI.jpeg',
-    '/donior new logo  (1).png',
-    '/glamboon.jpg',
-    '/Gloet.jpeg',
-    '/herextension.png',
-    '/HT Finds.png',
-    '/infiniteage.jpeg',
-    '/LR.jpeg',
-    '/momdipur.jpeg',
-    '/naturelox.jpeg',
-    '/neuroreform.jpg',
-    '/Novelle.png',
-    '/outdoorplay.png',
-    '/Palm v2.png',
-    '/SHINARE.avif',
-    '/skinstories.avif',
-    '/smartykat.jpeg',
-    '/ss logo bgr (1).jpg',
-    '/techhunts.jpg',
-    '/Value makers .png',
-    '/vikingbags.jpeg',
-    '/xoegan.png',
-    '/zhanng.jpg',
+  const brands = [
+    { src: '/Aidtonic.png', scale: 1.5 },
+    { src: '/bailey mercer.png' },
+    { src: '/brainlab.png', scale: 1.2 },
+    { src: '/Celvora.png' },
+    { src: '/customizology.jpg' },
+    { src: '/DHNI.jpeg' },
+    { src: '/donior new logo  (1).png' },
+    { src: '/glamboon.jpg' },
+    { src: '/Gloet.jpeg' },
+    { src: '/herextension.png' },
+    { src: '/HT Finds.png' },
+    { src: '/infiniteage.jpeg' },
+    { src: '/LR.jpeg' },
+    { src: '/momdipur.jpeg' },
+    { src: '/naturelox.jpeg' },
+    { src: '/neuroreform.jpg' },
+    { src: '/Novelle.png' },
+    { src: '/outdoorplay.png' },
+    { src: '/Palm v2.png' },
+    { src: '/SHINARE.avif' },
+    { src: '/skinstories.avif', scale: 1.8 },
+    { src: '/smartykat.jpeg' },
+    { src: '/ss logo bgr (1).jpg' },
+    { src: '/techhunts.jpg' },
+    { src: '/Value makers .png' },
+    { src: '/vikingbags.jpeg' },
+    { src: '/xoegan.png' },
+    { src: '/zhanng.jpg' },
   ];
 
   return (
@@ -55,31 +56,39 @@ const BrandCarousel = () => {
         <div className="overflow-hidden">
           <div className="flex animate-scroll group">
             {/* First set of brands */}
-            {brandImages.map((brand, index) => (
+            {brands.map((brand, index) => (
               <div
                 key={`brand-1-${index}`}
-                className="flex-shrink-0 mx-6 md:mx-8 flex items-center justify-center"
-                style={{ width: '180px', height: '100px' }}
+                className="flex-shrink-0 mx-6 md:mx-8 flex items-center justify-center transition-transform"
+                style={{ 
+                  width: '180px', 
+                  height: '100px',
+                  transform: brand.scale ? `scale(${brand.scale})` : 'scale(1)'
+                }}
               >
                 <img
-                  src={brand}
+                  src={brand.src}
                   alt={`Brand ${index + 1}`}
-                  className="max-w-full max-h-full object-contain transition-opacity duration-300 opacity-90"
+                  className="max-w-full max-h-full object-contain transition-opacity duration-300 opacity-90 hover:opacity-100"
                   loading="lazy"
                 />
               </div>
             ))}
             {/* Duplicate set for seamless loop */}
-            {brandImages.map((brand, index) => (
+            {brands.map((brand, index) => (
               <div
                 key={`brand-2-${index}`}
-                className="flex-shrink-0 mx-6 md:mx-8 flex items-center justify-center"
-                style={{ width: '180px', height: '100px' }}
+                className="flex-shrink-0 mx-6 md:mx-8 flex items-center justify-center transition-transform"
+                style={{ 
+                  width: '180px', 
+                  height: '100px',
+                  transform: brand.scale ? `scale(${brand.scale})` : 'scale(1)'
+                }}
               >
                 <img
-                  src={brand}
+                  src={brand.src}
                   alt={`Brand ${index + 1}`}
-                  className="max-w-full max-h-full object-contain transition-opacity duration-300 opacity-90"
+                  className="max-w-full max-h-full object-contain transition-opacity duration-300 opacity-90 hover:opacity-100"
                   loading="lazy"
                 />
               </div>
