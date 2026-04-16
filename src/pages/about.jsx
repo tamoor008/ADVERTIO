@@ -462,14 +462,15 @@ const About = () => {
               whileInView={isMobile ? { opacity: 1 } : { opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={isMobile ? { duration: 0 } : { duration: 0.8 }}
-              className="relative"
+              className="relative flex justify-center w-full"
             >
-              <div className="relative w-full aspect-[3/4] max-w-md mx-auto">
+              <div className="relative w-full max-w-md mx-auto">
                 <Image
                   src="/talha.jpg"
                   alt="Leadership"
-                  fill
-                  className="object-cover rounded-2xl shadow-2xl"
+                  width={800}
+                  height={1000}
+                  className="w-full h-auto object-contain rounded-2xl shadow-2xl"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   priority={false}
                 />

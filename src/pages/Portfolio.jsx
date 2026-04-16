@@ -1,824 +1,233 @@
 'use client'
 
-import { memo, useRef, useState, useMemo, useCallback, useEffect } from 'react';
-import { motion, useInView } from 'framer-motion';
-import Link from 'next/link';
+import { useRef, useEffect } from 'react';
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import Image from 'next/image';
-
-// Brand images imports
-import baileyMercer from '../assets/bailey mercer.png';
-import celvora from '../assets/Celvora.png';
-import customizology from '../assets/customizology.jpg';
-import donior from '../assets/donior new logo  (1).png';
-import glamboon from '../assets/glamboon.jpg';
-import infiniteage from '../assets/infiniteage.jpeg';
-import novelle from '../assets/Novelle.png';
-import outdoorplay from '../assets/outdoorplay.png';
-import palm from '../assets/Palm v2.png';
-import techhunts from '../assets/techhunts.jpg';
-import valueMakers from '../assets/Value makers .png';
-import vikingbags from '../assets/vikingbags.jpeg';
-
-// Mockup images imports
-import mockup1 from '../assets/mockups1.png';
-import mockup2 from '../assets/mockups2.png';
-import mockup3 from '../assets/Mockup3.png';
-import mockup4 from '../assets/mockup4.png';
-import mockup5 from '../assets/Mockup5.png';
-import mockup6 from '../assets/mockup6.png';
-
-
-const PRIMARY_COLOR = '#E94F37';
-const SECONDARY_COLOR = '#253E5C';
-const DEEP_BLUE = '#0F172A';
-
-// Placeholder brand logo component
-const PlaceholderLogo = memo(({ title, color }) => (
-  <div 
-    className="w-full h-full flex items-center justify-center font-black text-white rounded-full"
-    style={{ 
-      background: `linear-gradient(135deg, ${color}, ${color}CC)`,
-      fontSize: '1.5rem',
-    }}
-  >
-    {title.charAt(0)}
-  </div>
-));
-PlaceholderLogo.displayName = 'PlaceholderLogo';
-
-// Optimized Portfolio Card Component
-const PortfolioCard = memo(({ project, index, isHovered, onMouseEnter, onMouseLeave }) => {
-  return (
-    <div
-      className="relative group"
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      style={{ 
-        transformStyle: 'preserve-3d',
-        position: 'relative',
-        zIndex: isHovered ? 102 : 1,
-        willChange: isHovered ? 'transform' : 'auto',
-      }}
-    >
-      <motion.div
-        className="relative rounded-[32px] overflow-hidden bg-white shadow-lg h-full"
-        style={{
-          border: `2px solid ${project.color}`,
-          boxShadow: isHovered
-            ? `0 20px 60px ${project.color}30, 0 10px 30px rgba(0, 0, 0, 0.08)`
-            : `0 10px 30px ${project.color}15`,
-          transformStyle: 'preserve-3d',
-          minHeight: '850px',
-          backgroundColor: '#ffffff',
-          position: 'relative',
-        }}
-        animate={{
-          scale: isHovered ? 1.03 : 1,
-          y: isHovered ? -8 : 0,
-        }}
-        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-      >
-        {/* Simplified Gradient Border */}
-        <div
-          className="absolute inset-0 rounded-[32px] p-[2px]"
-          style={{
-            background: `linear-gradient(135deg, ${project.color}, ${project.color}80, #253E5C60, ${project.color})`,
-            opacity: isHovered ? 1 : 0.8,
-            transition: 'opacity 0.3s ease',
-          }}
-        >
-          <div
-            className="w-full h-full rounded-[30px] relative"
-            style={{
-              background: `linear-gradient(135deg, ${project.color}${isHovered ? '20' : '15'} 0%, ${project.color}${isHovered ? '12' : '08'} 50%, transparent 100%)`,
-              transition: 'background 0.3s ease',
-            }}
-          >
-            {/* Simplified Glow Effect */}
-            <div
-              className="absolute inset-0 rounded-[30px] pointer-events-none"
-              style={{
-                background: `radial-gradient(circle at 50% 50%, ${project.color}25 0%, transparent 70%)`,
-                opacity: isHovered ? 0.6 : 0,
-                transition: 'opacity 0.3s ease',
-              }}
-            />
-
-            {/* Content Container */}
-            <div className="relative z-10 p-6 md:p-8 bg-white/95 min-h-[850px] rounded-[30px] flex flex-col">
-              {/* Brand Logo */}
-              <div className="flex items-center justify-between mb-6">
-                <div
-                  className="relative"
-                  style={{
-                    transform: isHovered ? 'scale(1.05)' : 'scale(1)',
-                    transition: 'transform 0.3s ease',
-                  }}
-                >
-                  <div
-                    className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden bg-white p-2 flex items-center justify-center"
-                    style={{ 
-                      borderColor: project.color,
-                      borderWidth: isHovered ? '5px' : '4px',
-                      transition: 'border-width 0.3s ease',
-                    }}
-                  >
-                    {project.brandLogo ? (
-                      <Image
-                        src={project.brandLogo}
-                        alt={project.title}
-                        fill
-                        className="object-contain"
-                      />
-                    ) : (
-                      <PlaceholderLogo title={project.title} color={project.color} />
-                    )}
-                  </div>
-                </div>
-                
-                {/* Category Badge */}
-                <div
-                  className="px-3 py-1 rounded-full text-xs font-semibold"
-                  style={{
-                    background: `${project.color}15`,
-                    color: project.color,
-                    border: `1px solid ${project.color}30`,
-                    transform: isHovered ? 'scale(1.03)' : 'scale(1)',
-                    transition: 'transform 0.3s ease',
-                  }}
-                >
-                  {project.category}
-                </div>
-              </div>
-
-              {/* Mockup Image */}
-              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl mb-6">
-                <Image
-                  src={project.mockup}
-                  alt={project.title}
-                  fill
-                  className="object-cover"
-                  style={{
-                    transform: isHovered ? 'scale(1.05)' : 'scale(1)',
-                    transition: 'transform 0.4s ease',
-                  }}
-                />
-                {/* Gradient Overlay */}
-                <div
-                  className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#253E5C]/95 via-[#253E5C]/80 to-transparent"
-                  style={{
-                    opacity: isHovered ? 1 : 0.8,
-                    transition: 'opacity 0.3s ease',
-                  }}
-                />
-                {/* Accent line */}
-                <div
-                  className="absolute bottom-0 left-0 right-0 h-1"
-                  style={{ 
-                    background: project.color, 
-                    transformOrigin: 'left',
-                    transform: isHovered ? 'scaleX(1)' : 'scaleX(0)',
-                    transition: 'transform 0.3s ease',
-                  }}
-                />
-              </div>
-
-              {/* Project Title */}
-              <h3
-                className="text-2xl md:text-3xl font-black mb-4"
-                style={{
-                  color: isHovered ? project.color : '#253E5C',
-                  transition: 'color 0.3s ease',
-                }}
-              >
-                {project.title}
-              </h3>
-
-              {/* Description */}
-              <p
-                className="leading-relaxed mb-0 flex-grow"
-                style={{
-                  color: isHovered ? '#253E5C' : 'rgba(37, 62, 92, 0.7)',
-                  transition: 'color 0.3s ease',
-                }}
-              >
-                {project.description}
-              </p>
-
-              {/* Results */}
-              <div className="grid grid-cols-3 gap-3 mb-6 -mt-8">
-                {project.results.map((result, idx) => (
-                  <div
-                    key={idx}
-                    className="text-center p-3 rounded-xl"
-                    style={{
-                      background: `${project.color}10`,
-                      border: `1px solid ${project.color}20`,
-                      transform: isHovered ? 'translateY(-2px) scale(1.02)' : 'translateY(0) scale(1)',
-                      transition: `transform 0.3s ease ${idx * 0.03}s`,
-                    }}
-                  >
-                    <div
-                      className="text-lg font-black"
-                      style={{ color: project.color }}
-                    >
-                      {result.value}
-                    </div>
-                    <div className="text-xs text-[#253E5C]/70 font-semibold mt-1">
-                      {result.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Services Tags */}
-              <div className="flex flex-wrap gap-2">
-                {project.services.map((service, idx) => (
-                  <span
-                    key={idx}
-                    className="px-3 py-1 rounded-full text-xs font-medium"
-                    style={{
-                      background: `${project.color}10`,
-                      color: project.color,
-                      border: `1px solid ${project.color}20`,
-                      transform: isHovered ? 'scale(1.03)' : 'scale(1)',
-                      transition: `transform 0.3s ease ${idx * 0.02}s`,
-                    }}
-                  >
-                    {service}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </motion.div>
-    </div>
-  );
-});
-PortfolioCard.displayName = 'PortfolioCard';
-
-// Projects data - moved outside component for better performance
-const PROJECTS_DATA = [
-    {
-      id: 1,
-      title: 'TechHunts',
-      category: 'Performance Marketing',
-      brandLogo: techhunts,
-      mockup: mockup1,
-      description: 'Data-driven performance marketing campaigns that increased ROAS by 6.8x and drove +128% revenue growth.',
-      services: ['Performance Marketing', 'Digital Marketing', 'Creative Design'],
-      results: [
-        { label: 'ROAS', value: '6.8x' },
-        { label: 'Revenue Growth', value: '+128%' },
-        { label: 'Conversion Rate', value: '8.2%' },
-      ],
-      color: '#E94F37',
-    },
-    {
-      id: 2,
-      title: 'Glamboon',
-      category: 'Website Development',
-      brandLogo: glamboon,
-      mockup: mockup2,
-      description: 'High-performance website development with conversion optimization that improved conversion rate by 8.2%.',
-      services: ['Website Development', 'Conversion Optimization', 'UI/UX Design'],
-      results: [
-        { label: 'Conversion Rate', value: '+8.2%' },
-        { label: 'Page Load Speed', value: '<2s' },
-        { label: 'User Engagement', value: '+45%' },
-      ],
-      color: '#6D28D9',
-    },
-    {
-      id: 3,
-      title: 'Novelle',
-      category: 'Social Media & Branding',
-      brandLogo: novelle,
-      mockup: mockup3,
-      description: 'Comprehensive social media strategy and branding that generated 2.4M impressions and +45% engagement rate.',
-      services: ['Social Media Handling', 'Branding', 'Content Creation'],
-      results: [
-        { label: 'Impressions', value: '2.4M' },
-        { label: 'Engagement Rate', value: '+45%' },
-        { label: 'Follower Growth', value: '+38%' },
-      ],
-      color: '#16A34A',
-    },
-    {
-      id: 4,
-      title: 'InfiniteAge',
-      category: 'Video Editing',
-      brandLogo: infiniteage,
-      mockup: mockup4,
-      description: 'Cinematic video editing and product reveal films that increased engagement by 45% year over year.',
-      services: ['Video Editing', 'Product Reveals', 'AR Kits'],
-      results: [
-        { label: 'Engagement', value: '+45%' },
-        { label: 'Video Views', value: '1.2M+' },
-        { label: 'Watch Time', value: '+67%' },
-      ],
-      color: '#EA580C',
-    },
-    {
-      id: 5,
-      title: 'VikingBags',
-      category: 'Ecommerce Solutions',
-      brandLogo: vikingbags,
-      mockup: mockup5,
-      description: 'Complete ecommerce solutions with MarTech automation that reduced CAC by 24% and increased LTV by 52%.',
-      services: ['Ecommerce Solutions', 'MarTech Automation', 'Personalization'],
-      results: [
-        { label: 'CAC Reduction', value: '-24%' },
-        { label: 'LTV Increase', value: '+52%' },
-        { label: 'ROI', value: '5.4x' },
-      ],
-      color: '#0F766E',
-    },
-    {
-      id: 6,
-      title: 'OutdoorPlay',
-      category: 'Digital Marketing',
-      brandLogo: outdoorplay,
-      mockup: mockup6,
-      description: 'Strategic brand positioning and thought leadership that increased brand lift by 18% and customer LTV by 52%.',
-      services: ['Digital Marketing', 'Brand Positioning', 'Thought Leadership'],
-      results: [
-        { label: 'Brand Lift', value: '+18%' },
-        { label: 'LTV Increase', value: '+52%' },
-        { label: 'Brand Awareness', value: '+38%' },
-      ],
-      color: '#DC2626',
-    },
-    {
-      id: 7,
-      title: 'Celvora',
-      category: 'Website Development',
-      brandLogo: celvora,
-      mockup: mockup1,
-      description: 'Conversion-focused optimization and UX audits that improved conversion rate by 67% and enhanced user experience.',
-      services: ['Website Development', 'UX Optimization', 'CRO'],
-      results: [
-        { label: 'Conversions', value: '+67%' },
-        { label: 'Bounce Rate', value: '-32%' },
-        { label: 'User Satisfaction', value: '94%' },
-      ],
-      color: '#8B5CF6',
-    },
-    {
-      id: 8,
-      title: 'Bailey Mercer',
-      category: 'Performance Marketing',
-      brandLogo: baileyMercer,
-      mockup: mockup2,
-      description: 'Performance media and cross-channel campaigns that delivered 5.4x average ROAS with real-time optimization.',
-      services: ['Performance Marketing', 'Cross-Channel Campaigns', 'Media Buying'],
-      results: [
-        { label: 'Average ROAS', value: '5.4x' },
-        { label: 'Revenue Growth', value: '+156%' },
-        { label: 'Campaign Efficiency', value: '+42%' },
-      ],
-      color: '#F59E0B',
-    },
-    {
-      id: 9,
-      title: 'Customizology',
-      category: 'Creative & Design',
-      brandLogo: customizology,
-      mockup: mockup3,
-      description: 'Immersive landing pages and WebGL-powered microsites that increased brand awareness by 38% and engagement rates.',
-      services: ['Creative Design', 'WebGL Development', 'Landing Pages'],
-      results: [
-        { label: 'Brand Awareness', value: '+38%' },
-        { label: 'Engagement Rate', value: '+89%' },
-        { label: 'Time on Site', value: '+54%' },
-      ],
-      color: '#EC4899',
-    },
-    {
-      id: 10,
-      title: 'Donior',
-      category: 'Digital Marketing',
-      brandLogo: donior,
-      mockup: mockup4,
-      description: 'Crisis narrative control and rapid-response playbooks that ensured 100% brand protection during challenging times.',
-      services: ['Digital Marketing', 'Crisis Management', 'Brand Protection'],
-      results: [
-        { label: 'Brand Protection', value: '100%' },
-        { label: 'Response Time', value: '<2hrs' },
-        { label: 'Reputation Score', value: '98%' },
-      ],
-      color: '#10B981',
-    },
-    {
-      id: 11,
-      title: 'Palm',
-      category: 'Social Media & Branding',
-      brandLogo: palm,
-      mockup: mockup5,
-      description: 'Experiential AR kits and mixed reality campaigns that extended reach by 89% into new dimensions.',
-      services: ['Social Media', 'AR Development', 'Mixed Reality'],
-      results: [
-        { label: 'Reach Increase', value: '+89%' },
-        { label: 'AR Interactions', value: '500K+' },
-        { label: 'Social Shares', value: '+156%' },
-      ],
-      color: '#3B82F6',
-    },
-    {
-      id: 12,
-      title: 'Value Makers',
-      category: 'Ecommerce Solutions',
-      brandLogo: valueMakers,
-      mockup: mockup6,
-      description: 'Integrated marketing solutions and data-driven approach that delivered +156% ROI and measurable growth.',
-      services: ['Ecommerce Solutions', 'Integrated Marketing', 'Data Analytics'],
-      results: [
-        { label: 'ROI', value: '+156%' },
-        { label: 'Revenue Growth', value: '+94%' },
-        { label: 'Customer Retention', value: '+67%' },
-      ],
-      color: '#EF4444',
-    },
-    // Placeholder Projects
-    {
-      id: 13,
-      title: 'Luxury Fashion Co',
-      category: 'Creative & Design',
-      brandLogo: null, // Placeholder
-      mockup: mockup1,
-      description: 'Premium brand identity design and visual storytelling that elevated brand perception and increased customer engagement by 72%.',
-      services: ['Creative Design', 'Brand Identity', 'Visual Storytelling'],
-      results: [
-        { label: 'Brand Awareness', value: '+65%' },
-        { label: 'Engagement', value: '+72%' },
-        { label: 'Brand Recall', value: '+58%' },
-      ],
-      color: '#9333EA',
-    },
-    {
-      id: 14,
-      title: 'TechStart Pro',
-      category: 'Website Development',
-      brandLogo: null, // Placeholder
-      mockup: mockup2,
-      description: 'Modern, responsive website with cutting-edge UI/UX that reduced bounce rate by 45% and increased time on site by 89%.',
-      services: ['Website Development', 'UI/UX Design', 'Responsive Design'],
-      results: [
-        { label: 'Bounce Rate', value: '-45%' },
-        { label: 'Time on Site', value: '+89%' },
-        { label: 'Page Views', value: '+112%' },
-      ],
-      color: '#0891B2',
-    },
-    {
-      id: 15,
-      title: 'Fitness Hub',
-      category: 'Social Media & Branding',
-      brandLogo: null, // Placeholder
-      mockup: mockup3,
-      description: 'Comprehensive social media strategy with engaging content that grew followers by 250% and increased community engagement by 180%.',
-      services: ['Social Media Handling', 'Content Creation', 'Community Management'],
-      results: [
-        { label: 'Follower Growth', value: '+250%' },
-        { label: 'Engagement', value: '+180%' },
-        { label: 'Reach', value: '+195%' },
-      ],
-      color: '#DC2626',
-    },
-    {
-      id: 16,
-      title: 'Green Energy Solutions',
-      category: 'Digital Marketing',
-      brandLogo: null, // Placeholder
-      mockup: mockup4,
-      description: 'Strategic digital marketing campaign focused on sustainability messaging that increased lead generation by 145% and improved brand sentiment.',
-      services: ['Digital Marketing', 'Content Strategy', 'Lead Generation'],
-      results: [
-        { label: 'Lead Generation', value: '+145%' },
-        { label: 'Brand Sentiment', value: '+92%' },
-        { label: 'Website Traffic', value: '+178%' },
-      ],
-      color: '#059669',
-    },
-    {
-      id: 17,
-      title: 'Gourmet Delights',
-      category: 'Ecommerce Solutions',
-      brandLogo: null, // Placeholder
-      mockup: mockup5,
-      description: 'Complete Shopify store setup with conversion optimization that increased online sales by 220% and improved customer retention.',
-      services: ['Shopify Development', 'Ecommerce Solutions', 'CRO'],
-      results: [
-        { label: 'Online Sales', value: '+220%' },
-        { label: 'Conversion Rate', value: '+68%' },
-        { label: 'Customer Retention', value: '+54%' },
-      ],
-      color: '#EA580C',
-    },
-    {
-      id: 18,
-      title: 'MedTech Innovations',
-      category: 'Performance Marketing',
-      brandLogo: null, // Placeholder
-      mockup: mockup6,
-      description: 'Targeted performance marketing campaigns across multiple channels that achieved 8.5x ROAS and reduced cost per acquisition by 38%.',
-      services: ['Performance Marketing', 'PPC Campaigns', 'Conversion Optimization'],
-      results: [
-        { label: 'ROAS', value: '8.5x' },
-        { label: 'CPA Reduction', value: '-38%' },
-        { label: 'Click-Through Rate', value: '+95%' },
-      ],
-      color: '#0284C7',
-    },
-    {
-      id: 19,
-      title: 'Artisan Crafts',
-      category: 'Creative & Design',
-      brandLogo: null, // Placeholder
-      mockup: mockup1,
-      description: 'Beautiful packaging design and brand visual identity that enhanced product appeal and increased purchase intent by 85%.',
-      services: ['Creative Design', 'Packaging Design', 'Brand Identity'],
-      results: [
-        { label: 'Purchase Intent', value: '+85%' },
-        { label: 'Brand Recognition', value: '+73%' },
-        { label: 'Customer Satisfaction', value: '+91%' },
-      ],
-      color: '#C026D3',
-    },
-    {
-      id: 20,
-      title: 'EduLearn Platform',
-      category: 'Website Development',
-      brandLogo: null, // Placeholder
-      mockup: mockup2,
-      description: 'Interactive learning platform with seamless user experience that increased course enrollments by 165% and improved user satisfaction scores.',
-      services: ['Website Development', 'User Experience', 'Interactive Design'],
-      results: [
-        { label: 'Enrollments', value: '+165%' },
-        { label: 'User Satisfaction', value: '96%' },
-        { label: 'Completion Rate', value: '+78%' },
-      ],
-      color: '#7C3AED',
-    },
-    {
-      id: 21,
-      title: 'Wellness Retreat',
-      category: 'Video Editing',
-      brandLogo: null, // Placeholder
-      mockup: mockup3,
-      description: 'Cinematic promotional videos and documentary-style content that increased video engagement by 210% and boosted bookings by 145%.',
-      services: ['Video Editing', 'Content Production', 'Storytelling'],
-      results: [
-        { label: 'Video Engagement', value: '+210%' },
-        { label: 'Bookings', value: '+145%' },
-        { label: 'Video Shares', value: '+189%' },
-      ],
-      color: '#F59E0B',
-    },
-    {
-      id: 22,
-      title: 'Smart Home Tech',
-      category: 'Digital Marketing',
-      brandLogo: null, // Placeholder
-      mockup: mockup4,
-      description: 'Integrated digital marketing strategy with thought leadership content that positioned the brand as an industry leader and increased qualified leads.',
-      services: ['Digital Marketing', 'Thought Leadership', 'Content Marketing'],
-      results: [
-        { label: 'Qualified Leads', value: '+132%' },
-        { label: 'Brand Authority', value: '+88%' },
-        { label: 'Content Engagement', value: '+156%' },
-      ],
-      color: '#10B981',
-    },
-    {
-      id: 23,
-      title: 'Pet Care Plus',
-      category: 'Social Media & Branding',
-      brandLogo: null, // Placeholder
-      mockup: mockup5,
-      description: 'Heartwarming social media campaigns and community building that created a loyal following and increased brand advocacy by 195%.',
-      services: ['Social Media Handling', 'Community Building', 'Brand Advocacy'],
-      results: [
-        { label: 'Brand Advocacy', value: '+195%' },
-        { label: 'Community Growth', value: '+280%' },
-        { label: 'User-Generated Content', value: '+245%' },
-      ],
-      color: '#EC4899',
-    },
-    {
-      id: 24,
-      title: 'Finance Pro',
-      category: 'Performance Marketing',
-      brandLogo: null, // Placeholder
-      mockup: mockup6,
-      description: 'Data-driven performance marketing with advanced attribution modeling that achieved 12.5x ROAS and optimized campaign efficiency.',
-      services: ['Performance Marketing', 'Attribution Modeling', 'Campaign Optimization'],
-      results: [
-        { label: 'ROAS', value: '12.5x' },
-        { label: 'Campaign Efficiency', value: '+67%' },
-        { label: 'Customer Lifetime Value', value: '+89%' },
-      ],
-      color: '#EF4444',
-    },
-];
+import Link from 'next/link';
 
 const Portfolio = () => {
-  const heroRef = useRef(null);
-  const projectsRef = useRef(null);
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
-  const heroInView = useInView(heroRef, { once: true, amount: 0.1 });
-  const projectsInView = useInView(projectsRef, { once: true, amount: 0.1 });
-
-  // Memoize categories to avoid recalculation
-  const categories = useMemo(() => {
-    return ['All', ...Array.from(new Set(PROJECTS_DATA.map(p => p.category)))];
-  }, []);
-
-  // Memoize filtered projects based on selected category
-  const filteredProjects = useMemo(() => {
-    if (selectedCategory === 'All') {
-      return PROJECTS_DATA;
+  // Grouping 22 images into thematic chapters
+  const chapters = [
+    {
+      id: 'vision',
+      title: 'Our Vision',
+      subtitle: 'The Strategic Foundation',
+      images: [1, 2, 3, 4],
+      description: 'The blueprint of performance. We combine data-driven insights with world-class design to build brands that don\'t just look good—they convert.'
+    },
+    {
+      id: 'artwork',
+      title: 'Creative Artwork',
+      subtitle: 'Strategic Brilliance',
+      images: [19, 20, 21],
+      description: 'Beyond standard design. Immersive and high-performance visual artwork that pushes the boundaries of digital creativity.'
+    },
+    {
+      id: 'social',
+      title: 'Social Presence Design',
+      subtitle: 'Digital Engagement',
+      images: [5, 6, 7, 8, 9],
+      description: 'Stopping the scroll. We create cohesive social media systems that resonate across every platform, building trust and recognition at scale.'
+    },
+    {
+      id: 'packaging',
+      title: 'Product Story Packaging',
+      subtitle: 'Physical Excellence',
+      images: [10, 11, 12],
+      description: 'Tangible brand experiences. Our packaging designs are engineered for shelf-impact, unboxing delight, and brand recall.'
+    },
+    {
+      id: 'logomark',
+      title: 'Logomark & Visual Language',
+      subtitle: 'Core Identity',
+      images: [13, 14, 15],
+      description: 'The DNA of your brand. We craft timeless logomarks and comprehensive visual systems that represent your brand\'s core values.'
+    },
+    {
+      id: 'banner',
+      title: 'Banner Design',
+      subtitle: 'High-Impact Media',
+      images: [16, 17, 18],
+      description: 'Conversion-focused visual storytelling. High-impact creative assets designed for maximum click-through rates and brand presence.'
     }
-    return PROJECTS_DATA.filter(p => p.category === selectedCategory);
-  }, [selectedCategory]);
-
-  // Optimized hover handlers with useCallback
-  const handleMouseEnter = useCallback((index) => {
-    setHoveredIndex(index);
-  }, []);
-
-  const handleMouseLeave = useCallback(() => {
-    setHoveredIndex(null);
-  }, []);
-
-  // Scroll to top on mount
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-  }, []);
+  ];
 
   return (
-    <div className="relative min-h-screen overflow-visible bg-white" style={{ backgroundColor: '#FFFFFF', background: '#FFFFFF' }}>
-      
-      {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-visible pt-24 pb-20 z-10">
-        <div className="container mx-auto px-6 relative z-30">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8 }}
-            className="text-center max-w-4xl mx-auto"
-          >
-        <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="mb-6"
-            >
-              <span className="px-4 py-2 rounded-full border border-primary/40 text-primary text-sm font-semibold tracking-wide uppercase bg-white/80 backdrop-blur">
-                Our Portfolio
-              </span>
-        </motion.div>
+    <div ref={containerRef} className="min-h-screen bg-white relative">
+      {/* Custom Progress Bar */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-primary z-[10002] origin-left"
+        style={{ scaleX }}
+      />
 
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-6xl md:text-8xl font-black mb-8 bg-gradient-to-r from-primary via-[#ff6b4a] to-[#253E5C] bg-clip-text text-transparent"
-            >
-              Showcasing Excellence
-            </motion.h1>
-            
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl md:text-2xl text-[#253E5C]/80 leading-relaxed"
-            >
-              Explore our portfolio of innovative digital solutions and creative campaigns that drive measurable results for high-growth brands.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="flex justify-center mt-12"
-            >
-              <motion.div
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="cursor-pointer"
-              >
-                <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                </svg>
-              </motion.div>
-            </motion.div>
-          </motion.div>
+      {/* Hero Header */}
+      <section className="relative min-h-[80vh] flex items-center justify-center px-6 overflow-hidden">
+        <div className="absolute inset-0 bg-white">
+          <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-primary/5 blur-[120px] animate-pulse" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-dark/5 blur-[120px]" />
         </div>
-      </section>
 
-      {/* Category Filter */}
-      <section className="relative py-12 px-6 z-30">
-        <div className="container mx-auto max-w-7xl">
+        <div className="container mx-auto max-w-6xl relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="flex flex-wrap justify-center gap-4"
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
           >
-            {categories.map((category) => (
-              <motion.button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-3 rounded-full font-semibold text-sm transition-all ${
-                  selectedCategory === category
-                    ? 'bg-gradient-to-r from-primary to-[#ff6b4a] text-white shadow-lg shadow-primary/40'
-                    : 'bg-white/90 backdrop-blur-md text-[#253E5C] border border-white/20 hover:border-primary/50'
-                }`}
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
-              >
-                {category}
-              </motion.button>
-            ))}
-          </motion.div>
-                  </div>
-      </section>
-
-      {/* Projects Grid */}
-      <section ref={projectsRef} className="relative py-8 md:py-20 px-6 z-30 min-h-screen" style={{ zIndex: 100, background: 'transparent' }}>
-        <div className="container mx-auto max-w-7xl">
-          <div
-            key={selectedCategory}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            style={{ position: 'relative', zIndex: 101 }}
-          >
-            {filteredProjects.map((project, index) => (
-              <PortfolioCard
-                key={project.id}
-                project={project}
-                index={index}
-                isHovered={hoveredIndex === index}
-                onMouseEnter={() => handleMouseEnter(index)}
-                onMouseLeave={handleMouseLeave}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="relative py-8 md:py-20 px-6 z-30">
-        <div className="container mx-auto max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center bg-white/90 backdrop-blur-md p-8 md:p-12 rounded-3xl shadow-xl"
-            style={{
-              border: '2px solid transparent',
-              backgroundImage: 'linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), linear-gradient(135deg, #253E5C, #E94F37)',
-              backgroundOrigin: 'border-box',
-              backgroundClip: 'padding-box, border-box',
-            }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-[#253E5C] mb-6">
-              Ready to Start Your Project?
-            </h2>
-            <p className="text-xl text-[#253E5C]/80 mb-8">
-              Let&apos;s create something amazing together. Get in touch with our team today.
+            <span className="text-primary font-black uppercase tracking-[0.4em] text-xs mb-8 block">Project Visual Anthology</span>
+            <h1 className="text-[10vw] md:text-[7vw] font-black text-dark leading-[0.9] mb-12 tracking-tighter uppercase">
+              Premium Designs <br /> <span className="text-primary italic">Premium Returns.</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-dark/70 max-w-2xl mx-auto font-medium leading-relaxed">
+              Explore 22 pages of strategic brilliance. A deep dive into high-performance visual storytelling.
             </p>
-            <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-              <Link href="/contact">
-                <motion.button
-                  className="px-8 py-4 rounded-2xl text-white font-semibold text-lg bg-gradient-to-r from-primary to-[#ff6b4a] shadow-lg shadow-primary/40"
-                  whileHover={{ scale: 1.05, boxShadow: '0 10px 40px rgba(233, 79, 55, 0.5)' }}
-                  whileTap={{ scale: 0.95 }}
+          </motion.div>
+        </div>
+
+        {/* Floating background page number */}
+        <div className="absolute bottom-10 right-10 text-[20vw] font-black text-dark/[0.03] select-none leading-none">
+          22/22
+        </div>
+      </section>
+
+      {/* Chapters */}
+      <div className="space-y-40 pb-40">
+        {chapters.map((chapter, cIndex) => (
+          <section key={chapter.id} className="relative container mx-auto px-6 mb-32">
+            <div className="flex flex-wrap gap-x-12 gap-y-16 items-start">
+              {/* Sticky Title Block */}
+              <div className="w-full lg:w-[450px] lg:sticky lg:top-32 h-fit z-10 mb-12 lg:mb-0">
+                <motion.div
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
                 >
-                  Get Started
-                </motion.button>
+                  <span className="text-primary font-bold text-sm uppercase tracking-widest block mb-2">{String(cIndex + 1).padStart(2, '0')}</span>
+                  <h2 className="text-4xl md:text-6xl font-black text-dark mb-6 leading-none uppercase">{chapter.title}</h2>
+                  <p className="text-dark/40 font-bold uppercase tracking-widest text-xs mb-8">{chapter.subtitle}</p>
+                  <p className="text-dark/60 leading-relaxed font-medium border-l-2 border-primary/20 pl-6 lg:max-w-sm">
+                    {chapter.description}
+                  </p>
+                </motion.div>
+              </div>
+
+              {/* Individual Image Cards (Direct Siblings for Wrapping) */}
+              {chapter.images.map((imgIndex, i) => (
+                <motion.div
+                  key={imgIndex}
+                  initial={{ opacity: 0, y: 60 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.8, delay: (i % 2 === 0 ? 0 : 0.2) }}
+                  className="relative group w-full md:w-[450px] flex-shrink-0"
+                >
+                  <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.08)] border border-dark/5 bg-white">
+                    <Image
+                      src={`/assets/portfolio/Advertio Design Portfolio -${imgIndex}.png`}
+                      alt={`Portfolio page ${imgIndex}`}
+                      fill
+                      className="object-cover transition-transform duration-1000 group-hover:scale-[1.03]"
+                      sizes="(max-width: 768px) 100vw, 450px"
+                      priority={imgIndex <= 2}
+                    />
+
+                    {/* Overlay page number */}
+                    <div className="absolute top-10 right-10 w-12 h-12 rounded-full bg-dark/20 backdrop-blur-sm flex items-center justify-center font-black text-white text-xs">
+                      {String(imgIndex).padStart(2, '0')}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+
+      {/* Visual Conclusion - Focused Width */}
+      <section className="relative pb-40 container mx-auto px-6">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1 }}
+            className="relative group"
+          >
+            <div className="relative aspect-[4/5] rounded-[3rem] overflow-hidden shadow-[0_50px_120px_rgba(0,0,0,0.12)] border border-dark/5 bg-white">
+              <Image
+                src="/assets/portfolio/Advertio Design Portfolio -22.png"
+                alt="Design Anthology Conclusion"
+                fill
+                className="object-contain transition-transform duration-1000 group-hover:scale-[1.01]"
+                sizes="100vw"
+              />
+
+              {/* Overlay Branding */}
+              <div className="absolute inset-0 bg-gradient-to-t from-dark/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex items-end p-20">
+                <div>
+                  <span className="text-primary font-black uppercase tracking-[0.4em] text-xs mb-4 block">Visual Anthology</span>
+                  <h3 className="text-4xl md:text-6xl font-black text-white uppercase leading-none">The Conclusion.</h3>
+                </div>
+              </div>
+
+              {/* Overlay page number */}
+              <div className="absolute top-10 right-10 w-12 h-12 rounded-full bg-dark/20 backdrop-blur-sm flex items-center justify-center font-black text-white text-xs">
+                22
+              </div>
+            </div>
+          </motion.div></div>
+      </section>
+
+      {/* Signature CTA */}
+      <section className="py-40 bg-dark relative overflow-hidden text-white">
+        <div className="absolute top-0 right-0 w-full h-full opacity-10 pointer-events-none">
+          <div className="absolute top-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-primary blur-[150px]" />
+        </div>
+
+        <div className="container mx-auto px-6 max-w-4xl text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-5xl md:text-8xl font-black mb-12 leading-none uppercase">
+              REDEFINE YOUR <br /> <span className="text-primary italic">STANDARD.</span>
+            </h2>
+            <p className="text-xl md:text-2xl text-white/50 mb-16 font-medium leading-relaxed">
+              Let&apos;s build the next high-performance chapter <br className="hidden md:block" /> of your brand history together.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
+              <Link
+                href="/contact"
+                className="px-12 py-6 bg-primary text-white font-black uppercase tracking-widest rounded-full hover:shadow-[0_20px_50px_rgba(233,79,55,0.4)] transition-all transform hover:-translate-y-2 text-sm w-full sm:w-auto"
+              >
+                Start Interaction
               </Link>
-              <Link href="/services">
-                <motion.button
-                  className="px-8 py-4 rounded-2xl text-[#253E5C] font-semibold text-lg bg-white/80 backdrop-blur-md border-2 border-[#253E5C]/20 hover:border-primary/50"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  View Services
-                </motion.button>
+              <Link
+                href="/"
+                className="px-12 py-6 border-2 border-white/20 text-white font-black uppercase tracking-widest rounded-full hover:bg-white hover:text-dark transition-all transform hover:-translate-y-2 text-sm w-full sm:w-auto"
+              >
+                Back to Pulse
               </Link>
             </div>
-            </motion.div>
+          </motion.div>
         </div>
       </section>
+
+      {/* Footer Bar */}
+      <footer className="py-10 bg-primary text-center text-[10px] font-black uppercase tracking-[0.5em] text-white">
+        Advertio Media Services © 2026 — Design Anthology
+      </footer>
     </div>
   );
 };

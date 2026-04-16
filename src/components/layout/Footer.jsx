@@ -22,7 +22,7 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className="bg-dark border-t border-white/10">
+    <footer className="bg-dark border-t-2 border-primary">
       {/* Contact Section */}
       <div className="container mx-auto px-6 py-12">
         <div className="grid md:grid-cols-2 gap-12 items-start mb-12">
@@ -191,11 +191,11 @@ const Footer = () => {
       </div>
 
       {/* Footer Bar */}
-      <div className="border-t border-white/10 py-6">
+      <div className="border-t border-primary/30 py-6">
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             {/* Copyright - Left */}
-            <p className="text-white/60 text-sm">
+            <p className="text-white text-sm">
               Copyright © {currentYear} Advertio.
             </p>
 
@@ -204,16 +204,16 @@ const Footer = () => {
               <Link href="/" className="text-white/60 hover:text-primary text-sm transition-colors">
                 Home
               </Link>
-              <Link href="/about" className="text-white/60 hover:text-primary text-sm transition-colors">
+              <Link href="/about" className="text-white hover:text-primary text-sm transition-colors">
                 About
               </Link>
-              <Link href="/services/performance-marketing" className="text-white/60 hover:text-primary text-sm transition-colors">
+              <Link href="/services/performance-marketing" className="text-white hover:text-primary text-sm transition-colors">
                 Services
               </Link>
-              <Link href="/blogs" className="text-white/60 hover:text-primary text-sm transition-colors">
+              <Link href="/blogs" className="text-white hover:text-primary text-sm transition-colors">
                 Blogs
               </Link>
-              <Link href="/contact" className="text-white/60 hover:text-primary text-sm transition-colors">
+              <Link href="/contact" className="text-white hover:text-primary text-sm transition-colors">
                 Contact
               </Link>
             </nav>

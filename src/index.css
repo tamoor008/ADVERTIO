@@ -252,6 +252,14 @@
     background: #E94F37;
     color: #FFFFFF;
   }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
 
 /* Calendly Popup Close Button Fix - Global Styles */

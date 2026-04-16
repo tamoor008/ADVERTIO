@@ -14,6 +14,7 @@ const WhyChooseAdvertio = dynamic(() => import('../components/sections/WhyChoose
 const GetAQuoteSection = dynamic(() => import('../components/sections/GetAQuoteSection'), { ssr: false })
 const TeamSection = dynamic(() => import('../components/sections/TeamSection'), { ssr: false })
 const BrandCarousel = dynamic(() => import('../components/sections/BrandCarousel'), { ssr: false })
+const DesignPortfolioSection = dynamic(() => import('../components/sections/DesignPortfolioSection'), { ssr: false })
 const MockupSection = dynamic(() => import('../components/sections/MockupSection'), { ssr: false })
 const ReviewsSection3D = dynamic(() => import('../components/sections/ReviewsSection3D'), { ssr: false })
 const VideoSection3D = dynamic(() => import('../components/sections/VideoSection3D'), { ssr: false })
@@ -54,6 +55,10 @@ export default function Home() {
 
       <Suspense fallback={<SectionLoader />}>
         <BrandCarousel />
+      </Suspense>
+
+      <Suspense fallback={<SectionLoader />}>
+        <DesignPortfolioSection />
       </Suspense>
 
       <Suspense fallback={<SectionLoader />}>

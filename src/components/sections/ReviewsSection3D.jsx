@@ -10,134 +10,74 @@ const ReviewsSection3D = () => {
   const reviews = [
     {
       id: 1,
-      name: 'Sarah Chen',
-      role: 'CEO, TechHunts',
-      company: 'TechHunts',
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&q=80',
+      title: 'Performance Marketing',
+      subtitle: 'Meta + Google Ads',
       rating: 5,
-      text: 'Advertio transformed our digital presence completely. Their 3D campaign designs and performance marketing strategies increased our ROAS by 6.8x. The team is incredibly creative and data-driven.',
-      highlight: '+128% Revenue Growth',
+      text: 'Advertio completely transformed our paid ads. Within 6 weeks, our Meta and Google campaigns became profitable and structured. ROAS scaled from inconsistent to stable 5–7x. Their strategy isn’t guesswork — it’s data-driven execution.',
+      highlight: '+210% Revenue Growth',
       color: '#E94F37',
     },
     {
       id: 2,
-      name: 'Michael Rodriguez',
-      role: 'Founder, Glamboon',
-      company: 'Glamboon',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&q=80',
+      title: 'Facebook Ads',
+      subtitle: 'Brand Building',
       rating: 5,
-      text: 'Working with Advertio has been a game-changer. Their immersive landing pages and conversion optimization increased our conversion rate by 8.2%. Highly recommend their services!',
-      highlight: '8.2% Conversion Rate',
+      text: 'We didn’t just get ads — we got a full brand direction. Advertio helped us fix our messaging, creatives, and positioning. Our Facebook ads finally started attracting the right audience, not just traffic.',
+      highlight: 'Stronger Brand Positioning',
       color: '#253E5C',
     },
     {
       id: 3,
-      name: 'Emma Thompson',
-      role: 'CMO, Novelle',
-      company: 'Novelle',
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&q=80',
+      title: 'Social Media',
+      subtitle: 'Design Services',
       rating: 5,
-      text: 'The team at Advertio understands e-commerce like no other. Their social storytelling campaigns and influencer partnerships drove 2.4M impressions. Exceptional results!',
-      highlight: '2.4M Impressions',
+      text: 'Their creative team understands what actually converts. Every post, ad creative, and visual felt premium and performance-focused. Our engagement and CTR both improved significantly after switching to Advertio.',
+      highlight: '+3.4% CTR Improvement',
       color: '#E94F37',
     },
     {
       id: 4,
-      name: 'David Park',
-      role: 'Director, InfiniteAge',
-      company: 'InfiniteAge',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&q=80',
+      title: 'Full Brand Management',
+      subtitle: 'Meta, Google, TikTok, SEO',
       rating: 5,
-      text: 'Advertio\'s product reveal films and AR kits created an unforgettable launch experience. Our engagement rate increased by 45% year over year. Outstanding creative work!',
-      highlight: '+45% Engagement',
+      text: 'Managing multiple platforms was chaos for us. Advertio streamlined everything — Meta, Google, TikTok, and even SEO. Now our marketing feels like one system instead of disconnected efforts.',
+      highlight: 'Multi-Platform Growth System',
       color: '#253E5C',
     },
     {
       id: 5,
-      name: 'Lisa Anderson',
-      role: 'VP Marketing, VikingBags',
-      company: 'VikingBags',
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&q=80',
+      title: 'Product Packaging',
+      subtitle: 'Design',
       rating: 5,
-      text: 'Their MarTech automation and personalized journeys reduced our CAC by 24%. The team is professional, creative, and always delivers on time. Best marketing partner we\'ve worked with!',
-      highlight: '-24% CAC Reduction',
+      text: 'We underestimated packaging until Advertio redesigned ours. The new look instantly elevated our brand and improved conversion rate on our product pages. It finally feels like a premium brand.',
+      highlight: 'Higher Conversion Rate',
       color: '#E94F37',
     },
     {
       id: 6,
-      name: 'James Wilson',
-      role: 'Founder, OutdoorPlay',
-      company: 'OutdoorPlay',
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&q=80',
+      title: 'Complete Ecommerce Setup',
+      subtitle: 'From Scratch',
       rating: 5,
-      text: 'Advertio\'s brand positioning and thought leadership content elevated our executive voices. Brand lift increased by 18% and customer LTV by 52%. Phenomenal results!',
-      highlight: '+52% LTV Increase',
+      text: 'We started from zero — no store, no brand, nothing. Advertio built everything from scratch: branding, website, creatives, and ads. Within the first few months, we were generating consistent daily sales.',
+      highlight: 'From 0 to Daily Sales',
       color: '#253E5C',
     },
     {
       id: 7,
-      name: 'Rachel Martinez',
-      role: 'Founder, Celvora',
-      company: 'Celvora',
-      image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop&q=80',
+      title: 'Scaling Ecommerce Brand',
+      subtitle: 'Controlled and Sustainable',
       rating: 5,
-      text: 'The conversion-focused optimization and UX audits transformed our customer journey. Our conversion rate improved dramatically, and the team provided actionable insights throughout.',
-      highlight: '+67% Conversions',
+      text: 'We were stuck at a certain revenue level for months. Advertio came in, restructured our campaigns, and scaled us profitably. What stood out was their scaling strategy — controlled and sustainable.',
+      highlight: 'Consistent Scaling Achieved',
       color: '#E94F37',
     },
     {
       id: 8,
-      name: 'Thomas Lee',
-      role: 'CEO, Bailey Mercer',
-      company: 'Bailey Mercer',
-      image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop&q=80',
+      title: 'Strategy + Execution',
+      subtitle: 'End-to-End Growth',
       rating: 5,
-      text: 'Advertio\'s performance media and cross-channel campaigns delivered exceptional ROAS. Their real-time optimization and intelligence helped us scale profitably. Highly recommended!',
-      highlight: '5.4x Average ROAS',
-      color: '#253E5C',
-    },
-    {
-      id: 9,
-      name: 'Sophie Brown',
-      role: 'Marketing Director, Customizology',
-      company: 'Customizology',
-      image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&q=80',
-      rating: 5,
-      text: 'Their immersive landing pages and WebGL-powered microsites created an unforgettable brand experience. Engagement rates soared, and our brand awareness increased significantly.',
-      highlight: '+38% Brand Awareness',
-      color: '#E94F37',
-    },
-    {
-      id: 10,
-      name: 'Robert Kim',
-      role: 'Founder, Donior',
-      company: 'Donior',
-      image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop&q=80',
-      rating: 5,
-      text: 'Advertio\'s crisis narrative control and rapid-response playbooks protected our brand during challenging times. Their strategic approach and execution were flawless.',
-      highlight: '100% Brand Protection',
-      color: '#253E5C',
-    },
-    {
-      id: 11,
-      name: 'Amanda White',
-      role: 'CMO, Palm',
-      company: 'Palm',
-      image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&h=400&fit=crop&q=80',
-      rating: 5,
-      text: 'The experiential AR kits and mixed reality campaigns extended our reach into new dimensions. Their innovative approach and creative execution exceeded all expectations.',
-      highlight: '+89% Reach Increase',
-      color: '#E94F37',
-    },
-    {
-      id: 12,
-      name: 'Chris Johnson',
-      role: 'Director, Value Makers',
-      company: 'Value Makers',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&q=80',
-      rating: 5,
-      text: 'Working with Advertio transformed our marketing operations. Their integrated solutions and data-driven approach delivered measurable results that exceeded our goals.',
-      highlight: '+156% ROI',
+      text: 'Most agencies either do strategy or execution — Advertio does both. From creatives to campaign structure to analytics, everything is aligned. That’s what actually made the difference in our results.',
+      highlight: 'End-to-End Growth Execution',
       color: '#253E5C',
     },
   ];
@@ -291,35 +231,17 @@ const ReviewsSection3D = () => {
                           {/* Content Container */}
                           <div className="relative z-10 p-8 md:p-10 bg-white/95 min-h-[400px] md:min-h-[550px] rounded-[30px] review-card-content">
                             {/* Profile Section */}
-                            <div className="flex items-center gap-4 mb-6">
-                              <div className="relative">
-                                <div
-                                  className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-4 transition-all duration-300"
-                                  style={{ 
-                                    borderColor: review.color,
-                                    borderWidth: isHovered ? '5px' : '4px',
-                                  }}
-                                >
-                                  <img
-                                    src={review.image}
-                                    alt={review.name}
-                                    className="w-full h-full object-cover review-card-image"
-                                    loading="lazy"
-                                  />
-                                </div>
-                              </div>
-                              <div className="flex-1">
-                                <h4
-                                  className="text-xl md:text-2xl font-black mb-1 transition-colors duration-300"
-                                  style={{
-                                    color: isHovered ? review.color : '#253E5C',
-                                  }}
-                                >
-                                  {review.name}
-                                </h4>
-                                <p className="text-sm md:text-base text-[#253E5C]/70 font-semibold">{review.role}</p>
-                                <p className="text-xs text-[#253E5C]/50 font-medium">{review.company}</p>
-                              </div>
+                            {/* Header Section */}
+                            <div className="flex flex-col gap-1 mb-6">
+                              <h4
+                                className="text-xl md:text-2xl font-black transition-colors duration-300"
+                                style={{
+                                  color: isHovered ? review.color : '#253E5C',
+                                }}
+                              >
+                                {review.title}
+                              </h4>
+                              <p className="text-sm md:text-base text-[#253E5C]/70 font-semibold">{review.subtitle}</p>
                             </div>
 
                             {/* Star Rating */}

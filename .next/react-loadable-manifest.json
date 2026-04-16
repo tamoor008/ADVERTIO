@@ -17,6 +17,12 @@
       "static/chunks/_pages-dir-browser_src_components_sections_ContactSection3D_jsx.js"
     ]
   },
+  "pages/index.jsx -> ../components/sections/DesignPortfolioSection": {
+    "id": "pages/index.jsx -> ../components/sections/DesignPortfolioSection",
+    "files": [
+      "static/chunks/_pages-dir-browser_src_components_sections_DesignPortfolioSection_jsx.js"
+    ]
+  },
   "pages/index.jsx -> ../components/sections/FAQSection3D": {
     "id": "pages/index.jsx -> ../components/sections/FAQSection3D",
     "files": [
