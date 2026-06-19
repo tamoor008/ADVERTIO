@@ -60,11 +60,11 @@ const TeamSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <p className="text-xs uppercase tracking-[0.4em] text-[#253E5C]/60 mb-4">Our Team</p>
-          <h3 className="text-4xl md:text-5xl font-black text-[#253E5C] mb-4">
+          <p className="text-xs uppercase tracking-[0.4em] text-[#191919]/60 mb-4">Our Team</p>
+          <h3 className="text-4xl md:text-5xl font-black text-[#191919] mb-4">
             The Minds Behind the Magic
           </h3>
-          <p className="text-[#253E5C]/70 text-lg max-w-2xl mx-auto">
+          <p className="text-[#191919]/70 text-lg max-w-2xl mx-auto">
             A collective of creative visionaries and strategic thinkers dedicated to elevating your brand.
           </p>
         </motion.div>
@@ -144,7 +144,7 @@ const TeamSection = () => {
                         transition={{ duration: 0.3 }}
                       >
                         {/* Background Gradient */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#253E5C]/95 via-[#253E5C]/80 to-transparent z-[25]" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#191919]/95 via-[#191919]/80 to-transparent z-[25]" />
 
                         {/* Content - Name and Role */}
                         <div className="relative z-[30]">
@@ -167,7 +167,7 @@ const TeamSection = () => {
 
       {/* Background Decorative Elements */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-3xl -z-10" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-[#253E5C]/10 to-transparent rounded-full blur-3xl -z-10" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-[#191919]/10 to-transparent rounded-full blur-3xl -z-10" />
     </motion.section>
   );
 };

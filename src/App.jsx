@@ -47,7 +47,7 @@ function App() {
           <div className="min-h-screen flex items-center justify-center bg-white" style={{ backgroundColor: '#FFFFFF', background: '#FFFFFF' }}>
             <div className="flex flex-col items-center gap-4">
               <div className="w-12 h-12 border-4 border-primary/30 border-t-primary rounded-full animate-spin"></div>
-              <p className="text-[#253E5C]/60 text-sm">Loading...</p>
+              <p className="text-[#191919]/60 text-sm">Loading...</p>
             </div>
           </div>
         }>

@@ -18,7 +18,7 @@ const BlogsSection3D = () => {
       date: 'March 15, 2024',
       readTime: '5 min read',
       image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop&q=80',
-      color: '#E94F37',
+      color: '#f33f29',
       tags: ['3D Design', 'E-commerce', 'Innovation'],
     },
     {
@@ -30,7 +30,7 @@ const BlogsSection3D = () => {
       date: 'March 12, 2024',
       readTime: '7 min read',
       image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&q=80',
-      color: '#253E5C',
+      color: '#191919',
       tags: ['Performance', 'Analytics', 'Growth'],
     },
     {
@@ -42,7 +42,7 @@ const BlogsSection3D = () => {
       date: 'March 10, 2024',
       readTime: '6 min read',
       image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop&q=80',
-      color: '#E94F37',
+      color: '#f33f29',
       tags: ['AR', 'Innovation', 'Engagement'],
     },
     {
@@ -54,7 +54,7 @@ const BlogsSection3D = () => {
       date: 'March 8, 2024',
       readTime: '8 min read',
       image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=600&fit=crop&q=80',
-      color: '#253E5C',
+      color: '#191919',
       tags: ['CRO', 'UX', 'Conversion'],
     },
   ];
@@ -75,7 +75,7 @@ const BlogsSection3D = () => {
               height: `${200 + i * 100}px`,
               left: `${(i * 30) % 100}%`,
               top: `${(i * 25) % 100}%`,
-              background: `radial-gradient(circle, rgba(233, 79, 55, ${0.15 + i * 0.05}) 0%, transparent 70%)`,
+              background: `radial-gradient(circle, rgba(243, 63, 41, ${0.15 + i * 0.05}) 0%, transparent 70%)`,
             }}
           />
         ))}
@@ -83,15 +83,15 @@ const BlogsSection3D = () => {
 
       <div className="relative w-[90%] mx-auto">
         <div className="text-center mb-16 max-w-4xl mx-auto">
-          <p className="text-xs uppercase tracking-[0.5em] text-[#253E5C]/60 mb-4">
+          <p className="text-xs uppercase tracking-[0.5em] text-[#191919]/60 mb-4">
             Insights & Strategies
           </p>
-          <h3 className="text-5xl md:text-6xl lg:text-7xl font-black text-[#253E5C] mb-6">
-            <span className="bg-gradient-to-r from-[#253E5C] via-primary to-[#ff6b4a] bg-clip-text text-transparent">
+          <h3 className="text-5xl md:text-6xl lg:text-7xl font-black text-[#191919] mb-6">
+            <span className="bg-gradient-to-r from-[#191919] via-primary to-[#f33f29] bg-clip-text text-transparent">
               Latest Blogs
             </span>
           </h3>
-          <p className="text-[#253E5C]/70 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+          <p className="text-[#191919]/70 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
             Expert insights on e-commerce growth, digital marketing, and cutting-edge technology
           </p>
         </div>
@@ -101,7 +101,7 @@ const BlogsSection3D = () => {
             ref={scrollContainerRef}
             className="overflow-x-auto overflow-y-visible pb-4 md:pb-0 pt-0"
             style={{
-              scrollbarColor: '#E94F37 transparent',
+              scrollbarColor: '#f33f29 transparent',
               WebkitOverflowScrolling: 'touch',
               minHeight: '800px',
               paddingLeft: '1rem',
@@ -121,12 +121,12 @@ const BlogsSection3D = () => {
                     }}
                   >
                     <div
-                      className="relative rounded-[32px] transition-all duration-300 group-hover:-translate-y-1 group-hover:scale-[1.02] bg-white border border-[#253E5C]/10 overflow-hidden"
+                      className="relative rounded-[32px] transition-all duration-300 group-hover:-translate-y-1 group-hover:scale-[1.02] bg-white border border-[#191919]/10 overflow-hidden"
                       style={{
                         position: 'relative',
                         minHeight: '600px',
                         height: 'auto',
-                        boxShadow: '0 10px 30px rgba(37, 62, 92, 0.1)',
+                        boxShadow: '0 10px 30px rgba(25, 25, 25, 0.1)',
                       }}
                     >
                       <div className="relative w-full h-56 overflow-hidden">
@@ -174,7 +174,7 @@ const BlogsSection3D = () => {
 
                         <div className="flex flex-col flex-grow min-h-0">
                           <h3
-                            className="text-xl md:text-2xl font-black mb-3 leading-tight transition-colors duration-300 group-hover:text-[#253E5C]"
+                            className="text-xl md:text-2xl font-black mb-3 leading-tight transition-colors duration-300 group-hover:text-[#191919]"
                             style={{
                               color: blog.color,
                             }}
@@ -182,7 +182,7 @@ const BlogsSection3D = () => {
                             {blog.title}
                           </h3>
 
-                          <p className="text-sm md:text-base leading-relaxed text-[#253E5C]/70 transition-colors duration-300 group-hover:text-[#253E5C]">
+                          <p className="text-sm md:text-base leading-relaxed text-[#191919]/70 transition-colors duration-300 group-hover:text-[#191919]">
                             {blog.excerpt}
                           </p>
                         </div>
@@ -207,7 +207,7 @@ const BlogsSection3D = () => {
               onClick={() => router.push('/blogs')}
               className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-base font-semibold tracking-wide text-white shadow-lg shadow-black/10 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:-translate-y-0.5 active:scale-95"
               style={{ 
-                background: 'linear-gradient(135deg, #253E5C, #E94F37)',
+                background: 'linear-gradient(135deg, #191919, #f33f29)',
               }}
             >
               <span>See all blogs</span>
@@ -218,7 +218,7 @@ const BlogsSection3D = () => {
           <div
             className="absolute right-8 top-1/2 -translate-y-1/2 hidden lg:block pointer-events-none opacity-40"
           >
-            <svg className="w-8 h-8 text-[#253E5C]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-8 h-8 text-[#191919]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </div>
@@ -226,7 +226,7 @@ const BlogsSection3D = () => {
       </div>
 
       <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-gradient-to-br from-primary/15 to-transparent rounded-full blur-3xl -z-10 hidden md:block opacity-30" />
-      <div className="absolute bottom-0 right-0 w-[900px] h-[900px] bg-gradient-to-tl from-[#253E5C]/15 to-transparent rounded-full blur-3xl -z-10 hidden md:block opacity-30" />
+      <div className="absolute bottom-0 right-0 w-[900px] h-[900px] bg-gradient-to-tl from-[#191919]/15 to-transparent rounded-full blur-3xl -z-10 hidden md:block opacity-30" />
     </section>
   );
 };

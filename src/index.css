@@ -6,8 +6,8 @@
 
 @layer base {
   :root {
-    --primary: #E94F37;
-    --dark: #253E5C;
+    --primary: #f33f29;
+    --dark: #191919;
     --white: #FFFFFF;
   }
 
@@ -210,10 +210,10 @@
     inset: 0;
     border-radius: inherit;
     background:
-      radial-gradient(circle at 20% 20%, rgba(233, 79, 55, 0.85), transparent 55%),
-      radial-gradient(circle at 80% 30%, rgba(37, 62, 92, 0.85), transparent 60%),
-      radial-gradient(circle at 30% 80%, rgba(233, 79, 55, 0.55), transparent 55%),
-      conic-gradient(from 90deg, rgba(233, 79, 55, 0.4), rgba(37, 62, 92, 0.5), rgba(233, 79, 55, 0.4));
+      radial-gradient(circle at 20% 20%, rgba(243, 63, 41, 0.85), transparent 55%),
+      radial-gradient(circle at 80% 30%, rgba(25, 25, 25, 0.85), transparent 60%),
+      radial-gradient(circle at 30% 80%, rgba(243, 63, 41, 0.55), transparent 55%),
+      conic-gradient(from 90deg, rgba(243, 63, 41, 0.4), rgba(25, 25, 25, 0.5), rgba(243, 63, 41, 0.4));
     background-size: 200% 200%;
     animation: hero-gradient-move 10s ease-in-out infinite alternate;
     z-index: -2;
@@ -225,7 +225,7 @@
     inset: 0;
     border-radius: inherit;
     background: rgba(255, 255, 255, 0.7);
-    box-shadow: inset 0 0 40px rgba(37, 62, 92, 0.12);
+    box-shadow: inset 0 0 40px rgba(25, 25, 25, 0.12);
     z-index: -1;
   }
 }
@@ -249,7 +249,7 @@
 
   /* Selection */
   ::selection {
-    background: #E94F37;
+    background: #f33f29;
     color: #FFFFFF;
   }
 

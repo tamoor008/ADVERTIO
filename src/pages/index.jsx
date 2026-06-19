@@ -25,7 +25,7 @@ const ContactSection3D = dynamic(() => import('../components/sections/ContactSec
 // Loading fallback component
 const SectionLoader = () => (
   <div className="w-full min-h-[400px] flex items-center justify-center">
-    <div className="animate-pulse text-[#253E5C]/40">Loading...</div>
+    <div className="animate-pulse text-[#191919]/40">Loading...</div>
   </div>
 )
 

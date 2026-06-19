@@ -91,15 +91,10 @@ const Navbar = () => {
       <div className="container mx-auto px-6 flex items-center justify-between">
         <Link href="/" className="flex items-center">
           <motion.img
-            src="/logo-Advertio.png"
+            src="/newlogo.png"
             alt="Advertio"
-            className="h-24 md:h-40 -my-14 object-contain drop-shadow-[0_8px_32px_rgba(0,0,0,0.55)]"
-            style={{ 
-              transform: `scale(${isMobile ? '0.8' : '1.35'})`, 
-              transformOrigin: 'left center', 
-              filter: 'brightness(1.35) contrast(1.15)'
-            }}
-            whileHover={{ scale: isMobile ? 0.85 : 1.4 }}
+            className="h-6 md:h-8 object-contain"
+            whileHover={{ scale: 1.05 }}
             transition={{ type: 'spring', stiffness: 250 }}
           />
         </Link>
@@ -273,10 +268,7 @@ const Navbar = () => {
           >
             <Link
               href="/free-audit"
-              className="px-6 py-2.5 rounded-full text-white text-sm font-bold transition-all border border-white/20 hover:shadow-lg hover:shadow-primary/50 hover:brightness-110 block"
-              style={{
-                background: 'linear-gradient(135deg, rgba(233, 79, 55, 1) 0%, rgb(0, 37, 82) 50%, rgba(233, 79, 55, 1) 100%)'
-              }}
+              className="px-6 py-2.5 rounded-full text-white text-sm font-bold transition-all bg-primary hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/50 block"
             >
               Get free Audit
             </Link>
@@ -315,10 +307,7 @@ const Navbar = () => {
                 <Link
                   href="/free-audit"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="px-6 py-2.5 rounded-full text-white text-sm font-bold transition-all text-center border border-white/20 hover:shadow-lg hover:shadow-primary/50 hover:brightness-110 block"
-                  style={{
-                    background: 'linear-gradient(135deg, rgba(233, 79, 55, 1) 0%, rgba(37, 62, 92, 1) 50%, rgba(233, 79, 55, 1) 100%)'
-                  }}
+                  className="px-6 py-2.5 rounded-full text-white text-sm font-bold transition-all text-center bg-primary hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/50 block"
                 >
                   Get free Audit
                 </Link>

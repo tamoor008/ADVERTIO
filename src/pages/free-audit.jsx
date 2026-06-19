@@ -6,8 +6,8 @@ import Link from 'next/link';
 import emailjs from '@emailjs/browser';
 import { EMAILJS_CONFIG } from '../config/emailjs.config';
 
-const PRIMARY_COLOR = '#E94F37';
-const SECONDARY_COLOR = '#253E5C';
+const PRIMARY_COLOR = '#f33f29';
+const SECONDARY_COLOR = '#191919';
 const DEEP_BLUE = '#0F172A';
 
 const FreeAudit = () => {
@@ -216,7 +216,7 @@ const FreeAudit = () => {
         >
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-[#253E5C]/70 hover:text-[#253E5C] font-semibold transition-colors"
+            className="inline-flex items-center gap-2 text-[#191919]/70 hover:text-[#191919] font-semibold transition-colors"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -248,7 +248,7 @@ const FreeAudit = () => {
             Get Your Free Audit
           </motion.h1>
           <motion.p
-            className="text-xl md:text-2xl text-[#253E5C]/70 max-w-2xl mx-auto leading-relaxed"
+            className="text-xl md:text-2xl text-[#191919]/70 max-w-2xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.5 }}
@@ -259,7 +259,7 @@ const FreeAudit = () => {
 
         {/* Form Card */}
         <motion.div
-          className="relative rounded-[32px] p-[2px] bg-gradient-to-r from-[#253E5C] via-primary to-[#ff7b5f] shadow-2xl"
+          className="relative rounded-[32px] p-[2px] bg-gradient-to-r from-[#191919] via-primary to-[#f33f29] shadow-2xl"
           initial={{ opacity: 0, scale: 0.95, y: 40 }}
           animate={formInView ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.95, y: 40 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
@@ -303,9 +303,9 @@ const FreeAudit = () => {
               transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             >
               <motion.label
-                className="text-sm font-extrabold uppercase tracking-[0.3em] text-[#253E5C]/70 block"
+                className="text-sm font-extrabold uppercase tracking-[0.3em] text-[#191919]/70 block"
                 animate={{ 
-                  color: formData.adPlatform ? '#E94F37' : 'rgba(37, 62, 92, 0.7)'
+                  color: formData.adPlatform ? '#f33f29' : 'rgba(25, 25, 25, 0.7)'
                 }}
                 transition={{ duration: 0.3 }}
               >
@@ -315,25 +315,25 @@ const FreeAudit = () => {
                 <motion.button
                   type="button"
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className={`w-full px-5 py-4 rounded-2xl bg-white border-2 border-[#253E5C]/20 text-[#253E5C] placeholder-[#253E5C]/40 focus:outline-none transition-all text-left flex items-center justify-between relative ${
-                    errors.adPlatform ? 'border-red-500' : 'border-[#253E5C]/20'
+                  className={`w-full px-5 py-4 rounded-2xl bg-white border-2 border-[#191919]/20 text-[#191919] placeholder-[#191919]/40 focus:outline-none transition-all text-left flex items-center justify-between relative ${
+                    errors.adPlatform ? 'border-red-500' : 'border-[#191919]/20'
                   }`}
                   style={{ zIndex: 10000 }}
                   whileHover={{ 
                     scale: 1.02,
-                    borderColor: errors.adPlatform ? '#EF4444' : 'rgba(233, 79, 55, 0.6)',
-                    boxShadow: errors.adPlatform ? `0 0 20px #EF444430` : `0 0 20px rgba(233, 79, 55, 0.3)`,
+                    borderColor: errors.adPlatform ? '#EF4444' : 'rgba(243, 63, 41, 0.6)',
+                    boxShadow: errors.adPlatform ? `0 0 20px #EF444430` : `0 0 20px rgba(243, 63, 41, 0.3)`,
                   }}
                   whileFocus={{ 
                     scale: 1.02,
-                    borderColor: errors.adPlatform ? '#EF4444' : 'rgba(233, 79, 55, 0.6)',
-                    boxShadow: errors.adPlatform ? `0 0 20px #EF444430` : `0 0 20px rgba(233, 79, 55, 0.3)`,
+                    borderColor: errors.adPlatform ? '#EF4444' : 'rgba(243, 63, 41, 0.6)',
+                    boxShadow: errors.adPlatform ? `0 0 20px #EF444430` : `0 0 20px rgba(243, 63, 41, 0.3)`,
                   }}
                   animate={{
-                    borderColor: errors.adPlatform ? '#EF4444' : (formData.adPlatform ? PRIMARY_COLOR : 'rgba(37, 62, 92, 0.2)'),
+                    borderColor: errors.adPlatform ? '#EF4444' : (formData.adPlatform ? PRIMARY_COLOR : 'rgba(25, 25, 25, 0.2)'),
                   }}
                 >
-                  <span className={formData.adPlatform ? 'text-[#253E5C]' : 'text-[#253E5C]/40'}>
+                  <span className={formData.adPlatform ? 'text-[#191919]' : 'text-[#191919]/40'}>
                     {formData.adPlatform || 'Select an ad platform'}
                   </span>
                   <motion.svg
@@ -355,7 +355,7 @@ const FreeAudit = () => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.3 }}
-                      className="absolute w-full mt-2 rounded-2xl bg-white border-2 border-[#253E5C]/20 shadow-2xl overflow-hidden"
+                      className="absolute w-full mt-2 rounded-2xl bg-white border-2 border-[#191919]/20 shadow-2xl overflow-hidden"
                       style={{ 
                         backgroundColor: '#ffffff',
                         zIndex: 10001,
@@ -368,7 +368,7 @@ const FreeAudit = () => {
                           key={platform}
                           type="button"
                           onClick={() => handleSelectPlatform(platform)}
-                          className="w-full px-5 py-4 text-left text-[#253E5C] bg-white hover:bg-[#253E5C]/5 transition-colors border-b border-[#253E5C]/10 last:border-b-0"
+                          className="w-full px-5 py-4 text-left text-[#191919] bg-white hover:bg-[#191919]/5 transition-colors border-b border-[#191919]/10 last:border-b-0"
                           style={{ backgroundColor: '#ffffff' }}
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
@@ -479,9 +479,9 @@ const FreeAudit = () => {
               transition={{ duration: 0.6, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
               <motion.label
-                className="text-sm font-extrabold uppercase tracking-[0.3em] text-[#253E5C]/70 block"
+                className="text-sm font-extrabold uppercase tracking-[0.3em] text-[#191919]/70 block"
                 animate={{ 
-                  color: formData.advertisingGoals ? '#E94F37' : 'rgba(37, 62, 92, 0.7)'
+                  color: formData.advertisingGoals ? '#f33f29' : 'rgba(25, 25, 25, 0.7)'
                 }}
                 transition={{ duration: 0.3 }}
               >
@@ -493,14 +493,14 @@ const FreeAudit = () => {
                 placeholder="Tell us about your advertising goals, challenges, and what you hope to achieve..."
                 value={formData.advertisingGoals}
                 onChange={handleChange}
-                className="w-full px-5 py-4 rounded-2xl bg-white border-2 border-[#253E5C]/20 text-[#253E5C] placeholder-[#253E5C]/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 focus:bg-white transition-all resize-none"
+                className="w-full px-5 py-4 rounded-2xl bg-white border-2 border-[#191919]/20 text-[#191919] placeholder-[#191919]/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 focus:bg-white transition-all resize-none"
                 whileFocus={{ 
                   scale: 1.01,
-                  borderColor: 'rgba(233, 79, 55, 0.6)',
-                  boxShadow: '0 0 20px rgba(233, 79, 55, 0.3)',
+                  borderColor: 'rgba(243, 63, 41, 0.6)',
+                  boxShadow: '0 0 20px rgba(243, 63, 41, 0.3)',
                 }}
                 animate={{
-                  borderColor: formData.advertisingGoals ? PRIMARY_COLOR : 'rgba(37, 62, 92, 0.2)',
+                  borderColor: formData.advertisingGoals ? PRIMARY_COLOR : 'rgba(25, 25, 25, 0.2)',
                 }}
               />
             </motion.div>
@@ -512,7 +512,7 @@ const FreeAudit = () => {
               className={`relative w-full flex items-center justify-center gap-3 px-6 py-5 rounded-2xl text-white font-semibold text-lg shadow-lg transition-all overflow-hidden mt-8 ${
                 !isFormValid() || status === 'sending'
                   ? 'bg-gray-400 cursor-not-allowed opacity-50'
-                  : 'bg-gradient-to-r from-[#253E5C] via-primary to-[#FF6B4A] shadow-primary/40 cursor-pointer'
+                  : 'bg-gradient-to-r from-[#191919] via-primary to-[#f33f29] shadow-primary/40 cursor-pointer'
               }`}
               style={{
                 transformStyle: 'preserve-3d',
@@ -525,7 +525,7 @@ const FreeAudit = () => {
               }}
               whileHover={!isFormValid() || status === 'sending' ? {} : { 
                 scale: 1.03,
-                boxShadow: '0 10px 40px rgba(233, 79, 55, 0.5)',
+                boxShadow: '0 10px 40px rgba(243, 63, 41, 0.5)',
                 translateZ: 20,
               }}
               whileTap={!isFormValid() || status === 'sending' ? {} : { scale: 0.98 }}
@@ -626,7 +626,7 @@ const FreeAudit = () => {
 
 // Reusable Form Field Component with 3D effects
 const FormField = ({ label, name, type, placeholder, value, onChange, formInView, delay, error, required }) => {
-  const PRIMARY_COLOR = '#E94F37';
+  const PRIMARY_COLOR = '#f33f29';
   
   return (
     <motion.div
@@ -637,9 +637,9 @@ const FormField = ({ label, name, type, placeholder, value, onChange, formInView
       transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       <motion.label
-        className="text-sm font-extrabold uppercase tracking-[0.3em] text-[#253E5C]/70 block"
+        className="text-sm font-extrabold uppercase tracking-[0.3em] text-[#191919]/70 block"
         animate={{ 
-          color: value ? '#E94F37' : 'rgba(37, 62, 92, 0.7)'
+          color: value ? '#f33f29' : 'rgba(25, 25, 25, 0.7)'
         }}
         transition={{ duration: 0.3 }}
       >
@@ -652,16 +652,16 @@ const FormField = ({ label, name, type, placeholder, value, onChange, formInView
         value={value}
         onChange={onChange}
         required={required}
-        className={`w-full px-5 py-4 rounded-2xl bg-white border-2 border-[#253E5C]/20 text-[#253E5C] placeholder-[#253E5C]/40 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:bg-white transition-all ${
-          error ? 'border-red-500' : 'border-[#253E5C]/20 focus:border-primary'
+        className={`w-full px-5 py-4 rounded-2xl bg-white border-2 border-[#191919]/20 text-[#191919] placeholder-[#191919]/40 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:bg-white transition-all ${
+          error ? 'border-red-500' : 'border-[#191919]/20 focus:border-primary'
         }`}
         whileFocus={{ 
           scale: 1.01,
-          borderColor: error ? '#EF4444' : 'rgba(233, 79, 55, 0.6)',
-          boxShadow: error ? `0 0 20px #EF444430` : `0 0 20px rgba(233, 79, 55, 0.3)`,
+          borderColor: error ? '#EF4444' : 'rgba(243, 63, 41, 0.6)',
+          boxShadow: error ? `0 0 20px #EF444430` : `0 0 20px rgba(243, 63, 41, 0.3)`,
         }}
         animate={{
-          borderColor: error ? '#EF4444' : (value ? PRIMARY_COLOR : 'rgba(37, 62, 92, 0.2)'),
+          borderColor: error ? '#EF4444' : (value ? PRIMARY_COLOR : 'rgba(25, 25, 25, 0.2)'),
         }}
       />
       <AnimatePresence>

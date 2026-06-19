@@ -34,13 +34,13 @@ const ProcessBackdrop = () => {
 
   // Solid colors for each card based on brand color scheme - using only primary colors
   const cardColors = [
-    { bg: '#253E5C', text: '#FFFFFF' },      // Store Analysis - Dark blue
-    { bg: '#E94F37', text: '#FFFFFF' },      // Growth Strategy - Primary red/orange
-    { bg: '#253E5C', text: '#FFFFFF' },      // Multi-Channel Ads - Dark blue
-    { bg: '#E94F37', text: '#FFFFFF' },      // Content Creation - Primary red/orange
-    { bg: '#253E5C', text: '#FFFFFF' },      // Campaign Launch - Dark blue
-    { bg: '#E94F37', text: '#FFFFFF' },      // Performance Tracking - Primary red/orange
-    { bg: '#253E5C', text: '#FFFFFF' },      // ROI Reports - Dark blue
+    { bg: '#191919', text: '#FFFFFF' },      // Store Analysis - Dark blue
+    { bg: '#f33f29', text: '#FFFFFF' },      // Growth Strategy - Primary red/orange
+    { bg: '#191919', text: '#FFFFFF' },      // Multi-Channel Ads - Dark blue
+    { bg: '#f33f29', text: '#FFFFFF' },      // Content Creation - Primary red/orange
+    { bg: '#191919', text: '#FFFFFF' },      // Campaign Launch - Dark blue
+    { bg: '#f33f29', text: '#FFFFFF' },      // Performance Tracking - Primary red/orange
+    { bg: '#191919', text: '#FFFFFF' },      // ROI Reports - Dark blue
   ];
 
   // CARD POSITIONING STYLES
@@ -85,15 +85,15 @@ const ProcessBackdrop = () => {
       className="relative z-10 py-8 md:py-24"
       style={isMobile ? { transform: 'none' } : {}}
     >
-      <div className="w-full rounded-[36px] bg-[#f9f6f0] border border-white/70 shadow-[0_40px_140px_rgba(37,62,92,0.25)] px-8 py-12 lg:px-16">
+      <div className="w-full rounded-[36px] bg-[#f9f6f0] border border-white/70 shadow-[0_40px_140px_rgba(25,25,25,0.15)] px-8 py-12 lg:px-16">
         <div className="text-center mb-10">
-          <p className="text-xs tracking-[0.5em] uppercase text-[#253E5C]/60">Process</p>
-          <h3 className="text-3xl md:text-4xl font-black text-[#253E5C]">E-commerce Marketing Process</h3>
-          <p className="text-[#253E5C]/70 mt-3 text-base">We specialize in delivering data-driven digital marketing solutions tailored exclusively for e-commerce brands to drive sales and maximize ROI.</p>
+          <p className="text-xs tracking-[0.5em] uppercase text-[#191919]/60">Process</p>
+          <h3 className="text-3xl md:text-4xl font-black text-[#191919]">E-commerce Marketing Process</h3>
+          <p className="text-[#191919]/70 mt-3 text-base">We specialize in delivering data-driven digital marketing solutions tailored exclusively for e-commerce brands to drive sales and maximize ROI.</p>
         </div>
         <div className="flex justify-center items-center gap-40 lg:gap-72 flex-wrap lg:flex-nowrap">
           {/* Desktop: Left side with steps list */}
-          <div className="bg-white rounded-[32px] border border-[#253E5C]/10 shadow-[0_20px_50px_rgba(37,62,92,0.08)] p-8 max-w-3xl w-full flex-1 hidden md:block">
+          <div className="bg-white rounded-[32px] border border-[#191919]/10 shadow-[0_20px_50px_rgba(37,62,92,0.08)] p-8 max-w-3xl w-full flex-1 hidden md:block">
             <div className="space-y-5">
               {processSteps.map((text, index) => (
                 <motion.div
@@ -133,7 +133,7 @@ const ProcessBackdrop = () => {
                     whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
                     transition={isMobile ? { duration: 0 } : { duration: 0.4, delay: index * 0.05 }}
-                    className="bg-white rounded-2xl border border-[#253E5C]/10 shadow-md overflow-hidden"
+                    className="bg-white rounded-2xl border border-[#191919]/10 shadow-md overflow-hidden"
                     style={{
                       borderLeft: `4px solid ${cardColors[index].bg}`,
                       transform: isMobile ? 'none' : undefined,
@@ -265,7 +265,7 @@ const ProcessBackdrop = () => {
                   }}
                 >
                   <div
-                    className="border shadow-lg flex flex-col items-center justify-center overflow-hidden border-[#253E5C]/20"
+                    className="border shadow-lg flex flex-col items-center justify-center overflow-hidden border-[#191919]/20"
                     style={{
                       width: '130px',
                       height: '120px',
@@ -332,7 +332,7 @@ const ProcessBackdrop = () => {
               );
             })}
             
-            <div className="w-32 h-32 md:w-40 md:h-40 rounded-full p-6 md:p-8 bg-transparent flex items-center justify-center relative z-10 overflow-hidden">
+            <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-transparent flex items-center justify-center relative z-10 overflow-hidden">
               {/* Partial circle border - 260 degrees split into 7 colored segments */}
               {(() => {
                 const borderRotation = 230;
@@ -378,9 +378,9 @@ const ProcessBackdrop = () => {
                 );
               })()}
               <img 
-                src="/logo-Advertio.png" 
+                src="/newlogo.png" 
                 alt="Advertio Logo" 
-                className="w-full h-full object-contain rounded-full relative z-10"
+                className="w-16 h-16 object-contain relative z-10"
                 loading="lazy"
               />
             </div>

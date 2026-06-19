@@ -12,14 +12,14 @@ function Floating404() {
       <Text
         position={[0, 0, 0]}
         fontSize={2}
-        color="#E94F37"
+        color="#f33f29"
         anchorX="center"
         anchorY="middle"
       >
         404
       </Text>
       <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} color="#E94F37" />
+      <pointLight position={[10, 10, 10]} color="#f33f29" />
       <OrbitControls autoRotate autoRotateSpeed={1} />
     </>
   );
@@ -42,11 +42,11 @@ const NotFound = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-9xl font-black mb-6 bg-gradient-to-r from-primary to-[#253E5C] bg-clip-text text-transparent">
+          <h1 className="text-9xl font-black mb-6 bg-gradient-to-r from-primary to-[#191919] bg-clip-text text-transparent">
             404
           </h1>
-          <h2 className="text-4xl font-bold text-[#253E5C] mb-6">Page Not Found</h2>
-          <p className="text-[#253E5C]/80 mb-8 max-w-md mx-auto">
+          <h2 className="text-4xl font-bold text-[#191919] mb-6">Page Not Found</h2>
+          <p className="text-[#191919]/80 mb-8 max-w-md mx-auto">
             The page you&apos;re looking for seems to have drifted into the void.
           </p>
           <Link

@@ -146,7 +146,7 @@ const Contact = () => {
       label: 'Email',
       value: 'info@advertio.online',
       href: 'https://mail.google.com/mail/?view=cm&to=info@advertio.online',
-      color: '#E94F37',
+      color: '#f33f29',
     },
     {
       icon: (
@@ -157,7 +157,7 @@ const Contact = () => {
       label: 'Phone',
       value: '+92 336 6424379',
       href: 'tel:+923366424379',
-      color: '#253E5C',
+      color: '#191919',
     },
     {
       icon: (
@@ -189,7 +189,7 @@ const Contact = () => {
         </>
       ),
       href: 'https://www.google.com/maps/search/?api=1&query=Unit+A10+539+Bizspace+Business+Park+Kings+Road+Tyseley+Birmingham+B11+2AL',
-      color: '#253E5C',
+      color: '#191919',
     },
     {
       icon: (
@@ -207,7 +207,7 @@ const Contact = () => {
         </>
       ),
       href: 'https://www.google.com/maps/search/?api=1&query=Value+Tower+Ghalib+Market+Gulberg+III+Lahore+Pakistan',
-      color: '#253E5C',
+      color: '#191919',
     },
   ];
 
@@ -245,7 +245,7 @@ const Contact = () => {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-8 leading-[1.1] px-4 sm:px-6 md:px-8 py-2"
               style={{
-                background: 'linear-gradient(to right, #E94F37, #ff6b4a, #253E5C)',
+                background: 'linear-gradient(to right, #f33f29, #f33f29, #191919)',
                 backgroundSize: '120% 120%',
                 backgroundPosition: 'center',
                 WebkitBackgroundClip: 'text',
@@ -269,7 +269,7 @@ const Contact = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl md:text-2xl text-[#253E5C]/80 leading-relaxed px-4 sm:px-6 md:px-8"
+              className="text-xl md:text-2xl text-[#191919]/80 leading-relaxed px-4 sm:px-6 md:px-8"
             >
               Ready to transform your digital presence? Reach out and let&apos;s discuss your next big project.
             </motion.p>
@@ -303,7 +303,7 @@ const Contact = () => {
                   className="relative rounded-[32px] p-8 bg-white/95 backdrop-blur-md shadow-lg overflow-hidden"
                   style={{
                     border: '2px solid transparent',
-                    backgroundImage: 'linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95)), linear-gradient(135deg, #253E5C, #E94F37)',
+                    backgroundImage: 'linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95)), linear-gradient(135deg, #191919, #f33f29)',
                     backgroundOrigin: 'border-box',
                     backgroundClip: 'padding-box, border-box',
                   }}
@@ -335,10 +335,10 @@ const Contact = () => {
                       </div>
                     </motion.div>
                     
-                    <h3 className="text-sm uppercase tracking-[0.3em] text-[#253E5C]/60 mb-2 font-semibold">
+                    <h3 className="text-sm uppercase tracking-[0.3em] text-[#191919]/60 mb-2 font-semibold">
                       {method.label}
                     </h3>
-                    <p className="text-xl font-bold text-[#253E5C] group-hover:text-primary transition-colors">
+                    <p className="text-xl font-bold text-[#191919] group-hover:text-primary transition-colors">
                       {method.value}
                     </p>
                   </div>
@@ -399,7 +399,7 @@ const Contact = () => {
                   className="relative rounded-[32px] p-8 bg-white/95 backdrop-blur-md shadow-lg overflow-hidden"
                   style={{
                     border: '2px solid transparent',
-                    backgroundImage: 'linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95)), linear-gradient(135deg, #253E5C, #E94F37)',
+                    backgroundImage: 'linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95)), linear-gradient(135deg, #191919, #f33f29)',
                     backgroundOrigin: 'border-box',
                     backgroundClip: 'padding-box, border-box',
                   }}
@@ -431,10 +431,10 @@ const Contact = () => {
                       </div>
                     </motion.div>
                     
-                    <h3 className="text-sm uppercase tracking-[0.3em] text-[#253E5C]/60 mb-2 font-semibold">
+                    <h3 className="text-sm uppercase tracking-[0.3em] text-[#191919]/60 mb-2 font-semibold">
                       {address.label}
                     </h3>
-                    <p className="text-xl font-bold text-[#253E5C] group-hover:text-primary transition-colors">
+                    <p className="text-xl font-bold text-[#191919] group-hover:text-primary transition-colors">
                       {address.value}
                     </p>
                   </div>
@@ -483,10 +483,10 @@ const Contact = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-5xl md:text-6xl font-black mb-6 bg-gradient-to-r from-primary to-[#253E5C] bg-clip-text text-transparent">
+            <h2 className="text-5xl md:text-6xl font-black mb-6 bg-gradient-to-r from-primary to-[#191919] bg-clip-text text-transparent">
               Send Us a Message
             </h2>
-            <p className="text-lg text-[#253E5C]/70 max-w-2xl mx-auto">
+            <p className="text-lg text-[#191919]/70 max-w-2xl mx-auto">
               Fill out the form below and we&apos;ll get back to you within 24 hours
             </p>
           </motion.div>
@@ -500,7 +500,7 @@ const Contact = () => {
               onMouseLeave={resetTilt}
               className="relative rounded-[36px] border border-white/20 shadow-[0_25px_80px_rgba(0,0,0,0.4)] p-8 md:p-10"
               style={{
-                background: 'linear-gradient(135deg, rgba(233, 79, 55, 1) 0%, rgba(37, 62, 92, 1) 50%, rgba(233, 79, 55, 1) 100%)',
+                background: 'linear-gradient(135deg, rgba(243, 63, 41, 1) 0%, rgba(25, 25, 25, 1) 50%, rgba(243, 63, 41, 1) 100%)',
                 transformStyle: 'preserve-3d'
               }}
               initial={{ opacity: 0, y: 60, rotateY: 15 }}
@@ -519,7 +519,7 @@ const Contact = () => {
               <motion.div
                 className="absolute inset-0 rounded-[36px] opacity-0"
                 style={{
-                  background: 'radial-gradient(circle at 50% 50%, rgba(233, 79, 55, 0.3) 0%, transparent 70%)',
+                  background: 'radial-gradient(circle at 50% 50%, rgba(243, 63, 41, 0.3) 0%, transparent 70%)',
                 }}
                 animate={{
                   opacity: [0, 0.3, 0],
@@ -566,7 +566,7 @@ const Contact = () => {
                       onBlur={() => setFocusedField(null)}
                       required
                       className={`w-full px-5 py-4 rounded-2xl border border-white/20 placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 transition-all ${
-                        formData[field.name] ? 'bg-white text-[#253E5C]' : 'bg-white/10 text-white'
+                        formData[field.name] ? 'bg-white text-[#191919]' : 'bg-white/10 text-white'
                       }`}
                       style={{ transformStyle: 'preserve-3d' }}
                     />
@@ -614,7 +614,7 @@ const Contact = () => {
                     onBlur={() => setFocusedField(null)}
                     required
                     className={`w-full px-5 py-4 rounded-2xl border border-white/20 placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 transition-all appearance-none cursor-pointer ${
-                      formData.service ? 'bg-white text-[#253E5C]' : 'bg-white/10 text-white'
+                      formData.service ? 'bg-white text-[#191919]' : 'bg-white/10 text-white'
                     }`}
                     style={{ 
                       transformStyle: 'preserve-3d',
@@ -626,9 +626,9 @@ const Contact = () => {
                       paddingRight: '2.5rem',
                     }}
                   >
-                    <option value="" className="bg-[#253E5C] text-white">Select a service</option>
+                    <option value="" className="bg-[#191919] text-white">Select a service</option>
                     {servicesList.map((service) => (
-                      <option key={service.id} value={service.title} className="bg-[#253E5C] text-white">
+                      <option key={service.id} value={service.title} className="bg-[#191919] text-white">
                         {service.title}
                       </option>
                     ))}
@@ -678,7 +678,7 @@ const Contact = () => {
                     onBlur={() => setFocusedField(null)}
                     required
                     className={`w-full px-5 py-4 rounded-2xl border border-white/20 placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 transition-all ${
-                      formData.adSpend ? 'bg-white text-[#253E5C]' : 'bg-white/10 text-white'
+                      formData.adSpend ? 'bg-white text-[#191919]' : 'bg-white/10 text-white'
                     }`}
                     style={{ transformStyle: 'preserve-3d' }}
                   />
@@ -726,7 +726,7 @@ const Contact = () => {
                     onFocus={() => setFocusedField('message')}
                     onBlur={() => setFocusedField(null)}
                     className={`w-full px-5 py-4 rounded-2xl border border-white/20 placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 transition-all resize-none ${
-                      formData.message ? 'bg-white text-[#253E5C]' : 'bg-white/10 text-white'
+                      formData.message ? 'bg-white text-[#191919]' : 'bg-white/10 text-white'
                     }`}
                     style={{ transformStyle: 'preserve-3d' }}
                   />
@@ -748,11 +748,11 @@ const Contact = () => {
                 <motion.button
                   type="submit"
                   disabled={formStatus === 'sending'}
-                  className="relative w-full flex items-center justify-center gap-3 px-6 py-5 rounded-2xl text-white font-semibold text-lg bg-gradient-to-r from-[#253E5C] via-primary to-[#FF6B4A] shadow-lg shadow-primary/40 transition-all disabled:opacity-60 overflow-hidden mt-8"
+                  className="relative w-full flex items-center justify-center gap-3 px-6 py-5 rounded-2xl text-white font-semibold text-lg bg-gradient-to-r from-[#191919] via-primary to-[#f33f29] shadow-lg shadow-primary/40 transition-all disabled:opacity-60 overflow-hidden mt-8"
                   whileHover={{ 
                     scale: formStatus === 'sending' ? 1 : 1.03, 
                     translateZ: 20, 
-                    boxShadow: '0 15px 50px rgba(233, 79, 55, 0.6)' 
+                    boxShadow: '0 15px 50px rgba(243, 63, 41, 0.6)' 
                   }}
                   whileTap={{ scale: 0.98 }}
                   style={{ transformStyle: 'preserve-3d' }}

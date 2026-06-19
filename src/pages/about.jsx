@@ -265,7 +265,7 @@ const About = () => {
               initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               animate={isMobile ? { opacity: 1, y: 0 } : (heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
                 transition={isMobile ? { duration: 0 } : { duration: 0.8, delay: 0.3 }}
-              className="text-6xl md:text-8xl font-black mb-8 bg-gradient-to-r from-primary via-[#ff6b4a] to-[#253E5C] bg-clip-text text-transparent"
+              className="text-6xl md:text-8xl font-black mb-8 bg-gradient-to-r from-primary via-[#f33f29] to-[#191919] bg-clip-text text-transparent"
               >
               Unleash your potential with Advertio
               </motion.h1>
@@ -301,16 +301,16 @@ const About = () => {
             className="mb-12"
           >
             <h2 className="text-5xl md:text-6xl font-black mb-6">
-              <span className="text-[#253E5C]">Who We</span>{' '}
-              <span className="bg-gradient-to-r from-primary to-[#ff6b4a] bg-clip-text text-transparent">Are?</span>
+              <span className="text-[#191919]">Who We</span>{' '}
+              <span className="bg-gradient-to-r from-primary to-[#f33f29] bg-clip-text text-transparent">Are?</span>
             </h2>
-            <p className="text-xl md:text-2xl text-[#253E5C] leading-relaxed max-w-4xl">
+            <p className="text-xl md:text-2xl text-[#191919] leading-relaxed max-w-4xl">
               Advertio is a forward-thinking digital solutions agency dedicated to helping businesses excel in a rapidly evolving digital world. We provide end-to-end, 360° digital marketing and technology services designed to accelerate growth, strengthen brand presence, and deliver measurable results.
             </p>
-            <p className="text-xl md:text-2xl text-[#253E5C] leading-relaxed max-w-4xl mt-4">
+            <p className="text-xl md:text-2xl text-[#191919] leading-relaxed max-w-4xl mt-4">
               Our purpose is simple: combine strategy, creativity, and innovation to empower businesses with cost-effective solutions that drive long-term success.
             </p>
-            <p className="text-xl md:text-2xl text-[#253E5C] leading-relaxed max-w-4xl mt-4">
+            <p className="text-xl md:text-2xl text-[#191919] leading-relaxed max-w-4xl mt-4">
               At Advertio, we don&apos;t just run campaigns—we build digital ecosystems that transform businesses into powerful, future-ready brands.
             </p>
           </motion.div>
@@ -338,7 +338,7 @@ const About = () => {
                     className="testimonial-card w-full bg-white/90 backdrop-blur-md p-6 rounded-2xl shadow-lg cursor-grab active:cursor-grabbing"
                     style={{
                       border: '2px solid transparent',
-                      backgroundImage: 'linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), linear-gradient(135deg, #253E5C, #E94F37)',
+                      backgroundImage: 'linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), linear-gradient(135deg, #191919, #f33f29)',
                       backgroundOrigin: 'border-box',
                       backgroundClip: 'padding-box, border-box',
                     }}
@@ -350,10 +350,10 @@ const About = () => {
                         </svg>
                       ))}
                     </div>
-                    <p className="text-[#253E5C]/80 leading-relaxed">
+                    <p className="text-[#191919]/80 leading-relaxed">
                       &ldquo;{testimonials[currentTestimonialIndex].text}&rdquo;.
                     </p>
-                    <p className="mt-4 font-semibold text-[#253E5C]">{testimonials[currentTestimonialIndex].author}</p>
+                    <p className="mt-4 font-semibold text-[#191919]">{testimonials[currentTestimonialIndex].author}</p>
                   </motion.div>
                 </AnimatePresence>
               </div>
@@ -369,14 +369,14 @@ const About = () => {
                 transition={isMobile ? { duration: 0 } : { duration: 0.8 }}
                 className="flex items-start gap-6"
               >
-                <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-[#253E5C] to-primary flex items-center justify-center">
+                <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-[#191919] to-primary flex items-center justify-center">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                   </svg>
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-3xl font-bold text-[#253E5C] mb-4 uppercase">Vision</h3>
-                  <p className="text-lg text-[#253E5C]/80 leading-relaxed">
+                  <h3 className="text-3xl font-bold text-[#191919] mb-4 uppercase">Vision</h3>
+                  <p className="text-lg text-[#191919]/80 leading-relaxed">
                     To reshape the global digital landscape by delivering a complete spectrum of innovative, efficient, and accessible digital solutions that empower businesses of all sizes to grow, compete, and lead with confidence.
                   </p>
                 </div>
@@ -390,17 +390,17 @@ const About = () => {
                 transition={isMobile ? { duration: 0 } : { duration: 0.8, delay: 0.2 }}
                 className="flex items-start gap-6"
               >
-                <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-[#253E5C] to-primary flex items-center justify-center">
+                <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-[#191919] to-primary flex items-center justify-center">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
                   </svg>
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-3xl font-bold text-[#253E5C] mb-4 uppercase">Mission</h3>
-                  <p className="text-lg text-[#253E5C]/80 leading-relaxed">
+                  <h3 className="text-3xl font-bold text-[#191919] mb-4 uppercase">Mission</h3>
+                  <p className="text-lg text-[#191919]/80 leading-relaxed">
                     Our mission is to provide businesses with comprehensive 360° digital marketing and technology solutions that drive sustainable growth.
                   </p>
-                  <p className="text-lg text-[#253E5C]/80 leading-relaxed mt-4">
+                  <p className="text-lg text-[#191919]/80 leading-relaxed mt-4">
                     We are committed to expanding our global footprint, enhancing our technological expertise, and delivering excellence through innovation, automation, and strategic execution—helping brands reach their highest potential.
                   </p>
                 </div>
@@ -423,11 +423,11 @@ const About = () => {
               className="space-y-6"
             >
               <h2 className="text-5xl md:text-6xl font-black mb-4">
-                <span className="text-[#253E5C]">Leadership with more</span>{' '}
-                <span className="bg-gradient-to-r from-primary to-[#ff6b4a] bg-clip-text text-transparent">focus</span>
+                <span className="text-[#191919]">Leadership with more</span>{' '}
+                <span className="bg-gradient-to-r from-primary to-[#f33f29] bg-clip-text text-transparent">focus</span>
               </h2>
               
-              <h3 className="text-xl md:text-2xl font-semibold text-[#253E5C] mb-6">
+              <h3 className="text-xl md:text-2xl font-semibold text-[#191919] mb-6">
                 Chief Executive Officer, Talha Azmat 
               </h3>
               
@@ -438,7 +438,7 @@ const About = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <p className="text-lg text-[#253E5C]/80 leading-relaxed">
+                  <p className="text-lg text-[#191919]/80 leading-relaxed">
                     We are enhancing client business value through a holistic approach.
                   </p>
                 </div>
@@ -449,7 +449,7 @@ const About = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-              <p className="text-lg text-[#253E5C]/80 leading-relaxed">
+              <p className="text-lg text-[#191919]/80 leading-relaxed">
                     We share the same passion, commitment and emotions as you do to drive excellence in every aspect of your business
               </p>
                 </div>
@@ -491,15 +491,15 @@ const About = () => {
             className="text-center bg-white/90 backdrop-blur-md p-8 md:p-12 rounded-3xl shadow-xl"
               style={{
                 border: '2px solid transparent',
-              backgroundImage: 'linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), linear-gradient(135deg, #253E5C, #E94F37)',
+              backgroundImage: 'linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), linear-gradient(135deg, #191919, #f33f29)',
                 backgroundOrigin: 'border-box',
                 backgroundClip: 'padding-box, border-box',
               }}
             >
-            <h2 className="text-3xl md:text-4xl font-bold text-[#253E5C] mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#191919] mb-6">
               Interest in starting a work with us?
             </h2>
-            <p className="text-xl text-[#253E5C]/80 mb-8">
+            <p className="text-xl text-[#191919]/80 mb-8">
               Give us a call to speak with a Consultant
             </p>
             <p className="text-2xl font-bold text-primary mb-4">Contact us today!</p>
@@ -511,7 +511,7 @@ const About = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                 </div>
-                <span className="text-lg font-semibold text-[#253E5C]">(+92) 323 4304559</span>
+                <span className="text-lg font-semibold text-[#191919]">(+92) 323 4304559</span>
               </div>
               
               <div className="flex items-center gap-3">
@@ -520,7 +520,7 @@ const About = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
-                <span className="text-lg font-semibold text-[#253E5C]">info@advertio.com</span>
+                <span className="text-lg font-semibold text-[#191919]">info@advertio.com</span>
               </div>
             </div>
             </motion.div>
@@ -537,10 +537,10 @@ const About = () => {
             transition={isMobile ? { duration: 0 } : { duration: 0.8 }}
             className="text-center mb-20"
           >
-            <h2 className="text-5xl md:text-6xl font-black mb-6 bg-gradient-to-r from-primary to-[#253E5C] bg-clip-text text-transparent">
+            <h2 className="text-5xl md:text-6xl font-black mb-6 bg-gradient-to-r from-primary to-[#191919] bg-clip-text text-transparent">
               Our Values
             </h2>
-            <p className="text-lg text-[#253E5C]/70 max-w-2xl mx-auto">
+            <p className="text-lg text-[#191919]/70 max-w-2xl mx-auto">
               The core principles that guide everything we do
             </p>
           </motion.div>
@@ -627,40 +627,40 @@ const About = () => {
                         className="absolute inset-0 rounded-[32px] p-[3px]"
                         style={{
                           background: `linear-gradient(135deg, ${
-                            index === 0 ? '#E94F37' : 
-                            index === 1 ? '#253E5C' : 
-                            index === 2 ? '#E94F37' : 
-                            '#253E5C'
+                            index === 0 ? '#f33f29' : 
+                            index === 1 ? '#191919' : 
+                            index === 2 ? '#f33f29' : 
+                            '#191919'
                           }, ${
-                            index === 0 ? '#253E5C' : 
-                            index === 1 ? '#E94F37' : 
-                            index === 2 ? '#253E5C' : 
-                            '#E94F37'
+                            index === 0 ? '#191919' : 
+                            index === 1 ? '#f33f29' : 
+                            index === 2 ? '#191919' : 
+                            '#f33f29'
                           })`,
                         }}
                         animate={{
                           background: isHovered
                             ? `linear-gradient(135deg, ${
-                                index === 0 ? '#E94F37' : 
-                                index === 1 ? '#253E5C' : 
-                                index === 2 ? '#E94F37' : 
-                                '#253E5C'
+                                index === 0 ? '#f33f29' : 
+                                index === 1 ? '#191919' : 
+                                index === 2 ? '#f33f29' : 
+                                '#191919'
                               }CC, ${
-                                index === 0 ? '#253E5C' : 
-                                index === 1 ? '#E94F37' : 
-                                index === 2 ? '#253E5C' : 
-                                '#E94F37'
+                                index === 0 ? '#191919' : 
+                                index === 1 ? '#f33f29' : 
+                                index === 2 ? '#191919' : 
+                                '#f33f29'
                               }CC)`
                             : `linear-gradient(135deg, ${
-                                index === 0 ? '#E94F37' : 
-                                index === 1 ? '#253E5C' : 
-                                index === 2 ? '#E94F37' : 
-                                '#253E5C'
+                                index === 0 ? '#f33f29' : 
+                                index === 1 ? '#191919' : 
+                                index === 2 ? '#f33f29' : 
+                                '#191919'
                               }, ${
-                                index === 0 ? '#253E5C' : 
-                                index === 1 ? '#E94F37' : 
-                                index === 2 ? '#253E5C' : 
-                                '#E94F37'
+                                index === 0 ? '#191919' : 
+                                index === 1 ? '#f33f29' : 
+                                index === 2 ? '#191919' : 
+                                '#f33f29'
                               })`,
                         }}
                         transition={{ duration: 0.4 }}
@@ -676,10 +676,10 @@ const About = () => {
                             className="absolute inset-0 opacity-0"
                             style={{
                               background: `linear-gradient(135deg, ${
-                                index === 0 ? 'rgba(233, 79, 55, 0.1)' : 
-                                index === 1 ? 'rgba(37, 62, 92, 0.1)' : 
-                                index === 2 ? 'rgba(233, 79, 55, 0.1)' : 
-                                'rgba(37, 62, 92, 0.1)'
+                                index === 0 ? 'rgba(243, 63, 41, 0.1)' : 
+                                index === 1 ? 'rgba(25, 25, 25, 0.1)' : 
+                                index === 2 ? 'rgba(243, 63, 41, 0.1)' : 
+                                'rgba(25, 25, 25, 0.1)'
                               } 0%, transparent 100%)`,
                             }}
                             animate={{
@@ -693,10 +693,10 @@ const About = () => {
                             className="absolute inset-0 rounded-[30px]"
                             style={{
                               background: `radial-gradient(circle at 50% 50%, ${
-                                index === 0 ? 'rgba(233, 79, 55, 0.2)' : 
-                                index === 1 ? 'rgba(37, 62, 92, 0.2)' : 
-                                index === 2 ? 'rgba(233, 79, 55, 0.2)' : 
-                                'rgba(37, 62, 92, 0.2)'
+                                index === 0 ? 'rgba(243, 63, 41, 0.2)' : 
+                                index === 1 ? 'rgba(25, 25, 25, 0.2)' : 
+                                index === 2 ? 'rgba(243, 63, 41, 0.2)' : 
+                                'rgba(25, 25, 25, 0.2)'
                               } 0%, transparent 70%)`,
                             }}
                             animate={{
@@ -723,10 +723,10 @@ const About = () => {
                               <motion.div
                                 className="text-6xl font-black"
                                 style={{
-                                  color: index === 0 ? '#E94F37' : 
-                                         index === 1 ? '#253E5C' : 
-                                         index === 2 ? '#E94F37' : 
-                                         '#253E5C',
+                                  color: index === 0 ? '#f33f29' : 
+                                         index === 1 ? '#191919' : 
+                                         index === 2 ? '#f33f29' : 
+                                         '#191919',
                                 }}
                                 animate={{
                                   scale: isHovered ? [1, 1.1, 1] : 1,
@@ -746,15 +746,15 @@ const About = () => {
                                 className="w-16 h-16 rounded-2xl flex items-center justify-center"
                                 style={{
                                   background: `linear-gradient(135deg, ${
-                                    index === 0 ? 'rgba(233, 79, 55, 0.15)' : 
-                                    index === 1 ? 'rgba(37, 62, 92, 0.15)' : 
-                                    index === 2 ? 'rgba(233, 79, 55, 0.15)' : 
-                                    'rgba(37, 62, 92, 0.15)'
+                                    index === 0 ? 'rgba(243, 63, 41, 0.15)' : 
+                                    index === 1 ? 'rgba(25, 25, 25, 0.15)' : 
+                                    index === 2 ? 'rgba(243, 63, 41, 0.15)' : 
+                                    'rgba(25, 25, 25, 0.15)'
                                   }, ${
-                                    index === 0 ? 'rgba(233, 79, 55, 0.05)' : 
-                                    index === 1 ? 'rgba(37, 62, 92, 0.05)' : 
-                                    index === 2 ? 'rgba(233, 79, 55, 0.05)' : 
-                                    'rgba(37, 62, 92, 0.05)'
+                                    index === 0 ? 'rgba(243, 63, 41, 0.05)' : 
+                                    index === 1 ? 'rgba(25, 25, 25, 0.05)' : 
+                                    index === 2 ? 'rgba(243, 63, 41, 0.05)' : 
+                                    'rgba(25, 25, 25, 0.05)'
                                   })`,
                                 }}
                                 animate={{
@@ -766,10 +766,10 @@ const About = () => {
                                 <svg
                                   className="w-8 h-8"
                                   style={{
-                                    color: index === 0 ? '#E94F37' : 
-                                           index === 1 ? '#253E5C' : 
-                                           index === 2 ? '#E94F37' : 
-                                           '#253E5C',
+                                    color: index === 0 ? '#f33f29' : 
+                                           index === 1 ? '#191919' : 
+                                           index === 2 ? '#f33f29' : 
+                                           '#191919',
                                   }}
                                   fill="none"
                                   stroke="currentColor"
@@ -795,10 +795,10 @@ const About = () => {
                             <motion.h3
                               className="text-3xl md:text-4xl font-black mb-4"
                               style={{
-                                color: index === 0 ? '#E94F37' : 
-                                       index === 1 ? '#253E5C' : 
-                                       index === 2 ? '#E94F37' : 
-                                       '#253E5C',
+                                color: index === 0 ? '#f33f29' : 
+                                       index === 1 ? '#191919' : 
+                                       index === 2 ? '#f33f29' : 
+                                       '#191919',
                               }}
                               animate={{
                                 x: isHovered ? 5 : 0,
@@ -810,9 +810,9 @@ const About = () => {
 
                             {/* Description */}
                             <motion.p
-                              className="text-[#253E5C]/70 leading-relaxed text-base md:text-lg flex-grow"
+                              className="text-[#191919]/70 leading-relaxed text-base md:text-lg flex-grow"
                               animate={{
-                                color: isHovered ? '#253E5C' : 'rgba(37, 62, 92, 0.7)',
+                                color: isHovered ? '#191919' : 'rgba(25, 25, 25, 0.7)',
                               }}
                               transition={{ duration: 0.3 }}
                             >
@@ -824,10 +824,10 @@ const About = () => {
                               className="mt-6 h-1 rounded-full"
                               style={{
                                 background: `linear-gradient(90deg, ${
-                                  index === 0 ? '#E94F37' : 
-                                  index === 1 ? '#253E5C' : 
-                                  index === 2 ? '#E94F37' : 
-                                  '#253E5C'
+                                  index === 0 ? '#f33f29' : 
+                                  index === 1 ? '#191919' : 
+                                  index === 2 ? '#f33f29' : 
+                                  '#191919'
                                 }, transparent)`,
                               }}
                               animate={{
@@ -844,7 +844,7 @@ const About = () => {
                                 style={{
                                   width: '6px',
                                   height: '6px',
-                                  background: index === 0 || index === 2 ? '#E94F37' : '#253E5C',
+                                  background: index === 0 || index === 2 ? '#f33f29' : '#191919',
                                   left: `${20 + (i % 3) * 30}%`,
                                   top: `${40 + Math.floor(i / 3) * 30}%`,
                                 }}
@@ -873,11 +873,11 @@ const About = () => {
                         animate={{
                           boxShadow: isHovered
                             ? `0 30px 80px ${
-                                index === 0 || index === 2 ? 'rgba(233, 79, 55, 0.4)' : 'rgba(37, 62, 92, 0.4)'
+                                index === 0 || index === 2 ? 'rgba(243, 63, 41, 0.4)' : 'rgba(25, 25, 25, 0.4)'
                               }, 0 0 40px ${
-                                index === 0 || index === 2 ? 'rgba(233, 79, 55, 0.2)' : 'rgba(37, 62, 92, 0.2)'
+                                index === 0 || index === 2 ? 'rgba(243, 63, 41, 0.2)' : 'rgba(25, 25, 25, 0.2)'
                               }`
-                            : `0 15px 40px rgba(37, 62, 92, 0.15)`,
+                            : `0 15px 40px rgba(25, 25, 25, 0.15)`,
                         }}
                         transition={{ duration: 0.4 }}
                       />
@@ -905,7 +905,7 @@ const About = () => {
               onMouseLeave={isMobile ? undefined : resetTilt}
               className="relative rounded-[36px] border border-white/20 shadow-[0_25px_80px_rgba(0,0,0,0.4)] p-8 md:p-10"
               style={{
-                background: 'linear-gradient(135deg, rgba(233, 79, 55, 1) 0%, rgba(37, 62, 92, 1) 50%, rgba(233, 79, 55, 1) 100%)',
+                background: 'linear-gradient(135deg, rgba(243, 63, 41, 1) 0%, rgba(25, 25, 25, 1) 50%, rgba(243, 63, 41, 1) 100%)',
                 transformStyle: isMobile ? 'flat' : 'preserve-3d'
               }}
               initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 60, rotateY: 15 }}
@@ -957,8 +957,8 @@ const About = () => {
                       className="w-full px-5 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 focus:bg-white/15 transition-all"
                       whileFocus={isMobile ? {} : { 
                         scale: 1.02, 
-                        borderColor: 'rgba(233, 79, 55, 0.6)',
-                        boxShadow: '0 0 20px rgba(233, 79, 55, 0.3)',
+                        borderColor: 'rgba(243, 63, 41, 0.6)',
+                        boxShadow: '0 0 20px rgba(243, 63, 41, 0.3)',
                         translateZ: 15
                       }}
                       style={{ transformStyle: isMobile ? 'flat' : 'preserve-3d' }}
@@ -1000,8 +1000,8 @@ const About = () => {
                     }}
                     onFocus={(e) => {
                       e.target.style.scale = '1.02';
-                      e.target.style.borderColor = 'rgba(233, 79, 55, 0.6)';
-                      e.target.style.boxShadow = '0 0 20px rgba(233, 79, 55, 0.3)';
+                      e.target.style.borderColor = 'rgba(243, 63, 41, 0.6)';
+                      e.target.style.boxShadow = '0 0 20px rgba(243, 63, 41, 0.3)';
                     }}
                     onBlur={(e) => {
                       e.target.style.scale = '1';
@@ -1009,9 +1009,9 @@ const About = () => {
                       e.target.style.boxShadow = '';
                     }}
                   >
-                    <option value="" className="bg-[#253E5C] text-white">Select a service</option>
+                    <option value="" className="bg-[#191919] text-white">Select a service</option>
                     {servicesList.map((service) => (
-                      <option key={service.id} value={service.title} className="bg-[#253E5C] text-white">
+                      <option key={service.id} value={service.title} className="bg-[#191919] text-white">
                         {service.title}
                       </option>
                     ))}
@@ -1045,8 +1045,8 @@ const About = () => {
                     className="w-full px-5 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 focus:bg-white/15 transition-all"
                     whileFocus={{ 
                       scale: 1.02, 
-                      borderColor: 'rgba(233, 79, 55, 0.6)',
-                      boxShadow: '0 0 20px rgba(233, 79, 55, 0.3)',
+                      borderColor: 'rgba(243, 63, 41, 0.6)',
+                      boxShadow: '0 0 20px rgba(243, 63, 41, 0.3)',
                       translateZ: 15
                     }}
                     style={{ transformStyle: 'preserve-3d' }}
@@ -1079,8 +1079,8 @@ const About = () => {
                     className="w-full px-5 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 focus:bg-white/15 transition-all resize-none"
                     whileFocus={isMobile ? {} : { 
                       scale: 1.01, 
-                      borderColor: 'rgba(233, 79, 55, 0.6)',
-                      boxShadow: '0 0 20px rgba(233, 79, 55, 0.3)',
+                      borderColor: 'rgba(243, 63, 41, 0.6)',
+                      boxShadow: '0 0 20px rgba(243, 63, 41, 0.3)',
                       translateZ: 15
                     }}
                     style={{ transformStyle: isMobile ? 'flat' : 'preserve-3d' }}
@@ -1090,8 +1090,8 @@ const About = () => {
                 <motion.button
                   type="submit"
                   disabled={formStatus === 'sending'}
-                  className="relative w-full flex items-center justify-center gap-3 px-6 py-4 rounded-2xl text-white font-semibold text-lg bg-gradient-to-r from-[#253E5C] via-primary to-[#FF6B4A] shadow-lg shadow-primary/40 transition-all disabled:opacity-60 overflow-hidden"
-                  whileHover={isMobile ? {} : { scale: 1.03, translateZ: 20, boxShadow: '0 10px 40px rgba(233, 79, 55, 0.5)' }}
+                  className="relative w-full flex items-center justify-center gap-3 px-6 py-4 rounded-2xl text-white font-semibold text-lg bg-gradient-to-r from-[#191919] via-primary to-[#f33f29] shadow-lg shadow-primary/40 transition-all disabled:opacity-60 overflow-hidden"
+                  whileHover={isMobile ? {} : { scale: 1.03, translateZ: 20, boxShadow: '0 10px 40px rgba(243, 63, 41, 0.5)' }}
                   whileTap={{ scale: 0.98 }}
                   style={{ transformStyle: isMobile ? 'flat' : 'preserve-3d' }}
                 >
@@ -1158,7 +1158,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'Advertio transformed our digital presence completely. Their 3D campaign designs and performance marketing strategies increased our ROAS by 6.8x. The team is incredibly creative and data-driven.',
       highlight: '+128% Revenue Growth',
-      color: '#E94F37',
+      color: '#f33f29',
     },
     {
       id: 2,
@@ -1169,7 +1169,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'Working with Advertio has been a game-changer. Their immersive landing pages and conversion optimization increased our conversion rate by 8.2%. Highly recommend their services!',
       highlight: '8.2% Conversion Rate',
-      color: '#253E5C',
+      color: '#191919',
     },
     {
       id: 3,
@@ -1180,7 +1180,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'The team at Advertio understands e-commerce like no other. Their social storytelling campaigns and influencer partnerships drove 2.4M impressions. Exceptional results!',
       highlight: '2.4M Impressions',
-      color: '#E94F37',
+      color: '#f33f29',
     },
     {
       id: 4,
@@ -1191,7 +1191,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'Advertio\'s product reveal films and AR kits created an unforgettable launch experience. Our engagement rate increased by 45% year over year. Outstanding creative work!',
       highlight: '+45% Engagement',
-      color: '#253E5C',
+      color: '#191919',
     },
     {
       id: 5,
@@ -1202,7 +1202,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'Their MarTech automation and personalized journeys reduced our CAC by 24%. The team is professional, creative, and always delivers on time. Best marketing partner we\'ve worked with!',
       highlight: '-24% CAC Reduction',
-      color: '#E94F37',
+      color: '#f33f29',
     },
     {
       id: 6,
@@ -1213,7 +1213,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'Advertio\'s brand positioning and thought leadership content elevated our executive voices. Brand lift increased by 18% and customer LTV by 52%. Phenomenal results!',
       highlight: '+52% LTV Increase',
-      color: '#253E5C',
+      color: '#191919',
     },
     {
       id: 7,
@@ -1224,7 +1224,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'The conversion-focused optimization and UX audits transformed our customer journey. Our conversion rate improved dramatically, and the team provided actionable insights throughout.',
       highlight: '+67% Conversions',
-      color: '#E94F37',
+      color: '#f33f29',
     },
     {
       id: 8,
@@ -1235,7 +1235,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'Advertio\'s performance media and cross-channel campaigns delivered exceptional ROAS. Their real-time optimization and intelligence helped us scale profitably. Highly recommended!',
       highlight: '5.4x Average ROAS',
-      color: '#253E5C',
+      color: '#191919',
     },
     {
       id: 9,
@@ -1246,7 +1246,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'Their immersive landing pages and WebGL-powered microsites created an unforgettable brand experience. Engagement rates soared, and our brand awareness increased significantly.',
       highlight: '+38% Brand Awareness',
-      color: '#E94F37',
+      color: '#f33f29',
     },
     {
       id: 10,
@@ -1257,7 +1257,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'Advertio\'s crisis narrative control and rapid-response playbooks protected our brand during challenging times. Their strategic approach and execution were flawless.',
       highlight: '100% Brand Protection',
-      color: '#253E5C',
+      color: '#191919',
     },
     {
       id: 11,
@@ -1268,7 +1268,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'The experiential AR kits and mixed reality campaigns extended our reach into new dimensions. Their innovative approach and creative execution exceeded all expectations.',
       highlight: '+89% Reach Increase',
-      color: '#E94F37',
+      color: '#f33f29',
     },
     {
       id: 12,
@@ -1279,7 +1279,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'Working with Advertio transformed our marketing operations. Their integrated solutions and data-driven approach delivered measurable results that exceeded our goals.',
       highlight: '+156% ROI',
-      color: '#253E5C',
+      color: '#191919',
     },
   ];
 
@@ -1321,7 +1321,7 @@ const ReviewsSection3D = () => {
         .reviews-scroll-container {
           /* Mobile: show scrollbar */
           scrollbar-width: thin; /* Firefox - thin scrollbar on mobile */
-          scrollbar-color: #253E5C rgba(37, 62, 92, 0.1); /* Dark blue thumb, light track */
+          scrollbar-color: #191919 rgba(25, 25, 25, 0.1); /* Dark blue thumb, light track */
           -ms-overflow-style: auto; /* IE and Edge - show scrollbar on mobile */
         }
         
@@ -1345,12 +1345,12 @@ const ReviewsSection3D = () => {
           }
           
           .reviews-scroll-container::-webkit-scrollbar-track {
-            background: rgba(37, 62, 92, 0.1);
+            background: rgba(25, 25, 25, 0.1);
             border-radius: 10px;
           }
           
           .reviews-scroll-container::-webkit-scrollbar-thumb {
-            background: #253E5C; /* Dark blue color */
+            background: #191919; /* Dark blue color */
             border-radius: 10px;
           }
           
@@ -1409,7 +1409,7 @@ const ReviewsSection3D = () => {
                 height: `${100 + i * 30}px`,
                 left: `${i * 20}%`,
                 top: `${(i % 3) * 30}%`,
-                background: `radial-gradient(circle, rgba(233, 79, 55, ${0.08 + i * 0.02}) 0%, transparent 70%)`,
+                background: `radial-gradient(circle, rgba(243, 63, 41, ${0.08 + i * 0.02}) 0%, transparent 70%)`,
               }}
             />
           ))}
@@ -1424,7 +1424,7 @@ const ReviewsSection3D = () => {
             transition={isMobile ? { duration: 0 } : { duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
             <motion.p
-              className="text-xs uppercase tracking-[0.5em] text-[#253E5C]/60 mb-4"
+              className="text-xs uppercase tracking-[0.5em] text-[#191919]/60 mb-4"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: 0.5 }}
@@ -1432,17 +1432,17 @@ const ReviewsSection3D = () => {
               Client Success Stories
             </motion.p>
             <motion.h3
-              className="text-5xl md:text-6xl lg:text-7xl font-black text-[#253E5C] mb-6"
+              className="text-5xl md:text-6xl lg:text-7xl font-black text-[#191919] mb-6"
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.8, delay: 0.7 }}
             >
-              <span className="bg-gradient-to-r from-[#253E5C] via-primary to-[#ff6b4a] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#191919] via-primary to-[#f33f29] bg-clip-text text-transparent">
                 What Our Clients Say
               </span>
             </motion.h3>
             <motion.p
-              className="text-[#253E5C]/70 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed"
+              className="text-[#191919]/70 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.8, delay: 0.9 }}
@@ -1526,12 +1526,12 @@ const ReviewsSection3D = () => {
                         <motion.div
                           className="absolute inset-0 rounded-[32px] p-[2px]"
                           style={{
-                            background: `linear-gradient(135deg, ${review.color}, ${review.color}80, #253E5C60, ${review.color})`,
+                            background: `linear-gradient(135deg, ${review.color}, ${review.color}80, #19191960, ${review.color})`,
                           }}
                           animate={{
                             background: isHovered
-                              ? `linear-gradient(135deg, ${review.color}, ${review.color}CC, #253E5C80, ${review.color})`
-                              : `linear-gradient(135deg, ${review.color}, ${review.color}80, #253E5C60, ${review.color})`,
+                              ? `linear-gradient(135deg, ${review.color}, ${review.color}CC, #19191980, ${review.color})`
+                              : `linear-gradient(135deg, ${review.color}, ${review.color}80, #19191960, ${review.color})`,
                           }}
                           transition={{ duration: 0.4 }}
                         >
@@ -1604,16 +1604,16 @@ const ReviewsSection3D = () => {
                                 </motion.div>
                                 <div className="flex-1">
                                   <motion.h4
-                                    className="text-xl md:text-2xl font-black text-[#253E5C] mb-1"
+                                    className="text-xl md:text-2xl font-black text-[#191919] mb-1"
                                     animate={{
-                                      color: isHovered ? review.color : '#253E5C',
+                                      color: isHovered ? review.color : '#191919',
                                     }}
                                     transition={{ duration: 0.3 }}
                                   >
                                     {review.name}
                                   </motion.h4>
-                                  <p className="text-sm md:text-base text-[#253E5C]/70 font-semibold">{review.role}</p>
-                                  <p className="text-xs text-[#253E5C]/50 font-medium">{review.company}</p>
+                                  <p className="text-sm md:text-base text-[#191919]/70 font-semibold">{review.role}</p>
+                                  <p className="text-xs text-[#191919]/50 font-medium">{review.company}</p>
                                 </div>
                               </div>
 
@@ -1624,9 +1624,9 @@ const ReviewsSection3D = () => {
 
                               {/* Review Text */}
                               <motion.p
-                                className="text-[#253E5C]/80 text-base md:text-lg leading-relaxed mb-6 font-medium"
+                                className="text-[#191919]/80 text-base md:text-lg leading-relaxed mb-6 font-medium"
                                 animate={{
-                                  color: isHovered ? '#253E5C' : 'rgba(37, 62, 92, 0.8)',
+                                  color: isHovered ? '#191919' : 'rgba(25, 25, 25, 0.8)',
                                 }}
                                 transition={{ duration: 0.3 }}
                               >
@@ -1727,7 +1727,7 @@ const ReviewsSection3D = () => {
                           animate={{
                             boxShadow: isHovered
                               ? `0 25px 60px ${review.color}35, 0 0 30px ${review.color}25, inset 0 0 20px ${review.color}08`
-                              : `0 10px 30px rgba(37, 62, 92, 0.1)`,
+                              : `0 10px 30px rgba(25, 25, 25, 0.1)`,
                           }}
                           transition={{ duration: 0.4 }}
                         />
@@ -1748,7 +1748,7 @@ const ReviewsSection3D = () => {
               <motion.div
                 animate={{ x: [0, 5, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
-                className="text-[#253E5C]/40"
+                className="text-[#191919]/40"
               >
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

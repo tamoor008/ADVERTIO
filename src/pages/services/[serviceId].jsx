@@ -12,7 +12,7 @@ import { servicesList } from '../../components/sections/constants';
 // Consistent color scheme for all services - Darker and more robust
 const PRIMARY_COLOR = '#C7361F';
 const SECONDARY_COLOR = '#1A2A3A';
-const ACCENT_COLOR = '#E94F37';
+const ACCENT_COLOR = '#f33f29';
 const DARK_ACCENT = '#8B1A0A';
 const DEEP_BLUE = '#0F172A';
 
@@ -371,7 +371,7 @@ export default function ServiceDetail() {
         >
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-[#253E5C]/70 hover:text-[#253E5C] font-semibold transition-colors"
+            className="inline-flex items-center gap-2 text-[#191919]/70 hover:text-[#191919] font-semibold transition-colors"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -409,7 +409,7 @@ export default function ServiceDetail() {
             {service.title}
           </h1>
           <p
-            className="text-xl md:text-2xl text-[#253E5C]/70 max-w-3xl mx-auto leading-tight md:leading-relaxed"
+            className="text-xl md:text-2xl text-[#191919]/70 max-w-3xl mx-auto leading-tight md:leading-relaxed"
             style={{
               opacity: 1,
               visibility: 'visible',
@@ -449,8 +449,8 @@ export default function ServiceDetail() {
             animate={shouldShowImmediately ? { opacity: 1, y: 0 } : (mainContentInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 })}
             transition={{ duration: shouldShowImmediately ? 0 : 0.8, delay: shouldShowImmediately ? 0 : 0.2 }}
           >
-            <h2 className="text-3xl md:text-4xl font-black text-[#253E5C] mb-6">Overview</h2>
-            <p className="text-lg md:text-xl text-[#253E5C]/80 leading-tight md:leading-relaxed">
+            <h2 className="text-3xl md:text-4xl font-black text-[#191919] mb-6">Overview</h2>
+            <p className="text-lg md:text-xl text-[#191919]/80 leading-tight md:leading-relaxed">
               {service.fullDescription}
             </p>
           </motion.div>
@@ -461,7 +461,7 @@ export default function ServiceDetail() {
             animate={shouldShowImmediately ? { opacity: 1, y: 0 } : (mainContentInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 })}
             transition={{ duration: shouldShowImmediately ? 0 : 0.8, delay: shouldShowImmediately ? 0 : 0.4 }}
           >
-            <h2 className="text-3xl md:text-4xl font-black text-[#253E5C] mb-8">Key Benefits</h2>
+            <h2 className="text-3xl md:text-4xl font-black text-[#191919] mb-8">Key Benefits</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {service.benefits.map((benefit, index) => (
                 <motion.div
@@ -495,10 +495,10 @@ export default function ServiceDetail() {
                     }}
                   >
                     <Image 
-                      src={typeof favicon === 'string' ? favicon : (favicon?.src || favicon?.default || favicon)}
+                      src="/sublogo.png"
                       alt="Advertio" 
                       fill
-                      className="object-contain rounded-full transition-transform duration-300 group-hover:scale-110"
+                      className="object-contain rounded-full p-1 transition-transform duration-300 group-hover:scale-110"
                       style={{ position: 'absolute' }}
                     />
                   </div>
@@ -536,7 +536,7 @@ export default function ServiceDetail() {
           }}
         >
           <motion.h2
-            className="text-3xl md:text-4xl font-black text-[#253E5C] mb-8"
+            className="text-3xl md:text-4xl font-black text-[#191919] mb-8"
             initial={{ opacity: shouldShowImmediately ? 1 : 0, y: shouldShowImmediately ? 0 : 20 }}
             animate={shouldShowImmediately ? { opacity: 1, y: 0 } : (whyChooseInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
             transition={{ duration: shouldShowImmediately ? 0 : 0.8, delay: shouldShowImmediately ? 0 : 0.2 }}
@@ -576,10 +576,10 @@ export default function ServiceDetail() {
                   }}
                 >
                   <Image 
-                    src={favicon.src || favicon} 
+                    src="/sublogo.png"
                     alt="Advertio" 
                     fill
-                    className="object-contain rounded-full transition-transform duration-300 group-hover:scale-110"
+                    className="object-contain rounded-full p-1 transition-transform duration-300 group-hover:scale-110"
                     style={{ position: 'absolute' }}
                   />
                 </div>
@@ -616,7 +616,7 @@ export default function ServiceDetail() {
           }}
         >
           <motion.h2
-            className="text-3xl md:text-4xl font-black text-[#253E5C] mb-12 text-center"
+            className="text-3xl md:text-4xl font-black text-[#191919] mb-12 text-center"
             initial={{ opacity: shouldShowImmediately ? 1 : 0, y: shouldShowImmediately ? 0 : 20 }}
             animate={shouldShowImmediately ? { opacity: 1, y: 0 } : (processInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
             transition={{ duration: shouldShowImmediately ? 0 : 0.8, delay: shouldShowImmediately ? 0 : 0.2 }}
@@ -650,8 +650,8 @@ export default function ServiceDetail() {
                   {step.step}
                 </motion.div>
                 <div className="flex-1 pt-2">
-                  <h3 className="text-2xl font-black text-[#253E5C] mb-2">{step.title}</h3>
-                  <p className="text-lg text-[#253E5C]/70 leading-tight md:leading-relaxed">{step.desc}</p>
+                  <h3 className="text-2xl font-black text-[#191919] mb-2">{step.title}</h3>
+                  <p className="text-lg text-[#191919]/70 leading-tight md:leading-relaxed">{step.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -667,7 +667,7 @@ export default function ServiceDetail() {
           transition={{ duration: shouldShowImmediately ? 0 : 0.8 }}
         >
           <motion.h2
-            className="text-3xl md:text-4xl font-black text-[#253E5C] mb-8 text-center"
+            className="text-3xl md:text-4xl font-black text-[#191919] mb-8 text-center"
             initial={{ opacity: shouldShowImmediately ? 1 : 0, y: shouldShowImmediately ? 0 : 20 }}
             animate={shouldShowImmediately ? { opacity: 1, y: 0 } : (reviewsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
             transition={{ duration: shouldShowImmediately ? 0 : 0.8, delay: shouldShowImmediately ? 0 : 0.2 }}
@@ -711,8 +711,8 @@ export default function ServiceDetail() {
                     </div>
                   </div>
                   <div>
-                    <h4 className="text-xl font-black text-[#253E5C]">{review.name}</h4>
-                    <p className="text-sm text-[#253E5C]/70">{review.role}</p>
+                    <h4 className="text-xl font-black text-[#191919]">{review.name}</h4>
+                    <p className="text-sm text-[#191919]/70">{review.role}</p>
                   </div>
                 </div>
                 <div className="flex gap-1 mb-4">
@@ -722,7 +722,7 @@ export default function ServiceDetail() {
                     </svg>
                   ))}
                 </div>
-                <p className="text-[#253E5C]/80 mb-4 leading-tight md:leading-relaxed">&ldquo;{review.text}&rdquo;</p>
+                <p className="text-[#191919]/80 mb-4 leading-tight md:leading-relaxed">&ldquo;{review.text}&rdquo;</p>
                 <div
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full"
                   style={{
@@ -781,7 +781,7 @@ function ServiceContactForm({ service, contactFormRef, contactFormInView, isMobi
       ref={contactFormRef}
       className="rounded-[36px] border border-white/20 p-8 md:p-12 lg:p-16 relative z-10 max-w-4xl mx-auto"
       style={{
-        background: 'linear-gradient(135deg, rgba(233, 79, 55, 1) 0%, rgba(37, 62, 92, 1) 50%, rgba(233, 79, 55, 1) 100%)',
+        background: 'linear-gradient(135deg, rgba(243, 63, 41, 1) 0%, rgba(25, 25, 25, 1) 50%, rgba(243, 63, 41, 1) 100%)',
         transformStyle: shouldShowImmediately ? 'flat' : 'preserve-3d',
         boxShadow: `0 25px 60px ${SECONDARY_COLOR}40, 0 0 50px ${DEEP_BLUE}30, 0 15px 40px ${SECONDARY_COLOR}35`,
       }}
@@ -868,7 +868,7 @@ function ServiceContactForm({ service, contactFormRef, contactFormInView, isMobi
             }}
           >
             {servicesList.map((svc) => (
-              <option key={svc.id} value={svc.title} className="bg-[#253E5C] text-white">
+              <option key={svc.id} value={svc.title} className="bg-[#191919] text-white">
                 {svc.title}
               </option>
             ))}
@@ -917,7 +917,7 @@ function ServiceContactForm({ service, contactFormRef, contactFormInView, isMobi
         <motion.button
           type="submit"
           disabled={status === 'sending'}
-            className="relative w-full flex items-center justify-center gap-3 px-6 py-4 rounded-2xl text-white font-semibold text-lg bg-gradient-to-r from-[#253E5C] via-primary to-[#FF6B4A] shadow-lg shadow-primary/40 transition-all disabled:opacity-60 overflow-hidden"
+            className="relative w-full flex items-center justify-center gap-3 px-6 py-4 rounded-2xl text-white font-semibold text-lg bg-gradient-to-r from-[#191919] via-primary to-[#f33f29] shadow-lg shadow-primary/40 transition-all disabled:opacity-60 overflow-hidden"
             style={{
               transformStyle: shouldShowImmediately ? 'flat' : 'preserve-3d',
             }}
@@ -929,7 +929,7 @@ function ServiceContactForm({ service, contactFormRef, contactFormInView, isMobi
             }}
             whileHover={shouldShowImmediately ? {} : { 
               scale: 1.03, 
-              boxShadow: '0 10px 40px rgba(233, 79, 55, 0.5)',
+              boxShadow: '0 10px 40px rgba(243, 63, 41, 0.5)',
               translateZ: 20,
             }}
             whileTap={{ scale: 0.98 }}

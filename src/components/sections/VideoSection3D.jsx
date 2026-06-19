@@ -76,7 +76,7 @@ const VideoSection3D = () => {
           <h2
             className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 relative"
             style={{
-              background: 'linear-gradient(135deg, #E94F37 0%, #FF6B4A 25%, #253E5C 50%, #3A5F8F 75%, #E94F37 100%)',
+              background: 'linear-gradient(135deg, #f33f29 0%, #f33f29 25%, #191919 50%, #191919 75%, #f33f29 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
@@ -113,12 +113,12 @@ const VideoSection3D = () => {
           style={{ 
             borderRadius: 0,
             boxShadow: `
-              0 0 40px rgba(233, 79, 55, 0.3),
-              0 0 80px rgba(233, 79, 55, 0.2),
-              0 0 120px rgba(37, 62, 92, 0.2),
-              0 0 160px rgba(37, 62, 92, 0.15),
-              inset 0 0 60px rgba(233, 79, 55, 0.1),
-              inset 0 0 100px rgba(37, 62, 92, 0.05)
+              0 0 40px rgba(243, 63, 41, 0.3),
+              0 0 80px rgba(243, 63, 41, 0.2),
+              0 0 120px rgba(25, 25, 25, 0.2),
+              0 0 160px rgba(25, 25, 25, 0.15),
+              inset 0 0 60px rgba(243, 63, 41, 0.1),
+              inset 0 0 100px rgba(25, 25, 25, 0.05)
             `,
           }}
         >

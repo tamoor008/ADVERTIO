@@ -15,7 +15,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'Advertio completely transformed our paid ads. Within 6 weeks, our Meta and Google campaigns became profitable and structured. ROAS scaled from inconsistent to stable 5–7x. Their strategy isn’t guesswork — it’s data-driven execution.',
       highlight: '+210% Revenue Growth',
-      color: '#E94F37',
+      color: '#f33f29',
     },
     {
       id: 2,
@@ -24,7 +24,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'We didn’t just get ads — we got a full brand direction. Advertio helped us fix our messaging, creatives, and positioning. Our Facebook ads finally started attracting the right audience, not just traffic.',
       highlight: 'Stronger Brand Positioning',
-      color: '#253E5C',
+      color: '#191919',
     },
     {
       id: 3,
@@ -33,7 +33,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'Their creative team understands what actually converts. Every post, ad creative, and visual felt premium and performance-focused. Our engagement and CTR both improved significantly after switching to Advertio.',
       highlight: '+3.4% CTR Improvement',
-      color: '#E94F37',
+      color: '#f33f29',
     },
     {
       id: 4,
@@ -42,7 +42,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'Managing multiple platforms was chaos for us. Advertio streamlined everything — Meta, Google, TikTok, and even SEO. Now our marketing feels like one system instead of disconnected efforts.',
       highlight: 'Multi-Platform Growth System',
-      color: '#253E5C',
+      color: '#191919',
     },
     {
       id: 5,
@@ -51,7 +51,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'We underestimated packaging until Advertio redesigned ours. The new look instantly elevated our brand and improved conversion rate on our product pages. It finally feels like a premium brand.',
       highlight: 'Higher Conversion Rate',
-      color: '#E94F37',
+      color: '#f33f29',
     },
     {
       id: 6,
@@ -60,7 +60,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'We started from zero — no store, no brand, nothing. Advertio built everything from scratch: branding, website, creatives, and ads. Within the first few months, we were generating consistent daily sales.',
       highlight: 'From 0 to Daily Sales',
-      color: '#253E5C',
+      color: '#191919',
     },
     {
       id: 7,
@@ -69,7 +69,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'We were stuck at a certain revenue level for months. Advertio came in, restructured our campaigns, and scaled us profitably. What stood out was their scaling strategy — controlled and sustainable.',
       highlight: 'Consistent Scaling Achieved',
-      color: '#E94F37',
+      color: '#f33f29',
     },
     {
       id: 8,
@@ -78,7 +78,7 @@ const ReviewsSection3D = () => {
       rating: 5,
       text: 'Most agencies either do strategy or execution — Advertio does both. From creatives to campaign structure to analytics, everything is aligned. That’s what actually made the difference in our results.',
       highlight: 'End-to-End Growth Execution',
-      color: '#253E5C',
+      color: '#191919',
     },
   ];
 
@@ -118,7 +118,7 @@ const ReviewsSection3D = () => {
               height: `${100 + i * 30}px`,
               left: `${i * 20}%`,
               top: `${(i % 3) * 30}%`,
-              background: `radial-gradient(circle, rgba(233, 79, 55, ${0.08 + i * 0.02}) 0%, transparent 70%)`,
+              background: `radial-gradient(circle, rgba(243, 63, 41, ${0.08 + i * 0.02}) 0%, transparent 70%)`,
             }}
           />
         ))}
@@ -133,7 +133,7 @@ const ReviewsSection3D = () => {
           transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
         >
           <motion.p
-            className="text-xs uppercase tracking-[0.5em] text-[#253E5C]/60 mb-4"
+            className="text-xs uppercase tracking-[0.5em] text-[#191919]/60 mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.5 }}
@@ -141,17 +141,17 @@ const ReviewsSection3D = () => {
             Client Success Stories
           </motion.p>
           <motion.h3
-            className="text-5xl md:text-6xl lg:text-7xl font-black text-[#253E5C] mb-6"
+            className="text-5xl md:text-6xl lg:text-7xl font-black text-[#191919] mb-6"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.7 }}
           >
-            <span className="bg-gradient-to-r from-[#253E5C] via-primary to-[#ff6b4a] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#191919] via-primary to-[#f33f29] bg-clip-text text-transparent">
               What Our Clients Say
             </span>
           </motion.h3>
           <motion.p
-            className="text-[#253E5C]/70 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed"
+            className="text-[#191919]/70 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.9 }}
@@ -218,7 +218,7 @@ const ReviewsSection3D = () => {
                       <div
                         className="absolute inset-0 rounded-[32px] p-[2px] transition-opacity duration-300"
                         style={{
-                          background: `linear-gradient(135deg, ${review.color}, ${review.color}80, #253E5C60, ${review.color})`,
+                          background: `linear-gradient(135deg, ${review.color}, ${review.color}80, #19191960, ${review.color})`,
                           opacity: isHovered ? 1 : 0.8,
                         }}
                       >
@@ -236,12 +236,12 @@ const ReviewsSection3D = () => {
                               <h4
                                 className="text-xl md:text-2xl font-black transition-colors duration-300"
                                 style={{
-                                  color: isHovered ? review.color : '#253E5C',
+                                  color: isHovered ? review.color : '#191919',
                                 }}
                               >
                                 {review.title}
                               </h4>
-                              <p className="text-sm md:text-base text-[#253E5C]/70 font-semibold">{review.subtitle}</p>
+                              <p className="text-sm md:text-base text-[#191919]/70 font-semibold">{review.subtitle}</p>
                             </div>
 
                             {/* Star Rating */}
@@ -250,7 +250,7 @@ const ReviewsSection3D = () => {
                             </div>
 
                             {/* Review Text */}
-                            <p className="text-[#253E5C]/80 text-base md:text-lg leading-relaxed mb-6 font-medium">
+                            <p className="text-[#191919]/80 text-base md:text-lg leading-relaxed mb-6 font-medium">
                               &ldquo;{review.text}&rdquo;
                             </p>
 
@@ -288,7 +288,7 @@ const ReviewsSection3D = () => {
                         style={{
                           boxShadow: isHovered
                             ? `0 20px 50px ${review.color}30, 0 0 25px ${review.color}20`
-                            : `0 10px 30px rgba(37, 62, 92, 0.1)`,
+                            : `0 10px 30px rgba(25, 25, 25, 0.1)`,
                         }}
                       />
                     </motion.div>
@@ -302,7 +302,7 @@ const ReviewsSection3D = () => {
           <div
             className="absolute right-8 top-1/2 -translate-y-1/2 hidden lg:block pointer-events-none opacity-40"
           >
-            <svg className="w-8 h-8 text-[#253E5C]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-8 h-8 text-[#191919]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </div>
@@ -314,7 +314,7 @@ const ReviewsSection3D = () => {
         className="absolute top-0 left-0 w-[800px] h-[800px] bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-2xl -z-10 opacity-20"
       />
       <div
-        className="absolute bottom-0 right-0 w-[800px] h-[800px] bg-gradient-to-tl from-[#253E5C]/10 to-transparent rounded-full blur-2xl -z-10 opacity-20"
+        className="absolute bottom-0 right-0 w-[800px] h-[800px] bg-gradient-to-tl from-[#191919]/10 to-transparent rounded-full blur-2xl -z-10 opacity-20"
       />
     </motion.section>
   );

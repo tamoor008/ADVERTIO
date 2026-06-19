@@ -51,10 +51,10 @@ const ContactSection3D = () => {
           className="absolute top-0 left-0 w-[600px] h-[600px] bg-primary/20 blur-2xl rounded-full opacity-30"
         />
         <div
-          className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-[#253E5C]/25 blur-2xl rounded-full opacity-25"
+          className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-[#191919]/25 blur-2xl rounded-full opacity-25"
         />
         <div
-          className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-[#FF6B4A]/15 blur-2xl rounded-full opacity-20"
+          className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-[#f33f29]/15 blur-2xl rounded-full opacity-20"
         />
         <div
           className="absolute top-1/3 right-1/3 w-[400px] h-[400px] bg-[#6D28D9]/15 blur-2xl rounded-full opacity-20"
@@ -80,7 +80,7 @@ const ContactSection3D = () => {
           onSubmit={handleSubmit}
           className="relative rounded-[36px] border border-white/20 shadow-[0_25px_80px_rgba(0,0,0,0.4)] p-8 md:p-10"
           style={{
-            background: 'linear-gradient(135deg, rgba(233, 79, 55, 1) 0%, rgba(37, 62, 92, 1) 50%, rgba(233, 79, 55, 1) 100%)',
+            background: 'linear-gradient(135deg, rgba(243, 63, 41, 1) 0%, rgba(25, 25, 25, 1) 50%, rgba(243, 63, 41, 1) 100%)',
           }}
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
@@ -113,7 +113,7 @@ const ContactSection3D = () => {
                   onChange={handleChange}
                   required
                   className={`w-full px-5 py-4 rounded-2xl border border-white/20 placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 transition-all ${
-                    formData[field.name] ? 'bg-white text-[#253E5C]' : 'bg-white/10 text-white'
+                    formData[field.name] ? 'bg-white text-[#191919]' : 'bg-white/10 text-white'
                   }`}
                 />
               </motion.div>
@@ -137,7 +137,7 @@ const ContactSection3D = () => {
                 onChange={handleChange}
                 required
                 className={`w-full px-5 py-4 rounded-2xl border border-white/20 placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 transition-all appearance-none cursor-pointer ${
-                  formData.service ? 'bg-white text-[#253E5C]' : 'bg-white/10 text-white'
+                  formData.service ? 'bg-white text-[#191919]' : 'bg-white/10 text-white'
                 }`}
                 style={{
                   backgroundImage: formData.service 
@@ -148,9 +148,9 @@ const ContactSection3D = () => {
                   paddingRight: '2.5rem',
                 }}
               >
-                <option value="" className="bg-[#253E5C] text-white">Select a service</option>
+                <option value="" className="bg-[#191919] text-white">Select a service</option>
                 {servicesList.map((service) => (
-                  <option key={service.id} value={service.title} className="bg-[#253E5C] text-white">
+                  <option key={service.id} value={service.title} className="bg-[#191919] text-white">
                     {service.title}
                   </option>
                 ))}
@@ -177,7 +177,7 @@ const ContactSection3D = () => {
                 onChange={handleChange}
                 required
                 className={`w-full px-5 py-4 rounded-2xl border border-white/20 placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 transition-all ${
-                  formData.adSpend ? 'bg-white text-[#253E5C]' : 'bg-white/10 text-white'
+                  formData.adSpend ? 'bg-white text-[#191919]' : 'bg-white/10 text-white'
                 }`}
               />
             </motion.div>
@@ -201,7 +201,7 @@ const ContactSection3D = () => {
                 value={formData.message}
                 onChange={handleChange}
                 className={`w-full px-5 py-4 rounded-2xl border border-white/20 placeholder-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/40 transition-all resize-none ${
-                  formData.message ? 'bg-white text-[#253E5C]' : 'bg-white/10 text-white'
+                  formData.message ? 'bg-white text-[#191919]' : 'bg-white/10 text-white'
                 }`}
               />
             </motion.div>
@@ -209,7 +209,7 @@ const ContactSection3D = () => {
             <motion.button
               type="submit"
               disabled={status === 'sending'}
-              className="relative w-full flex items-center justify-center gap-3 px-6 py-4 rounded-2xl text-white font-semibold text-lg bg-gradient-to-r from-[#253E5C] via-primary to-[#FF6B4A] shadow-lg shadow-primary/40 transition-all disabled:opacity-60"
+              className="relative w-full flex items-center justify-center gap-3 px-6 py-4 rounded-2xl text-white font-semibold text-lg bg-gradient-to-r from-[#191919] via-primary to-[#f33f29] shadow-lg shadow-primary/40 transition-all disabled:opacity-60"
               whileTap={{ scale: 0.98 }}
             >
               <span>{status === 'sending' ? 'Sending...' : 'Send the brief'}</span>

@@ -203,7 +203,7 @@ const BookMeetingButton = () => {
         onClick={handleClick}
         className="relative px-4 py-3 md:px-6 md:py-4 bg-gradient-to-r from-primary to-dark rounded-full shadow-2xl hover:shadow-primary/50 flex items-center justify-center gap-2 transition-all duration-300 group overflow-visible"
         style={{
-          background: 'linear-gradient(135deg, #E94F37 0%, #253E5C 100%)',
+          background: 'linear-gradient(135deg, #f33f29 0%, #191919 100%)',
           backgroundSize: '200% 200%',
         }}
         {...(!isVisible && { 'data-hidden': 'true' })}
@@ -213,7 +213,7 @@ const BookMeetingButton = () => {
         <div
           className="absolute inset-0 rounded-full opacity-75"
           style={{
-            background: 'linear-gradient(135deg, #E94F37 0%, #253E5C 100%)',
+            background: 'linear-gradient(135deg, #f33f29 0%, #191919 100%)',
             backgroundSize: '200% 200%',
           }}
         />

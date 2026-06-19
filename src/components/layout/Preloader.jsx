@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import logo from '../../assets/favicon.JPG';
+
 
 const Preloader = ({ onComplete }) => {
   const [progress, setProgress] = useState(0);
@@ -34,9 +34,9 @@ const Preloader = ({ onComplete }) => {
     >
       <div className="flex flex-col items-center gap-8">
         <motion.img
-          src={logo}
+          src="/sublogo.png"
           alt="Advertio Logo"
-          className="w-24 h-24 object-contain"
+          className="w-20 h-20 object-contain"
           initial={{ scale: 0, rotate: -180 }}
           animate={{ scale: 1, rotate: 0 }}
           transition={{ duration: 0.8, type: 'spring' }}

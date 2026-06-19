@@ -13,7 +13,7 @@
 /* Show horizontal scrollbar on mobile, hide on desktop/laptop */
 .reviews-scroll-container {
   scrollbar-width: thin;
-  scrollbar-color: #253E5C rgba(37, 62, 92, 0.1);
+  scrollbar-color: #191919 rgba(25, 25, 25, 0.1);
   -ms-overflow-style: auto;
 }
 
@@ -35,12 +35,12 @@
   }
   
   .reviews-scroll-container::-webkit-scrollbar-track {
-    background: rgba(37, 62, 92, 0.1);
+    background: rgba(25, 25, 25, 0.1);
     border-radius: 10px;
   }
   
   .reviews-scroll-container::-webkit-scrollbar-thumb {
-    background: #253E5C;
+    background: #191919;
     border-radius: 10px;
   }
   

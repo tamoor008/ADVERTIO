@@ -26,7 +26,7 @@ const Blogs = () => {
       date: 'March 15, 2024',
       readTime: '5 min read',
       image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop&q=80',
-      color: '#E94F37',
+      color: '#f33f29',
       tags: ['3D Design', 'E-commerce', 'Innovation'],
     },
     {
@@ -173,7 +173,7 @@ const Blogs = () => {
       label: 'Email',
       value: 'info@advertio.com',
       href: 'mailto:info@advertio.com',
-      color: '#E94F37',
+      color: '#f33f29',
     },
     {
       icon: (
@@ -184,7 +184,7 @@ const Blogs = () => {
       label: 'Phone',
       value: '(+92) 323 4304559',
       href: 'tel:+923234304559',
-      color: '#253E5C',
+      color: '#191919',
     },
     {
       icon: (
@@ -220,7 +220,7 @@ const Blogs = () => {
                 height: `${120 + i * 40}px`,
                 left: `${i * 20}%`,
                 top: `${(i % 3) * 30}%`,
-                background: `radial-gradient(circle, rgba(233, 79, 55, ${0.1 + i * 0.02}) 0%, transparent 70%)`,
+                background: `radial-gradient(circle, rgba(243, 63, 41, ${0.1 + i * 0.02}) 0%, transparent 70%)`,
               }}
             />
           ))}
@@ -235,7 +235,7 @@ const Blogs = () => {
             transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
             <motion.p
-              className="text-xs uppercase tracking-[0.5em] text-[#253E5C]/60 mb-4"
+              className="text-xs uppercase tracking-[0.5em] text-[#191919]/60 mb-4"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: 0.5 }}
@@ -243,17 +243,17 @@ const Blogs = () => {
               Insights & Strategies
             </motion.p>
             <motion.h3
-              className="text-5xl md:text-6xl lg:text-7xl font-black text-[#253E5C] mb-6"
+              className="text-5xl md:text-6xl lg:text-7xl font-black text-[#191919] mb-6"
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.8, delay: 0.7 }}
             >
-              <span className="bg-gradient-to-r from-[#253E5C] via-primary to-[#ff6b4a] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#191919] via-primary to-[#f33f29] bg-clip-text text-transparent">
                 All Blogs
               </span>
             </motion.h3>
             <motion.p
-              className="text-[#253E5C]/70 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed"
+              className="text-[#191919]/70 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.8, delay: 0.9 }}
@@ -298,7 +298,7 @@ const Blogs = () => {
                       <div
                         className="absolute inset-0 rounded-[32px] p-[2px] transition-all duration-300 group-hover:opacity-100"
                         style={{
-                          background: `linear-gradient(135deg, ${blog.color}, ${blog.color}80, #253E5C60, ${blog.color})`,
+                          background: `linear-gradient(135deg, ${blog.color}, ${blog.color}80, #19191960, ${blog.color})`,
                         }}
                       >
                         <div
@@ -359,7 +359,7 @@ const Blogs = () => {
 
                             {/* Title */}
                             <h3
-                              className="text-xl md:text-2xl font-black mb-3 leading-tight transition-colors duration-300 group-hover:text-[#253E5C]"
+                              className="text-xl md:text-2xl font-black mb-3 leading-tight transition-colors duration-300 group-hover:text-[#191919]"
                               style={{
                                 color: blog.color,
                               }}
@@ -368,12 +368,12 @@ const Blogs = () => {
                             </h3>
 
                             {/* Excerpt */}
-                            <p className="text-sm md:text-base leading-relaxed mb-6 flex-grow text-[#253E5C]/70 transition-colors duration-300 group-hover:text-[#253E5C]">
+                            <p className="text-sm md:text-base leading-relaxed mb-6 flex-grow text-[#191919]/70 transition-colors duration-300 group-hover:text-[#191919]">
                               {blog.excerpt}
                             </p>
 
                             {/* Meta Information */}
-                            <div className="flex items-center justify-between pt-4 border-t border-[#253E5C]/10">
+                            <div className="flex items-center justify-between pt-4 border-t border-[#191919]/10">
                               <div className="flex items-center gap-3">
                                 <div
                                   className="w-10 h-10 rounded-full overflow-hidden border-2 transition-all duration-300 group-hover:scale-105 group-hover:border-[3px]"
@@ -389,8 +389,8 @@ const Blogs = () => {
                                   />
                                 </div>
                                 <div>
-                                  <p className="text-sm font-semibold text-[#253E5C]">{blog.author}</p>
-                                  <p className="text-xs text-[#253E5C]/50">{blog.date}</p>
+                                  <p className="text-sm font-semibold text-[#191919]">{blog.author}</p>
+                                  <p className="text-xs text-[#191919]/50">{blog.date}</p>
                                 </div>
                               </div>
                               <div
@@ -427,7 +427,7 @@ const Blogs = () => {
                       <div
                         className="absolute inset-0 rounded-[32px] pointer-events-none z-0 transition-all duration-300 group-hover:shadow-xl"
                         style={{
-                          boxShadow: `0 10px 30px rgba(37, 62, 92, 0.1)`,
+                          boxShadow: `0 10px 30px rgba(25, 25, 25, 0.1)`,
                         }}
                       />
                     </div>
@@ -443,7 +443,7 @@ const Blogs = () => {
           className="absolute top-0 left-0 w-[900px] h-[900px] bg-gradient-to-br from-primary/15 to-transparent rounded-full blur-2xl -z-10 opacity-30"
         />
         <div
-          className="absolute bottom-0 right-0 w-[900px] h-[900px] bg-gradient-to-tl from-[#253E5C]/15 to-transparent rounded-full blur-2xl -z-10 opacity-30"
+          className="absolute bottom-0 right-0 w-[900px] h-[900px] bg-gradient-to-tl from-[#191919]/15 to-transparent rounded-full blur-2xl -z-10 opacity-30"
         />
       </motion.section>
 
@@ -457,12 +457,12 @@ const Blogs = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h2 className="text-4xl md:text-5xl font-black text-[#253E5C] mb-4">
-              <span className="bg-gradient-to-r from-[#253E5C] via-primary to-[#ff6b4a] bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-black text-[#191919] mb-4">
+              <span className="bg-gradient-to-r from-[#191919] via-primary to-[#f33f29] bg-clip-text text-transparent">
                 Get In Touch
               </span>
             </h2>
-            <p className="text-[#253E5C]/70 text-lg max-w-2xl mx-auto">
+            <p className="text-[#191919]/70 text-lg max-w-2xl mx-auto">
               Ready to transform your digital presence? Reach out and let&apos;s discuss your next big project.
             </p>
           </motion.div>
@@ -490,7 +490,7 @@ const Blogs = () => {
                   className="relative rounded-[32px] p-8 bg-white/95 backdrop-blur-md shadow-lg overflow-hidden"
                   style={{
                     border: '2px solid transparent',
-                    backgroundImage: 'linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95)), linear-gradient(135deg, #253E5C, #E94F37)',
+                    backgroundImage: 'linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95)), linear-gradient(135deg, #191919, #f33f29)',
                     backgroundOrigin: 'border-box',
                     backgroundClip: 'padding-box, border-box',
                   }}
@@ -522,10 +522,10 @@ const Blogs = () => {
                       </div>
                     </motion.div>
                     
-                    <h3 className="text-sm uppercase tracking-[0.3em] text-[#253E5C]/60 mb-2 font-semibold">
+                    <h3 className="text-sm uppercase tracking-[0.3em] text-[#191919]/60 mb-2 font-semibold">
                       {method.label}
                     </h3>
-                    <p className="text-xl font-bold text-[#253E5C] group-hover:text-primary transition-colors">
+                    <p className="text-xl font-bold text-[#191919] group-hover:text-primary transition-colors">
                       {method.value}
                     </p>
                   </div>

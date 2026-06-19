@@ -31,7 +31,7 @@ function Sprinkles({ count = 600, spread = 60 }) {
       </bufferGeometry>
       <pointsMaterial
         size={0.2}
-        color="#253E5C"
+        color="#191919"
         transparent
         opacity={0.65}
         depthWrite={false}

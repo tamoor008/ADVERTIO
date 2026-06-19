@@ -43,7 +43,7 @@ const MockupSection = () => {
               height: `${300 + index * 100}px`,
               left: `${(index * 30) % 100}%`,
               top: `${(index * 25) % 100}%`,
-              background: `radial-gradient(circle, rgba(233, 79, 55, ${0.1 + index * 0.05}) 0%, transparent 70%)`,
+              background: `radial-gradient(circle, rgba(243, 63, 41, ${0.1 + index * 0.05}) 0%, transparent 70%)`,
             }}
           />
         ))}
@@ -66,7 +66,7 @@ const MockupSection = () => {
             Our Work
           </motion.p>
           <motion.h2
-            className="text-4xl md:text-6xl font-black text-[#253E5C] mb-6 leading-tight"
+            className="text-4xl md:text-6xl font-black text-[#191919] mb-6 leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -74,7 +74,7 @@ const MockupSection = () => {
             Showcasing Excellence
           </motion.h2>
           <motion.p
-            className="text-lg text-[#253E5C]/70 leading-relaxed"
+            className="text-lg text-[#191919]/70 leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.5 }}
@@ -99,7 +99,7 @@ const MockupSection = () => {
                 className="relative rounded-2xl overflow-hidden bg-white/80 backdrop-blur-sm border border-white/20 shadow-lg"
                 style={{
                   boxShadow: hoveredIndex === index
-                    ? '0 30px 80px rgba(233, 79, 55, 0.25), 0 15px 40px rgba(0, 0, 0, 0.1)'
+                    ? '0 30px 80px rgba(243, 63, 41, 0.25), 0 15px 40px rgba(0, 0, 0, 0.1)'
                     : '0 10px 40px rgba(0, 0, 0, 0.08)',
                 }}
                 whileHover={{ scale: 1.02, y: -4 }}

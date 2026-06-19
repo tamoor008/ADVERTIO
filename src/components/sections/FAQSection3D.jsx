@@ -14,48 +14,48 @@ const FAQSection3D = () => {
       answer:
         'Discovery to launch typically takes 21 days. Week one is immersion and data pulls, week two is concepting and motion prototyping, and week three is production plus ad-platform wiring with daily QA loops.',
       tag: 'Velocity',
-      accent: '#E94F37',
-      background: '#E94F37',
+      accent: '#f33f29',
+      background: '#f33f29',
     },
     {
       question: 'What deliverables are included in the growth retainer?',
       answer:
         'We combine paid media orchestration, CRO audits, WebGL microsite drops, cinematic UGC editing, and real-time dashboards. Each sprint ships a measurable experiment tied to ROAS, LTV, or CPM efficiency.',
       tag: 'Scope',
-      accent: '#253E5C',
-      background: '#253E5C',
+      accent: '#191919',
+      background: '#191919',
     },
     {
       question: 'Do you integrate with our internal creative or dev team?',
       answer:
         'Absolutely. We work in shared Figma, Notion, and Git repos. Our shaders, particle rigs, and tracking libraries are modular so internal teams can iterate without waiting on us.',
       tag: 'Collaboration',
-      accent: '#E94F37',
-      background: '#E94F37',
+      accent: '#f33f29',
+      background: '#f33f29',
     },
     {
       question: 'How do you report results from immersive experiences?',
       answer:
         'We pipe volumetric engagement, scroll-depth, dwell time, and assisted conversions into Looker dashboards. Each FAQ tap, product spin, or AR trigger is evented back to your attribution model.',
       tag: 'Measurement',
-      accent: '#253E5C',
-      background: '#253E5C',
+      accent: '#191919',
+      background: '#191919',
     },
     {
       question: 'Can the 3D FAQ component plug into other pages?',
       answer:
         'Yes. It is built with headless props, accepts CMS data, and exposes a variant prop for light or dark backgrounds. Animations rely on Framer Motion so it stays GPU-friendly.',
       tag: 'Flexibility',
-      accent: '#E94F37',
-      background: '#E94F37',
+      accent: '#f33f29',
+      background: '#f33f29',
     },
     {
       question: 'What makes the Advertio support model different?',
       answer:
         'You get a dedicated strategist, shader artist, and marketing engineer on one Slack bridge. Stand-ups happen twice a week and war rooms spin up within 15 minutes for launches.',
       tag: 'Support',
-      accent: '#253E5C',
-      background: '#253E5C',
+      accent: '#191919',
+      background: '#191919',
     },
   ];
 
@@ -81,7 +81,7 @@ const FAQSection3D = () => {
               height: `${300 + index * 100}px`,
               left: `${(index * 30) % 100}%`,
               top: `${(index * 25) % 100}%`,
-              background: `radial-gradient(circle, rgba(233, 79, 55, ${0.1 + index * 0.05}) 0%, transparent 70%)`,
+              background: `radial-gradient(circle, rgba(243, 63, 41, ${0.1 + index * 0.05}) 0%, transparent 70%)`,
             }}
           />
         ))}
@@ -95,15 +95,15 @@ const FAQSection3D = () => {
           transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
         >
           <motion.h3
-            className="text-4xl md:text-5xl font-black text-[#253E5C] mb-4"
+            className="text-4xl md:text-5xl font-black text-[#191919] mb-4"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            F A <span className="bg-gradient-to-r from-[#253E5C] via-primary to-[#ff6b4a] bg-clip-text text-transparent">Q</span>
+            F A <span className="bg-gradient-to-r from-[#191919] via-primary to-[#f33f29] bg-clip-text text-transparent">Q</span>
           </motion.h3>
           <motion.p
-            className="text-[#253E5C]/70 text-lg"
+            className="text-[#191919]/70 text-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.4 }}

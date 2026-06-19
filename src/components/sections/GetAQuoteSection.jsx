@@ -132,20 +132,20 @@ const GetAQuoteSection = () => {
           transition={isMobile ? { duration: 0 } : { duration: 0.6, delay: 0.2 }}
         >
           <motion.h3
-            className="text-4xl md:text-5xl lg:text-6xl font-black text-[#253E5C] mb-4"
+            className="text-4xl md:text-5xl lg:text-6xl font-black text-[#191919] mb-4"
             initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             animate={isMobile ? { opacity: 1, y: 0 } : (isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
             transition={isMobile ? { duration: 0 } : { duration: 0.6, delay: 0.3 }}
           >
             <div className="flex flex-col items-center gap-2">
               <span>Ready to Transform</span>
-              <span className="bg-gradient-to-r from-primary via-[#ff6b4a] to-primary bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary via-[#f33f29] to-primary bg-clip-text text-transparent">
                 Your Business?
               </span>
             </div>
           </motion.h3>
           <motion.p
-            className="text-[#253E5C]/70 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed font-medium"
+            className="text-[#191919]/70 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed font-medium"
             initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             animate={isMobile ? { opacity: 1, y: 0 } : (isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 })}
             transition={isMobile ? { duration: 0 } : { duration: 0.6, delay: 0.4 }}
@@ -184,7 +184,7 @@ const GetAQuoteSection = () => {
               >
                 <polygon
                   points="0 0, 22 6.5, 0 13"
-                  fill="#253E5C"
+                  fill="#191919"
                 />
               </marker>
             </defs>
@@ -193,7 +193,7 @@ const GetAQuoteSection = () => {
             <path
               id="quote-path"
               d="M 555 170 Q 490 60, 350 130 Q 250 200, 160 100"
-              stroke="#253E5C"
+              stroke="#191919"
               strokeWidth="3"
               strokeDasharray="8,5"
               fill="none"
@@ -209,7 +209,7 @@ const GetAQuoteSection = () => {
             />
             {/* Text along the path */}
             <text
-              fill="#253E5C"
+              fill="#191919"
               fontSize="16"
               fontWeight="900"
               opacity="1"
@@ -235,7 +235,7 @@ Stay One Step Ahead          </textPath>
             <div className="relative z-10">
               <div className="relative">
                 <Image
-                  src="/favicon1.JPG"
+                  src="/sublogo.png"
                   alt="Dolphin"
                   width={320}
                   height={320}
@@ -246,10 +246,10 @@ Stay One Step Ahead          </textPath>
                 <motion.button
                   ref={buttonRef}
                   onClick={handleGetQuote}
-                  className="absolute z-20 rounded-full bg-gradient-to-br from-primary via-[#ff6b4a] to-[#e94f37] text-white font-bold text-xs md:text-sm border-2 border-white/30 cursor-pointer flex items-center justify-center shadow-xl"
+                  className="absolute z-20 rounded-full bg-primary text-white font-bold text-xs md:text-sm border-2 border-white/30 cursor-pointer flex items-center justify-center shadow-xl"
                   style={{
                     left: 'calc(28% - 2px)',
-                    bottom: isMobile ? '140px' : '225px',
+                    bottom: isMobile ? '90px' : '150px',
                     width: isMobile ? '80px' : '100px',
                     height: isMobile ? '80px' : '100px',
                     padding: 0,
@@ -277,7 +277,7 @@ Stay One Step Ahead          </textPath>
               <div className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-3 lg:gap-8 overflow-x-hidden md:overflow-x-visible pb-4 md:pb-0">
                 {/* Your DTC Brand */}
                 <div ref={dtcBrandRef} className="flex flex-row md:flex-col items-center gap-1.5 md:gap-3 flex-shrink-0">
-                  <div className="w-14 h-14 md:w-20 lg:w-24 md:h-20 lg:h-24 border-2 border-[#253E5C] rounded-full flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40 p-2">
+                  <div className="w-14 h-14 md:w-20 lg:w-24 md:h-20 lg:h-24 border-2 border-[#191919] rounded-full flex items-center justify-center relative bg-gradient-to-br from-[#191919] via-[#191919] to-[#f33f29]/40 p-2">
                     <Image
                       src={shopifyIcon}
                       alt="Shopify"
@@ -287,15 +287,15 @@ Stay One Step Ahead          </textPath>
                       quality={100}
                     />
                   </div>
-                  <p className="text-[#253E5C] text-xs md:text-base font-semibold text-center">Your DTC Brand</p>
+                  <p className="text-[#191919] text-xs md:text-base font-semibold text-center">Your DTC Brand</p>
                 </div>
 
                 {/* Plus Sign */}
-                <div className="text-[#253E5C] text-xl md:text-3xl lg:text-4xl font-bold self-center flex-shrink-0 -mt-6 md:-mt-7">+</div>
+                <div className="text-[#191919] text-xl md:text-3xl lg:text-4xl font-bold self-center flex-shrink-0 -mt-6 md:-mt-7">+</div>
 
                 {/* Our Performance Marketing Team */}
                 <div ref={performanceCardRef} className="flex flex-row md:flex-col items-center gap-1.5 md:gap-3 flex-shrink-0 mt-0 md:mt-3">
-                  <div className="w-14 h-14 md:w-20 lg:w-24 md:h-20 lg:h-24 border-2 border-[#253E5C] rounded-full flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40 p-2">
+                  <div className="w-14 h-14 md:w-20 lg:w-24 md:h-20 lg:h-24 border-2 border-[#191919] rounded-full flex items-center justify-center relative bg-gradient-to-br from-[#191919] via-[#191919] to-[#f33f29]/40 p-2">
                     <Image
                       src={teamIcon}
                       alt="Team"
@@ -305,15 +305,15 @@ Stay One Step Ahead          </textPath>
                       quality={100}
                     />
                   </div>
-                  <p className="text-[#253E5C] text-xs md:text-base font-semibold text-center">Our Performance<br />Marketing Team</p>
+                  <p className="text-[#191919] text-xs md:text-base font-semibold text-center">Our Performance<br />Marketing Team</p>
                 </div>
 
                 {/* Equals Sign */}
-                <div className="text-[#253E5C] text-xl md:text-3xl lg:text-4xl font-bold self-center flex-shrink-0 -mt-3 md:-mt-7">=</div>
+                <div className="text-[#191919] text-xl md:text-3xl lg:text-4xl font-bold self-center flex-shrink-0 -mt-3 md:-mt-7">=</div>
 
                 {/* Result */}
                 <div className="flex flex-row md:flex-col items-center gap-1.5 md:gap-3 flex-shrink-0 mt-0 md:mt-3">
-                  <div className="w-14 h-14 md:w-20 lg:w-24 md:h-20 lg:h-24 border-2 border-[#253E5C] rounded-lg flex items-center justify-center relative bg-gradient-to-br from-[#253E5C] via-[#253E5C] to-[#ff6b4a]/40 p-2">
+                  <div className="w-14 h-14 md:w-20 lg:w-24 md:h-20 lg:h-24 border-2 border-[#191919] rounded-lg flex items-center justify-center relative bg-gradient-to-br from-[#191919] via-[#191919] to-[#f33f29]/40 p-2">
                     <Image
                       src={growthIcon}
                       alt="Growth"
@@ -323,7 +323,7 @@ Stay One Step Ahead          </textPath>
                       quality={100}
                     />
                   </div>
-                  <p className="text-[#253E5C] text-xs md:text-base font-bold text-center">5-7x ROAS<br />Consistent Growth</p>
+                  <p className="text-[#191919] text-xs md:text-base font-bold text-center">5-7x ROAS<br />Consistent Growth</p>
                 </div>
               </div>
             </div>
@@ -334,7 +334,7 @@ Stay One Step Ahead          </textPath>
 
       {/* Background Decorative Elements - Static */}
       <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-gradient-to-br from-primary/8 to-transparent rounded-full blur-2xl -z-10 opacity-30" />
-      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-gradient-to-tl from-[#253E5C]/8 to-transparent rounded-full blur-2xl -z-10 opacity-30" />
+      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-gradient-to-tl from-[#191919]/8 to-transparent rounded-full blur-2xl -z-10 opacity-30" />
     </motion.section>
   );
 };

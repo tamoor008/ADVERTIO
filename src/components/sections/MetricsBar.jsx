@@ -31,7 +31,7 @@ const AnimatedStat = ({ stat, isInView }) => {
       style={{
         borderRadius: '28px',
         border: '2px solid transparent',
-        backgroundImage: 'linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0)), linear-gradient(120deg, #253E5C, #e94f37)',
+        backgroundImage: 'linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0)), linear-gradient(120deg, #191919, #f33f29)',
         backgroundOrigin: 'border-box',
         backgroundClip: 'padding-box, border-box',
       }}
@@ -66,7 +66,7 @@ const MetricsBar = () => {
       <div className="relative w-full">
         <motion.div
           ref={sectionRef}
-          className="p-[2px] bg-gradient-to-r from-[#253E5C] via-primary to-[#ff7b5f]"
+          className="p-[2px] bg-gradient-to-r from-[#191919] via-primary to-[#f33f29]"
           initial={{ opacity: 0, y: 40, filter: 'blur(14px)' }}
           animate={
             isInView
@@ -77,11 +77,11 @@ const MetricsBar = () => {
         >
           <div className="bg-white/70 backdrop-blur-2xl border border-white/40 p-10">
             <div className="text-center mb-10">
-              <p className="text-xs tracking-[0.4em] uppercase text-[#253E5C]/60">Impact</p>
-              <h3 className="text-3xl md:text-4xl font-black text-[#253E5C]">
+              <p className="text-xs tracking-[0.4em] uppercase text-[#191919]/60">Impact</p>
+              <h3 className="text-3xl md:text-4xl font-black text-[#191919]">
                 Trusted by High-Growth Brands
               </h3>
-              <p className="text-[#253E5C]/70 mt-3 text-base max-w-2xl mx-auto">
+              <p className="text-[#191919]/70 mt-3 text-base max-w-2xl mx-auto">
                 A glimpse at the momentum we have built with our partners across immersive campaigns.
               </p>
             </div>

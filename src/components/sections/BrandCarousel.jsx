@@ -45,11 +45,11 @@ const BrandCarousel = () => {
     >
       <div className="relative w-full">
         <div className="max-w-4xl mx-auto text-center mb-12 px-6">
-          <p className="text-xs uppercase tracking-[0.4em] text-[#253E5C]/60">Partners</p>
-          <h3 className="text-3xl md:text-4xl font-black text-[#253E5C] mt-2">
+          <p className="text-xs uppercase tracking-[0.4em] text-[#191919]/60">Partners</p>
+          <h3 className="text-3xl md:text-4xl font-black text-[#191919] mt-2">
             Brands that trust Advertio
           </h3>
-          <p className="text-[#253E5C]/70 mt-4">
+          <p className="text-[#191919]/70 mt-4">
             Forward-thinking companies collaborating with us on cinematic campaigns and measurable growth.
           </p>
         </div>

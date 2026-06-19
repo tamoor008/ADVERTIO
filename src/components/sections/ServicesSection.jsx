@@ -41,7 +41,7 @@ const ServicesSection = ({ expanded, setExpanded }) => {
     >
       <div className="relative max-w-[1500px] mx-auto w-full">
         <motion.div
-          className="relative rounded-[20px] sm:rounded-[24px] md:rounded-[32px] p-[2px] bg-gradient-to-r from-[#253E5C] via-primary to-[#ff7b5f] shadow-lg sm:shadow-xl md:shadow-2xl w-full"
+          className="relative rounded-[20px] sm:rounded-[24px] md:rounded-[32px] p-[2px] bg-gradient-to-r from-[#191919] via-primary to-[#f33f29] shadow-lg sm:shadow-xl md:shadow-2xl w-full"
           initial={isMobile ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.95, y: 40 }}
           whileInView={isMobile ? { opacity: 1, scale: 1, y: 0 } : { opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -58,7 +58,7 @@ const ServicesSection = ({ expanded, setExpanded }) => {
               style={isMobile ? { transform: 'none' } : {}}
             >
               <motion.p
-                className="text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.3em] md:tracking-[0.4em] text-[#253E5C]/70 mb-2 sm:mb-3 md:mb-4"
+                className="text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.3em] md:tracking-[0.4em] text-[#191919]/70 mb-2 sm:mb-3 md:mb-4"
                 initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
@@ -68,7 +68,7 @@ const ServicesSection = ({ expanded, setExpanded }) => {
                 Signature Services
               </motion.p>
               <motion.h3
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#253E5C] px-1"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#191919] px-1"
                 initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
@@ -83,7 +83,7 @@ const ServicesSection = ({ expanded, setExpanded }) => {
               {servicesList.slice(0, 6).map((service, index) => (
                 <motion.div
                   key={service.title}
-                  className="service-card group rounded-xl sm:rounded-2xl md:rounded-3xl border border-[#253E5C]/10 bg-white/90 p-3 sm:p-4 md:p-5 lg:p-6 shadow-md sm:shadow-lg hover:border-primary/30 cursor-pointer w-full transition-all duration-300 hover:shadow-lg"
+                  className="service-card group rounded-xl sm:rounded-2xl md:rounded-3xl border border-[#191919]/10 bg-white/90 p-3 sm:p-4 md:p-5 lg:p-6 shadow-md sm:shadow-lg hover:border-primary/30 cursor-pointer w-full transition-all duration-300 hover:shadow-lg"
                   initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.2 }}
@@ -95,10 +95,10 @@ const ServicesSection = ({ expanded, setExpanded }) => {
                   style={isMobile ? { transform: 'none' } : {}}
                 >
                   <div className="service-card-content">
-                    <h4 className="text-base sm:text-lg md:text-xl font-semibold text-[#253E5C] mb-2 sm:mb-2.5 md:mb-3 transition-colors duration-300 group-hover:text-primary">
+                    <h4 className="text-base sm:text-lg md:text-xl font-semibold text-[#191919] mb-2 sm:mb-2.5 md:mb-3 transition-colors duration-300 group-hover:text-primary">
                       {service.title}
                     </h4>
-                    <p className="text-xs sm:text-sm md:text-base text-[#253E5C]/70 leading-relaxed font-medium transition-colors duration-300">{service.desc}</p>
+                    <p className="text-xs sm:text-sm md:text-base text-[#191919]/70 leading-relaxed font-medium transition-colors duration-300">{service.desc}</p>
                   </div>
                 </motion.div>
               ))}
@@ -107,7 +107,7 @@ const ServicesSection = ({ expanded, setExpanded }) => {
                 {expanded && servicesList.slice(6).map((service, index) => (
                   <motion.div
                     key={service.title}
-                    className="service-card group rounded-xl sm:rounded-2xl md:rounded-3xl border border-[#253E5C]/10 bg-white/90 p-3 sm:p-4 md:p-5 lg:p-6 shadow-md sm:shadow-lg hover:border-primary/30 cursor-pointer w-full transition-all duration-300 hover:shadow-lg"
+                    className="service-card group rounded-xl sm:rounded-2xl md:rounded-3xl border border-[#191919]/10 bg-white/90 p-3 sm:p-4 md:p-5 lg:p-6 shadow-md sm:shadow-lg hover:border-primary/30 cursor-pointer w-full transition-all duration-300 hover:shadow-lg"
                     initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                     animate={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
                     exit={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -119,10 +119,10 @@ const ServicesSection = ({ expanded, setExpanded }) => {
                     style={isMobile ? { transform: 'none' } : {}}
                   >
                     <div className="service-card-content">
-                      <h4 className="text-base sm:text-lg md:text-xl font-semibold text-[#253E5C] mb-2 sm:mb-2.5 md:mb-3 transition-colors duration-300 group-hover:text-primary">
+                      <h4 className="text-base sm:text-lg md:text-xl font-semibold text-[#191919] mb-2 sm:mb-2.5 md:mb-3 transition-colors duration-300 group-hover:text-primary">
                         {service.title}
                       </h4>
-                      <p className="text-xs sm:text-sm md:text-base text-[#253E5C]/70 leading-relaxed font-medium transition-colors duration-300">{service.desc}</p>
+                      <p className="text-xs sm:text-sm md:text-base text-[#191919]/70 leading-relaxed font-medium transition-colors duration-300">{service.desc}</p>
                     </div>
                   </motion.div>
                 ))}

@@ -179,7 +179,7 @@ const Footer = () => {
                 }}
               >
                 <img 
-                  src="/favicon.JPG" 
+                  src="/sublogo.png" 
                   alt="Advertio Logo" 
                   className="w-32 h-32 md:w-36 md:h-36 object-contain rounded-full brightness-0 invert"
                   style={{ filter: 'brightness(0) invert(1)' }}

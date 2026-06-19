@@ -13,8 +13,8 @@ function AnimatedOrb({ scale = 1, paused = false }) {
   const uniforms = useMemo(
     () => ({
       uTime: { value: 0 },
-      uColor1: { value: new THREE.Color('#E94F37') },
-      uColor2: { value: new THREE.Color('#253E5C') },
+      uColor1: { value: new THREE.Color('#f33f29') },
+      uColor2: { value: new THREE.Color('#191919') },
     }),
     []
   );
@@ -98,7 +98,7 @@ function FloatingParticles({ count = 100, paused = false }) {
       </bufferGeometry>
       <pointsMaterial
         size={0.15}
-        color="#253E5C"
+        color="#191919"
         transparent
         opacity={0.85}
         depthWrite={false}
@@ -158,8 +158,8 @@ export default function HeroScene({ className = '' }) {
       >
         <Suspense fallback={null}>
           <ambientLight intensity={0.5} />
-          <pointLight position={[10, 10, 10]} intensity={1} color="#E94F37" />
-          <pointLight position={[-10, -10, -10]} intensity={0.5} color="#253E5C" />
+          <pointLight position={[10, 10, 10]} intensity={1} color="#f33f29" />
+          <pointLight position={[-10, -10, -10]} intensity={0.5} color="#191919" />
           
           <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
             <AnimatedOrb scale={1.3} paused={paused} />

@@ -60,7 +60,7 @@ const WhyChooseAdvertio = () => {
           transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
         >
           <motion.h3
-            className="text-4xl md:text-5xl font-black text-[#253E5C] mb-6"
+            className="text-4xl md:text-5xl font-black text-[#191919] mb-6"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.5 }}
@@ -68,7 +68,7 @@ const WhyChooseAdvertio = () => {
             Why Choose Advertio?
           </motion.h3>
           <motion.p
-            className="text-[#253E5C]/70 text-lg max-w-3xl mx-auto leading-relaxed"
+            className="text-[#191919]/70 text-lg max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.7 }}
@@ -98,21 +98,21 @@ const WhyChooseAdvertio = () => {
                 <div
                   className="absolute inset-0 rounded-[28px] opacity-5"
                   style={{
-                    background: 'linear-gradient(135deg, #E94F37 0%, #253E5C 100%)',
+                    background: 'linear-gradient(135deg, #f33f29 0%, #191919 100%)',
                     zIndex: 0,
                   }}
                 />
 
                 {/* Desktop: Simple Gradient Overlay on hover - CSS only */}
                 <div
-                  className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-[#253E5C]/5 rounded-[28px] z-[1] hidden md:block opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-[#191919]/5 rounded-[28px] z-[1] hidden md:block opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 />
 
                 {/* Mobile: Background gradient overlay when expanded */}
                 <div
                   className="absolute inset-0 rounded-[28px] pointer-events-none md:hidden z-[1] transition-opacity duration-300"
                   style={{
-                    background: 'linear-gradient(135deg, rgba(233, 79, 55, 0.95) 0%, rgba(37, 62, 92, 0.95) 100%)',
+                    background: 'linear-gradient(135deg, rgba(243, 63, 41, 0.95) 0%, rgba(25, 25, 25, 0.95) 100%)',
                     opacity: expandedCardIndex === index ? 1 : 0,
                   }}
                 />
@@ -123,7 +123,7 @@ const WhyChooseAdvertio = () => {
                     <h4
                       className="text-lg md:text-xl font-black leading-tight flex-1 transition-colors duration-300 group-hover:text-primary"
                       style={{
-                        color: expandedCardIndex === index ? '#FFFFFF' : '#253E5C',
+                        color: expandedCardIndex === index ? '#FFFFFF' : '#191919',
                       }}
                     >
                       {feature.title}
@@ -135,8 +135,8 @@ const WhyChooseAdvertio = () => {
                       }}
                       className="md:hidden flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
                       style={{
-                        background: expandedCardIndex === index ? '#E94F37' : 'rgba(233, 79, 55, 0.15)',
-                        color: expandedCardIndex === index ? '#FFFFFF' : '#E94F37',
+                        background: expandedCardIndex === index ? '#f33f29' : 'rgba(243, 63, 41, 0.15)',
+                        color: expandedCardIndex === index ? '#FFFFFF' : '#f33f29',
                       }}
                       aria-label={expandedCardIndex === index ? 'Collapse' : 'Expand'}
                     >
@@ -155,7 +155,7 @@ const WhyChooseAdvertio = () => {
                   </div>
                   {/* Desktop: Always visible */}
                   <p
-                    className="hidden md:block text-sm md:text-base leading-relaxed font-bold text-[#253E5C] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                    className="hidden md:block text-sm md:text-base leading-relaxed font-bold text-[#191919] opacity-70 group-hover:opacity-100 transition-opacity duration-300"
                   >
                     {feature.description}
                   </p>
@@ -184,7 +184,7 @@ const WhyChooseAdvertio = () => {
 
       {/* Background Decorative Elements - Static */}
       <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-gradient-to-br from-primary/8 to-transparent rounded-full blur-3xl -z-10 opacity-30" />
-      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-gradient-to-tl from-[#253E5C]/8 to-transparent rounded-full blur-3xl -z-10 opacity-30" />
+      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-gradient-to-tl from-[#191919]/8 to-transparent rounded-full blur-3xl -z-10 opacity-30" />
     </motion.section>
   );
 };
