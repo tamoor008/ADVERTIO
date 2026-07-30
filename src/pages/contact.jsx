@@ -5,6 +5,7 @@ import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { servicesList } from '../components/sections/constants';
 import emailjs from '@emailjs/browser';
 import { EMAILJS_CONFIG } from '../config/emailjs.config';
+import Head from 'next/head';
 
 const Contact = () => {
   const heroRef = useRef(null);
@@ -219,6 +220,10 @@ const Contact = () => {
 
   return (
     <div className="relative min-h-screen overflow-visible">
+      <Head>
+        <title>Contact Us | Advertio - Let&apos;s Scale Your Business</title>
+        <meta name="description" content="Get in touch with Advertio today! Connect with our consultants to discuss performance marketing, web development, branding, or video editing." />
+      </Head>
       {/* Hero Section */}
       <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-visible pt-24 pb-8 md:pb-20 z-10">
         <div className="container mx-auto px-6 relative z-30 w-full">

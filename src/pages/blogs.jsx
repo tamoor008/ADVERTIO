@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
+import Head from 'next/head';
 
 const Blogs = () => {
   const sectionRef = useRef(null);
@@ -201,6 +202,10 @@ const Blogs = () => {
 
   return (
     <div className="relative min-h-screen overflow-visible bg-white" style={{ backgroundColor: '#FFFFFF', background: '#FFFFFF' }}>
+      <Head>
+        <title>Insights &amp; Articles | Advertio Blog</title>
+        <meta name="description" content="Read expert insights, tips, and strategies on e-commerce growth, performance marketing, WebGL 3D design, and conversion rate optimization (CRO)." />
+      </Head>
       <motion.section
         ref={sectionRef}
         className="relative z-10 pt-24 pb-32 overflow-visible bg-gradient-to-b from-white/50 via-white/70 to-white/90 w-full"

@@ -4,6 +4,7 @@ import { useRef, useEffect } from 'react';
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import Head from 'next/head';
 
 const Portfolio = () => {
   const containerRef = useRef(null);
@@ -62,6 +63,10 @@ const Portfolio = () => {
 
   return (
     <div ref={containerRef} className="min-h-screen bg-white relative">
+      <Head>
+        <title>Our Portfolio | Advertio - Premium Design &amp; Digital Case Studies</title>
+        <meta name="description" content="Explore our premium portfolio showcase. See how Advertio blends strategy, creative design, and technology to build revenue-generating brand experiences." />
+      </Head>
       {/* Custom Progress Bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-primary z-[10002] origin-left"

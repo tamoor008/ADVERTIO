@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link';
+import Head from 'next/head';
 import { motion } from 'framer-motion';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Text } from '@react-three/drei';
@@ -27,7 +28,12 @@ function Floating404() {
 
 const NotFound = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center relative bg-white" style={{ backgroundColor: '#FFFFFF', background: '#FFFFFF' }}>
+    <>
+      <Head>
+        <title>404 - Page Not Found | Advertio</title>
+        <meta name="description" content="The page you are looking for does not exist on Advertio. Return to our homepage to explore our marketing and design services." />
+      </Head>
+      <div className="min-h-screen flex items-center justify-center relative bg-white" style={{ backgroundColor: '#FFFFFF', background: '#FFFFFF' }}>
       <div className="absolute inset-0 z-0">
         <Canvas camera={{ position: [0, 0, 5] }}>
           <Suspense fallback={null}>
@@ -58,6 +64,7 @@ const NotFound = () => {
         </motion.div>
       </div>
     </div>
+    </>
   );
 };
 

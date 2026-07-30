@@ -77,7 +77,7 @@ const DesignPortfolioSection = () => {
             className="lg:pt-10"
           >
             <Link
-              href="/Portfolio"
+              href="/portfolio"
               className="group relative inline-flex items-center gap-4 p-1 rounded-full bg-white shadow-xl shadow-dark/5 border border-dark/5 transition-all hover:pr-8 hover:shadow-primary/20"
             >
               <div className="w-16 h-16 rounded-full bg-dark flex items-center justify-center text-white transition-colors group-hover:bg-primary">

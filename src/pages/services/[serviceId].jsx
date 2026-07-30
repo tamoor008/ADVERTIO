@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import Image from 'next/image';
+import Head from 'next/head';
 import favicon from '../../assets/favicon.JPG';
 import { servicesList } from '../../components/sections/constants';
 
@@ -350,6 +351,11 @@ export default function ServiceDetail() {
   }
 
   return (
+    <>
+      <Head>
+        <title>{service.title} | Advertio Services</title>
+        <meta name="description" content={service.desc} />
+      </Head>
     <div
       ref={sectionRef}
       className="relative min-h-screen pt-24 pb-20 bg-white md:overflow-visible overflow-visible"
@@ -743,6 +749,7 @@ export default function ServiceDetail() {
         <ServiceContactForm service={service} contactFormRef={contactFormRef} contactFormInView={contactFormInView} isMobile={isMobile} shouldShowImmediately={shouldShowImmediately} />
       </div>
     </div>
+    </>
   );
 }
 
@@ -967,4 +974,3 @@ function ServiceContactForm({ service, contactFormRef, contactFormInView, isMobi
     </motion.div>
   );
 }
-

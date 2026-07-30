@@ -5,6 +5,7 @@ import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
+import Head from 'next/head';
 // Removed local import of talhaImage, will use public path directy
 
 import { servicesList } from '../components/sections/constants';
@@ -241,6 +242,10 @@ const About = () => {
 
   return (
     <div className="relative min-h-screen overflow-visible bg-white" style={{ backgroundColor: '#FFFFFF', background: '#FFFFFF' }}>
+      <Head>
+        <title>About Us | Advertio - Premium Marketing Agency</title>
+        <meta name="description" content="Learn more about Advertio, our mission, vision, values, and leadership under CEO Talha Azmat. We design custom digital ecosystems that drive business growth." />
+      </Head>
       {/* Hero Section */}
       <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-visible pt-24 pb-8 md:pb-20 z-10">
         <div className="container mx-auto px-6 relative z-30">

@@ -6,7 +6,6 @@ export default function Document() {
       <Head>
         {/* Favicon for the browser tab */}
         <link rel="icon" type="image/png" href="/sublogo.png" />
-        <meta name="description" content="Advertio - Premium marketing agency creating cinematic 3D digital experiences." />
       </Head>
       <body>
         <Main />

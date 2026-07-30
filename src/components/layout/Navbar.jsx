@@ -69,7 +69,7 @@ const Navbar = () => {
   ];
 
   const navLinks = [
-    { path: '/Portfolio', label: 'Portfolio' },
+    { path: '/portfolio', label: 'Portfolio' },
     { path: '/about', label: 'About' },
     { path: '/contact', label: 'Contact' },
   ];

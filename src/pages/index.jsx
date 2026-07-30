@@ -2,6 +2,7 @@
 
 import { useState, Suspense } from 'react'
 import dynamic from 'next/dynamic'
+import Head from 'next/head'
 
 // Eagerly loaded components (above the fold)
 import HeroSection from '../components/sections/HeroSection'
@@ -34,6 +35,10 @@ export default function Home() {
 
   return (
     <>
+      <Head>
+        <title>Advertio - Cinematic Digital Experiences | Premium Marketing Agency</title>
+        <meta name="description" content="Advertio is a premium digital marketing and design agency crafting immersive 3D web experiences, performance marketing, and branding solutions to scale DTC brands." />
+      </Head>
       {/* Above the fold - eagerly loaded */}
       <HeroSection />
       <ServicesSection expanded={expanded} setExpanded={setExpanded} />

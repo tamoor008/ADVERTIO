@@ -5,6 +5,7 @@ import { motion, useInView, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import emailjs from '@emailjs/browser';
 import { EMAILJS_CONFIG } from '../config/emailjs.config';
+import Head from 'next/head';
 
 const PRIMARY_COLOR = '#f33f29';
 const SECONDARY_COLOR = '#191919';
@@ -206,6 +207,10 @@ const FreeAudit = () => {
       animate={isInView ? { opacity: 1 } : { opacity: 0 }}
       transition={{ duration: 0.6 }}
     >
+      <Head>
+        <title>Get a Free SEO &amp; Marketing Audit | Advertio</title>
+        <meta name="description" content="Request a free comprehensive SEO, design, and marketing audit from Advertio. Let us analyze your store and unlock growth opportunities." />
+      </Head>
       <div className="relative max-w-6xl mx-auto px-6 md:px-8 lg:px-12">
         {/* Back Button */}
         <motion.div
