@@ -210,6 +210,7 @@ const FreeAudit = () => {
       <Head>
         <title>Get a Free SEO &amp; Marketing Audit | Advertio</title>
         <meta name="description" content="Request a free comprehensive SEO, design, and marketing audit from Advertio. Let us analyze your store and unlock growth opportunities." />
+        <link rel="canonical" href="https://www.advertio.agency/free-audit" />
       </Head>
       <div className="relative max-w-6xl mx-auto px-6 md:px-8 lg:px-12">
         {/* Back Button */}

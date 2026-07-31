@@ -88,6 +88,7 @@ const Services = () => {
       <Head>
         <title>Our Services | Advertio - Growth &amp; Tech Solutions</title>
         <meta name="description" content="Discover Advertio&apos;s premium marketing and technology services, from 3D design and custom Shopify development to performance marketing." />
+        <link rel="canonical" href="https://www.advertio.agency/services" />
       </Head>
       <div className="container mx-auto px-6">
         <motion.div

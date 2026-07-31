@@ -38,6 +38,7 @@ export default function Home() {
       <Head>
         <title>Advertio - Cinematic Digital Experiences | Premium Marketing Agency</title>
         <meta name="description" content="Advertio is a premium digital marketing and design agency crafting immersive 3D web experiences, performance marketing, and branding solutions to scale DTC brands." />
+        <link rel="canonical" href="https://www.advertio.agency/" />
       </Head>
       {/* Above the fold - eagerly loaded */}
       <HeroSection />

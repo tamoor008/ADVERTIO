@@ -66,6 +66,7 @@ const Portfolio = () => {
       <Head>
         <title>Our Portfolio | Advertio - Premium Design &amp; Digital Case Studies</title>
         <meta name="description" content="Explore our premium portfolio showcase. See how Advertio blends strategy, creative design, and technology to build revenue-generating brand experiences." />
+        <link rel="canonical" href="https://www.advertio.agency/portfolio" />
       </Head>
       {/* Custom Progress Bar */}
       <motion.div

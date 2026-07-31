@@ -205,6 +205,7 @@ const Blogs = () => {
       <Head>
         <title>Insights &amp; Articles | Advertio Blog</title>
         <meta name="description" content="Read expert insights, tips, and strategies on e-commerce growth, performance marketing, WebGL 3D design, and conversion rate optimization (CRO)." />
+        <link rel="canonical" href="https://www.advertio.agency/blogs" />
       </Head>
       <motion.section
         ref={sectionRef}

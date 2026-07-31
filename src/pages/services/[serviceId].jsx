@@ -355,6 +355,7 @@ export default function ServiceDetail() {
       <Head>
         <title>{service.title} | Advertio Services</title>
         <meta name="description" content={service.desc} />
+        <link rel="canonical" href={`https://www.advertio.agency/services/${service.id}`} />
       </Head>
     <div
       ref={sectionRef}
