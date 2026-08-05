@@ -41,7 +41,7 @@ const HeroSection = () => {
     if (isMobile) return;
 
     const tl = gsap.timeline();
-    
+
     if (textRef.current) {
       tl.from(textRef.current.children, {
         opacity: 0,
@@ -111,7 +111,7 @@ const HeroSection = () => {
                 animate={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
                 transition={isMobile ? { duration: 0 } : { duration: 1, delay: 0.3 }}
               >
-                We scale agencies through digital marketing that&apos;s:{' '}
+                We scale DTC ecommerce brands through digital marketing that&apos;s:{' '}
                 <span className="relative inline-flex items-end h-[1.1em] w-[16ch] align-baseline">
                   <AnimatePresence mode="wait" initial={false}>
                     <motion.span
