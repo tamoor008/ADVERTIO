@@ -1,81 +1,90 @@
 {
-  "../node_modules/@react-three/drei/core/VideoTexture.js -> hls.js": {
-    "id": null,
+  "..\\node_modules\\@react-three\\drei\\core\\VideoTexture.js -> hls.js": {
+    "id": "..\\node_modules\\@react-three\\drei\\core\\VideoTexture.js -> hls.js",
     "files": []
   },
-  "../node_modules/@react-three/drei/web/FaceLandmarker.js -> @mediapipe/tasks-vision": {
-    "id": null,
-    "files": []
-  },
-  "pages/index.jsx -> ../components/sections/BlogsSection3D": {
-    "id": 9995,
+  "..\\node_modules\\@react-three\\drei\\web\\FaceLandmarker.js -> @mediapipe/tasks-vision": {
+    "id": "..\\node_modules\\@react-three\\drei\\web\\FaceLandmarker.js -> @mediapipe/tasks-vision",
     "files": [
-      "static/chunks/995.a3c3a8e65f6eebdd.js"
+      "static/chunks/_pages-dir-browser_node_modules_mediapipe_tasks-vision_vision_bundle_mjs.js"
     ]
   },
-  "pages/index.jsx -> ../components/sections/BrandCarousel": {
-    "id": 2727,
+  "..\\node_modules\\next\\dist\\client\\index.js -> ../pages/_app": {
+    "id": "..\\node_modules\\next\\dist\\client\\index.js -> ../pages/_app",
     "files": [
-      "static/chunks/108.4bc10133b9e1c10c.js"
+      "static/chunks/_pages-dir-browser_node_modules_next_dist_pages__app_js.js"
     ]
   },
-  "pages/index.jsx -> ../components/sections/ContactSection3D": {
-    "id": 7606,
+  "..\\node_modules\\next\\dist\\client\\index.js -> ../pages/_error": {
+    "id": "..\\node_modules\\next\\dist\\client\\index.js -> ../pages/_error",
     "files": [
-      "static/chunks/606.2566a169c013e66a.js"
+      "static/chunks/_pages-dir-browser_node_modules_next_dist_pages__error_js.js"
     ]
   },
-  "pages/index.jsx -> ../components/sections/DesignPortfolioSection": {
-    "id": 4537,
+  "pages\\index.jsx -> ../components/sections/BlogsSection3D": {
+    "id": "pages\\index.jsx -> ../components/sections/BlogsSection3D",
     "files": [
-      "static/chunks/587-d97aa507e4957209.js",
-      "static/chunks/537.428193b77d1f08d5.js"
+      "static/chunks/_pages-dir-browser_src_components_sections_BlogsSection3D_jsx.js"
     ]
   },
-  "pages/index.jsx -> ../components/sections/FAQSection3D": {
-    "id": 9534,
+  "pages\\index.jsx -> ../components/sections/BrandCarousel": {
+    "id": "pages\\index.jsx -> ../components/sections/BrandCarousel",
     "files": [
-      "static/chunks/534.af16556dcb80ecbe.js"
+      "static/chunks/_pages-dir-browser_src_components_sections_BrandCarousel_jsx.js"
     ]
   },
-  "pages/index.jsx -> ../components/sections/GetAQuoteSection": {
-    "id": 9583,
+  "pages\\index.jsx -> ../components/sections/ContactSection3D": {
+    "id": "pages\\index.jsx -> ../components/sections/ContactSection3D",
     "files": [
-      "static/chunks/587-d97aa507e4957209.js",
-      "static/chunks/583.1125ceec88ac291d.js"
+      "static/chunks/_pages-dir-browser_src_components_sections_ContactSection3D_jsx.js"
     ]
   },
-  "pages/index.jsx -> ../components/sections/MockupSection": {
-    "id": 5860,
+  "pages\\index.jsx -> ../components/sections/DesignPortfolioSection": {
+    "id": "pages\\index.jsx -> ../components/sections/DesignPortfolioSection",
     "files": [
-      "static/chunks/587-d97aa507e4957209.js",
-      "static/chunks/860.7a592260a7b9da15.js"
+      "static/chunks/_pages-dir-browser_src_components_sections_DesignPortfolioSection_jsx.js"
     ]
   },
-  "pages/index.jsx -> ../components/sections/ReviewsSection3D": {
-    "id": 7939,
+  "pages\\index.jsx -> ../components/sections/FAQSection3D": {
+    "id": "pages\\index.jsx -> ../components/sections/FAQSection3D",
     "files": [
-      "static/chunks/939.9cb3daa52e5b7733.js"
+      "static/chunks/_pages-dir-browser_src_components_sections_FAQSection3D_jsx.js"
     ]
   },
-  "pages/index.jsx -> ../components/sections/TeamSection": {
-    "id": 2617,
+  "pages\\index.jsx -> ../components/sections/GetAQuoteSection": {
+    "id": "pages\\index.jsx -> ../components/sections/GetAQuoteSection",
     "files": [
-      "static/chunks/587-d97aa507e4957209.js",
-      "static/chunks/617.f8e34dbedf4e45d7.js"
+      "static/chunks/_pages-dir-browser_src_components_sections_GetAQuoteSection_jsx.js"
     ]
   },
-  "pages/index.jsx -> ../components/sections/VideoSection3D": {
-    "id": 3349,
+  "pages\\index.jsx -> ../components/sections/MockupSection": {
+    "id": "pages\\index.jsx -> ../components/sections/MockupSection",
     "files": [
-      "static/chunks/587-d97aa507e4957209.js",
-      "static/chunks/349.e754608f3771f093.js"
+      "static/chunks/_pages-dir-browser_src_components_sections_MockupSection_jsx.js"
     ]
   },
-  "pages/index.jsx -> ../components/sections/WhyChooseAdvertio": {
-    "id": 233,
+  "pages\\index.jsx -> ../components/sections/ReviewsSection3D": {
+    "id": "pages\\index.jsx -> ../components/sections/ReviewsSection3D",
     "files": [
-      "static/chunks/233.46caaace6f23b2c5.js"
+      "static/chunks/_pages-dir-browser_src_components_sections_ReviewsSection3D_jsx.js"
+    ]
+  },
+  "pages\\index.jsx -> ../components/sections/TeamSection": {
+    "id": "pages\\index.jsx -> ../components/sections/TeamSection",
+    "files": [
+      "static/chunks/_pages-dir-browser_src_components_sections_TeamSection_jsx.js"
+    ]
+  },
+  "pages\\index.jsx -> ../components/sections/VideoSection3D": {
+    "id": "pages\\index.jsx -> ../components/sections/VideoSection3D",
+    "files": [
+      "static/chunks/_pages-dir-browser_src_components_sections_VideoSection3D_jsx.js"
+    ]
+  },
+  "pages\\index.jsx -> ../components/sections/WhyChooseAdvertio": {
+    "id": "pages\\index.jsx -> ../components/sections/WhyChooseAdvertio",
+    "files": [
+      "static/chunks/_pages-dir-browser_src_components_sections_WhyChooseAdvertio_jsx.js"
     ]
   }
 }
