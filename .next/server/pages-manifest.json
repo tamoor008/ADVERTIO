@@ -2,13 +2,13 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/_app": "pages/_app.js",
-  "/404": "pages/404.html",
-  "/blogs": "pages/blogs.html",
-  "/contact": "pages/contact.html",
-  "/about": "pages/about.html",
-  "/free-audit": "pages/free-audit.html",
-  "/portfolio": "pages/portfolio.html",
-  "/": "pages/index.html",
-  "/services/[serviceId]": "pages/services/[serviceId].html",
-  "/services": "pages/services.html"
+  "/404": "pages/404.js",
+  "/free-audit": "pages/free-audit.js",
+  "/about": "pages/about.js",
+  "/blogs": "pages/blogs.js",
+  "/contact": "pages/contact.js",
+  "/services/[serviceId]": "pages/services/[serviceId].js",
+  "/": "pages/index.js",
+  "/portfolio": "pages/portfolio.js",
+  "/services": "pages/services.js"
 }

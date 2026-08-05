@@ -1,0 +1,19 @@
+# Advertio Digital Agency
+
+> Advertio is a premium digital marketing and technology agency crafting cinematic 3D web experiences, performance marketing, and DTC branding solutions.
+
+## Core Services
+
+- Performance Marketing: High-ROI paid campaigns across Google Ads, Meta, TikTok, and LinkedIn.
+- Digital Marketing: Full-funnel search engine optimization, content strategy, and customer acquisition.
+- Social Media Handling & Branding: Strategic content, brand identity, and community growth.
+- Creative & Design: 3D visual assets, UI/UX design, and brand identity kits.
+- Video Editing: Cinematic video edits optimized for high-converting ad campaigns and social media.
+- Website Development: Modern, high-performance web development with Next.js, React, and WebGL/Three.js.
+- Shopify Store Development: Conversion-focused, scalable e-commerce storefronts on Shopify.
+- Ecommerce Solutions: End-to-end e-commerce operations, strategy, and growth programs.
+
+## Canonical Website
+Website: https://www.advertio.agency/
+Contact: https://www.advertio.agency/contact
+Free Audit: https://www.advertio.agency/free-audit

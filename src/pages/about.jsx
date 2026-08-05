@@ -243,7 +243,7 @@ const About = () => {
   return (
     <div className="relative min-h-screen overflow-visible bg-white" style={{ backgroundColor: '#FFFFFF', background: '#FFFFFF' }}>
       <Head>
-        <title>About Us | Advertio - Premium Marketing Agency</title>
+        <title>Abo</title>
         <meta name="description" content="Learn more about Advertio, our mission, vision, values, and leadership under CEO Talha Azmat. We design custom digital ecosystems that drive business growth." />
         <link rel="canonical" href="https://www.advertio.agency/about" />
       </Head>
