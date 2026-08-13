@@ -15,7 +15,7 @@ const GetAQuoteSection = () => {
   const buttonRef = useRef(null);
   const performanceCardRef = useRef(null);
   const router = useRouter();
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.05 });
   const [pathData, setPathData] = useState('M 550 180 Q 450 100, 350 130 Q 250 150, 160 100');
   const [mobilePathData, setMobilePathData] = useState('');
   const [isMobile, setIsMobile] = useState(false);

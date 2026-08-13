@@ -5,7 +5,7 @@ import hibaImage from '../../assets/Hiba Tahir.jpg';
 
 const TeamSection = () => {
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.05 });
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const teamMembers = [

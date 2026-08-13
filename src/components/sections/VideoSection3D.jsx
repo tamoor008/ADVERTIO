@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 const VideoSection3D = () => {
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.1, margin: '-100px' });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.05 });
   const [playingVideo, setPlayingVideo] = useState(null);
   const [isMobile, setIsMobile] = useState(() => {
     if (typeof window !== 'undefined') {

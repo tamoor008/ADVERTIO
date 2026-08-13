@@ -80,7 +80,7 @@ const ProcessBackdrop = () => {
     <motion.section
       initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
       whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={{ once: true, amount: 0.05 }}
       transition={isMobile ? { duration: 0 } : { duration: 1 }}
       className="relative z-10 py-8 md:py-24"
       style={isMobile ? { transform: 'none' } : {}}
@@ -100,7 +100,7 @@ const ProcessBackdrop = () => {
                   key={text}
                   initial={isMobile ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                   whileInView={isMobile ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
+                  viewport={{ once: true, amount: 0.05 }}
                   transition={isMobile ? { duration: 0 } : { duration: 0.4, delay: index * 0.08 }}
                   className="flex gap-4 items-start"
                   style={isMobile ? { transform: 'none' } : {}}
@@ -131,7 +131,7 @@ const ProcessBackdrop = () => {
                     key={index}
                     initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                     whileInView={isMobile ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
+                    viewport={{ once: true, amount: 0.05 }}
                     transition={isMobile ? { duration: 0 } : { duration: 0.4, delay: index * 0.05 }}
                     className="bg-white rounded-2xl border border-[#191919]/10 shadow-md overflow-hidden"
                     style={{
@@ -219,7 +219,7 @@ const ProcessBackdrop = () => {
           <motion.div
             initial={isMobile ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
             whileInView={isMobile ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.05 }}
             transition={isMobile ? { duration: 0 } : { duration: 0.6, delay: 0.2 }}
             className="hidden md:flex flex-shrink-0 relative w-[500px] h-[500px] lg:w-[600px] lg:h-[600px] items-center justify-center overflow-visible"
             style={isMobile ? { transform: 'none' } : {}}
@@ -251,7 +251,7 @@ const ProcessBackdrop = () => {
                   key={index}
                   initial={isMobile ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
                   whileInView={isMobile ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
-                  viewport={{ once: true, amount: 0.3 }}
+                  viewport={{ once: true, amount: 0.05 }}
                   transition={isMobile ? { duration: 0 } : { 
                     duration: 0.5, 
                     delay: 0.3 + index * 0.1,

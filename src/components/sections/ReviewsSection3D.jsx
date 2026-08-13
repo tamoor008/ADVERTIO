@@ -4,7 +4,7 @@ import { motion, useInView } from 'framer-motion';
 const ReviewsSection3D = () => {
   const sectionRef = useRef(null);
   const scrollContainerRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.1, margin: '-100px' });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.05 });
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const reviews = [

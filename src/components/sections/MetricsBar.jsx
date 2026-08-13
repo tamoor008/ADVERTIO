@@ -59,7 +59,7 @@ const AnimatedStat = ({ stat, isInView }) => {
 
 const MetricsBar = () => {
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.05 });
 
   return (
     <section className="relative z-10 pb-24 overflow-visible">

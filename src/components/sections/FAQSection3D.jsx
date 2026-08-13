@@ -5,7 +5,7 @@ import { motion, useInView } from 'framer-motion';
 
 const FAQSection3D = () => {
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.25 });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.05 });
   const [activeIndex, setActiveIndex] = useState(null);
 
   const faqs = [

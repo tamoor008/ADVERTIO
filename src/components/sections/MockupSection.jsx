@@ -12,7 +12,7 @@ import mockup6 from '../../assets/mockup6.png';
 
 const MockupSection = () => {
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.05 });
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const mockups = [
